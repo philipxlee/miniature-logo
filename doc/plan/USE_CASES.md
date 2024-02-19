@@ -1,21 +1,21 @@
 ## Model: User Executes Command 'fd 50':
 * User enters the command 'fd 50' in the command window.
 * View captures the entered command.
-```
+```java
 // View class
 public void captureCommand(String command) {
 // Capture the entered command
 }
 ```
 * Controller receives the command from the view.
-```
+```java
 // Controller class
 public void receiveCommand(String command) {
 // Receive command from view
 }
 ```
 * Controller sends the command to the model.
-```
+```java
 // Controller class
 public void sendCommandToModel(String command) {
     model.processCommand(command);
@@ -23,12 +23,12 @@ public void sendCommandToModel(String command) {
 ```
 * Model parses the command and moves the turtle forward 50 units.
 
-```
+```java
 // Model class
 public void processCommand(String command) { }
 ```
 * Model updates the turtle's position.
-```
+```java
 // Model class
 public void processCommand(String command) {
 // Parse command and move turtle
@@ -47,7 +47,7 @@ private void notifyObservers() {
 ```
 * Model adds the command to the environment's history.
 * View updates the display window to show the turtle's new position and trail.
-```
+```java
 // View class
 public void updateDisplayWindow(Turtle turtle) {
 // Update display window with turtle's new position
@@ -57,28 +57,28 @@ public void updateDisplayWindow(Turtle turtle) {
 ## Parser: User Executes Command 'lt 90':
 * User enters the command 'lt 90' in the command window.
 * View captures the entered command.
-```
+```java
 // View class
 public void captureCommand(String command) {
 // Capture the entered command
 }
 ```
 * Controller receives the command from the view.
-```
+```java
 // Controller class
 public void receiveCommand(String command) {
 // Receive command from view
 }
 ```
 * Controller sends the command to the parser.
-```
+```java
 // Controller class
 public void sendCommandToParser(String command) {
     parser.parseCommand(command);
 }
 ```
 * Parser parses the command and generates corresponding action.
-```
+```java
 // Parser class
 public void parseCommand(String command) {
  // Parse the command and generate corresponding action
@@ -87,7 +87,7 @@ public void parseCommand(String command) {
 * Parser sends the action to the Controller, which then sends it to the model for execution.
 * Model executes the action (e.g., rotate turtle left by 90 degrees).
 * Model then updates and notifies observers.
-```
+```java
 // Model class
 public void executeAction(String action) {
     if (action.equals("lt 90")) {
@@ -102,28 +102,28 @@ public void executeAction(String action) {
 * User enters the command 'Repeat 3 [fd 50]' in the command window.
 * View captures the entered command.
 
-```
+```java
 // View class
 public void captureCommand(String command) {
 // Capture the entered command
 }
 ```
 * Controller receives the command from the view.
-```
+```java
 // Controller class
 public void receiveCommand(String command) {
 // Receive command from view
 }
 ```
 * Controller sends the command to the model.
-```
+```java
 // Controller class
 public void sendCommandToModel(String command) {
     model.processCommand(command);
 }
 ```
 * Model processes the command, recognizing it as a repetition.
-```
+```java
 // Model class
 public void processCommand(String command) {
 if (isRepeatCommand(command)) {
@@ -137,7 +137,7 @@ if (isRepeatCommand(command)) {
 ```
 * Model repeats the specified command for the given number of times.
 * Controller updates the view with the execution of each repetition.
-```
+```java
 // Controller class
 public void updateViewForRepetition(int currentIteration) {
     view.updateRepetitionStatus(currentIteration);
@@ -148,28 +148,28 @@ public void updateViewForRepetition(int currentIteration) {
 ## View: User Sets Background Color to Blue:
 * User selects blue as the background color from the UI.
 * View captures the color selection.
-```
+```java
 // View class
 public void captureBackgroundColor(Color color) {
 // Capture the selected background color
 }
 ```
 * Controller receives the color selection from the view.
-```
+```java
 // Controller class
 public void receiveColorSelection(Color color) {
 // Receive color selection from view
 }
 ```
 * Controller sends the color selection to the model.
-```
+```java
 // Controller class
 public void sendColorToModel(Color color) {
 model.updateBackgroundColor(color);
 }
 ```
 * Model updates the background color to blue.
-```
+```java
 // Model class
 public void updateBackgroundColor(Color color) {
 // Update background color
@@ -177,7 +177,7 @@ public void updateBackgroundColor(Color color) {
 ```
 * Model notifies the view of the background color change.
 * View refreshes the display window with the new background color.
-```
+```java
 // View class
 public void refreshDisplayWindow(Color color) {
 // Refresh display window with new background color
@@ -188,28 +188,28 @@ public void refreshDisplayWindow(Color color) {
 ## Model: User Executes Command 'setxy 100 100':
 * User enters the command 'setxy 100 100' in the command window.
 * View captures the entered command.
-```
+```java
 // View class
 public void captureCommand(String command) {
     // Capture the entered command
 }
 ```
 * Controller receives the command from the view.
-```
+```java
 // Controller class
 public void receiveCommand(String command) {
     // Receive command from view
 }
 ```
 * Controller sends the command to the model.
-```
+```java
 // Controller class
 public void sendCommandToModel(String command) {
     model.processCommand(command);
 }
 ```
 * Model processes the command and moves the turtle to the specified position.
-```
+```java
 // Model class
 public void processCommand(String command) {
     // Parse command and move turtle
