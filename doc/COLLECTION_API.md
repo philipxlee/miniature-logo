@@ -1,6 +1,6 @@
 # Collections API Lab Discussion
-### NAMES
-### TEAM
+### Philip Lee, Arnav Nayak, Connor Johnson, Prince Ahmed
+### Team 2
 
 
 
