@@ -89,4 +89,18 @@ public class TurtleModel implements Observable {
   public void notifyObservers() {
     observers.forEach(observer -> observer.update(this));
   }
+
+  /**
+   * @return X position of Turtle
+   */
+  public double getX() {
+    return xPosition;
+  }
+
+  /**
+   * @return Y position of Turtle
+   */
+  public double getY() {
+    return yPosition;
+  }
 }
