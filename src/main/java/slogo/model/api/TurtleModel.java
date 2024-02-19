@@ -1,4 +1,4 @@
-package slogo.model;
+package slogo.model.api;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +13,8 @@ import slogo.utils.Observer;
 public class TurtleModel implements Observable {
 
   private List<Observer> observers;
-  private double xPosition;
-  private double yPosition;
+  private double x;
+  private double y;
   private double orientation;
 
 
@@ -23,15 +23,15 @@ public class TurtleModel implements Observable {
    */
   public TurtleModel() {
     observers = new ArrayList<>();
-    xPosition = 0;
-    yPosition = 0;
+    x = 0;
+    y = 0;
     orientation = 0;
   }
 
   /**
    * Move Turtle forward by some distance
    *
-   * @param distance: distance to move Turtle
+   * @param distance distance to move Turtle
    */
   public void moveForward(double distance) {
     // calculate change in X and Y based on orientation angle and distance
@@ -40,8 +40,8 @@ public class TurtleModel implements Observable {
     double deltaY = distance * Math.sin(orientationRadians);
 
     // update X and Y position
-    xPosition += deltaX;
-    yPosition += deltaY;
+    x += deltaX;
+    y += deltaY;
 
     // notify observers about position change
     notifyObservers();
@@ -67,7 +67,7 @@ public class TurtleModel implements Observable {
   }
 
   /**
-   * Add observer to list of observers
+   * Add observer to list of observers.
    */
   @Override
   public void addObserver(Observer observer) {
@@ -75,7 +75,7 @@ public class TurtleModel implements Observable {
   }
 
   /**
-   * Remove observer from list of observers
+   * Remove observer from list of observers.
    */
   @Override
   public void removeObserver(Observer observer) {
@@ -83,7 +83,7 @@ public class TurtleModel implements Observable {
   }
 
   /**
-   * Notify all observers of state change
+   * Notify all observers of state change.
    */
   @Override
   public void notifyObservers() {
@@ -94,13 +94,13 @@ public class TurtleModel implements Observable {
    * @return X position of Turtle
    */
   public double getX() {
-    return xPosition;
+    return x;
   }
 
   /**
    * @return Y position of Turtle
    */
   public double getY() {
-    return yPosition;
+    return y;
   }
 }

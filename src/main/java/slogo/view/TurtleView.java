@@ -1,6 +1,6 @@
 package slogo.view;
 
-import slogo.model.TurtleModel;
+import slogo.model.api.TurtleModel;
 import slogo.utils.Observable;
 import slogo.utils.Observer;
 
