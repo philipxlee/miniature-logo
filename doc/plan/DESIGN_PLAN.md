@@ -4,21 +4,6 @@
 
 ### Team 2
 
-#### Examples
-
-Here is a graphical look at my design:
-
-![This is cool, too bad you can't see it](online-shopping-uml-example.png "An initial UI")
-
-made from [a tool that generates UML from existing code](http://staruml.io/).
-
-Here is our amazing UI:
-
-![This is cool, too bad you can't see it](29-sketched-ui-wireframe.jpg "An alternate design")
-
-taken
-from [Brilliant Examples of Sketched UI Wireframes and Mock-Ups](https://onextrapixel.com/40-brilliant-examples-of-sketched-ui-wireframes-and-mock-ups/).
-
 ## Introduction
 
 * For this project, we plan to create SLogo, an application that provides an IDE to its users to
