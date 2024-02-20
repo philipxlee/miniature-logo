@@ -3,8 +3,10 @@ package slogo.model.parser;
 import slogo.model.api.TurtleModel;
 import slogo.model.commands.Command;
 import slogo.model.commands.MoveCommand;
+import slogo.model.commands.PenCommand;
 import slogo.model.commands.RotateCommand;
 import slogo.model.commands.SetOrientationCommand;
+import slogo.model.commands.TurtleVisibleCommand;
 
 public class CommandParser {
 
@@ -24,6 +26,10 @@ public class CommandParser {
       case "lt" -> action = new RotateCommand(turtleModel, -number);
       case "rt" -> action = new RotateCommand(turtleModel, number);
       case "seth" -> action = new SetOrientationCommand(turtleModel, number);
+      case "pd" -> action = new PenCommand(turtleModel, true);
+      case "pu" -> action = new PenCommand(turtleModel, false);
+      case "st" -> action = new TurtleVisibleCommand(turtleModel, true);
+      case "ht" -> action = new TurtleVisibleCommand(turtleModel, false);
       default -> System.out.println("Unknown command: " + parts[0] + " or number: " + parts[1]);
     }
     System.out.println("Parsed command");
