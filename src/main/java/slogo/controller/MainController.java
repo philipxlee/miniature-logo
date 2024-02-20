@@ -2,6 +2,11 @@ package slogo.controller;
 
 public class MainController {
 
+  /**
+   * Main method to run the program
+   *
+   * @param args command line arguments
+   */
   public static void main(String[] args) {
     CommandController controller = new CommandController();
 
