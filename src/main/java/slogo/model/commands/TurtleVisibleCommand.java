@@ -11,7 +11,7 @@ public class TurtleVisibleCommand implements Command {
    * Constructs a TurtleVisibilityCommand.
    *
    * @param model the TurtleModel to affect
-   * @param show true to show the turtle, false to hide it
+   * @param show  true to show the turtle, false to hide it
    */
   public TurtleVisibleCommand(TurtleModel model, boolean show) {
     this.model = model;

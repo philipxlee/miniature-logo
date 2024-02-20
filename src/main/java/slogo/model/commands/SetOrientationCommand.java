@@ -10,12 +10,6 @@ public class SetOrientationCommand implements Command {
   private final Double pointY;
   private final OrientationAction actionType;
 
-  private enum OrientationAction {
-    SET_HEADING,
-    TOWARDS,
-    PLACEHOLDER // remove in production
-  }
-
   /**
    * Constructor for setting the turtle's heading to an absolute degree.
    */
@@ -45,10 +39,16 @@ public class SetOrientationCommand implements Command {
 //      TODO: implement setAbsoluteHeading and setXYComman
 //      case SET_HEADING -> model.setAbsoluteHeading(degree);
 //      case TOWARDS -> model.setXYCommand(pointX, pointY);
-        case SET_HEADING -> System.out.println("Set heading to " + degree);
-        case TOWARDS -> System.out.println("Turn towards (" + pointX + ", " + pointY + ")");
-        case PLACEHOLDER -> System.out.println("Placeholder >:)");
+      case SET_HEADING -> System.out.println("Set heading to " + degree);
+      case TOWARDS -> System.out.println("Turn towards (" + pointX + ", " + pointY + ")");
+      case PLACEHOLDER -> System.out.println("Placeholder >:)");
       default -> throw new IllegalStateException("Unexpected value: " + actionType);
     }
+  }
+
+  private enum OrientationAction {
+    SET_HEADING,
+    TOWARDS,
+    PLACEHOLDER // remove in production
   }
 }
