@@ -2,11 +2,11 @@ package slogo.model.parser;
 
 import slogo.model.api.TurtleModel;
 import slogo.model.commands.Command;
-import slogo.model.commands.MoveCommand;
-import slogo.model.commands.PenCommand;
-import slogo.model.commands.RotateCommand;
-import slogo.model.commands.SetOrientationCommand;
-import slogo.model.commands.TurtleVisibleCommand;
+import slogo.model.commands.turtle.MoveCommand;
+import slogo.model.commands.turtle.PenCommand;
+import slogo.model.commands.turtle.RotateCommand;
+import slogo.model.commands.turtle.SetOrientationCommand;
+import slogo.model.commands.turtle.TurtleVisibleCommand;
 
 public class CommandParser {
 

@@ -1,6 +1,7 @@
-package slogo.model.commands;
+package slogo.model.commands.turtle;
 
 import slogo.model.api.TurtleModel;
+import slogo.model.commands.Command;
 
 public class SetOrientationCommand implements Command {
 
@@ -32,6 +33,10 @@ public class SetOrientationCommand implements Command {
     this.actionType = OrientationAction.TOWARDS;
   }
 
+  /**
+   * Executes the set orientation command. Sets the turtle's heading to the given degree, or turns
+   * the turtle towards the given point.
+   */
   @Override
   public void execute() {
     Command action = null;

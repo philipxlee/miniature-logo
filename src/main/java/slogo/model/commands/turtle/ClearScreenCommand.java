@@ -1,11 +1,17 @@
-package slogo.model.commands;
+package slogo.model.commands.turtle;
 
 import slogo.model.api.TurtleModel;
+import slogo.model.commands.Command;
 
 public class ClearScreenCommand implements Command {
 
   private final TurtleModel model;
 
+  /**
+   * Constructor for the ClearScreenCommand, which clears the screen and moves the turtle home
+   *
+   * @param model the model to change
+   */
   public ClearScreenCommand(TurtleModel model) {
     this.model = model;
   }
