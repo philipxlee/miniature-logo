@@ -40,9 +40,10 @@ public class TurtleModel implements Observable {
     double deltaY = distance * Math.sin(orientationRadians);
 
     // update X and Y position
+    System.out.println("Turtle moved from " + x + ", " + y + " to...");
     x += deltaX;
     y += deltaY;
-
+    System.out.println("Turtle moved to: " + x + ", " + y);
     // notify observers about position change
     notifyObservers();
   }
@@ -53,6 +54,8 @@ public class TurtleModel implements Observable {
    * @param angle angle to rotate turtle by
    */
   public void rotate(double angle) {
+
+    System.out.println("Turtle rotated from " + orientation + " to...");
     // update angle
     orientation += angle;
 
@@ -62,6 +65,7 @@ public class TurtleModel implements Observable {
       orientation += 360;
     }
 
+    System.out.println("Turtle rotated to: " + orientation);
     // notify observers about orientation change
     notifyObservers();
   }
