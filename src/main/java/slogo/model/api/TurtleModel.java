@@ -12,7 +12,7 @@ import slogo.observer.Observer;
  */
 public class TurtleModel implements Observable {
 
-  private List<Observer> observers;
+  private final List<Observer> observers;
   private double x;
   private double y;
   private double orientation;
@@ -29,24 +29,24 @@ public class TurtleModel implements Observable {
   }
 
   /**
-   * Move Turtle forward by some distance
+   * Move Turtle forward or backward based on distance
    *
    * @param distance distance to move Turtle
    */
-  public void moveForward(double distance) {
+  public void moveTurtle(double distance) {
     // calculate change in X and Y based on orientation angle and distance
     double orientationRadians = Math.toRadians(orientation);
     double deltaX = distance * Math.cos(orientationRadians);
     double deltaY = distance * Math.sin(orientationRadians);
 
     // update X and Y position
-    System.out.println("Turtle moved from " + x + ", " + y + " to...");
     x += deltaX;
     y += deltaY;
-    System.out.println("Turtle moved to: " + x + ", " + y);
+
     // notify observers about position change
     notifyObservers();
   }
+
 
   /**
    * Rotate Turtle clockwise
@@ -55,7 +55,6 @@ public class TurtleModel implements Observable {
    */
   public void rotate(double angle) {
 
-    System.out.println("Turtle rotated from " + orientation + " to...");
     // update angle
     orientation += angle;
 
@@ -65,7 +64,6 @@ public class TurtleModel implements Observable {
       orientation += 360;
     }
 
-    System.out.println("Turtle rotated to: " + orientation);
     // notify observers about orientation change
     notifyObservers();
   }

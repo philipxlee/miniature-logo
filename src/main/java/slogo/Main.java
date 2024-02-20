@@ -8,7 +8,8 @@ public class Main {
     controller.startProgram();
 
     // Temporary test code: view would be calling this
-    controller.executeCommand("fd 50");
+    controller.executeCommand("bk 50");
     controller.executeCommand("rt 90");
+    controller.executeCommand("fd 10");
   }
 }

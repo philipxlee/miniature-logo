@@ -1,13 +1,13 @@
 package slogo.model.parser;
 
 import slogo.model.api.TurtleModel;
-import slogo.model.commands.MoveForwardCommand;
 import slogo.model.commands.Command;
+import slogo.model.commands.MoveCommand;
 import slogo.model.commands.RotateCommand;
 
 public class CommandParser {
 
-  private TurtleModel turtleModel;
+  private final TurtleModel turtleModel;
 
   public CommandParser(TurtleModel turtleModel) {
     this.turtleModel = turtleModel;
@@ -18,7 +18,9 @@ public class CommandParser {
     Command action = null;
     double number = Double.parseDouble(parts[1]);
     switch (parts[0].toLowerCase()) {
-      case "fd" -> action = new MoveForwardCommand(turtleModel, number);
+      case "fd" -> action = new MoveCommand(turtleModel, number);
+      case "bk" -> action = new MoveCommand(turtleModel, -number);
+      case "lt" -> action = new RotateCommand(turtleModel, -number);
       case "rt" -> action = new RotateCommand(turtleModel, number);
       default -> System.out.println("Unknown command: " + parts[0] + " or number: " + parts[1]);
     }

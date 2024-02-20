@@ -2,7 +2,7 @@ package slogo.model.commands;
 
 import slogo.model.api.TurtleModel;
 
-public class RotateCommand implements Command {
+public class SetHeadingCommand implements Command {
 
   private final TurtleModel model;
   private final double degree;
@@ -13,7 +13,7 @@ public class RotateCommand implements Command {
    * @param model  the model to change
    * @param degree the degree to rotate the turtle by
    */
-  public RotateCommand(TurtleModel model, double degree) {
+  public SetHeadingCommand(TurtleModel model, double degree) {
     this.model = model;
     this.degree = degree;
   }
@@ -23,6 +23,7 @@ public class RotateCommand implements Command {
    */
   @Override
   public void execute() {
-    model.rotate(degree);
+//    TODO: implement setHeading
+//    model.setAbsoluteHeading(degree);
   }
 }
