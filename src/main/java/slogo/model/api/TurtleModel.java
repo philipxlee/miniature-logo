@@ -2,8 +2,8 @@ package slogo.model.api;
 
 import java.util.ArrayList;
 import java.util.List;
-import slogo.utils.Observable;
-import slogo.utils.Observer;
+import slogo.observer.Observable;
+import slogo.observer.Observer;
 
 /**
  * TurtleModel representing the state of the Turtle
@@ -50,7 +50,7 @@ public class TurtleModel implements Observable {
   /**
    * Rotate Turtle clockwise
    *
-   * @param angle: angle to rotate turtle by
+   * @param angle angle to rotate turtle by
    */
   public void rotate(double angle) {
     // update angle

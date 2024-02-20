@@ -1,8 +1,8 @@
 package slogo.view;
 
 import slogo.model.api.TurtleModel;
-import slogo.utils.Observable;
-import slogo.utils.Observer;
+import slogo.observer.Observable;
+import slogo.observer.Observer;
 
 /**
  * TurtleView representing view where Turtle is rendered
@@ -14,7 +14,7 @@ public class TurtleView implements Observer {
   /**
    * Re-render the Turtle when state is changed
    *
-   * @param observable: observable triggering the notification
+   * @param observable observable triggering the notification
    */
   @Override
   public void update(Observable observable) {

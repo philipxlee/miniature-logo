@@ -1,4 +1,4 @@
-package slogo.utils;
+package slogo.observer;
 
 /**
  * Observable interface to define modules that act as a producer
@@ -10,14 +10,14 @@ public interface Observable {
   /**
    * Add new observer to state
    *
-   * @param observer: observer wanting to subscribe
+   * @param observer observer wanting to subscribe
    */
   void addObserver(Observer observer);
 
   /**
    * Remove observer from state
    *
-   * @param observer: observer wanting to unsubscribe
+   * @param observer observer wanting to unsubscribe
    */
   void removeObserver(Observer observer);
 
