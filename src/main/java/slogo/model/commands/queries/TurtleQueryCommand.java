@@ -25,7 +25,6 @@ public class TurtleQueryCommand implements Command {
    */
   @Override
   public void execute() {
-    double result = 0;
     switch (queryType) {
 //      case XCOR -> result = model.getXCor();
 //      case YCOR -> result = model.getYCor();
