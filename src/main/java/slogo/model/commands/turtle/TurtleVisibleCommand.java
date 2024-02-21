@@ -1,6 +1,7 @@
-package slogo.model.commands;
+package slogo.model.commands.turtle;
 
 import slogo.model.api.TurtleModel;
+import slogo.model.commands.Command;
 
 public class TurtleVisibleCommand implements Command {
 
@@ -18,6 +19,9 @@ public class TurtleVisibleCommand implements Command {
     this.show = show;
   }
 
+  /**
+   * Executes the turtle visibility command. Shows or hides the turtle.
+   */
   @Override
   public void execute() {
 //    TODO: Create showTurtle() and hideTurtle() in model

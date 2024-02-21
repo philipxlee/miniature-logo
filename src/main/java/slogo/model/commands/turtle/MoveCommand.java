@@ -1,6 +1,7 @@
-package slogo.model.commands;
+package slogo.model.commands.turtle;
 
 import slogo.model.api.TurtleModel;
+import slogo.model.commands.Command;
 
 public class MoveCommand implements Command {
 
