@@ -45,7 +45,7 @@ public class SpleashScreenScene implements GeneralScene {
     // Initialize title text and add click handler
     Text title = new Text("SLogo");
     title.setStyle("-fx-font-size: 30px; -fx-font-weight: bold;");
-    Text instruction = new Text("Click to start");
+    Text instruction = new Text("Instructions will go here");
     instruction.setStyle("-fx-font-size: 16px;");
 
     Button startButton = createStartButton(width, height);
