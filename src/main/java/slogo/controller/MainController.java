@@ -1,5 +1,9 @@
 package slogo.controller;
 
+import static javafx.application.Application.launch;
+
+import javafx.application.Application;
+
 public class MainController {
 
   /**
@@ -9,6 +13,7 @@ public class MainController {
    */
   public static void main(String[] args) {
     CommandController controller = new CommandController();
+    launch(ViewController.class);
 
     // Temporary test code: view would be calling this
     controller.executeCommand("bk 50");
