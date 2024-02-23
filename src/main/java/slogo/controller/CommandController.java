@@ -33,6 +33,10 @@ public class CommandController {
     cmd.execute();
   }
 
+  public TurtleModel getTurtleModel() {
+    return turtleModel;
+  }
+
   private void setObserverComponents() {
     turtleModel.addObserver(turtleView);
   }
