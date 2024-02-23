@@ -12,11 +12,13 @@ public class ViewController extends Application implements SceneSwitcher {
   private static final int WIDTH = 1000;
   private static final int HEIGHT = 600;
   private Stage stage;
+  private CommandController commandController;
 
   @Override
   public void start(Stage stage) {
     this.stage = stage;
-    switchToScene(new StartScene(WIDTH, HEIGHT, this));
+    this.commandController = new CommandController();
+    switchToScene(new StartScene(WIDTH, HEIGHT, this, commandController));
     stage.setTitle("SLogo Application");
     stage.setResizable(false);
     stage.show();

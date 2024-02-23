@@ -29,6 +29,7 @@ public class CommandController {
    * @param command the command to be executed
    */
   public void executeCommand(String command) {
+    System.out.println("Executing command: " + command);
     Command cmd = parser.parseCommand(command);
     cmd.execute();
   }
