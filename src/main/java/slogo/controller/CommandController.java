@@ -1,9 +1,8 @@
 package slogo.controller;
 
 import slogo.model.api.TurtleModel;
-import slogo.model.commands.Command;
+import slogo.model.command.Command;
 import slogo.model.parser.CommandParser;
-import slogo.view.scenes.TurtleView;
 
 public class CommandController {
 
@@ -39,5 +38,4 @@ public class CommandController {
   public TurtleModel getTurtleModel() {
     return turtleModel;
   }
-
 }

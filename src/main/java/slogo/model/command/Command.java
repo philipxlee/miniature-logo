@@ -1,7 +1,6 @@
-package slogo.model.commands;
+package slogo.model.command;
 
 public interface Command {
 
   void execute();
-
 }

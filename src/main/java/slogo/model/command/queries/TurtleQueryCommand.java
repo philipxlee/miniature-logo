@@ -1,7 +1,7 @@
-package slogo.model.commands.queries;
+package slogo.model.command.queries;
 
 import slogo.model.api.TurtleModel;
-import slogo.model.commands.Command;
+import slogo.model.command.Command;
 
 public class TurtleQueryCommand implements Command {
 

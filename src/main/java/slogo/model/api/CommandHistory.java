@@ -42,10 +42,6 @@ public class CommandHistory {
    * Initializes or resets the iterator over the command history. Call this method when you want to
    * start retrieving commands from the beginning.
    */
-  public void resetCommandHistoryIterator() {
-    resetIterator();
-  }
-
   private void resetIterator() {
     this.commandHistoryIterator = commandHistory.iterator();
   }

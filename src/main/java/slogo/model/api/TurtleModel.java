@@ -47,7 +47,6 @@ public class TurtleModel implements Observable {
     notifyObservers();
   }
 
-
   /**
    * Rotate Turtle clockwise
    *
@@ -111,9 +110,5 @@ public class TurtleModel implements Observable {
    */
   public double getOrientation() {
     return orientation;
-  }
-
-  public void setOrientation(double orientation) {
-    this.orientation = orientation;
   }
 }

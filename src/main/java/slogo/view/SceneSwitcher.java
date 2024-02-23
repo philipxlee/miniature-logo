@@ -1,8 +1,6 @@
 package slogo.view;
 
 
-import slogo.view.GeneralScene;
-
 public interface SceneSwitcher {
 
   /**

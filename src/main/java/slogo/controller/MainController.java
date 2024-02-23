@@ -2,7 +2,6 @@ package slogo.controller;
 
 import static javafx.application.Application.launch;
 
-import javafx.application.Application;
 
 public class MainController {
 
@@ -20,7 +19,5 @@ public class MainController {
     controller.executeCommand("rt 90");
     controller.executeCommand("fd 10");
     controller.executeCommand("seth 50");
-
   }
-
 }
