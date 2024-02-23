@@ -4,7 +4,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import slogo.view.GeneralScene;
 import slogo.view.SceneSwitcher;
-import slogo.view.StartScene;
+import slogo.view.SpleashScreenScene;
 
 public class ViewController extends Application implements SceneSwitcher {
 
@@ -23,7 +23,7 @@ public class ViewController extends Application implements SceneSwitcher {
   public void start(Stage stage) {
     this.stage = stage;
     CommandController commandController = new CommandController();
-    switchToScene(new StartScene(WIDTH, HEIGHT, this, commandController));
+    switchToScene(new SpleashScreenScene(WIDTH, HEIGHT, this, commandController));
     stage.setTitle("SLogo Application");
     stage.setResizable(false);
     stage.show();
