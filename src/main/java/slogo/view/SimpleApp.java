@@ -54,15 +54,12 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 
-// Define the main class
+// simple main class to look at ui
 public class SimpleApp extends Application {
 
   @Override
   public void start(Stage primaryStage) {
-    // Create a view controller object
-    ViewController viewController = new ViewController(primaryStage);
-    // Show the splash screen
-    viewController.showSplashScreen();
+    new ViewController(primaryStage);
   }
 
   public static void main(String[] args) {

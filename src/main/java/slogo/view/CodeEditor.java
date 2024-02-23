@@ -13,19 +13,12 @@ public class CodeEditor extends Screen {
 
   // Create a constructor with a stage parameter
   public CodeEditor(Stage stage) {
-    // Call the superclass constructor
     super(stage);
-    // Create a text area for the code editor
     codeArea = new TextArea();
-    // Create a session object
     session = new Session();
-    // Bind the code area to the session code
     codeArea.textProperty().bindBidirectional(session.codeProperty());
-    // Create a scene for the code editor
-    Scene scene = new Scene(codeArea, 300, 200);
-    // Set the scene to the stage
+    Scene scene = new Scene(codeArea, MAIN_WINDOW_WIDTH, MAIN_WINDOW_HEIGHT);
     stage.setScene(scene);
-    // Set the title of the stage
     stage.setTitle("Code Editor");
   }
 
