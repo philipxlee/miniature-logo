@@ -3,12 +3,11 @@ package slogo.controller;
 import slogo.model.api.TurtleModel;
 import slogo.model.commands.Command;
 import slogo.model.parser.CommandParser;
-import slogo.view.TurtleView;
+import slogo.view.scenes.TurtleView;
 
 public class CommandController {
 
   private final TurtleModel turtleModel;
-  private final TurtleView turtleView;
   private final CommandParser parser;
 
   /**
@@ -17,9 +16,7 @@ public class CommandController {
    */
   public CommandController() {
     this.turtleModel = new TurtleModel();
-    this.turtleView = new TurtleView();
     this.parser = new CommandParser(turtleModel);
-    setObserverComponents();
   }
 
   /**
@@ -34,11 +31,13 @@ public class CommandController {
     cmd.execute();
   }
 
+  /**
+   * Returns the turtle model
+   *
+   * @return the turtle model
+   */
   public TurtleModel getTurtleModel() {
     return turtleModel;
   }
 
-  private void setObserverComponents() {
-    turtleModel.addObserver(turtleView);
-  }
 }

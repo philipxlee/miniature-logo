@@ -1,7 +1,6 @@
 package slogo.controller;
 
 import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import slogo.view.GeneralScene;
 import slogo.view.StartScene;
@@ -14,6 +13,14 @@ public class ViewController extends Application implements SceneSwitcher {
   private Stage stage;
   private CommandController commandController;
 
+  /**
+   * Start the view
+   *
+   * @param stage the primary stage for this application, onto which
+   * the application scene can be set.
+   * Applications may create other stages, if needed, but they will not be
+   * primary stages.
+   */
   @Override
   public void start(Stage stage) {
     this.stage = stage;
@@ -24,6 +31,11 @@ public class ViewController extends Application implements SceneSwitcher {
     stage.show();
   }
 
+  /**
+   * Switch to new GeneralScene
+   *
+   * @param scene: new GeneralScene to switch to
+   */
   @Override
   public void switchToScene(GeneralScene scene) {
     scene.initializeScene(WIDTH, HEIGHT);
