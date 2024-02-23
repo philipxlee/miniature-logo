@@ -22,10 +22,10 @@ public class TurtleModel implements Observable {
    * TurtleModel constructor
    */
   public TurtleModel() {
-    observers = new ArrayList<>();
-    x = 0;
-    y = 0;
-    orientation = 0;
+    this.observers = new ArrayList<>();
+    this.x = 0;
+    this.y = 0;
+    this.orientation = 0;
   }
 
   /**
@@ -104,5 +104,16 @@ public class TurtleModel implements Observable {
    */
   public double getY() {
     return y;
+  }
+
+  /**
+   * @return orientation of Turtle
+   */
+  public double getOrientation() {
+    return orientation;
+  }
+
+  public void setOrientation(double orientation) {
+    this.orientation = orientation;
   }
 }

@@ -1,6 +1,7 @@
-package slogo.model.commands;
+package slogo.model.commands.turtle;
 
 import slogo.model.api.TurtleModel;
+import slogo.model.commands.Command;
 
 public class PenCommand implements Command {
 
@@ -18,6 +19,9 @@ public class PenCommand implements Command {
     this.penDown = penDown;
   }
 
+  /**
+   * Executes the pen command. Puts the pen down or lifts it up.
+   */
   @Override
   public void execute() {
 //    TODO: Create penDown() and penUp() in model
