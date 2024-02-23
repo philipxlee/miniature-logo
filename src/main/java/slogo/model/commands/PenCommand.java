@@ -10,7 +10,7 @@ public class PenCommand implements Command {
   /**
    * Constructs a PenCommand.
    *
-   * @param model the TurtleModel to affect
+   * @param model   the TurtleModel to affect
    * @param penDown true to put the pen down, false to lift it up
    */
   public PenCommand(TurtleModel model, boolean penDown) {
