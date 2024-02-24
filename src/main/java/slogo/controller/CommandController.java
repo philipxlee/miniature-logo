@@ -31,7 +31,6 @@ public class CommandController {
    */
   public void executeCommand(String commandString) {
     Command command = parser.parseCommand(commandString);
-    System.out.println("Executing command: " + commandString);
     command.execute();
   }
 
