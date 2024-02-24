@@ -3,11 +3,11 @@ package slogo.view.scenes.main;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.TextArea;
-import javafx.scene.layout.VBox;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.VBox;
 import slogo.controller.CommandController;
 
-public class CommandConsole {
+public class InputPane {
 
   private VBox inputBox;
   private TextArea commandInput;
@@ -15,11 +15,11 @@ public class CommandConsole {
   /**
    * Constructor for CommandConsole
    *
-   * @param width width
-   * @param height height
+   * @param width             width
+   * @param height            height
    * @param commandController commandController to execute commands
    */
-  public CommandConsole(int width, int height, CommandController commandController) {
+  public InputPane(int width, int height, CommandController commandController) {
     initializeInputBox(width, height, commandController);
   }
 
