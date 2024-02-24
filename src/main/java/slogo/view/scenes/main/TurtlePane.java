@@ -2,10 +2,12 @@ package slogo.view.scenes.main;
 
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import slogo.model.api.TurtleModel;
 import slogo.observer.Observable;
 import slogo.observer.Observer;
+import slogo.model.api.TurtleLineModel;
 
 /**
  * TurtlePane representing where Turtle is rendered
@@ -42,18 +44,42 @@ public class TurtlePane implements Observer {
   @Override
   public void update(Observable observable) {
     if (observable instanceof TurtleModel turtleModel) {
-      // get new location of turtle
-      double centerX = turtleGraphic.getParent().getBoundsInLocal().getWidth() / 2.0;
-      double centerY = turtleGraphic.getParent().getBoundsInLocal().getHeight() / 2.0;
 
-      // update location of new turtle state
-      turtleGraphic.setX(centerX + turtleModel.getX() - turtleGraphic.getWidth() / 2.0);
-      turtleGraphic.setY(centerY - turtleModel.getY() - turtleGraphic.getHeight() / 2.0);
+      double centerX = displayPane.getWidth() / 2.0;
+      double centerY = displayPane.getHeight() / 2.0;
+
+      // Update the turtle's graphic position to its center
+      double turtleCenterX = centerX + turtleModel.getX() - turtleGraphic.getWidth() / 2.0;
+      double turtleCenterY = centerY - turtleModel.getY() - turtleGraphic.getHeight() / 2.0;
+
+      turtleGraphic.setX(turtleCenterX);
+      turtleGraphic.setY(turtleCenterY);
       turtleGraphic.setRotate(-turtleModel.getOrientation());
+
+      // draw lines
+      drawLines(turtleModel);
     }
   }
 
   public Pane getDisplayPane() {
     return displayPane;
+  }
+
+  private void drawLines(TurtleModel model) {
+    double centerX = displayPane.getWidth() / 2.0;
+    double centerY = displayPane.getHeight() / 2.0;
+
+    for (TurtleLineModel line : model.getLines()) {
+      Line fxLine = new Line();
+      fxLine.setStartX(centerX + line.getStartX());
+      fxLine.setStartY(centerY - line.getStartY());
+      fxLine.setEndX(centerX + line.getEndX());
+      fxLine.setEndY(centerY - line.getEndY());
+      fxLine.setStroke(Color.BLACK);
+      fxLine.setStrokeWidth(3);  // Consider a thinner line for better accuracy
+
+      displayPane.getChildren().add(fxLine);
+    }
+    turtleGraphic.toFront();  // Ensure the turtle graphic is always on top
   }
 }
