@@ -1,14 +1,13 @@
 package slogo.view.scenes;
 
-import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import slogo.controller.CommandController;
-import slogo.view.GeneralScene;
+import slogo.view.Scene;
 import slogo.view.tabs.SideTabPane;
 
-public class Display implements GeneralScene {
+public class MainScene implements Scene {
 
-  private Scene scene;
+  private javafx.scene.Scene scene;
   private TurtleDisplay turtleDisplay;
   private CommandConsole commandInputBox;
   private SideTabPane sideTabPane;
@@ -16,16 +15,16 @@ public class Display implements GeneralScene {
   /**
    * Constructor for Display
    *
-   * @param width width
-   * @param height height
+   * @param width             width
+   * @param height            height
    * @param commandController commandController
    */
-  public Display(int width, int height, CommandController commandController) {
+  public MainScene(int width, int height, CommandController commandController) {
     this.turtleDisplay = new TurtleDisplay(width, height);
     this.commandInputBox = new CommandConsole(width, height, commandController);
     this.sideTabPane = new SideTabPane();
     TurtleView turtleView = new TurtleView(turtleDisplay.getTurtleGraphic());
-    commandController.getTurtleModel().addObserver(turtleView); // NOTE: Observer moved here...
+    commandController.observeTurtle(turtleView);
     initializeScene(width, height);
   }
 
@@ -43,7 +42,7 @@ public class Display implements GeneralScene {
     bottomPane.setLeft(commandInputBox.getInputBox());
     bottomPane.setRight(sideTabPane);
     root.setBottom(bottomPane);
-    this.scene = new Scene(root, width, height);
+    this.scene = new javafx.scene.Scene(root, width, height);
   }
 
   /**
@@ -52,7 +51,7 @@ public class Display implements GeneralScene {
    * @return scene
    */
   @Override
-  public Scene getScene() {
+  public javafx.scene.Scene getScene() {
     return this.scene;
   }
 }

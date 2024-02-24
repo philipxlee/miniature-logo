@@ -4,13 +4,12 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.scene.Scene;
 import slogo.controller.CommandController;
-import slogo.view.scenes.Display;
+import slogo.view.scenes.MainScene;
 
-public class SpleashScreenScene implements GeneralScene {
+public class StartScene implements Scene {
 
-  private Scene scene;
+  private javafx.scene.Scene scene;
   private SceneSwitcher switcher;
   private CommandController commandController;
   private static final int BUTTON_WIDTH = 200;
@@ -24,7 +23,7 @@ public class SpleashScreenScene implements GeneralScene {
    * @param switcher switcher
    * @param commandController commandController
    */
-  public SpleashScreenScene(int width, int height, SceneSwitcher switcher, CommandController commandController) {
+  public StartScene(int width, int height, SceneSwitcher switcher, CommandController commandController) {
     this.commandController = commandController;
     this.switcher = switcher;
     initializeScene(width, height);
@@ -63,7 +62,7 @@ public class SpleashScreenScene implements GeneralScene {
    * @return scene
    */
   @Override
-  public Scene getScene() {
+  public javafx.scene.Scene getScene() {
     return this.scene;
   }
 
@@ -76,7 +75,7 @@ public class SpleashScreenScene implements GeneralScene {
    */
   private Button createStartButton(int width, int height) {
     Button startButton = new Button("Start Game");
-    startButton.setOnAction(event -> switcher.switchToScene(new Display(width, height, commandController)));
+    startButton.setOnAction(event -> switcher.switchToScene(new MainScene(width, height, commandController)));
     startButton.setPrefSize(BUTTON_WIDTH, BUTTON_HEIGHT);
     return startButton;
   }

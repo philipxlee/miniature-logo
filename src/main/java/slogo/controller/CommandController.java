@@ -2,40 +2,44 @@ package slogo.controller;
 
 import slogo.model.api.TurtleModel;
 import slogo.model.command.Command;
-import slogo.model.parser.CommandParser;
+import slogo.model.parser.Parser;
+import slogo.observer.Observer;
 
+/**
+ * CommandController handles user input sent from the view
+ */
 public class CommandController {
 
   private final TurtleModel turtleModel;
-  private final CommandParser parser;
+  private final Parser parser;
 
   /**
-   * Constructor for MainController Initializes the turtle model, turtle view, and command parser
-   * for the program
+   * CommandController constructor initializes new parser
+   *
+   * @param turtleModel: Turtle Model used for commands
    */
-  public CommandController() {
-    this.turtleModel = new TurtleModel();
-    this.parser = new CommandParser(turtleModel);
+  public CommandController(TurtleModel turtleModel) {
+    this.turtleModel = turtleModel;
+    this.parser = new Parser(turtleModel);
   }
 
   /**
    * Executes the command by parsing the command and executing it. Example: "fd 50" to move the
    * turtle forward 50 pixels. The command is parsed and executed using the CommandParser class
    *
-   * @param command the command to be executed
+   * @param commandString the command to be executed as a string
    */
-  public void executeCommand(String command) {
-    System.out.println("Executing command: " + command);
-    Command cmd = parser.parseCommand(command);
-    cmd.execute();
+  public void executeCommand(String commandString) {
+    Command command = parser.parseCommand(commandString);
+    command.execute();
   }
 
   /**
-   * Returns the turtle model
+   * Subscribe to updates from the TurtleModel
    *
-   * @return the turtle model
+   * @param observer that wants to subscribe
    */
-  public TurtleModel getTurtleModel() {
-    return turtleModel;
+  public void observeTurtle(Observer observer) {
+    turtleModel.addObserver(observer);
   }
 }

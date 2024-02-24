@@ -8,14 +8,25 @@ import slogo.model.command.turtle.RotateCommand;
 import slogo.model.command.turtle.SetOrientationCommand;
 import slogo.model.command.turtle.TurtleVisibleCommand;
 
-public class CommandParser {
+/**
+ * Parser module converts a string into a Command object, outfitted with the proper configuration
+ */
+public class Parser {
 
   private final TurtleModel turtleModel;
 
-  public CommandParser(TurtleModel turtleModel) {
+  /**
+   * Parser constructor initializes a TurtleModel
+   */
+  public Parser(TurtleModel turtleModel) {
     this.turtleModel = turtleModel;
   }
 
+  /**
+   * Parse a string into the respective Command object
+   *
+   * @param command: string representing the command with arguments. Example: "fd 50".
+   */
   public Command parseCommand(String command) {
     String[] parts = command.trim().split("\\s+"); // Split by whitespace
     Command action = null;
@@ -32,7 +43,6 @@ public class CommandParser {
       case "ht" -> action = new TurtleVisibleCommand(turtleModel, false);
       default -> System.out.println("Unknown command: " + parts[0] + " or number: " + parts[1]);
     }
-    System.out.println("Parsed command");
     return action;
   }
 }

@@ -21,7 +21,7 @@ through the CommandController class. The view will interface with this CommandCo
 by sending it string literal inputs. The controller will validate the string, parse it into the
 proper command, execute the command and return the result. If the command execution modifies the
 model, any subscribers will be notified. For example, changes to the TurtleModel will notify the
-TurtleView so that it can re-render the turtle.
+TurtleView so that it can re-render the turtleModel.
 
 This CommandController will encapsulate the TurtleModel. This information will be only modifiable by
 the CommandController's api methods. The API can throw an invalid command error from this method.
@@ -32,7 +32,7 @@ observers to notify about state changes. This API also consists of the Command i
 encapsulate command execution logic using the Command design pattern.
 
 The API in the view will be separated out into respective components as well. There will be a view
-for the user input, the help pane, the turtle view and the current variable pane. For basic command
+for the user input, the help pane, the turtleModel view and the current variable pane. For basic command
 functionality, the user input view will call the model API when a user inputs a string. This will
 trigger the TurtleModel to update if the command is a Turtle related command. Since the TurtleView
 will be subscribed to changes in the TurtleModel, it will re-render itself based on the change.

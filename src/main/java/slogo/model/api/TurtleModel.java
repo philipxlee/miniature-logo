@@ -7,8 +7,6 @@ import slogo.observer.Observer;
 
 /**
  * TurtleModel representing the state of the Turtle
- *
- * @author Arnav Nayak
  */
 public class TurtleModel implements Observable {
 
@@ -16,7 +14,6 @@ public class TurtleModel implements Observable {
   private double x;
   private double y;
   private double orientation;
-
 
   /**
    * TurtleModel constructor

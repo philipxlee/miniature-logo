@@ -1,13 +1,14 @@
 package slogo.view;
 
-
+/**
+ * SceneSwitcher abstraction defines module that cna switch scenes (ViewController)
+ */
 public interface SceneSwitcher {
 
   /**
-   * Switch to new AbstractScene
+   * Switch to new Scene
    *
-   * @param scene: new AbstractScene to switch to
+   * @param scene: new Scene to switch to
    */
-  void switchToScene(GeneralScene scene);
-
+  void switchToScene(Scene scene);
 }

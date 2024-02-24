@@ -21,17 +21,17 @@ public void sendCommandToModel(String command) {
     model.processCommand(command);
 }
 ```
-* Model parses the command and moves the turtle forward 50 units.
+* Model parses the command and moves the turtleModel forward 50 units.
 
 ```java
 // Model class
 public void processCommand(String command) { }
 ```
-* Model updates the turtle's position.
+* Model updates the turtleModel's position.
 ```java
 // Model class
 public void processCommand(String command) {
-// Parse command and move turtle
+// Parse command and move turtleModel
     notifyObservers();
 }
 
@@ -46,11 +46,11 @@ private void notifyObservers() {
 }
 ```
 * Model adds the command to the environment's history.
-* View updates the display window to show the turtle's new position and trail.
+* View updates the display window to show the turtleModel's new position and trail.
 ```java
 // View class
-public void updateDisplayWindow(Turtle turtle) {
-// Update display window with turtle's new position
+public void updateDisplayWindow(Turtle turtleModel) {
+// Update display window with turtleModel's new position
 }
 ```
 
@@ -85,18 +85,18 @@ public void parseCommand(String command) {
 }
 ```
 * Parser sends the action to the Controller, which then sends it to the model for execution.
-* Model executes the action (e.g., rotate turtle left by 90 degrees).
+* Model executes the action (e.g., rotate turtleModel left by 90 degrees).
 * Model then updates and notifies observers.
 ```java
 // Model class
 public void executeAction(String action) {
     if (action.equals("lt 90")) {
-        turtle.rotateLeft(90); // Rotate turtle left by 90 degrees
+        turtleModel.rotateLeft(90); // Rotate turtleModel left by 90 degrees
         notifyObservers(); // Notify observers of the change
     }
 }
 ```
-* View updates the display window to reflect the changes in the turtle's orientation.
+* View updates the display window to reflect the changes in the turtleModel's orientation.
 
 ## Controller: User Executes Command 'Repeat 3 [fd 50]':
 * User enters the command 'Repeat 3 [fd 50]' in the command window.
@@ -208,16 +208,16 @@ public void sendCommandToModel(String command) {
     model.processCommand(command);
 }
 ```
-* Model processes the command and moves the turtle to the specified position.
+* Model processes the command and moves the turtleModel to the specified position.
 ```java
 // Model class
 public void processCommand(String command) {
-    // Parse command and move turtle
+    // Parse command and move turtleModel
     notifyObservers();
 }
 ```
-* Model updates the turtle's position to (100, 100).
-* View updates the display window to show the turtle's new position.
+* Model updates the turtleModel's position to (100, 100).
+* View updates the display window to show the turtleModel's new position.
 
 ## User Loads Program from File:
 * User selects the option to load a program from a file.
@@ -295,10 +295,10 @@ public void processCommand(String command) {
 * View displays the error message to the user.
 
 ## User Sets Turtle Image:
-* User selects the option to set the turtle image.
+* User selects the option to set the turtleModel image.
 * View presents a file chooser to the user.
-* User selects an image file for the turtle.
+* User selects an image file for the turtleModel.
 * View captures the selected image file.
 * Controller receives the image file from the view.
-* Controller updates the turtle's image settings.
-* View updates the display window to show the turtle with the new image.
+* Controller updates the turtleModel's image settings.
+* View updates the display window to show the turtleModel with the new image.

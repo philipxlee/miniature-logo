@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.Optional;
 import java.util.Queue;
 
-public class CommandHistory {
+public class CommandHistoryModel {
 
   private final Queue<String> commandHistory;
   private Iterator<String> commandHistoryIterator;
@@ -13,7 +13,7 @@ public class CommandHistory {
   /**
    * Constructor for CommandHistory. It initializes the command history queue.
    */
-  public CommandHistory() {
+  public CommandHistoryModel() {
     this.commandHistory = new LinkedList<>();
   }
 
