@@ -10,7 +10,7 @@ import slogo.view.scenes.start.StartScene;
 public class ViewController implements SceneSwitcher {
 
   private static final int WIDTH = 1000;
-  private static final int HEIGHT = 600;
+  private static final int HEIGHT = 700;
   private final Stage stage;
 
   /**
