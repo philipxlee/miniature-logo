@@ -7,10 +7,10 @@ import slogo.view.tabs.SideTabPane;
 
 public class MainScene implements Scene {
 
+  private final TurtlePane turtlePane;
+  private final InputPane inputPane;
+  private final SideTabPane sideTabPane;
   private javafx.scene.Scene scene;
-  private TurtleDisplay turtleDisplay;
-  private CommandConsole commandInputBox;
-  private SideTabPane sideTabPane;
 
   /**
    * Constructor for Display
@@ -20,11 +20,10 @@ public class MainScene implements Scene {
    * @param commandController commandController
    */
   public MainScene(int width, int height, CommandController commandController) {
-    this.turtleDisplay = new TurtleDisplay(width, height);
-    this.commandInputBox = new CommandConsole(width, height, commandController);
+    this.turtlePane = new TurtlePane(width, height);
+    this.inputPane = new InputPane(width, height, commandController);
     this.sideTabPane = new SideTabPane();
-    TurtleView turtleView = new TurtleView(turtleDisplay.getTurtleGraphic());
-    commandController.observeTurtle(turtleView);
+    commandController.observeTurtle(turtlePane);
     initializeScene(width, height);
   }
 
@@ -37,9 +36,9 @@ public class MainScene implements Scene {
   @Override
   public void initializeScene(int width, int height) {
     BorderPane root = new BorderPane();
-    root.setTop(turtleDisplay.getDisplayPane());
+    root.setTop(turtlePane.getDisplayPane());
     BorderPane bottomPane = new BorderPane();
-    bottomPane.setLeft(commandInputBox.getInputBox());
+    bottomPane.setLeft(inputPane.getInputBox());
     bottomPane.setRight(sideTabPane);
     root.setBottom(bottomPane);
     this.scene = new javafx.scene.Scene(root, width, height);
