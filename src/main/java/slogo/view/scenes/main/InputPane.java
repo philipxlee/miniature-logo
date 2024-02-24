@@ -49,8 +49,8 @@ public class InputPane {
     inputBox = new VBox(10);
     inputBox.getChildren().add(commandInput);
     inputBox.setAlignment(Pos.BOTTOM_CENTER);
-    inputBox.setPadding(new Insets(10, 50, 20, 50));
-    inputBox.setPrefHeight(height * 0.25);
+    inputBox.setPadding(new Insets(0, 20, 20, 50));
+    inputBox.setPrefHeight(height * 0.5);
 
     // Allow the input box to grow vertically with the size of the box
     VBox.setVgrow(commandInput, javafx.scene.layout.Priority.ALWAYS);
