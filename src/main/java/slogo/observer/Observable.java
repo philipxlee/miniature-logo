@@ -1,9 +1,7 @@
 package slogo.observer;
 
 /**
- * Observable interface to define modules that act as a producer
- *
- * @author Arnav Nayak
+ * Observable interface to define modules that act as a producer (Observer design pattern)
  */
 public interface Observable {
 

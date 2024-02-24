@@ -7,7 +7,7 @@
 ## Introduction
 
 * For this project, we plan to create SLogo, an application that provides an IDE to its users to
-  type “SLogo” commands and control a turtle to create drawings. One primary design goal of this
+  type “SLogo” commands and control a turtleModel to create drawings. One primary design goal of this
   project is to allow our command interface to be as extensible as possible. This means adding new
   commands should be seamless. Another primary design goal of ours is to ensure our modules
   communicate properly with common design patterns. This means ensuring our APIs are properly
@@ -20,7 +20,7 @@
 <commands>
   <command>
     <canonicalName>MoveForward</canonicalName>
-    <description>Moves the turtle forward by the specified distance.</description>
+    <description>Moves the turtleModel forward by the specified distance.</description>
     <example>MoveForward 100</example>
     <help>
       <parameters>distance: double</parameters>
@@ -32,7 +32,7 @@
   </command>
   <command>
     <canonicalName>RotateRight</canonicalName>
-    <description>Rotate the turtle clockwise by the specified angle.</description>
+    <description>Rotate the turtleModel clockwise by the specified angle.</description>
     <example>RotateRight 45</example>
     <help>
       <parameters>angle: double</parameters>
@@ -56,7 +56,7 @@ Data flow when Command is executed
 ## Design Details
 
 * We center our design around the Observer, Factory, Command and MVC design patterns. Our data
-  structure representing the state of the turtle is TurtleModel, which will contain information on
+  structure representing the state of the turtleModel is TurtleModel, which will contain information on
   its position and orientation. This TurtleModel will implement the ObservableModel class. Each view
   that needs to listen for state changes can implement the Observer interface. In our design, the
   Turtle View will implement the Observer interface because it will need to listen for state changes
@@ -69,7 +69,7 @@ Data flow when Command is executed
   into a command with a Parser. In our design, each Command will implement the Command interface.
   Turning our requests into objects follows the Command design pattern. The command, when executed,
   will then update the state of the model (TurtleModel). This state change will automatically notify
-  the Turtle View of the change, which will re-render the turtle.
+  the Turtle View of the change, which will re-render the turtleModel.
 
 * Our method signatures do not reveal the difference between different implementations for our data
   structure. For example, our design allows for any observer to subscribe to any observable model,
@@ -116,16 +116,16 @@ Data flow when Command is executed
     * Feature: Turtle Graphics Window (SLogo-58)
         * Happy Path:
             * Scenario: Executing a "forward 50" command.
-                * Expected Outcome: The turtle moves forward by 50 units, and a line is drawn.
+                * Expected Outcome: The turtleModel moves forward by 50 units, and a line is drawn.
                 * Testing Support: Invoke the command execution method with "forward 50" and verify
                   the
-                  turtle's new position and the drawing on the canvas.
+                  turtleModel's new position and the drawing on the canvas.
         * Sad Path:
             * Scenario: Executing an invalid command.
-                * Expected Outcome: No change in the turtle's position or graphics window; an error
+                * Expected Outcome: No change in the turtleModel's position or graphics window; an error
                   message is displayed.
                 * Testing Support: Try executing an invalid command and check for no change in the
-                  turtle's position and the presence of an error message
+                  turtleModel's position and the presence of an error message
     * Feature: Interactive Command Prompt (SLogo-59)
         * Happy Path:
             * Scenario: Inputting a valid command sequence.

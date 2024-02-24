@@ -1,30 +1,32 @@
-package slogo.view;
+package slogo.view.scenes.start;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.scene.Scene;
 import slogo.controller.CommandController;
-import slogo.view.scenes.Display;
+import slogo.controller.SceneSwitcher;
+import slogo.view.scenes.Scene;
+import slogo.view.scenes.main.MainScene;
 
-public class SpleashScreenScene implements GeneralScene {
+public class StartScene implements Scene {
 
-  private Scene scene;
-  private SceneSwitcher switcher;
-  private CommandController commandController;
   private static final int BUTTON_WIDTH = 200;
   private static final int BUTTON_HEIGHT = 40;
+  private javafx.scene.Scene scene;
+  private SceneSwitcher switcher;
+  private CommandController commandController;
 
   /**
    * Constructor for StartScene
    *
-   * @param width width
-   * @param height height
-   * @param switcher switcher
+   * @param width             width
+   * @param height            height
+   * @param switcher          switcher
    * @param commandController commandController
    */
-  public SpleashScreenScene(int width, int height, SceneSwitcher switcher, CommandController commandController) {
+  public StartScene(int width, int height, SceneSwitcher switcher,
+      CommandController commandController) {
     this.commandController = commandController;
     this.switcher = switcher;
     initializeScene(width, height);
@@ -34,7 +36,7 @@ public class SpleashScreenScene implements GeneralScene {
   /**
    * Initialize start screen with title and click handler
    *
-   * @param width width
+   * @param width  width
    * @param height height
    */
   @Override
@@ -45,15 +47,16 @@ public class SpleashScreenScene implements GeneralScene {
     // Initialize title text and add click handler
     Text title = new Text("SLogo");
     title.setStyle("-fx-font-size: 30px; -fx-font-weight: bold;");
-    Text instruction = new Text("Instructions will go here");
+    Text instruction = new Text("By: Prince Ahmed, Arnav Nayak, Philip Lee, Connor Johnson");
     instruction.setStyle("-fx-font-size: 16px;");
 
     Button startButton = createStartButton(width, height);
-    Button loadButton = createLoadButton(width, height);
+    Button loadButton = createLoadButton();
     Button languageButton = createLanguageButton();
     Button colorSchemeButton = createColorSchemeButton();
 
-    parentBox.getChildren().addAll(title,  instruction, startButton, loadButton, languageButton, colorSchemeButton);
+    parentBox.getChildren()
+        .addAll(title, instruction, startButton, loadButton, languageButton, colorSchemeButton);
     this.scene = new javafx.scene.Scene(parentBox, width, height);
   }
 
@@ -63,7 +66,7 @@ public class SpleashScreenScene implements GeneralScene {
    * @return scene
    */
   @Override
-  public Scene getScene() {
+  public javafx.scene.Scene getScene() {
     return this.scene;
   }
 
@@ -76,7 +79,8 @@ public class SpleashScreenScene implements GeneralScene {
    */
   private Button createStartButton(int width, int height) {
     Button startButton = new Button("Start Game");
-    startButton.setOnAction(event -> switcher.switchToScene(new Display(width, height, commandController)));
+    startButton.setOnAction(
+        event -> switcher.switchToScene(new MainScene(width, height, commandController)));
     startButton.setPrefSize(BUTTON_WIDTH, BUTTON_HEIGHT);
     return startButton;
   }
@@ -84,11 +88,9 @@ public class SpleashScreenScene implements GeneralScene {
   /**
    * Create a "Load Session" button
    *
-   * @param width  width of the button
-   * @param height height of the button
    * @return the created button
    */
-  private Button createLoadButton(int width, int height) {
+  private Button createLoadButton() {
     Button loadButton = new Button("Load Session");
     loadButton.setPrefSize(BUTTON_WIDTH, BUTTON_HEIGHT);
     // Add action for loading a session

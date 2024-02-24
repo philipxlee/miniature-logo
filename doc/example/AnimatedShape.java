@@ -148,6 +148,6 @@ public class AnimatedShape extends Application {
      * Default version of main() is actually included within JavaFX, so this is not technically necessary!
      */
     public static void main (String[] args) {
-        launch(args);
+        Application.launch(args);
     }
 }

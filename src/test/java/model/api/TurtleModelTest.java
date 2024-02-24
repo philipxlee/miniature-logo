@@ -14,30 +14,30 @@ public class TurtleModelTest {
 
   @Test
   void testMoveTurtle() {
-    TurtleModel turtle = new TurtleModel();
-    turtle.moveTurtle(50);
+    TurtleModel turtleModel = new TurtleModel();
+    turtleModel.moveTurtle(50);
     assertAll(
-        () -> assertEquals(50, turtle.getX()),
-        () -> assertEquals(0, turtle.getY())
+        () -> assertEquals(50, turtleModel.getX()),
+        () -> assertEquals(0, turtleModel.getY())
     );
   }
 
   @Test
   void testRotate() {
-    TurtleModel turtle = new TurtleModel();
-    turtle.rotate(90);
-    assertEquals(90, turtle.getOrientation());
+    TurtleModel turtleModel = new TurtleModel();
+    turtleModel.rotate(90);
+    assertEquals(90, turtleModel.getOrientation());
   }
 
   @Test
   void testMoveTurtleAndRotate() {
-    TurtleModel turtle = new TurtleModel();
-    turtle.moveTurtle(50);
-    turtle.rotate(90);
+    TurtleModel turtleModel = new TurtleModel();
+    turtleModel.moveTurtle(50);
+    turtleModel.rotate(90);
     assertAll(
-        () -> assertEquals(50, turtle.getX()),
-        () -> assertEquals(0, turtle.getY()),
-        () -> assertEquals(90, turtle.getOrientation())
+        () -> assertEquals(50, turtleModel.getX()),
+        () -> assertEquals(0, turtleModel.getY()),
+        () -> assertEquals(90, turtleModel.getOrientation())
     );
   }
 }

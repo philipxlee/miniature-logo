@@ -1,43 +1,36 @@
 package slogo.controller;
 
-import javafx.application.Application;
 import javafx.stage.Stage;
-import slogo.view.GeneralScene;
-import slogo.view.SpleashScreenScene;
-import slogo.view.SceneSwitcher;
+import slogo.view.scenes.Scene;
+import slogo.view.scenes.start.StartScene;
 
-public class ViewController extends Application implements SceneSwitcher {
+/**
+ * ViewController manages Scenes and switches between them
+ */
+public class ViewController implements SceneSwitcher {
 
   private static final int WIDTH = 1000;
   private static final int HEIGHT = 600;
-  private Stage stage;
-  private CommandController commandController;
+  private final Stage stage;
 
   /**
-   * Start the view
+   * ViewController constructor. Initialized with a JavaFX stage and a CommandController
    *
-   * @param stage the primary stage for this application, onto which
-   * the application scene can be set.
-   * Applications may create other stages, if needed, but they will not be
-   * primary stages.
+   * @param stage:             primary stage of JavaFX application
+   * @param commandController: CommandController used by the view
    */
-  @Override
-  public void start(Stage stage) {
+  public ViewController(Stage stage, CommandController commandController) {
     this.stage = stage;
-    this.commandController = new CommandController();
-    switchToScene(new SpleashScreenScene(WIDTH, HEIGHT, this, commandController));
-    stage.setTitle("SLogo Application");
-    stage.setResizable(false);
-    stage.show();
+    switchToScene(new StartScene(WIDTH, HEIGHT, this, commandController));
   }
 
   /**
-   * Switch to new GeneralScene
+   * Switch to new Scene
    *
-   * @param scene: new GeneralScene to switch to
+   * @param scene: new Scene to switch to
    */
   @Override
-  public void switchToScene(GeneralScene scene) {
+  public void switchToScene(Scene scene) {
     scene.initializeScene(WIDTH, HEIGHT);
     stage.setScene(scene.getScene());
   }

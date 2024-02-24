@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.Optional;
 import java.util.Queue;
 
-public class CommandHistory {
+public class CommandHistoryModel {
 
   private final Queue<String> commandHistory;
   private Iterator<String> commandHistoryIterator;
@@ -13,7 +13,7 @@ public class CommandHistory {
   /**
    * Constructor for CommandHistory. It initializes the command history queue.
    */
-  public CommandHistory() {
+  public CommandHistoryModel() {
     this.commandHistory = new LinkedList<>();
   }
 
@@ -42,10 +42,6 @@ public class CommandHistory {
    * Initializes or resets the iterator over the command history. Call this method when you want to
    * start retrieving commands from the beginning.
    */
-  public void resetCommandHistoryIterator() {
-    resetIterator();
-  }
-
   private void resetIterator() {
     this.commandHistoryIterator = commandHistory.iterator();
   }

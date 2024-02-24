@@ -1,18 +1,21 @@
 package controller;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import slogo.controller.CommandController;
+import slogo.model.api.TurtleModel;
 
 
 public class CommandControllerTest {
 
   @BeforeEach
-  void setUp() {}
-
+  void setUp() {
+  }
 
   @Nested
   @DisplayName("Test executeCommand")
@@ -20,37 +23,40 @@ public class CommandControllerTest {
 
     @Test
     void testExecuteCommand() {
-      CommandController control = new CommandController();
+      TurtleModel turtleModel = new TurtleModel();
+      CommandController control = new CommandController(turtleModel);
       control.executeCommand("fd 50");
       control.executeCommand("rt 90");
       assertAll(
-          () -> assertEquals(50, control.getTurtleModel().getX()),
-          () -> assertEquals(0, control.getTurtleModel().getY())
+          () -> assertEquals(50, turtleModel.getX()),
+          () -> assertEquals(0, turtleModel.getY())
       );
     }
 
     @Test
     void testExecuteCommandAndRotate() {
-      CommandController control = new CommandController();
+      TurtleModel turtleModel = new TurtleModel();
+      CommandController control = new CommandController(turtleModel);
       control.executeCommand("fd 50");
       control.executeCommand("rt 90");
       assertAll(
-          () -> assertEquals(50, control.getTurtleModel().getX()),
-          () -> assertEquals(0, control.getTurtleModel().getY()),
-          () -> assertEquals(90, control.getTurtleModel().getOrientation())
+          () -> assertEquals(50, turtleModel.getX()),
+          () -> assertEquals(0, turtleModel.getY()),
+          () -> assertEquals(90, turtleModel.getOrientation())
       );
     }
 
     @Test
     void testExecuteCommandAndRotateAndMove() {
-      CommandController control = new CommandController();
+      TurtleModel turtleModel = new TurtleModel();
+      CommandController control = new CommandController(turtleModel);
       control.executeCommand("fd 50");
       control.executeCommand("rt 90");
       control.executeCommand("fd 50");
       assertAll(
-          () -> assertEquals(50, control.getTurtleModel().getX()),
-          () -> assertEquals(50, control.getTurtleModel().getY()),
-          () -> assertEquals(90, control.getTurtleModel().getOrientation())
+          () -> assertEquals(50, turtleModel.getX()),
+          () -> assertEquals(50, turtleModel.getY()),
+          () -> assertEquals(90, turtleModel.getOrientation())
       );
     }
   }

@@ -1,4 +1,4 @@
-package slogo.view.scenes;
+package slogo.view.scenes.main;
 
 import javafx.scene.shape.Rectangle;
 import slogo.model.api.TurtleModel;
@@ -7,10 +7,9 @@ import slogo.observer.Observer;
 
 /**
  * TurtleView representing view where Turtle is rendered
- *
- * @author Arnav Nayak
  */
 public class TurtleView implements Observer {
+
   private Rectangle turtleGraphic;
 
   /**
@@ -29,9 +28,7 @@ public class TurtleView implements Observer {
    */
   @Override
   public void update(Observable observable) {
-    if (observable instanceof TurtleModel) {
-      TurtleModel turtleModel = (TurtleModel) observable; // fix casting later
-
+    if (observable instanceof TurtleModel turtleModel) {
       double centerX = turtleGraphic.getParent().getBoundsInLocal().getWidth() / 2.0;
       double centerY = turtleGraphic.getParent().getBoundsInLocal().getHeight() / 2.0;
 

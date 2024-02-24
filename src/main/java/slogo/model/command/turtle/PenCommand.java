@@ -1,7 +1,7 @@
-package slogo.model.commands.turtle;
+package slogo.model.command.turtle;
 
 import slogo.model.api.TurtleModel;
-import slogo.model.commands.Command;
+import slogo.model.command.Command;
 
 public class PenCommand implements Command {
 
@@ -11,7 +11,7 @@ public class PenCommand implements Command {
   /**
    * Constructs a PenCommand.
    *
-   * @param model the TurtleModel to affect
+   * @param model   the TurtleModel to affect
    * @param penDown true to put the pen down, false to lift it up
    */
   public PenCommand(TurtleModel model, boolean penDown) {

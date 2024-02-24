@@ -1,9 +1,7 @@
 package slogo.observer;
 
 /**
- * Observer interface to define modules that act as a subscriber
- *
- * @author Arnav Nayak
+ * Observer interface to define modules that act as a subscriber (Observer design pattern)
  */
 public interface Observer {
 

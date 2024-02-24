@@ -1,16 +1,29 @@
 package slogo.controller;
 
-import static javafx.application.Application.launch;
 
-public class MainController {
+import javafx.application.Application;
+import javafx.stage.Stage;
+import slogo.model.api.TurtleModel;
 
-  /**
-   * Main method to run the program
-   *
-   * @param args command line arguments
-   */
-  public static void main(String[] args) {
-    launch(ViewController.class);
+/**
+ * MainController initializes model, controllers and views
+ */
+public class MainController extends Application {
+
+  @Override
+  public void start(Stage stage) throws Exception {
+    // initialize models
+    TurtleModel turtleModel = new TurtleModel();
+
+    // initialize controllers
+    CommandController commandController = new CommandController(turtleModel);
+
+    // initialize views (through ViewController)
+    ViewController viewController = new ViewController(stage, commandController);
+
+    // configure stage
+    stage.setTitle("SLogo");
+    stage.setResizable(false);
+    stage.show();
   }
-
 }

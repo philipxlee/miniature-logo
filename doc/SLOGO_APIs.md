@@ -147,11 +147,11 @@ public class Something {
 
 ### Use Cases
 
- * The user types 'fd 50' in the command window, sees the turtle move in the display window leaving a trail, and has the command added to the environment's history.
+ * The user types 'fd 50' in the command window, sees the turtleModel move in the display window leaving a trail, and has the command added to the environment's history.
 
  * The user types '50 fd' in the command window and sees an error message that the command was not formatted correctly.
 
- * The user types 'pu fd 50 pd fd 50' in the command window and sees the turtle move twice (once without a trail and once with a trail).
+ * The user types 'pu fd 50 pd fd 50' in the command window and sees the turtleModel move twice (once without a trail and once with a trail).
 
  * The user changes the color of the environment's background.
 

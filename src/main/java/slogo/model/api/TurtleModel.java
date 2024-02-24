@@ -7,8 +7,6 @@ import slogo.observer.Observer;
 
 /**
  * TurtleModel representing the state of the Turtle
- *
- * @author Arnav Nayak
  */
 public class TurtleModel implements Observable {
 
@@ -16,7 +14,6 @@ public class TurtleModel implements Observable {
   private double x;
   private double y;
   private double orientation;
-
 
   /**
    * TurtleModel constructor
@@ -46,7 +43,6 @@ public class TurtleModel implements Observable {
     // notify observers about position change
     notifyObservers();
   }
-
 
   /**
    * Rotate Turtle clockwise
@@ -111,9 +107,5 @@ public class TurtleModel implements Observable {
    */
   public double getOrientation() {
     return orientation;
-  }
-
-  public void setOrientation(double orientation) {
-    this.orientation = orientation;
   }
 }
