@@ -2,10 +2,6 @@ package slogo.view.tabs;
 
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import slogo.view.tabs.CommandHistoryTab;
-import slogo.view.tabs.HelpDocTab;
-import slogo.view.tabs.UserVariablesTab;
-import slogo.view.tabs.UserCommandsTab;
 
 public class SideTabPane extends TabPane {
 

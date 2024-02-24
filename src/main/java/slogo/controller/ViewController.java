@@ -1,9 +1,8 @@
 package slogo.controller;
 
 import javafx.stage.Stage;
-import slogo.view.Scene;
-import slogo.view.SceneSwitcher;
-import slogo.view.StartScene;
+import slogo.view.scenes.Scene;
+import slogo.view.scenes.start.StartScene;
 
 /**
  * ViewController manages Scenes and switches between them

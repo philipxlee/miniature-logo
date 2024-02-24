@@ -1,8 +1,8 @@
-package slogo.view.scenes;
+package slogo.view.scenes.main;
 
 import javafx.scene.layout.BorderPane;
 import slogo.controller.CommandController;
-import slogo.view.Scene;
+import slogo.view.scenes.Scene;
 import slogo.view.tabs.SideTabPane;
 
 public class MainScene implements Scene {

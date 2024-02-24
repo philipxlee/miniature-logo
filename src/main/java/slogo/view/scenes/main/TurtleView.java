@@ -1,4 +1,4 @@
-package slogo.view.scenes;
+package slogo.view.scenes.main;
 
 import javafx.scene.shape.Rectangle;
 import slogo.model.api.TurtleModel;

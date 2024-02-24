@@ -1,4 +1,4 @@
-package slogo.view.scenes;
+package slogo.view.scenes.main;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

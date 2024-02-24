@@ -1,5 +1,7 @@
 package slogo.view.tabs;
+
 import javafx.scene.Node;
+
 public interface TabContent {
 
   /**
@@ -8,5 +10,4 @@ public interface TabContent {
    * @return the Node to display
    */
   Node getContent();
-
 }

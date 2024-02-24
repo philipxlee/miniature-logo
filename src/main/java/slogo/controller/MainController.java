@@ -21,7 +21,7 @@ public class MainController extends Application {
     ViewController viewController = new ViewController(stage, commandController);
 
     // configure stage
-    stage.setTitle("SLogo Application");
+    stage.setTitle("SLogo");
     stage.setResizable(false);
     stage.show();
   }

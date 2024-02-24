@@ -1,4 +1,6 @@
-package slogo.view;
+package slogo.controller;
+
+import slogo.view.scenes.Scene;
 
 /**
  * SceneSwitcher abstraction defines module that cna switch scenes (ViewController)

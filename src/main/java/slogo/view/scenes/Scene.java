@@ -1,4 +1,4 @@
-package slogo.view;
+package slogo.view.scenes;
 
 /**
  * Scene abstraction represents a scene being displayed
