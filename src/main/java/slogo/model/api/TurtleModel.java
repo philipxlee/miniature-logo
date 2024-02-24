@@ -14,12 +14,16 @@ public class TurtleModel implements Observable {
   private double x;
   private double y;
   private double orientation;
+  private final List<TurtleLineModel> lines;
+  private boolean penDown;
 
   /**
    * TurtleModel constructor
    */
   public TurtleModel() {
     this.observers = new ArrayList<>();
+    this.lines = new ArrayList<>();
+    this.penDown = false;
     this.x = 0;
     this.y = 0;
     this.orientation = 0;
@@ -35,10 +39,19 @@ public class TurtleModel implements Observable {
     double orientationRadians = Math.toRadians(orientation);
     double deltaX = distance * Math.cos(orientationRadians);
     double deltaY = distance * Math.sin(orientationRadians);
+    double oldX = x;
+    double oldY = y;
 
     // update X and Y position
     x += deltaX;
     y += deltaY;
+    System.out.println("move turtle:\n");
+    // draw line if pen is down
+    if (penDown) {
+      lines.add(new TurtleLineModel(oldX, oldY, x, y));
+      System.out.println("Moving TURTLE from (" + oldX + ", " + oldY + ") to (" + x + ", " + y + ")");
+    }
+
 
     // notify observers about position change
     notifyObservers();
@@ -108,4 +121,26 @@ public class TurtleModel implements Observable {
   public double getOrientation() {
     return orientation;
   }
+
+  /**
+   * Puts pen down
+   */
+  public void penDown() {
+    penDown = true;
+  }
+
+  /**
+   * Puts pen up
+   */
+  public void penUp() {
+    penDown = false;
+  }
+
+  /**
+   * @return the array of lines drawn by the turtle
+   */
+  public List<TurtleLineModel> getLines() {
+    return new ArrayList<>(lines);  // Return a copy to avoid external modifications
+  }
+
 }
