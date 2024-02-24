@@ -1,9 +1,8 @@
 package slogo.view.scenes.main;
 
-import javafx.geometry.Insets;
 import javafx.scene.layout.BorderPane;
 import slogo.controller.CommandController;
-import slogo.view.buttons.ControlButtons;
+import slogo.view.buttons.ControlButtonsBox;
 import slogo.view.scenes.Scene;
 import slogo.view.tabs.SideTabPane;
 
@@ -12,7 +11,7 @@ public class MainScene implements Scene {
   private final TurtlePane turtlePane;
   private final InputPane inputPane;
   private final SideTabPane sideTabPane;
-  private final ControlButtons controlButtons;
+  private final ControlButtonsBox controlButtonsBox;
 
   private javafx.scene.Scene scene;
 
@@ -27,7 +26,7 @@ public class MainScene implements Scene {
     this.turtlePane = new TurtlePane(width, height);
     this.inputPane = new InputPane(width, height, commandController);
     this.sideTabPane = new SideTabPane();
-    this.controlButtons = new ControlButtons(); // Instantiate ControlButtons
+    this.controlButtonsBox = new ControlButtonsBox(); // Instantiate ControlButtons
 
     commandController.observeTurtle(turtlePane);
     initializeScene(width, height);
@@ -47,7 +46,7 @@ public class MainScene implements Scene {
     topPane.setTop(turtlePane.getDisplayPane());
 
     // Add ControlButtons to the right of the top pane
-    topPane.setBottom(controlButtons);
+    topPane.setBottom(controlButtonsBox);
 //    BorderPane.setMargin(controlButtons, new Insets(10)); // Add margin to controlButtons
 
     root.setTop(topPane);
