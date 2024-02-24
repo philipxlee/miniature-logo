@@ -18,21 +18,18 @@ import java.io.File;
           new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif")
       );
 
-      // Get the selected file
-      File selectedFile = fileChooser.showOpenDialog(null); // You can pass a Stage here if needed
+      File selectedFile = fileChooser.showOpenDialog(null);
 
-      // If the file is not null, load the image and set it as the turtle's image
       if (selectedFile != null) {
         Image image = new Image(selectedFile.toURI().toString());
-        setTurtleImage(image); // Implement this method to set the turtle image
+        setTurtleImage(image);
       }
     }
 
     // Method to set the turtle image
     private void setTurtleImage(Image image) {
-      // Implement how to set the turtle image
-      // For example, if you have a method in your UI class to set the turtle image:
       // ui.setTurtleImage(image);
+
     }
   }
 
