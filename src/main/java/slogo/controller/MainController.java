@@ -3,6 +3,7 @@ package slogo.controller;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import slogo.model.api.CommandHistoryModel;
 import slogo.model.api.TurtleModel;
 
 /**
@@ -14,9 +15,10 @@ public class MainController extends Application {
   public void start(Stage stage) throws Exception {
     // initialize models
     TurtleModel turtleModel = new TurtleModel();
+    CommandHistoryModel commandHistoryModel = new CommandHistoryModel();
 
     // initialize controllers
-    CommandController commandController = new CommandController(turtleModel);
+    CommandController commandController = new CommandController(turtleModel, commandHistoryModel);
 
     // initialize views (through ViewController)
     ViewController viewController = new ViewController(stage, commandController);

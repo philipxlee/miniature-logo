@@ -12,7 +12,6 @@ public class MainScene implements Scene {
   private final InputPane inputPane;
   private final SideTabPane sideTabPane;
   private final ControlButtonsBox controlButtonsBox;
-
   private javafx.scene.Scene scene;
 
   /**
@@ -23,12 +22,17 @@ public class MainScene implements Scene {
    * @param commandController commandController
    */
   public MainScene(int width, int height, CommandController commandController) {
+    // initialize panes
     this.turtlePane = new TurtlePane(width, height);
     this.inputPane = new InputPane(width, height, commandController);
     this.sideTabPane = new SideTabPane();
-    this.controlButtonsBox = new ControlButtonsBox(); // Instantiate ControlButtons
+    this.controlButtonsBox = new ControlButtonsBox();
 
+    // subscribe panes to models
     commandController.observeTurtle(turtlePane);
+    commandController.observeHistory(sideTabPane);
+
+    // initialize scene
     initializeScene(width, height);
   }
 

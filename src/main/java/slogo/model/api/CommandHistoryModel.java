@@ -1,19 +1,26 @@
 package slogo.model.api;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.Optional;
+import java.util.List;
 import java.util.Queue;
+import slogo.observer.Observable;
+import slogo.observer.Observer;
 
-public class CommandHistoryModel {
+/**
+ * CommandHistoryMode representing the history of commands
+ */
+public class CommandHistoryModel implements Observable {
 
+  private final List<Observer> observers;
   private final Queue<String> commandHistory;
-  private Iterator<String> commandHistoryIterator;
 
   /**
-   * Constructor for CommandHistory. It initializes the command history queue.
+   * Constructor for CommandHistory. It initializes the command history queue and list of observers
    */
   public CommandHistoryModel() {
+    this.observers = new ArrayList<>();
     this.commandHistory = new LinkedList<>();
   }
 
@@ -24,25 +31,39 @@ public class CommandHistoryModel {
    */
   public void addCommand(String command) {
     commandHistory.add(command);
-    resetIterator(); // Reset iterator each time a new command is added to ensure it's in sync
+    notifyObservers();
   }
 
   /**
-   * Retrieves the next most recent command without altering the original command history.
+   * Provides an iterator over the command history.
    *
-   * @return the next command in history if available, or optional empty if not
+   * @return An Iterator<String> for the command history.
    */
-  public Optional<String> getNextCommand() {
-    return (commandHistoryIterator != null && commandHistoryIterator.hasNext()) ?
-        Optional.of(commandHistoryIterator.next()) :
-        Optional.empty();
+  public Iterator<String> iterator() {
+    return commandHistory.iterator();
   }
 
   /**
-   * Initializes or resets the iterator over the command history. Call this method when you want to
-   * start retrieving commands from the beginning.
+   * Add observer to list of observers.
    */
-  private void resetIterator() {
-    this.commandHistoryIterator = commandHistory.iterator();
+  @Override
+  public void addObserver(Observer observer) {
+    observers.add(observer);
+  }
+
+  /**
+   * Remove observer from list of observers.
+   */
+  @Override
+  public void removeObserver(Observer observer) {
+    observers.remove(observer);
+  }
+
+  /**
+   * Notify all observers of state change.
+   */
+  @Override
+  public void notifyObservers() {
+    observers.forEach(observer -> observer.update(this));
   }
 }

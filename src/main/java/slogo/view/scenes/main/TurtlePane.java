@@ -4,10 +4,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+import slogo.model.api.TurtleLineModel;
 import slogo.model.api.TurtleModel;
 import slogo.observer.Observable;
 import slogo.observer.Observer;
-import slogo.model.api.TurtleLineModel;
 
 /**
  * TurtlePane representing where Turtle is rendered
@@ -44,25 +44,25 @@ public class TurtlePane implements Observer {
   @Override
   public void update(Observable observable) {
     if (observable instanceof TurtleModel turtleModel) {
-
-      double centerX = displayPane.getWidth() / 2.0;
-      double centerY = displayPane.getHeight() / 2.0;
-
-      // Update the turtle's graphic position to its center
-      double turtleCenterX = centerX + turtleModel.getX() - turtleGraphic.getWidth() / 2.0;
-      double turtleCenterY = centerY - turtleModel.getY() - turtleGraphic.getHeight() / 2.0;
-
-      turtleGraphic.setX(turtleCenterX);
-      turtleGraphic.setY(turtleCenterY);
-      turtleGraphic.setRotate(-turtleModel.getOrientation());
+      // draw turtle
+      drawTurtle(turtleModel);
 
       // draw lines
       drawLines(turtleModel);
     }
   }
 
-  public Pane getDisplayPane() {
-    return displayPane;
+  private void drawTurtle(TurtleModel turtleModel) {
+    double centerX = displayPane.getWidth() / 2.0;
+    double centerY = displayPane.getHeight() / 2.0;
+
+    // Update the turtle's graphic position to its center
+    double turtleCenterX = centerX + turtleModel.getX() - turtleGraphic.getWidth() / 2.0;
+    double turtleCenterY = centerY - turtleModel.getY() - turtleGraphic.getHeight() / 2.0;
+
+    turtleGraphic.setX(turtleCenterX);
+    turtleGraphic.setY(turtleCenterY);
+    turtleGraphic.setRotate(-turtleModel.getOrientation());
   }
 
   private void drawLines(TurtleModel model) {
@@ -81,5 +81,9 @@ public class TurtlePane implements Observer {
       displayPane.getChildren().add(fxLine);
     }
     turtleGraphic.toFront();  // Ensure the turtle graphic is always on top
+  }
+
+  public Pane getDisplayPane() {
+    return displayPane;
   }
 }

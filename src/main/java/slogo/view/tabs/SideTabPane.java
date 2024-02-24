@@ -2,8 +2,11 @@ package slogo.view.tabs;
 
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import slogo.model.api.CommandHistoryModel;
+import slogo.observer.Observable;
+import slogo.observer.Observer;
 
-public class SideTabPane extends TabPane {
+public class SideTabPane extends TabPane implements Observer {
 
   public SideTabPane() {
     super();
@@ -37,6 +40,13 @@ public class SideTabPane extends TabPane {
     Tab tab = new Tab(title);
     tab.setContent(content.getContent());
     return tab;
+  }
+
+  @Override
+  public void update(Observable observable) {
+    if (observable instanceof CommandHistoryModel) {
+      System.out.println("Side Tab Pane View: Updated command!");
+    }
   }
 }
 

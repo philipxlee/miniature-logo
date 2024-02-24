@@ -11,10 +11,10 @@ import slogo.observer.Observer;
 public class TurtleModel implements Observable {
 
   private final List<Observer> observers;
+  private final List<TurtleLineModel> lines;
   private double x;
   private double y;
   private double orientation;
-  private final List<TurtleLineModel> lines;
   private boolean penDown;
 
   /**
@@ -45,13 +45,11 @@ public class TurtleModel implements Observable {
     // update X and Y position
     x += deltaX;
     y += deltaY;
-    System.out.println("move turtle:\n");
+
     // draw line if pen is down
     if (penDown) {
       lines.add(new TurtleLineModel(oldX, oldY, x, y));
-      System.out.println("Moving TURTLE from (" + oldX + ", " + oldY + ") to (" + x + ", " + y + ")");
     }
-
 
     // notify observers about position change
     notifyObservers();
@@ -137,10 +135,9 @@ public class TurtleModel implements Observable {
   }
 
   /**
-   * @return the array of lines drawn by the turtle
+   * @return list of lines drawn by the turtle
    */
   public List<TurtleLineModel> getLines() {
     return new ArrayList<>(lines);  // Return a copy to avoid external modifications
   }
-
 }
