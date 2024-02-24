@@ -7,8 +7,9 @@ import javafx.stage.FileChooser;
 import slogo.view.buttons.ButtonAction;
 
 import java.io.File;
+import slogo.view.scenes.main.TurtlePane;
 
-  public class ButtonTurtleImage implements ButtonAction {
+public class ButtonTurtleImage implements ButtonAction {
 
     @Override
     public void performAction() {
@@ -22,14 +23,9 @@ import java.io.File;
 
       if (selectedFile != null) {
         Image image = new Image(selectedFile.toURI().toString());
-        setTurtleImage(image);
+        TurtlePane.setTurtleImage(image);
       }
     }
 
-    // Method to set the turtle image
-    private void setTurtleImage(Image image) {
-      // ui.setTurtleImage(image);
-
-    }
   }
 
