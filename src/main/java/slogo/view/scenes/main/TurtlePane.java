@@ -26,13 +26,13 @@ public class TurtlePane implements Observer {
   public TurtlePane(int width, int height) {
     // initialize pane
     displayPane = new Pane();
-    displayPane.setPrefSize(width, height * 0.75);
+    displayPane.setPrefSize(width, height * 0.5);
     displayPane.setStyle("-fx-background-color: #e0e0e0;");
 
     // initialize Turtle graphic
     turtleGraphic = new Rectangle(20, 20, Color.GREEN);
     turtleGraphic.setX(width / 2.0 - 10); // Center X
-    turtleGraphic.setY(height * 0.75 / 2.0 - 10); // Center Y
+    turtleGraphic.setY(height * 0.5 / 2.0 - 10); // Center Y
     displayPane.getChildren().add(turtleGraphic);
   }
 
