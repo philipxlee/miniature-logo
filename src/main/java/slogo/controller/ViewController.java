@@ -12,6 +12,7 @@ public class ViewController implements SceneSwitcher {
   private static final int WIDTH = 1000;
   private static final int HEIGHT = 700;
   private final Stage stage;
+  private final CommandController commandController;
 
   /**
    * ViewController constructor. Initialized with a JavaFX stage and a CommandController
@@ -21,6 +22,16 @@ public class ViewController implements SceneSwitcher {
    */
   public ViewController(Stage stage, CommandController commandController) {
     this.stage = stage;
+    this.commandController = commandController;
+    stage.setTitle("SLogo");
+    stage.setResizable(false);
+    stage.show();
+  }
+
+  /**
+   * Initialize Start Scene
+   */
+  public void initializeViews() {
     switchToScene(new StartScene(WIDTH, HEIGHT, this, commandController));
   }
 

@@ -41,12 +41,8 @@ public class SetOrientationCommand implements Command {
   public void execute() {
     Command action = null;
     switch (actionType) {
-//      TODO: implement setAbsoluteHeading and setXYComman
-//      case SET_HEADING -> model.setAbsoluteHeading(degree);
-//      case TOWARDS -> model.setXYCommand(pointX, pointY);
+      case TOWARDS -> model.faceXY(pointX, pointY);
       case SET_HEADING -> System.out.println("Set heading to " + degree);
-      case TOWARDS -> System.out.println("Turn towards (" + pointX + ", " + pointY + ")");
-      case PLACEHOLDER -> System.out.println("Placeholder >:)");
       default -> throw new IllegalStateException("Unexpected value: " + actionType);
     }
   }

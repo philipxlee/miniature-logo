@@ -25,7 +25,7 @@ public class TurtleModelTest {
   @Test
   void testRotate() {
     TurtleModel turtleModel = new TurtleModel();
-    turtleModel.rotate(90);
+    turtleModel.rotateTurtle(90);
     assertEquals(90, turtleModel.getOrientation());
   }
 
@@ -33,7 +33,7 @@ public class TurtleModelTest {
   void testMoveTurtleAndRotate() {
     TurtleModel turtleModel = new TurtleModel();
     turtleModel.moveTurtle(50);
-    turtleModel.rotate(90);
+    turtleModel.rotateTurtle(90);
     assertAll(
         () -> assertEquals(50, turtleModel.getX()),
         () -> assertEquals(0, turtleModel.getY()),

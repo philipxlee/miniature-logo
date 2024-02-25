@@ -2,14 +2,15 @@ package slogo.view.scenes.main;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import java.util.Iterator;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+import slogo.model.api.LineModel;
 import slogo.model.api.TurtleModel;
 import slogo.observer.Observable;
 import slogo.observer.Observer;
-import slogo.model.api.TurtleLineModel;
 
 /**
  * TurtlePane representing where Turtle is rendered
@@ -55,7 +56,6 @@ public class TurtlePane implements Observer {
   @Override
   public void update(Observable observable) {
     if (observable instanceof TurtleModel turtleModel) {
-
       double centerX = displayPane.getWidth() / 2.0;
       double centerY = displayPane.getHeight() / 2.0;
 
@@ -68,26 +68,57 @@ public class TurtlePane implements Observer {
       turtleImageView.setX(turtleCenterX);
       turtleImageView.setY(turtleCenterY);
       turtleImageView.setRotate(-turtleModel.getOrientation());
-
-      // draw lines
-      drawLines(turtleModel);
+//
+//      // draw lines
+//      drawLines(turtleModel);
+//=======
+      drawTurtle(turtleModel);
+    }
+    if (observable instanceof LineModel lineModel) {
+      drawLines(lineModel);
+//>>>>>>> main
     }
   }
 
-  public Pane getDisplayPane() {
-    return displayPane;
-  }
-
-  private void drawLines(TurtleModel model) {
+  /**
+   * Re-render turtle
+   *
+   * @param turtleModel to re-render
+   */
+  private void drawTurtle(TurtleModel turtleModel) {
     double centerX = displayPane.getWidth() / 2.0;
     double centerY = displayPane.getHeight() / 2.0;
 
-    for (TurtleLineModel line : model.getLines()) {
+    // Update the turtle's graphic position to its center
+    double turtleCenterX = centerX + turtleModel.getX() ;
+//        - turtleImageView.getWidth() / 2.0;
+    double turtleCenterY = centerY - turtleModel.getY();
+//    - turtleImageView.getHeight() / 2.0;
+    turtleImageView.setX(turtleCenterX);
+    turtleImageView.setY(turtleCenterY);
+    turtleImageView.setRotate(-turtleModel.getOrientation());
+
+    // set visibility of turtle graphic
+    turtleImageView.setVisible(turtleModel.getTurtleVisibility());
+  }
+
+  /**
+   * Re-render lines
+   *
+   * @param lineModel to re-render
+   */
+  private void drawLines(LineModel lineModel) {
+    double centerX = displayPane.getWidth() / 2.0;
+    double centerY = displayPane.getHeight() / 2.0;
+
+    Iterator<slogo.model.line.Line> lines = lineModel.iterator();
+    while (lines.hasNext()) {
+      slogo.model.line.Line line = lines.next();
       Line fxLine = new Line();
-      fxLine.setStartX(centerX + line.getStartX());
-      fxLine.setStartY(centerY - line.getStartY());
-      fxLine.setEndX(centerX + line.getEndX());
-      fxLine.setEndY(centerY - line.getEndY());
+      fxLine.setStartX(centerX + line.startX());
+      fxLine.setStartY(centerY - line.startY());
+      fxLine.setEndX(centerX + line.endX());
+      fxLine.setEndY(centerY - line.endY());
       fxLine.setStroke(Color.BLACK);
       fxLine.setStrokeWidth(3);  // Consider a thinner line for better accuracy
 
@@ -103,5 +134,14 @@ public class TurtlePane implements Observer {
    */
   public static void setTurtleImage(Image image) {
     turtleImageView.setImage(image);
+  }
+
+  /**
+   * Return pane representing TurtleView.
+   *
+   * @return Pane object of view
+   */
+  public Pane getDisplayPane() {
+    return displayPane;
   }
 }

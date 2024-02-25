@@ -24,6 +24,6 @@ public class RotateCommand implements Command {
    */
   @Override
   public void execute() {
-    model.rotate(degree);
+    model.rotateTurtle(degree);
   }
 }

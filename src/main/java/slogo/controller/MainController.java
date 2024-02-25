@@ -3,27 +3,32 @@ package slogo.controller;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import slogo.model.api.CommandHistoryModel;
+import slogo.model.api.LineModel;
 import slogo.model.api.TurtleModel;
 
 /**
- * MainController initializes model, controllers and views
+ * MainController initializes modules for application
  */
 public class MainController extends Application {
 
+  /**
+   * Connects Model, Views and Controllers together
+   *
+   * @param stage primary stage of the application
+   */
   @Override
   public void start(Stage stage) throws Exception {
     // initialize models
-    TurtleModel turtleModel = new TurtleModel();
+    LineModel lineModel = new LineModel();
+    TurtleModel turtleModel = new TurtleModel(lineModel);
+    CommandHistoryModel commandHistoryModel = new CommandHistoryModel();
 
     // initialize controllers
-    CommandController commandController = new CommandController(turtleModel);
-
-    // initialize views (through ViewController)
+    CommandController commandController = new CommandController(turtleModel, commandHistoryModel);
     ViewController viewController = new ViewController(stage, commandController);
 
-    // configure stage
-    stage.setTitle("SLogo");
-    stage.setResizable(false);
-    stage.show();
+    // initialize views (through ViewController)
+    viewController.initializeViews();
   }
 }

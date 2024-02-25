@@ -2,6 +2,7 @@ package slogo.model.api;
 
 import java.util.ArrayList;
 import java.util.List;
+import slogo.model.line.Line;
 import slogo.observer.Observable;
 import slogo.observer.Observer;
 
@@ -11,19 +12,21 @@ import slogo.observer.Observer;
 public class TurtleModel implements Observable {
 
   private final List<Observer> observers;
+  private final LineModel lineModel;
   private double x;
   private double y;
   private double orientation;
-  private final List<TurtleLineModel> lines;
   private boolean penDown;
+  private boolean turtleShown;
 
   /**
    * TurtleModel constructor
    */
-  public TurtleModel() {
+  public TurtleModel(LineModel lineModel) {
     this.observers = new ArrayList<>();
-    this.lines = new ArrayList<>();
+    this.lineModel = lineModel;
     this.penDown = false;
+    this.turtleShown = true;
     this.x = 0;
     this.y = 0;
     this.orientation = 0;
@@ -34,7 +37,7 @@ public class TurtleModel implements Observable {
    *
    * @param distance distance to move Turtle
    */
-  public void moveTurtle(double distance) {
+  public double moveTurtle(double distance) {
     // calculate change in X and Y based on orientation angle and distance
     double orientationRadians = Math.toRadians(orientation);
     double deltaX = distance * Math.cos(orientationRadians);
@@ -45,16 +48,17 @@ public class TurtleModel implements Observable {
     // update X and Y position
     x += deltaX;
     y += deltaY;
-    System.out.println("move turtle:\n");
+
     // draw line if pen is down
     if (penDown) {
-      lines.add(new TurtleLineModel(oldX, oldY, x, y));
-      System.out.println("Moving TURTLE from (" + oldX + ", " + oldY + ") to (" + x + ", " + y + ")");
+      lineModel.addLine(new Line(oldX, oldY, x, y));
     }
-
 
     // notify observers about position change
     notifyObservers();
+
+    // return distance travelled
+    return Math.sqrt(Math.pow(x - oldX, 2) + Math.pow(y - oldY, 2));
   }
 
   /**
@@ -62,8 +66,7 @@ public class TurtleModel implements Observable {
    *
    * @param angle angle to rotate turtle by
    */
-  public void rotate(double angle) {
-
+  public double rotateTurtle(double angle) {
     // update angle
     orientation += angle;
 
@@ -75,14 +78,19 @@ public class TurtleModel implements Observable {
 
     // notify observers about orientation change
     notifyObservers();
+
+    // angle travelled
+    return Math.abs(angle);
   }
 
   /**
-   * Add observer to list of observers.
+   * Add observer to list of observers. Subscribing to the turtle will also subscribe you to its
+   * lines
    */
   @Override
   public void addObserver(Observer observer) {
     observers.add(observer);
+    lineModel.addObserver(observer);
   }
 
   /**
@@ -123,24 +131,75 @@ public class TurtleModel implements Observable {
   }
 
   /**
-   * Puts pen down
+   * Sets pen to down
+   *
+   * @return 1
    */
-  public void penDown() {
+  public double penDown() {
     penDown = true;
+    return 1;
   }
 
   /**
-   * Puts pen up
+   * Sets pen to up
+   *
+   * @return 0
    */
-  public void penUp() {
+  public double penUp() {
     penDown = false;
+    return 0;
   }
 
   /**
-   * @return the array of lines drawn by the turtle
+   * Set Location of turtle
+   *
+   * @param newX is new X position
+   * @param newY is new Y position
    */
-  public List<TurtleLineModel> getLines() {
-    return new ArrayList<>(lines);  // Return a copy to avoid external modifications
+  public double setLocation(double newX, double newY) {
+    double distance = Math.sqrt(Math.pow(newX - x, 2) + Math.pow(newY - y, 2));
+    x = newX;
+    y = newY;
+    notifyObservers();
+    return distance;
   }
 
+  /**
+   * Sets turtle visibility to shown
+   *
+   * @return 1
+   */
+  public double showTurtle() {
+    turtleShown = true;
+    notifyObservers();
+    return 1;
+  }
+
+  /**
+   * Sets turtle visibility to hidden
+   *
+   * @return 0
+   */
+  public double hideTurtle() {
+    turtleShown = false;
+    notifyObservers();
+    return 0;
+  }
+
+  /**
+   * @return true if turtle is shown, false otherwise
+   */
+  public boolean getTurtleVisibility() {
+    return turtleShown;
+  }
+
+  /**
+   * Set the turtle's position to the given (x, y) coordinates.
+   */
+  public void faceXY(double targetX, double targetY) {
+    // Calculate the angle needed to rotate the turtle to face the new (x, y) position
+    double angleToTarget = Math.toDegrees(Math.atan2(targetY - this.y, targetX - this.x));
+    this.orientation = angleToTarget >= 0 ? angleToTarget : 360 + angleToTarget;
+    notifyObservers();
+  }
 }

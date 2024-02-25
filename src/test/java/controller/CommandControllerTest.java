@@ -8,6 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import slogo.controller.CommandController;
+import slogo.model.api.CommandHistoryModel;
 import slogo.model.api.TurtleModel;
 
 
@@ -24,7 +25,8 @@ public class CommandControllerTest {
     @Test
     void testExecuteCommand() {
       TurtleModel turtleModel = new TurtleModel();
-      CommandController control = new CommandController(turtleModel);
+      CommandHistoryModel commandHistoryModel = new CommandHistoryModel();
+      CommandController control = new CommandController(turtleModel, commandHistoryModel);
       control.executeCommand("fd 50");
       control.executeCommand("rt 90");
       assertAll(
@@ -36,7 +38,8 @@ public class CommandControllerTest {
     @Test
     void testExecuteCommandAndRotate() {
       TurtleModel turtleModel = new TurtleModel();
-      CommandController control = new CommandController(turtleModel);
+      CommandHistoryModel commandHistoryModel = new CommandHistoryModel();
+      CommandController control = new CommandController(turtleModel, commandHistoryModel);
       control.executeCommand("fd 50");
       control.executeCommand("rt 90");
       assertAll(
@@ -49,7 +52,8 @@ public class CommandControllerTest {
     @Test
     void testExecuteCommandAndRotateAndMove() {
       TurtleModel turtleModel = new TurtleModel();
-      CommandController control = new CommandController(turtleModel);
+      CommandHistoryModel commandHistoryModel = new CommandHistoryModel();
+      CommandController control = new CommandController(turtleModel, commandHistoryModel);
       control.executeCommand("fd 50");
       control.executeCommand("rt 90");
       control.executeCommand("fd 50");
