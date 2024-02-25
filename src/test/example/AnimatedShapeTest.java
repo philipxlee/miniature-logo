@@ -43,25 +43,25 @@ public class AnimatedShapeTest extends DukeApplicationTest {
 
     @Test
     void testAnimation () {
-        assertEquals(100, myActor.getX(), MATCH_TOLERANCE);
-        assertEquals(50, myActor.getY(), MATCH_TOLERANCE);
+        Assertions.assertEquals(100, myActor.getX(), MATCH_TOLERANCE);
+        Assertions.assertEquals(50, myActor.getY(), MATCH_TOLERANCE);
 
         Animation animation = myApp.makeAnimation(myActor, 350, 50, 90);
         animation.play();
         sleep(4, TimeUnit.SECONDS);    // PAUSE: not typically recommended in tests
 
-        assertEquals(325, myActor.getX() + myActor.getTranslateX(), MATCH_TOLERANCE);
-        assertEquals(50, myActor.getY(), MATCH_TOLERANCE);
-        assertEquals(90, myActor.rotateProperty().get(), MATCH_TOLERANCE);
+        Assertions.assertEquals(325, myActor.getX() + myActor.getTranslateX(), MATCH_TOLERANCE);
+        Assertions.assertEquals(50, myActor.getY(), MATCH_TOLERANCE);
+        Assertions.assertEquals(90, myActor.rotateProperty().get(), MATCH_TOLERANCE);
     }
 
     @Test
     void testSetResources () {
-        assertThrows(IllegalArgumentException.class, () -> myApp.setResources(null));
-        assertThrows(IllegalArgumentException.class, () -> myApp.setResources("  "));
-        assertThrows(IllegalArgumentException.class, () -> myApp.setResources("DoesNotExist"));
-        assertThrows(IllegalArgumentException.class, () -> myApp.setResources(AnimatedShape.CONFIGURATION_RESOURCE_PATH));
-        assertThrows(IllegalArgumentException.class, () -> myApp.setResources(AnimatedShape.CONFIGURATION_RESOURCE_PATH + "DoesNotExist"));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> myApp.setResources(null));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> myApp.setResources("  "));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> myApp.setResources("DoesNotExist"));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> myApp.setResources(AnimatedShape.CONFIGURATION_RESOURCE_PATH));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> myApp.setResources(AnimatedShape.CONFIGURATION_RESOURCE_PATH + "DoesNotExist"));
     }
 
     @Test
@@ -71,12 +71,12 @@ public class AnimatedShapeTest extends DukeApplicationTest {
         assertEquals(13, myApp.getResourceNumber("OK"));
         assertEquals(13, myApp.getResourceNumber("OKwithSpaces"));
 
-        assertThrows(InputMismatchException.class, () -> myApp.getResourceNumber("Negative"));
-        assertThrows(InputMismatchException.class, () -> myApp.getResourceNumber("Real"));
-        assertThrows(InputMismatchException.class, () -> myApp.getResourceNumber("Word"));
-        assertThrows(InputMismatchException.class, () -> myApp.getResourceNumber("Pre"));
-        assertThrows(InputMismatchException.class, () -> myApp.getResourceNumber("Post"));
-        assertThrows(InputMismatchException.class, () -> myApp.getResourceNumber("Mixed"));
+        Assertions.assertThrows(InputMismatchException.class, () -> myApp.getResourceNumber("Negative"));
+        Assertions.assertThrows(InputMismatchException.class, () -> myApp.getResourceNumber("Real"));
+        Assertions.assertThrows(InputMismatchException.class, () -> myApp.getResourceNumber("Word"));
+        Assertions.assertThrows(InputMismatchException.class, () -> myApp.getResourceNumber("Pre"));
+        Assertions.assertThrows(InputMismatchException.class, () -> myApp.getResourceNumber("Post"));
+        Assertions.assertThrows(InputMismatchException.class, () -> myApp.getResourceNumber("Mixed"));
     }
 
     @Test
@@ -86,8 +86,8 @@ public class AnimatedShapeTest extends DukeApplicationTest {
         assertEquals(Color.GREEN, myApp.getResourceColor("OK"));
         assertEquals(Color.RED, myApp.getResourceColor("OKwithSpaces"));
 
-        assertThrows(InputMismatchException.class, () -> myApp.getResourceColor("DoesNotExist"));
-        Exception e = assertThrows(InputMismatchException.class, () -> myApp.getResourceColor("BadCase"));
-        assertEquals("Property BadCase is not a color: Green", e.getMessage());
+        Assertions.assertThrows(InputMismatchException.class, () -> myApp.getResourceColor("DoesNotExist"));
+        Exception e = Assertions.assertThrows(InputMismatchException.class, () -> myApp.getResourceColor("BadCase"));
+        Assertions.assertEquals("Property BadCase is not a color: Green", e.getMessage());
     }
 }

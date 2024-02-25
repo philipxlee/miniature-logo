@@ -21,7 +21,7 @@ public class Parser {
   private final LineModel lineModel;
 
   /**
-   * Parser constructor initializes a TurtleModel
+   * Parser constructor initializes a TurtleModel.
    */
   public Parser(TurtleModel turtleModel, LineModel lineModel) {
     this.turtleModel = turtleModel;

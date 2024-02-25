@@ -81,8 +81,8 @@ public class TurtlePane implements Observer {
     double centerY = displayPane.getHeight() / 2.0;
 
     // Update the turtle's graphic position to its center
-    double turtleCenterX = centerX + (turtleModel.getX() - turtleImageView.getFitWidth() / 2.0);
-    double turtleCenterY = centerY - (turtleModel.getY() + turtleImageView.getFitHeight() / 2.0);
+    double turtleCenterX = centerX + (turtleModel.getPositionX() - turtleImageView.getFitWidth() / 2.0);
+    double turtleCenterY = centerY - (turtleModel.getPositionY() + turtleImageView.getFitHeight() / 2.0);
     turtleImageView.setX(turtleCenterX);
     turtleImageView.setY(turtleCenterY);
     turtleImageView.setRotate(-turtleModel.getOrientation());

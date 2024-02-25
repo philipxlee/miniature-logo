@@ -21,7 +21,7 @@ public class LineModel extends AbstractObservable {
   }
 
   /**
-   * Add a line to the LineModel
+   * Add a line to the LineModel.
    *
    * @param line to add to LineModel
    */

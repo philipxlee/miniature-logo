@@ -29,8 +29,8 @@ public class TurtleQueryCommand implements Command {
   @Override
   public void execute() {
     switch (queryType) {
-      case XCOR -> result = model.getX();
-      case YCOR -> result = model.getY();
+      case XCOR -> result = model.getPositionX();
+      case YCOR -> result = model.getPositionY();
       case HEADING -> result = model.getOrientation();
       case PENDOWN -> result = model.getPenDown() ? 1 : 0;
       case SHOWING -> result = model.getVisible() ? 1 : 0;
@@ -39,7 +39,7 @@ public class TurtleQueryCommand implements Command {
   }
 
   /**
-   * Returns the result of the query
+   * Returns the result of the query.
    *
    * @return the result of the query
    */

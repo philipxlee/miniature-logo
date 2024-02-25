@@ -33,8 +33,8 @@ public class CommandControllerTest {
       control.executeCommand("fd 50");
       control.executeCommand("rt 90");
       assertAll(
-          () -> assertEquals(50, turtleModel.getX()),
-          () -> assertEquals(0, turtleModel.getY())
+          () -> assertEquals(50, turtleModel.getPositionX()),
+          () -> assertEquals(0, turtleModel.getPositionY())
       );
     }
 
@@ -48,8 +48,8 @@ public class CommandControllerTest {
       control.executeCommand("fd 50");
       control.executeCommand("rt 90");
       assertAll(
-          () -> assertEquals(50, turtleModel.getX()),
-          () -> assertEquals(0, turtleModel.getY()),
+          () -> assertEquals(50, turtleModel.getPositionX()),
+          () -> assertEquals(0, turtleModel.getPositionY()),
           () -> assertEquals(90, turtleModel.getOrientation())
       );
     }
@@ -65,8 +65,8 @@ public class CommandControllerTest {
       control.executeCommand("rt 90");
       control.executeCommand("fd 50");
       assertAll(
-          () -> assertEquals(50, turtleModel.getX()),
-          () -> assertEquals(50, turtleModel.getY()),
+          () -> assertEquals(50, turtleModel.getPositionX()),
+          () -> assertEquals(50, turtleModel.getPositionY()),
           () -> assertEquals(90, turtleModel.getOrientation())
       );
     }

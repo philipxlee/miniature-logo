@@ -9,19 +9,19 @@ import slogo.observer.AbstractObservable;
 public class TurtleModel extends AbstractObservable {
 
   private final LineModel lineModel;
-  private double x;
-  private double y;
+  private double positionX;
+  private double positionY;
   private double orientation;
   private boolean penDown;
   private boolean visible;
 
   /**
-   * TurtleModel constructor
+   * TurtleModel constructor.
    */
   public TurtleModel(LineModel lineModel) {
     this.lineModel = lineModel;
-    this.x = 0;
-    this.y = 0;
+    this.positionX = 0;
+    this.positionY = 0;
     this.orientation = 0;
     this.penDown = false;
     this.visible = true;
@@ -37,23 +37,23 @@ public class TurtleModel extends AbstractObservable {
     double orientationRadians = Math.toRadians(orientation);
     double deltaX = distance * Math.cos(orientationRadians);
     double deltaY = distance * Math.sin(orientationRadians);
-    double oldX = x;
-    double oldY = y;
+    double oldX = positionX;
+    double oldY = positionY;
 
     // update X and Y position
-    x += deltaX;
-    y += deltaY;
+    positionX += deltaX;
+    positionY += deltaY;
 
     // draw line if pen is down
     if (penDown) {
-      lineModel.addLine(new Line(oldX, oldY, x, y));
+      lineModel.addLine(new Line(oldX, oldY, positionX, positionY));
     }
 
     // notify observers about position change
     notifyObservers();
 
     // return distance travelled
-    return Math.sqrt(Math.pow(x - oldX, 2) + Math.pow(y - oldY, 2));
+    return Math.sqrt(Math.pow(positionX - oldX, 2) + Math.pow(positionY - oldY, 2));
   }
 
   /**
@@ -85,9 +85,9 @@ public class TurtleModel extends AbstractObservable {
    * @param newY is new Y position
    */
   public double setLocation(double newX, double newY) {
-    double distance = Math.sqrt(Math.pow(newX - x, 2) + Math.pow(newY - y, 2));
-    x = newX;
-    y = newY;
+    double distance = Math.sqrt(Math.pow(newX - positionX, 2) + Math.pow(newY - positionY, 2));
+    positionX = newX;
+    positionY = newY;
     notifyObservers();
     return distance;
   }
@@ -95,15 +95,15 @@ public class TurtleModel extends AbstractObservable {
   /**
    * @return X position of Turtle
    */
-  public double getX() {
-    return x;
+  public double getPositionX() {
+    return positionX;
   }
 
   /**
    * @return Y position of Turtle
    */
-  public double getY() {
-    return y;
+  public double getPositionY() {
+    return positionY;
   }
 
   /**
@@ -124,6 +124,8 @@ public class TurtleModel extends AbstractObservable {
   }
 
   /**
+   * Get the state of the pen
+   *
    * @return true if pen is down, false otherwise
    */
   public boolean getPenDown() {
@@ -131,7 +133,9 @@ public class TurtleModel extends AbstractObservable {
   }
 
   /**
-   * Sets pen boolean of turtle
+   * Sets pen boolean of turtle.
+   *
+   * @param penDown is the new state of the pen
    */
   public void setPenDown(boolean penDown) {
     this.penDown = penDown;
@@ -161,7 +165,8 @@ public class TurtleModel extends AbstractObservable {
    */
   public void faceDirection(double targetX, double targetY) {
     // Calculate the angle needed to rotate the turtle to face the new (x, y) position
-    double angleToTarget = Math.toDegrees(Math.atan2(targetY - this.y, targetX - this.x));
+    double angleToTarget = Math.toDegrees(
+        Math.atan2(targetY - this.positionY, targetX - this.positionX));
     this.orientation = angleToTarget >= 0 ? angleToTarget : 360 + angleToTarget;
     notifyObservers();
   }

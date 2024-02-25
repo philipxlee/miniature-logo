@@ -17,8 +17,8 @@ public class TurtleModelTest {
     TurtleModel turtleModel = new TurtleModel();
     turtleModel.moveTurtle(50);
     assertAll(
-        () -> assertEquals(50, turtleModel.getX()),
-        () -> assertEquals(0, turtleModel.getY())
+        () -> assertEquals(50, turtleModel.getPositionX()),
+        () -> assertEquals(0, turtleModel.getPositionY())
     );
   }
 
@@ -35,8 +35,8 @@ public class TurtleModelTest {
     turtleModel.moveTurtle(50);
     turtleModel.rotateTurtle(90);
     assertAll(
-        () -> assertEquals(50, turtleModel.getX()),
-        () -> assertEquals(0, turtleModel.getY()),
+        () -> assertEquals(50, turtleModel.getPositionX()),
+        () -> assertEquals(0, turtleModel.getPositionY()),
         () -> assertEquals(90, turtleModel.getOrientation())
     );
   }

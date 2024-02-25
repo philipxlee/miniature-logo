@@ -52,9 +52,9 @@ class RegexMatchingTest {
     void testEmptyStringsProduceErrors () {
         myApp.setPatterns("English");
 
-        assertThrows(IllegalArgumentException.class, () -> myApp.getSymbol(null));
-        assertThrows(IllegalArgumentException.class, () -> myApp.getSymbol(""));
-        assertThrows(IllegalArgumentException.class, () -> myApp.getSymbol(" "));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> myApp.getSymbol(null));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> myApp.getSymbol(""));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> myApp.getSymbol(" "));
     }
 
     @Test

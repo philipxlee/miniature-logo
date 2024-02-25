@@ -3,6 +3,7 @@ package slogo.model.command.math;
 import slogo.model.command.Command;
 
 public class RemainderCommand implements Command {
+
   private final double dividend;
   private final double divisor;
 
@@ -16,6 +17,5 @@ public class RemainderCommand implements Command {
     if (divisor == 0) {
       throw new ArithmeticException("Division by zero in remainder calculation.");
     }
-//    return dividend % divisor;
   }
 }

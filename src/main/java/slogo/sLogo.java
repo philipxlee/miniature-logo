@@ -9,7 +9,7 @@ import slogo.controller.MainController;
  *
  * @author Arnav Nayak, Philip Lee, Prince Ahmed, Connor Johnson
  */
-public class SLogo {
+public class sLogo {
 
   /**
    * Application Entrypoint.
