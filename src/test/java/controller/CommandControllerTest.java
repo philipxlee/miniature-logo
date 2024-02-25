@@ -8,9 +8,9 @@
 //import org.junit.jupiter.api.Nested;
 //import org.junit.jupiter.api.Test;
 //import slogo.controller.CommandController;
-//import slogo.model.api.CommandHistoryModel;
-//import slogo.model.api.LineModel;
-//import slogo.model.api.TurtleModel;
+//import slogo.model.api.data.CommandHistoryModel;
+//import slogo.model.api.data.LineModel;
+//import slogo.model.api.data.TurtleModel;
 //
 //
 //public class CommandControllerTest {

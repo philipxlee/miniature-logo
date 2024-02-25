@@ -7,8 +7,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
-import slogo.model.api.LineModel;
-import slogo.model.api.TurtleModel;
+import slogo.model.api.data.LineModel;
+import slogo.model.api.data.TurtleModel;
 import slogo.observer.Observable;
 import slogo.observer.Observer;
 

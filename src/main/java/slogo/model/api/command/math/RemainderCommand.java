@@ -1,6 +1,6 @@
-package slogo.model.command.math;
+package slogo.model.api.command.math;
 
-import slogo.model.command.Command;
+import slogo.model.api.command.Command;
 
 /**
  * RemainderCommand returns the remainder of a dividend divdend by a divisor.

@@ -7,16 +7,16 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import slogo.model.command.Command;
-import slogo.model.command.math.BinaryMathCommand;
-import slogo.model.command.math.BinaryMathCommand.OperationType;
-import slogo.model.command.math.PiCommand;
-import slogo.model.command.math.PowerCommand;
-import slogo.model.command.math.RandomDoubleCommand;
-import slogo.model.command.math.RandomRangeCommand;
-import slogo.model.command.math.RemainderCommand;
-import slogo.model.command.math.UnaryMathCommand;
-import slogo.model.command.math.UnaryMathCommand.UnaryOperationType;
+import slogo.model.api.command.Command;
+import slogo.model.api.command.math.BinaryMathCommand;
+import slogo.model.api.command.math.BinaryMathCommand.OperationType;
+import slogo.model.api.command.math.PiCommand;
+import slogo.model.api.command.math.PowerCommand;
+import slogo.model.api.command.math.RandomDoubleCommand;
+import slogo.model.api.command.math.RandomRangeCommand;
+import slogo.model.api.command.math.RemainderCommand;
+import slogo.model.api.command.math.UnaryMathCommand;
+import slogo.model.api.command.math.UnaryMathCommand.UnaryOperationType;
 
 public class MathTest {
 

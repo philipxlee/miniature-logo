@@ -7,10 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import slogo.model.api.LineModel;
-import slogo.model.api.TurtleModel;
+import slogo.model.api.data.LineModel;
 import slogo.model.line.Line;
 
 public class LineModelTest {

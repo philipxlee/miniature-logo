@@ -1,6 +1,6 @@
-package slogo.model.command.bool;
+package slogo.model.api.command.bool;
 
-import slogo.model.command.Command;
+import slogo.model.api.command.Command;
 
 /**
  * UnaryBoolCommand represents a unary operation.

@@ -1,5 +1,6 @@
-package slogo.model.api;
+package slogo.model.api.data;
 
+import slogo.model.api.data.LineModel;
 import slogo.model.line.Line;
 import slogo.observer.AbstractObservable;
 
@@ -29,7 +30,7 @@ public class TurtleModel extends AbstractObservable {
   }
 
   /**
-   * Move Turtle forward or backward based on distance
+   * Move Turtle forward or backward based on distance.
    *
    * @param distance distance to move Turtle
    */
@@ -80,7 +81,7 @@ public class TurtleModel extends AbstractObservable {
   }
 
   /**
-   * Set Location of turtle
+   * Set Location of turtle.
    *
    * @param newX is new X position
    * @param newY is new Y position

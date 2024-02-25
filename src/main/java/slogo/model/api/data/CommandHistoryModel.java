@@ -1,4 +1,4 @@
-package slogo.model.api;
+package slogo.model.api.data;
 
 import java.util.Iterator;
 import java.util.LinkedList;

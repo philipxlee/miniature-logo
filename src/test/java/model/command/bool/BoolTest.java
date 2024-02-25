@@ -4,11 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import slogo.model.command.Command;
-import slogo.model.command.bool.BinaryBoolCommand;
-import slogo.model.command.bool.BinaryBoolCommand.OperationType;
-import slogo.model.command.bool.UnaryBoolCommand;
-import slogo.model.command.bool.UnaryBoolCommand.UnaryOperationType;
+import slogo.model.api.command.Command;
+import slogo.model.api.command.bool.BinaryBoolCommand;
+import slogo.model.api.command.bool.BinaryBoolCommand.OperationType;
+import slogo.model.api.command.bool.UnaryBoolCommand;
+import slogo.model.api.command.bool.UnaryBoolCommand.UnaryOperationType;
 
 public class BoolTest {
 

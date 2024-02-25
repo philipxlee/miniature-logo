@@ -3,9 +3,9 @@ package slogo.controller;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import slogo.model.api.CommandHistoryModel;
-import slogo.model.api.LineModel;
-import slogo.model.api.TurtleModel;
+import slogo.model.api.data.CommandHistoryModel;
+import slogo.model.api.data.LineModel;
+import slogo.model.api.data.TurtleModel;
 
 /**
  * MainController initializes modules for application.

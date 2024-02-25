@@ -1,7 +1,7 @@
-package slogo.model.command.turtle;
+package slogo.model.api.command.turtle;
 
-import slogo.model.api.TurtleModel;
-import slogo.model.command.Command;
+import slogo.model.api.data.TurtleModel;
+import slogo.model.api.command.Command;
 
 /**
  * ForwardCommand moves the Turtle forward.

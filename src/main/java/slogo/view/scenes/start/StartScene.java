@@ -64,7 +64,7 @@ public class StartScene implements Scene {
   }
 
   /**
-   * Get the scene
+   * Get the scene.
    *
    * @return scene
    */

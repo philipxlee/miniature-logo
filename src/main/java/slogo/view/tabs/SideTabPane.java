@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import slogo.model.api.CommandHistoryModel;
+import slogo.model.api.data.CommandHistoryModel;
 import slogo.observer.Observable;
 import slogo.observer.Observer;
 

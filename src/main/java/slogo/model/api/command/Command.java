@@ -1,4 +1,4 @@
-package slogo.model.command;
+package slogo.model.api.command;
 
 /**
  * Command interface creates an abstraction for every command being run (Command design pattern).

@@ -1,6 +1,6 @@
-package slogo.model.command.math;
+package slogo.model.api.command.math;
 
-import slogo.model.command.Command;
+import slogo.model.api.command.Command;
 
 /**
  * BinaryMathCommand represents each of the 4 operations.
