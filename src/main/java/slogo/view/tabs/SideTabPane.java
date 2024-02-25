@@ -55,7 +55,7 @@ public class SideTabPane extends TabPane implements Observer {
   }
 
   /**
-   * Update pane when observed models are updated
+   * Update pane when observed models are updated.
    *
    * @param observable the observable model triggering the update
    */

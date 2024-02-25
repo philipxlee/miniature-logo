@@ -6,7 +6,7 @@ package slogo.exceptions;
 public class InvalidCommandException extends Exception {
 
   /**
-   * InvalidCommandException constructor
+   * InvalidCommandException constructor.
    *
    * @param message is the description of the error
    */

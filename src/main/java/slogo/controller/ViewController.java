@@ -17,8 +17,8 @@ public class ViewController implements SceneSwitcher {
   /**
    * ViewController constructor. Initialized with a JavaFX stage and a CommandController
    *
-   * @param stage:             primary stage of JavaFX application
-   * @param commandController: CommandController used by the view
+   * @param stage             primary stage of JavaFX application
+   * @param commandController CommandController used by the view
    */
   public ViewController(Stage stage, CommandController commandController) {
     this.stage = stage;
@@ -29,16 +29,16 @@ public class ViewController implements SceneSwitcher {
   }
 
   /**
-   * Initialize Start Scene
+   * Initialize Start Scene.
    */
   public void initializeViews() {
     switchToScene(new StartScene(WIDTH, HEIGHT, this, commandController));
   }
 
   /**
-   * Switch to new Scene
+   * Switch to new Scene.
    *
-   * @param scene: new Scene to switch to
+   * @param scene is new Scene to switch to
    */
   @Override
   public void switchToScene(Scene scene) {

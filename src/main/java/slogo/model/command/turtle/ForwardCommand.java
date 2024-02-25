@@ -3,7 +3,10 @@ package slogo.model.command.turtle;
 import slogo.model.api.TurtleModel;
 import slogo.model.command.Command;
 
-public class MoveCommand implements Command {
+/**
+ * ForwardCommand moves the Turtle forward.
+ */
+public class ForwardCommand implements Command {
 
   private final TurtleModel model;
   private final double distance;
@@ -15,7 +18,7 @@ public class MoveCommand implements Command {
    * @param model    the model to change
    * @param distance the distance to move the turtle by
    */
-  public MoveCommand(TurtleModel model, double distance) {
+  public ForwardCommand(TurtleModel model, double distance) {
     this.model = model;
     this.distance = distance;
   }
@@ -28,5 +31,4 @@ public class MoveCommand implements Command {
   public void execute() {
     model.moveTurtle(distance);
   }
-
 }

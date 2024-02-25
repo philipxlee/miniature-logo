@@ -13,7 +13,7 @@ import slogo.model.api.TurtleModel;
 public class MainController extends Application {
 
   /**
-   * Connects Model, Views and Controllers together
+   * Connects Model, Views and Controllers together.
    *
    * @param stage primary stage of the application
    */

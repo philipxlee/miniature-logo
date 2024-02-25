@@ -27,7 +27,7 @@ public class MainScene implements Scene {
   public MainScene(int width, int height, CommandController commandController) {
     // initialize panes
     this.turtlePane = new TurtlePane(width, height);
-    this.inputPane = new InputPane(width, height, commandController);
+    this.inputPane = new InputPane(height, commandController);
     this.sideTabPane = new SideTabPane();
     this.controlButtonsBox = new ControlButtonsBox();
 
@@ -41,7 +41,7 @@ public class MainScene implements Scene {
   }
 
   /**
-   * Initialize the scene
+   * Initialize the scene.
    *
    * @param width  width
    * @param height height

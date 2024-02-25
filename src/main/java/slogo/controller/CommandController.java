@@ -64,7 +64,7 @@ public class CommandController {
   }
 
   /**
-   * Subscribe to updates from the LineModel
+   * Subscribe to updates from the LineModel.
    *
    * @param observer that wants to subscribe
    */

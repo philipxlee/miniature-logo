@@ -3,12 +3,12 @@ package slogo.controller;
 import slogo.view.scenes.Scene;
 
 /**
- * SceneSwitcher abstraction defines module that cna switch scenes (ViewController)
+ * SceneSwitcher abstraction defines module that cna switch scenes (ViewController).
  */
 public interface SceneSwitcher {
 
   /**
-   * Switch to new Scene
+   * Switch to new Scene.
    *
    * @param scene new Scene to switch to
    */

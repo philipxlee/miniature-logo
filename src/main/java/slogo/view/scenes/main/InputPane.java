@@ -18,12 +18,11 @@ public class InputPane {
   /**
    * Constructor for CommandConsole
    *
-   * @param width             width
    * @param height            height
    * @param commandController commandController to execute commands
    */
-  public InputPane(int width, int height, CommandController commandController) {
-    initializeInputBox(width, height, commandController);
+  public InputPane(int height, CommandController commandController) {
+    initializeInputBox(height, commandController);
   }
 
   /**
@@ -35,7 +34,7 @@ public class InputPane {
     return inputBox;
   }
 
-  private void initializeInputBox(int width, int height, CommandController commandController) {
+  private void initializeInputBox(int height, CommandController commandController) {
     commandInput = new TextArea();
     commandInput.setPromptText("Enter commands here...");
     commandInput.setOnKeyPressed(event -> {

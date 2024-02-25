@@ -1,11 +1,14 @@
 package slogo.model.parser;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 import slogo.exceptions.InvalidCommandException;
 import slogo.model.api.LineModel;
 import slogo.model.api.TurtleModel;
 import slogo.model.command.Command;
 import slogo.model.command.turtle.ClearScreenCommand;
-import slogo.model.command.turtle.MoveCommand;
+import slogo.model.command.turtle.ForwardCommand;
 import slogo.model.command.turtle.PenCommand;
 import slogo.model.command.turtle.RotateCommand;
 import slogo.model.command.turtle.SetLocationCommand;
@@ -19,6 +22,8 @@ public class Parser {
 
   private final TurtleModel turtleModel;
   private final LineModel lineModel;
+  private Properties commandMappings;
+  private String language;
 
   /**
    * Parser constructor initializes a TurtleModel.
@@ -26,6 +31,65 @@ public class Parser {
   public Parser(TurtleModel turtleModel, LineModel lineModel) {
     this.turtleModel = turtleModel;
     this.lineModel = lineModel;
+    this.language = "English";
+    initializeCommandMappings();
+  }
+
+  /**
+   * Initialize properties for command names.
+   */
+  private void initializeCommandMappings() {
+    commandMappings = new Properties();
+    try (InputStream inputStream = getClass().getResourceAsStream(
+        "/slogo/example/languages/" + language + ".properties")) {
+      commandMappings.load(inputStream);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  /**
+   * Convert a command name into the canonical name of command.
+   *
+   * @param commandName
+   * @return String representing the canonical name of the command
+   */
+  private String findCanonicalName(String commandName) {
+    String canonicalName = "";
+    for (String key : commandMappings.stringPropertyNames()) {
+      String value = commandMappings.getProperty(key);
+      String[] parts = value.split("\\|");
+      for (String part : parts) {
+        if (part.equals(commandName)) {
+          canonicalName = key;
+          break;
+        }
+      }
+      if (!canonicalName.isEmpty()) {
+        break;
+      }
+    }
+    return canonicalName;
+  }
+
+  /**
+   * Convert command string to Command object using reflection.
+   *
+   * @param commandName is the command string
+   * @return Command object representing the command to execute.
+   */
+  private Command reflect(String commandName) {
+    try {
+      String canonicalName = findCanonicalName(commandName);
+      if (!canonicalName.isEmpty()) {
+        Class<?> clazz = Class.forName("slogo.model.command." + commandName + "Command");
+        return (Command) clazz.getDeclaredConstructor(turtleModel.getClass())
+            .newInstance(turtleModel);
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return null;
   }
 
   /**
@@ -39,14 +103,14 @@ public class Parser {
     }
 
     String[] parts = commandString.trim().split("\\s+"); // Split by whitespace
-    Command action = null;
+    Command action;
     double number = 0;
     if (parts.length > 1) { // To click enter without a number for some commands
       number = Double.parseDouble(parts[1]);
     }
     switch (parts[0].toLowerCase()) {
-      case "fd" -> action = new MoveCommand(turtleModel, number);
-      case "bk" -> action = new MoveCommand(turtleModel, -number);
+      case "fd" -> action = new ForwardCommand(turtleModel, number);
+      case "bk" -> action = new ForwardCommand(turtleModel, -number);
       case "lt" -> action = new RotateCommand(turtleModel, -number);
       case "rt" -> action = new RotateCommand(turtleModel, number);
       case "seth" -> action = new SetOrientationCommand(turtleModel, number);

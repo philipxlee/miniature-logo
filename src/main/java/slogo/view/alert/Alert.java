@@ -3,12 +3,12 @@ package slogo.view.alert;
 import javafx.scene.control.Alert.AlertType;
 
 /**
- * Alert service triggers an alert dialog
+ * Alert service triggers an alert dialog.
  */
 public class Alert {
 
   /**
-   * Trigger an alert in the UI
+   * Trigger an alert in the UI.
    *
    * @param title   is the title used for the dialog
    * @param message is the message used in the alert
