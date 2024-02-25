@@ -14,6 +14,7 @@ import slogo.observer.Observer;
 public class CommandController {
 
   private final TurtleModel turtleModel;
+  private final LineModel lineModel;
   private final CommandHistoryModel commandHistoryModel;
   private final Parser parser;
 
@@ -21,12 +22,13 @@ public class CommandController {
    * CommandController constructor initializes new parser
    *
    * @param turtleModel         Turtle Model used for commands
-   * @param commandHistoryModel Command History Model used for command history
    * @param lineModel           LineModel used for lines
+   * @param commandHistoryModel Command History Model used for command history
    */
-  public CommandController(TurtleModel turtleModel, CommandHistoryModel commandHistoryModel,
-      LineModel lineModel) {
+  public CommandController(TurtleModel turtleModel, LineModel lineModel,
+      CommandHistoryModel commandHistoryModel) {
     this.turtleModel = turtleModel;
+    this.lineModel = lineModel;
     this.commandHistoryModel = commandHistoryModel;
     this.parser = new Parser(turtleModel, lineModel);
   }
@@ -59,5 +61,14 @@ public class CommandController {
    */
   public void observeHistory(Observer observer) {
     commandHistoryModel.addObserver(observer);
+  }
+
+  /**
+   * Subscribe to updates from the LineModel
+   *
+   * @param observer that wants to subscribe
+   */
+  public void observeLines(Observer observer) {
+    lineModel.addObserver(observer);
   }
 }

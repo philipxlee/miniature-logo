@@ -25,8 +25,8 @@ public class MainController extends Application {
     CommandHistoryModel commandHistoryModel = new CommandHistoryModel();
 
     // initialize controllers
-    CommandController commandController = new CommandController(turtleModel, commandHistoryModel,
-        lineModel);
+    CommandController commandController = new CommandController(turtleModel, lineModel,
+        commandHistoryModel);
     ViewController viewController = new ViewController(stage, commandController);
 
     // initialize views (through ViewController)

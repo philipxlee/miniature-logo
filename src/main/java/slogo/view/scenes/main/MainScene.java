@@ -33,6 +33,7 @@ public class MainScene implements Scene {
 
     // subscribe panes to models
     commandController.observeTurtle(turtlePane);
+    commandController.observeLines(turtlePane);
     commandController.observeHistory(sideTabPane);
 
     // initialize scene

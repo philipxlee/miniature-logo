@@ -15,7 +15,7 @@ public class InvalidCommandException extends Exception {
   }
 
   /**
-   * InvalidCommandException constructor
+   * InvalidCommandException constructor.
    *
    * @param message is the description of the error
    * @param cause   is the parent Throwable
