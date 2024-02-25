@@ -113,6 +113,7 @@ public class Parser {
       case "bk" -> action = new ForwardCommand(turtleModel, -number);
       case "lt" -> action = new RotateCommand(turtleModel, -number);
       case "rt" -> action = new RotateCommand(turtleModel, number);
+
       case "seth" -> action = new SetOrientationCommand(turtleModel, number);
       case "pd" -> action = new PenCommand(turtleModel, true);
       case "pu" -> action = new PenCommand(turtleModel, false);
