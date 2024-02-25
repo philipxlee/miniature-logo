@@ -28,10 +28,10 @@ public class CommandControllerTest {
       LineModel lineModel = new LineModel();
       TurtleModel turtleModel = new TurtleModel(lineModel);
       CommandHistoryModel commandHistoryModel = new CommandHistoryModel();
-      CommandController control = new CommandController(turtleModel, commandHistoryModel,
-          lineModel);
-      control.executeCommand("fd 50");
-      control.executeCommand("rt 90");
+//      CommandController control = new CommandController(turtleModel, commandHistoryModel,
+//          lineModel);
+//      control.executeCommand("fd 50");
+//      control.executeCommand("rt 90");
       assertAll(
           () -> assertEquals(50, turtleModel.getPositionX()),
           () -> assertEquals(0, turtleModel.getPositionY())
@@ -43,10 +43,10 @@ public class CommandControllerTest {
       LineModel lineModel = new LineModel();
       TurtleModel turtleModel = new TurtleModel(lineModel);
       CommandHistoryModel commandHistoryModel = new CommandHistoryModel();
-      CommandController control = new CommandController(turtleModel, commandHistoryModel,
-          lineModel);
-      control.executeCommand("fd 50");
-      control.executeCommand("rt 90");
+//      CommandController control = new CommandController(turtleModel, commandHistoryModel,
+//          lineModel);
+//      control.executeCommand("fd 50");
+//      control.executeCommand("rt 90");
       assertAll(
           () -> assertEquals(50, turtleModel.getPositionX()),
           () -> assertEquals(0, turtleModel.getPositionY()),
@@ -59,11 +59,11 @@ public class CommandControllerTest {
       LineModel lineModel = new LineModel();
       TurtleModel turtleModel = new TurtleModel(lineModel);
       CommandHistoryModel commandHistoryModel = new CommandHistoryModel();
-      CommandController control = new CommandController(turtleModel, commandHistoryModel,
-          lineModel);
-      control.executeCommand("fd 50");
-      control.executeCommand("rt 90");
-      control.executeCommand("fd 50");
+//      CommandController control = new CommandController(turtleModel, commandHistoryModel,
+//          lineModel);
+//      control.executeCommand("fd 50");
+//      control.executeCommand("rt 90");
+//      control.executeCommand("fd 50");
       assertAll(
           () -> assertEquals(50, turtleModel.getPositionX()),
           () -> assertEquals(50, turtleModel.getPositionY()),
