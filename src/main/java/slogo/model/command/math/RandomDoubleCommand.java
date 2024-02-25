@@ -3,15 +3,26 @@ package slogo.model.command.math;
 import slogo.model.command.Command;
 
 public class RandomDoubleCommand implements Command {
+
   private final double max;
 
+  /**
+   * Constructor for the Random Command, which returns a random double between 0 and the given
+   * maximum value
+   *
+   * @param max the maximum value to return
+   */
   public RandomDoubleCommand(double max) {
     this.max = max;
   }
 
+  /**
+   * Executes the random command Returns a random double between 0 and the given maximum value
+   *
+   * @return a random double between 0 and the given maximum value
+   */
   @Override
-  public void execute() {
-    System.out.println(Math.random() * max); // placeholder
-//    return Math.random() * max;
+  public Double execute() {
+    return Math.random() * max;
   }
 }

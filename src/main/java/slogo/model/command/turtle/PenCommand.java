@@ -23,7 +23,8 @@ public class PenCommand implements Command {
    * Executes the pen command. Puts the pen down or lifts it up.
    */
   @Override
-  public void execute() {
+  public Double execute() {
     model.setPenDown(penDown);
+    return penDown ? 1.0 : 0.0;
   }
 }

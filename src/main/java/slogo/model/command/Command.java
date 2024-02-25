@@ -8,5 +8,5 @@ public interface Command {
   /**
    * Define behavior to run when command is executed
    */
-  void execute();
+  Double execute();
 }

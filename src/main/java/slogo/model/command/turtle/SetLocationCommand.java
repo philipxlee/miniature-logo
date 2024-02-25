@@ -24,7 +24,7 @@ public class SetLocationCommand implements Command {
    * Executes the home command Moves the turtle to the home position
    */
   @Override
-  public void execute() {
-    model.setLocation(destinationX, destinationY);
+  public Double execute() {
+    return model.setLocation(destinationX, destinationY);
   }
 }
