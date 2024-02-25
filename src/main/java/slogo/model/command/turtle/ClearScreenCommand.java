@@ -21,9 +21,10 @@ public class ClearScreenCommand implements Command {
   }
 
   @Override
-  public void execute() {
-    turtleModel.setLocation(0.0, 0.0);
+  public Double execute() {
+    Double result = turtleModel.setLocation(0.0, 0.0);
     turtleModel.setOrientation(0.0);
     lineModel.clearLines();
+    return result;
   }
 }

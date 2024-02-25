@@ -28,7 +28,7 @@ public class ForwardCommand implements Command {
    * if the distance is negative.
    */
   @Override
-  public void execute() {
-    model.moveTurtle(distance);
+  public Double execute() {
+    return model.moveTurtle(distance);
   }
 }

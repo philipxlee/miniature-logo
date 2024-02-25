@@ -93,6 +93,25 @@ public class TurtleModel extends AbstractObservable {
   }
 
   /**
+   * Set turtle's heading to an absolute angle.
+   *
+   * @param degrees New heading angle for the turtle.
+   * @return The absolute difference between the new and old heading.
+   */
+  public double setHeading(double degrees) {
+    double oldOrientation = orientation;
+    orientation = degrees % 360;
+    if (orientation < 0) {
+      orientation += 360;
+    }
+    notifyObservers();
+    double angleDifference = Math.abs(orientation - oldOrientation);
+    angleDifference = angleDifference > 180 ? 360 - angleDifference : angleDifference;
+    return angleDifference;
+  }
+
+
+  /**
    * @return X position of Turtle
    */
   public double getPositionX() {
@@ -161,13 +180,27 @@ public class TurtleModel extends AbstractObservable {
   }
 
   /**
-   * Set the turtle's position to the given (x, y) coordinates.
+   * Turns turtle to face the point (x, y), where (0, 0) is the center of the screen.This is the
+   * towards command.
+   *
+   * @param targetX X-coordinate of the target point.
+   * @param targetY Y-coordinate of the target point.
+   * @return The number of degrees the turtle turned.
    */
-  public void faceDirection(double targetX, double targetY) {
-    // Calculate the angle needed to rotate the turtle to face the new (x, y) position
-    double angleToTarget = Math.toDegrees(
-        Math.atan2(targetY - this.positionY, targetX - this.positionX));
-    this.orientation = angleToTarget >= 0 ? angleToTarget : 360 + angleToTarget;
+  public Double faceDirection(double targetX, double targetY) {
+    double targetAngle = Math.toDegrees(Math.atan2(targetY - this.positionY, targetX - this.positionX));
+    targetAngle = targetAngle < 0 ? 360 + targetAngle : targetAngle;
+
+    // Calculate the smallest difference between the current orientation and the target angle.
+    double angleDifference = targetAngle - this.orientation;
+    if (angleDifference > 180) {
+      angleDifference -= 360;
+    } else if (angleDifference < -180) {
+      angleDifference += 360;
+    }
+
+    this.orientation = targetAngle;
     notifyObservers();
+    return Math.abs(angleDifference);
   }
 }

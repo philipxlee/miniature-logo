@@ -10,7 +10,6 @@ public class TurtleQueryCommand implements Command {
 
   private final TurtleModel model;
   private final QueryType queryType;
-  private double result;
 
   /**
    * Constructor for the TurtleQueryCommand, which queries the turtle for its current state
@@ -25,9 +24,11 @@ public class TurtleQueryCommand implements Command {
 
   /**
    * Executes the respective query command for the turtle.
+   * @return the result of the query
    */
   @Override
-  public void execute() {
+  public Double execute() {
+    double result = 0;
     switch (queryType) {
       case XCOR -> result = model.getPositionX();
       case YCOR -> result = model.getPositionY();
@@ -36,16 +37,9 @@ public class TurtleQueryCommand implements Command {
       case SHOWING -> result = model.getVisible() ? 1 : 0;
       default -> throw new IllegalStateException("Unexpected query: " + queryType);
     }
-  }
-
-  /**
-   * Returns the result of the query.
-   *
-   * @return the result of the query
-   */
-  public double getResult() {
     return result;
   }
+
 
   private enum QueryType {
     XCOR, YCOR, HEADING, PENDOWN, SHOWING

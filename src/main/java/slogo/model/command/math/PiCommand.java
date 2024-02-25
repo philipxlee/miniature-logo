@@ -4,13 +4,18 @@ import slogo.model.command.Command;
 
 public class PiCommand implements Command {
 
-
+  /**
+   * Constructs a PiCommand.
+   */
   public PiCommand() {}
 
+  /**
+   * Executes the pi command. Returns the value of pi.
+   *
+   * @return the value of pi
+   */
   @Override
-  public void execute() { // should be double
-    System.out.println(Math.PI); // placeholder
-//    return Math.PI;
+  public Double execute() { // should be double
+    return Math.PI;
   }
-
 }
