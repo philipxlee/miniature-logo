@@ -13,14 +13,4 @@ public class InvalidCommandException extends Exception {
   public InvalidCommandException(String message) {
     super(message);
   }
-
-  /**
-   * InvalidCommandException constructor.
-   *
-   * @param message is the description of the error
-   * @param cause   is the parent Throwable
-   */
-  public InvalidCommandException(String message, Throwable cause) {
-    super(message, cause);
-  }
 }
