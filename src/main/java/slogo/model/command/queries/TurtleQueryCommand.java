@@ -26,12 +26,11 @@ public class TurtleQueryCommand implements Command {
   @Override
   public void execute() {
     switch (queryType) {
-//      case XCOR -> result = model.getXCor();
-//      case YCOR -> result = model.getYCor();
-//      case HEADING -> result = model.getHeading();
-//      case PENDOWN -> result = model.isPenDown() ? 1 : 0;
-//      case SHOWING -> result = model.isShowing() ? 1 : 0;
-      case PLACEHOLDER -> result = 999999999;
+      case XCOR -> result = model.getX();
+      case YCOR -> result = model.getY();
+      case HEADING -> result = model.getOrientation();
+      case PENDOWN -> result = model.getPenDown() ? 1 : 0;
+      case SHOWING -> result = model.getVisible() ? 1 : 0;
       default -> throw new IllegalStateException("Unexpected query: " + queryType);
     }
   }
@@ -46,6 +45,6 @@ public class TurtleQueryCommand implements Command {
   }
 
   private enum QueryType {
-    XCOR, YCOR, HEADING, PENDOWN, SHOWING, PLACEHOLDER
+    XCOR, YCOR, HEADING, PENDOWN, SHOWING
   }
 }

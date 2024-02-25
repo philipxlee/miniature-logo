@@ -152,6 +152,13 @@ public class TurtleModel implements Observable {
   }
 
   /**
+   * @return true if pen is down, false otherwise
+   */
+  public boolean getPenDown() {
+    return penDown;
+  }
+
+  /**
    * Sets orientation of turtle
    *
    * @param angle is the new orientation of the turtle
