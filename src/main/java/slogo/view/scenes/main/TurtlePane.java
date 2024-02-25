@@ -1,12 +1,12 @@
 package slogo.view.scenes.main;
 
+import java.util.Iterator;
+import java.util.Objects;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import java.util.Iterator;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
-import javafx.scene.shape.Rectangle;
 import slogo.model.api.LineModel;
 import slogo.model.api.TurtleModel;
 import slogo.observer.Observable;
@@ -17,12 +17,10 @@ import slogo.observer.Observer;
  */
 public class TurtlePane implements Observer {
 
-  private final Pane displayPane;
-  private static ImageView turtleImageView = null;
   public static final double RATIO_TURTLE_DISPLAY = 0.5;
-//  public static final String   = "";
-//  public static final String RESOURCE_PATH = "/slogo.example/";
   public static final String DEFAULT_TURTLE_IMAGE_PATH = "/default_turtle.png";
+  private static ImageView turtleImageView;
+  private final Pane displayPane;
 
   /**
    * TurtlePane Constructor. Initializes display pane and turtle graphic
@@ -37,15 +35,25 @@ public class TurtlePane implements Observer {
     displayPane.setStyle("-fx-background-color: #e0e0e0;");
 
     // initialize Turtle graphic
-//    turtleGraphic = new Rectangle(20, 20, Color.GREEN);
     turtleImageView = new ImageView();
-    System.out.println(DEFAULT_TURTLE_IMAGE_PATH);
-    turtleImageView.setImage(new Image(TurtlePane.class.getResourceAsStream(DEFAULT_TURTLE_IMAGE_PATH)));
+    turtleImageView.setImage(
+        new Image(
+            Objects.requireNonNull(
+                TurtlePane.class.getResourceAsStream(DEFAULT_TURTLE_IMAGE_PATH))));
     turtleImageView.setFitWidth(20);
     turtleImageView.setFitHeight(20);
     turtleImageView.setX(width / 2.0 - 10); // Center X
     turtleImageView.setY(height * RATIO_TURTLE_DISPLAY / 2.0 - 10); // Center Y
     displayPane.getChildren().add(turtleImageView);
+  }
+
+  /**
+   * Set the turtle's image to the specified image.
+   *
+   * @param image The image to set for the turtle.
+   */
+  public static void setTurtleImage(Image image) {
+    turtleImageView.setImage(image);
   }
 
   /**
@@ -56,27 +64,10 @@ public class TurtlePane implements Observer {
   @Override
   public void update(Observable observable) {
     if (observable instanceof TurtleModel turtleModel) {
-      double centerX = displayPane.getWidth() / 2.0;
-      double centerY = displayPane.getHeight() / 2.0;
-
-      // Update the turtle's graphic position to its center
-      double turtleCenterX = centerX + turtleModel.getX() ;
-//          - turtleImageView.getWidth() / 2.0;
-      double turtleCenterY = centerY - turtleModel.getY() ;
-//          - turtleImageView.getHeight() / 2.0;
-
-      turtleImageView.setX(turtleCenterX);
-      turtleImageView.setY(turtleCenterY);
-      turtleImageView.setRotate(-turtleModel.getOrientation());
-//
-//      // draw lines
-//      drawLines(turtleModel);
-//=======
       drawTurtle(turtleModel);
     }
     if (observable instanceof LineModel lineModel) {
       drawLines(lineModel);
-//>>>>>>> main
     }
   }
 
@@ -90,16 +81,14 @@ public class TurtlePane implements Observer {
     double centerY = displayPane.getHeight() / 2.0;
 
     // Update the turtle's graphic position to its center
-    double turtleCenterX = centerX + turtleModel.getX() ;
-//        - turtleImageView.getWidth() / 2.0;
-    double turtleCenterY = centerY - turtleModel.getY();
-//    - turtleImageView.getHeight() / 2.0;
+    double turtleCenterX = centerX + (turtleModel.getX() - turtleImageView.getFitWidth() / 2.0);
+    double turtleCenterY = centerY - (turtleModel.getY() + turtleImageView.getFitHeight() / 2.0);
     turtleImageView.setX(turtleCenterX);
     turtleImageView.setY(turtleCenterY);
     turtleImageView.setRotate(-turtleModel.getOrientation());
 
     // set visibility of turtle graphic
-    turtleImageView.setVisible(turtleModel.getTurtleVisibility());
+    turtleImageView.setVisible(turtleModel.getVisible());
   }
 
   /**
@@ -108,6 +97,10 @@ public class TurtlePane implements Observer {
    * @param lineModel to re-render
    */
   private void drawLines(LineModel lineModel) {
+    // remove old lines
+    displayPane.getChildren().removeIf(node -> node instanceof Line);
+
+    // display new lines
     double centerX = displayPane.getWidth() / 2.0;
     double centerY = displayPane.getHeight() / 2.0;
 
@@ -125,15 +118,6 @@ public class TurtlePane implements Observer {
       displayPane.getChildren().add(fxLine);
     }
     turtleImageView.toFront();  // Ensure the turtle graphic is always on top
-  }
-
-  /**
-   * Set the turtle's image to the specified image.
-   *
-   * @param image The image to set for the turtle.
-   */
-  public static void setTurtleImage(Image image) {
-    turtleImageView.setImage(image);
   }
 
   /**

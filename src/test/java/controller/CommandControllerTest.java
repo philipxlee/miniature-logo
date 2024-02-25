@@ -28,7 +28,8 @@ public class CommandControllerTest {
       LineModel lineModel = new LineModel();
       TurtleModel turtleModel = new TurtleModel(lineModel);
       CommandHistoryModel commandHistoryModel = new CommandHistoryModel();
-      CommandController control = new CommandController(turtleModel, commandHistoryModel);
+      CommandController control = new CommandController(turtleModel, commandHistoryModel,
+          lineModel);
       control.executeCommand("fd 50");
       control.executeCommand("rt 90");
       assertAll(
@@ -42,7 +43,8 @@ public class CommandControllerTest {
       LineModel lineModel = new LineModel();
       TurtleModel turtleModel = new TurtleModel(lineModel);
       CommandHistoryModel commandHistoryModel = new CommandHistoryModel();
-      CommandController control = new CommandController(turtleModel, commandHistoryModel);
+      CommandController control = new CommandController(turtleModel, commandHistoryModel,
+          lineModel);
       control.executeCommand("fd 50");
       control.executeCommand("rt 90");
       assertAll(
@@ -57,7 +59,8 @@ public class CommandControllerTest {
       LineModel lineModel = new LineModel();
       TurtleModel turtleModel = new TurtleModel(lineModel);
       CommandHistoryModel commandHistoryModel = new CommandHistoryModel();
-      CommandController control = new CommandController(turtleModel, commandHistoryModel);
+      CommandController control = new CommandController(turtleModel, commandHistoryModel,
+          lineModel);
       control.executeCommand("fd 50");
       control.executeCommand("rt 90");
       control.executeCommand("fd 50");

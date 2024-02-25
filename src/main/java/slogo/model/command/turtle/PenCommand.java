@@ -24,10 +24,6 @@ public class PenCommand implements Command {
    */
   @Override
   public void execute() {
-    if (penDown) {
-      model.penDown();
-    } else {
-      model.penUp();
-    }
+    model.setPenDown(penDown);
   }
 }

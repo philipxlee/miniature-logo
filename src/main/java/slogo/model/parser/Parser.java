@@ -1,12 +1,13 @@
 package slogo.model.parser;
 
+import slogo.model.api.LineModel;
 import slogo.model.api.TurtleModel;
 import slogo.model.command.Command;
 import slogo.model.command.turtle.ClearScreenCommand;
-import slogo.model.command.turtle.SetLocationCommand;
 import slogo.model.command.turtle.MoveCommand;
 import slogo.model.command.turtle.PenCommand;
 import slogo.model.command.turtle.RotateCommand;
+import slogo.model.command.turtle.SetLocationCommand;
 import slogo.model.command.turtle.SetOrientationCommand;
 import slogo.model.command.turtle.TurtleVisibleCommand;
 
@@ -16,12 +17,14 @@ import slogo.model.command.turtle.TurtleVisibleCommand;
 public class Parser {
 
   private final TurtleModel turtleModel;
+  private final LineModel lineModel;
 
   /**
    * Parser constructor initializes a TurtleModel
    */
-  public Parser(TurtleModel turtleModel) {
+  public Parser(TurtleModel turtleModel, LineModel lineModel) {
     this.turtleModel = turtleModel;
+    this.lineModel = lineModel;
   }
 
   /**
@@ -33,7 +36,7 @@ public class Parser {
     String[] parts = command.trim().split("\\s+"); // Split by whitespace
     Command action = null;
     double number = 0;
-    if (parts.length > 1)  { // To click enter without a number for some commands
+    if (parts.length > 1) { // To click enter without a number for some commands
       number = Double.parseDouble(parts[1]);
     }
     switch (parts[0].toLowerCase()) {
@@ -46,10 +49,12 @@ public class Parser {
       case "pu" -> action = new PenCommand(turtleModel, false);
       case "st" -> action = new TurtleVisibleCommand(turtleModel, true);
       case "ht" -> action = new TurtleVisibleCommand(turtleModel, false);
-      case "towards" -> action = new SetOrientationCommand(turtleModel, number, Double.parseDouble(parts[2]));
-      case "goto" -> action = new SetLocationCommand(turtleModel, number, Double.parseDouble(parts[2]));
+      case "towards" ->
+          action = new SetOrientationCommand(turtleModel, number, Double.parseDouble(parts[2]));
+      case "goto" ->
+          action = new SetLocationCommand(turtleModel, number, Double.parseDouble(parts[2]));
       case "home" -> action = new SetLocationCommand(turtleModel, 0, 0);
-      case "cs" -> action = new ClearScreenCommand(turtleModel);
+      case "cs" -> action = new ClearScreenCommand(turtleModel, lineModel);
       default -> System.out.println("Unknown command: " + parts[0] + " or number: " + parts[1]);
     }
     return action;

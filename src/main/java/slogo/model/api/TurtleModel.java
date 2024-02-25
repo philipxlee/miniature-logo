@@ -17,7 +17,7 @@ public class TurtleModel implements Observable {
   private double y;
   private double orientation;
   private boolean penDown;
-  private boolean turtleShown;
+  private boolean visible;
 
   /**
    * TurtleModel constructor
@@ -25,11 +25,11 @@ public class TurtleModel implements Observable {
   public TurtleModel(LineModel lineModel) {
     this.observers = new ArrayList<>();
     this.lineModel = lineModel;
-    this.penDown = false;
-    this.turtleShown = true;
     this.x = 0;
     this.y = 0;
     this.orientation = 0;
+    this.penDown = false;
+    this.visible = true;
   }
 
   /**
@@ -110,6 +110,27 @@ public class TurtleModel implements Observable {
   }
 
   /**
+   * Set Location of turtle
+   *
+   * @param newX is new X position
+   * @param newY is new Y position
+   */
+  public double setLocation(double newX, double newY) {
+    double distance = Math.sqrt(Math.pow(newX - x, 2) + Math.pow(newY - y, 2));
+    x = newX;
+    y = newY;
+    notifyObservers();
+    return distance;
+  }
+
+  /**
+   * Sets pen boolean of turtle
+   */
+  public void setPenDown(boolean penDown) {
+    this.penDown = penDown;
+  }
+
+  /**
    * @return X position of Turtle
    */
   public double getX() {
@@ -131,66 +152,30 @@ public class TurtleModel implements Observable {
   }
 
   /**
-   * Sets pen to down
+   * Sets orientation of turtle
    *
-   * @return 1
+   * @param angle is the new orientation of the turtle
    */
-  public double penDown() {
-    penDown = true;
-    return 1;
-  }
-
-  /**
-   * Sets pen to up
-   *
-   * @return 0
-   */
-  public double penUp() {
-    penDown = false;
-    return 0;
-  }
-
-  /**
-   * Set Location of turtle
-   *
-   * @param newX is new X position
-   * @param newY is new Y position
-   */
-  public double setLocation(double newX, double newY) {
-    double distance = Math.sqrt(Math.pow(newX - x, 2) + Math.pow(newY - y, 2));
-    x = newX;
-    y = newY;
+  public void setOrientation(double angle) {
+    this.orientation = angle;
     notifyObservers();
-    return distance;
-  }
-
-  /**
-   * Sets turtle visibility to shown
-   *
-   * @return 1
-   */
-  public double showTurtle() {
-    turtleShown = true;
-    notifyObservers();
-    return 1;
-  }
-
-  /**
-   * Sets turtle visibility to hidden
-   *
-   * @return 0
-   */
-  public double hideTurtle() {
-    turtleShown = false;
-    notifyObservers();
-    return 0;
   }
 
   /**
    * @return true if turtle is shown, false otherwise
    */
-  public boolean getTurtleVisibility() {
-    return turtleShown;
+  public boolean getVisible() {
+    return visible;
+  }
+
+  /**
+   * Sets visibility of turtle
+   *
+   * @param visible is the boolean to set visibility to
+   */
+  public void setVisible(boolean visible) {
+    this.visible = visible;
+    notifyObservers();
   }
 
   /**
