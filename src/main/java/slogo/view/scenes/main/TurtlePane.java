@@ -84,7 +84,8 @@ public class TurtlePane implements Observer {
     double offsetX = (turtleModel.getPositionX() - turtleImageView.getFitWidth() / 2.0);
     double offsetY = (turtleModel.getPositionY() + turtleImageView.getFitHeight() / 2.0);
     double turtleCenterX = centerX + offsetX;
-    double turtleCenterY = centerY + offsetY;
+    double turtleCenterY = centerY - offsetY;
+
     turtleImageView.setX(turtleCenterX);
     turtleImageView.setY(turtleCenterY);
     turtleImageView.setRotate(-turtleModel.getOrientation());

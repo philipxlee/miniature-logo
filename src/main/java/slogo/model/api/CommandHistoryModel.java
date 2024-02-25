@@ -16,6 +16,7 @@ public class CommandHistoryModel extends AbstractObservable {
    * Constructor for CommandHistory. It initializes the command history queue and list of observers
    */
   public CommandHistoryModel() {
+    super();
     this.commandHistory = new LinkedList<>();
   }
 

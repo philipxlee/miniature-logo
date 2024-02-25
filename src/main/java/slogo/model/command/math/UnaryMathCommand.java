@@ -2,13 +2,16 @@ package slogo.model.command.math;
 
 import slogo.model.command.Command;
 
+/**
+ * UnaryMathCommand performs a unary math operation.
+ */
 public class UnaryMathCommand implements Command {
 
   private final double operand;
   private final UnaryOperationType operationType;
 
   /**
-   * Constructor for the UnaryMathCommand, which performs a unary math operation
+   * Constructor for the UnaryMathCommand, which performs a unary math operation.
    *
    * @param operand       the operand
    * @param operationType the type of operation to perform

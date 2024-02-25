@@ -16,7 +16,7 @@ import slogo.model.command.turtle.SetOrientationCommand;
 import slogo.model.command.turtle.TurtleVisibleCommand;
 
 /**
- * Parser module converts a string into a Command object, outfitted with the proper configuration
+ * Parser module converts a string into a Command object, outfitted with the proper configuration.
  */
 public class Parser {
 

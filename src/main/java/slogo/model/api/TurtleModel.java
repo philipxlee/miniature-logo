@@ -19,6 +19,7 @@ public class TurtleModel extends AbstractObservable {
    * TurtleModel constructor.
    */
   public TurtleModel(LineModel lineModel) {
+    super();
     this.lineModel = lineModel;
     this.positionX = 0;
     this.positionY = 0;
@@ -139,7 +140,7 @@ public class TurtleModel extends AbstractObservable {
   }
 
   /**
-   * Sets orientation of turtle
+   * Sets orientation of turtle.
    *
    * @param angle is the new orientation of the turtle
    */

@@ -82,6 +82,9 @@ public class BinaryBoolCommand implements Command {
     return Math.abs(a - b) < TOLERANCE;
   }
 
+  /**
+   * Define types for binary boolean operations.
+   */
   public enum OperationType {
     EQUAL, LESS, GREATER, AND, OR, NOTEQUAL, LESSEQUAL, GREATEREQUAL
   }

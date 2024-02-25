@@ -18,6 +18,7 @@ public class ControlButtonsBox extends HBox {
    * Constructs a new ControlButtonsBox.
    */
   public ControlButtonsBox() {
+    super();
     setupLayout();
   }
 

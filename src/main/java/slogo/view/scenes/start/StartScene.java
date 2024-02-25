@@ -21,7 +21,7 @@ public class StartScene implements Scene {
   private javafx.scene.Scene scene;
 
   /**
-   * Constructor for StartScene
+   * Constructor for StartScene.
    *
    * @param width             width
    * @param height            height
@@ -74,7 +74,7 @@ public class StartScene implements Scene {
   }
 
   /**
-   * Create a "Start Game" button
+   * Create a "Start Game" button.
    *
    * @param width  width of the button
    * @param height height of the button

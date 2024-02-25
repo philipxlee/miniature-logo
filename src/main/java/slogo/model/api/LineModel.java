@@ -17,6 +17,7 @@ public class LineModel extends AbstractObservable {
    * LineModel constructor. Initializes observers and line storage.
    */
   public LineModel() {
+    super();
     lines = new ArrayList<>();
   }
 
