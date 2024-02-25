@@ -97,6 +97,10 @@ public class TurtlePane implements Observer {
    * @param lineModel to re-render
    */
   private void drawLines(LineModel lineModel) {
+    // remove old lines
+    displayPane.getChildren().removeIf(node -> node instanceof Line);
+
+    // display new lines
     double centerX = displayPane.getWidth() / 2.0;
     double centerY = displayPane.getHeight() / 2.0;
 

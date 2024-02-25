@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import slogo.controller.CommandController;
 import slogo.model.api.CommandHistoryModel;
+import slogo.model.api.LineModel;
 import slogo.model.api.TurtleModel;
 
 
@@ -24,9 +25,11 @@ public class CommandControllerTest {
 
     @Test
     void testExecuteCommand() {
-      TurtleModel turtleModel = new TurtleModel();
+      LineModel lineModel = new LineModel();
+      TurtleModel turtleModel = new TurtleModel(lineModel);
       CommandHistoryModel commandHistoryModel = new CommandHistoryModel();
-      CommandController control = new CommandController(turtleModel, commandHistoryModel);
+      CommandController control = new CommandController(turtleModel, commandHistoryModel,
+          lineModel);
       control.executeCommand("fd 50");
       control.executeCommand("rt 90");
       assertAll(
@@ -37,9 +40,11 @@ public class CommandControllerTest {
 
     @Test
     void testExecuteCommandAndRotate() {
-      TurtleModel turtleModel = new TurtleModel();
+      LineModel lineModel = new LineModel();
+      TurtleModel turtleModel = new TurtleModel(lineModel);
       CommandHistoryModel commandHistoryModel = new CommandHistoryModel();
-      CommandController control = new CommandController(turtleModel, commandHistoryModel);
+      CommandController control = new CommandController(turtleModel, commandHistoryModel,
+          lineModel);
       control.executeCommand("fd 50");
       control.executeCommand("rt 90");
       assertAll(
@@ -51,9 +56,11 @@ public class CommandControllerTest {
 
     @Test
     void testExecuteCommandAndRotateAndMove() {
-      TurtleModel turtleModel = new TurtleModel();
+      LineModel lineModel = new LineModel();
+      TurtleModel turtleModel = new TurtleModel(lineModel);
       CommandHistoryModel commandHistoryModel = new CommandHistoryModel();
-      CommandController control = new CommandController(turtleModel, commandHistoryModel);
+      CommandController control = new CommandController(turtleModel, commandHistoryModel,
+          lineModel);
       control.executeCommand("fd 50");
       control.executeCommand("rt 90");
       control.executeCommand("fd 50");

@@ -1,6 +1,7 @@
 package slogo.controller;
 
 import slogo.model.api.CommandHistoryModel;
+import slogo.model.api.LineModel;
 import slogo.model.api.TurtleModel;
 import slogo.model.command.Command;
 import slogo.model.parser.Parser;
@@ -18,12 +19,15 @@ public class CommandController {
   /**
    * CommandController constructor initializes new parser
    *
-   * @param turtleModel: Turtle Model used for commands
+   * @param turtleModel         Turtle Model used for commands
+   * @param commandHistoryModel Command History Model used for command history
+   * @param lineModel           LineModel used for lines
    */
-  public CommandController(TurtleModel turtleModel, CommandHistoryModel commandHistoryModel) {
+  public CommandController(TurtleModel turtleModel, CommandHistoryModel commandHistoryModel,
+      LineModel lineModel) {
     this.turtleModel = turtleModel;
     this.commandHistoryModel = commandHistoryModel;
-    this.parser = new Parser(turtleModel);
+    this.parser = new Parser(turtleModel, lineModel);
   }
 
   /**

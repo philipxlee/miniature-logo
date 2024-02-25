@@ -131,6 +131,16 @@ public class TurtleModel implements Observable {
   }
 
   /**
+   * Sets orientation of turtle
+   *
+   * @param angle is the new orientation of the turtle
+   */
+  public void setOrientation(double angle) {
+    this.orientation = angle;
+    notifyObservers();
+  }
+
+  /**
    * Sets pen to down
    *
    * @return 1
