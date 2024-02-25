@@ -29,7 +29,7 @@ public class Parser {
   }
 
   /**
-   * Parse a string into the respective Command object
+   * Parse a string into the respective Command object.
    *
    * @param commandString string representing the command with arguments. Example: "fd 50".
    */

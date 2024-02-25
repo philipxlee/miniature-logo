@@ -1,26 +1,21 @@
 package slogo.model.api;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
-import slogo.observer.Observable;
-import slogo.observer.Observer;
+import slogo.observer.AbstractObservable;
 
 /**
- * CommandHistoryModel representing the history of commands
+ * CommandHistoryModel representing the history of commands.
  */
-public class CommandHistoryModel implements Observable {
+public class CommandHistoryModel extends AbstractObservable {
 
-  private final List<Observer> observers;
   private final Queue<String> commandHistory;
 
   /**
    * Constructor for CommandHistory. It initializes the command history queue and list of observers
    */
   public CommandHistoryModel() {
-    this.observers = new ArrayList<>();
     this.commandHistory = new LinkedList<>();
   }
 
@@ -41,29 +36,5 @@ public class CommandHistoryModel implements Observable {
    */
   public Iterator<String> iterator() {
     return commandHistory.iterator();
-  }
-
-  /**
-   * Add observer to list of observers.
-   */
-  @Override
-  public void addObserver(Observer observer) {
-    observers.add(observer);
-  }
-
-  /**
-   * Remove observer from list of observers.
-   */
-  @Override
-  public void removeObserver(Observer observer) {
-    observers.remove(observer);
-  }
-
-  /**
-   * Notify all observers of state change.
-   */
-  @Override
-  public void notifyObservers() {
-    observers.forEach(observer -> observer.update(this));
   }
 }

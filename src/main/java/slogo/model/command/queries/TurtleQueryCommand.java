@@ -3,6 +3,9 @@ package slogo.model.command.queries;
 import slogo.model.api.TurtleModel;
 import slogo.model.command.Command;
 
+/**
+ * TurtleQueryCommand queries the turtle model for a property.
+ */
 public class TurtleQueryCommand implements Command {
 
   private final TurtleModel model;
@@ -21,7 +24,7 @@ public class TurtleQueryCommand implements Command {
   }
 
   /**
-   * Executes the respective query command for the turtle
+   * Executes the respective query command for the turtle.
    */
   @Override
   public void execute() {

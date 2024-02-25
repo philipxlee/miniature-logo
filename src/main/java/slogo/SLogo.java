@@ -12,7 +12,7 @@ import slogo.controller.MainController;
 public class SLogo {
 
   /**
-   * Application Entrypoint
+   * Application Entrypoint.
    *
    * @param args command line arguments
    */

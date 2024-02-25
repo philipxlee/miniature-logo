@@ -4,22 +4,19 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import slogo.model.line.Line;
-import slogo.observer.Observable;
-import slogo.observer.Observer;
+import slogo.observer.AbstractObservable;
 
 /**
  * LineModel represents the state of all lines.
  */
-public class LineModel implements Observable {
+public class LineModel extends AbstractObservable {
 
-  private final List<Observer> observers;
   private final List<Line> lines;
 
   /**
    * LineModel constructor. Initializes observers and line storage.
    */
   public LineModel() {
-    observers = new ArrayList<>();
     lines = new ArrayList<>();
   }
 
@@ -34,7 +31,7 @@ public class LineModel implements Observable {
   }
 
   /**
-   * Clear lines being stored
+   * Clear lines being stored.
    */
   public void clearLines() {
     lines.clear();
@@ -48,29 +45,5 @@ public class LineModel implements Observable {
    */
   public Iterator<Line> iterator() {
     return lines.iterator();
-  }
-
-  /**
-   * Add observer to list of observers.
-   */
-  @Override
-  public void addObserver(Observer observer) {
-    observers.add(observer);
-  }
-
-  /**
-   * Remove observer from list of observers.
-   */
-  @Override
-  public void removeObserver(Observer observer) {
-    observers.remove(observer);
-  }
-
-  /**
-   * Notify all observers of state change.
-   */
-  @Override
-  public void notifyObservers() {
-    observers.forEach(observer -> observer.update(this));
   }
 }

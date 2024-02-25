@@ -6,8 +6,8 @@ import slogo.model.command.Command;
 public class SetLocationCommand implements Command {
 
   private final TurtleModel model;
-  double destinationX;
-  double destinationY;
+  private final double destinationX;
+  private final double destinationY;
 
   /**
    * Constructor for the HomeCommand, which moves the turtle to the home position

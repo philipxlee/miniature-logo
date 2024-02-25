@@ -1,6 +1,7 @@
 package slogo.view.tabs;
 
 import java.util.HashMap;
+import java.util.Map;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import slogo.model.api.CommandHistoryModel;
@@ -12,7 +13,7 @@ import slogo.observer.Observer;
  */
 public class SideTabPane extends TabPane implements Observer {
 
-  private HashMap<String, TabContent> tabMap;
+  private Map<String, TabContent> tabMap;
 
   /**
    * SideTabPane constructor.
@@ -30,7 +31,7 @@ public class SideTabPane extends TabPane implements Observer {
     this.tabMap = new HashMap<>();
 
     // Create tabs for different views
-    Tab commandHistoryTab = createTab( "Command History", new CommandHistoryTab());
+    Tab commandHistoryTab = createTab("Command History", new CommandHistoryTab());
     Tab helpDocTab = createTab("Help Docs", new HelpDocTab());
     Tab userVariablesTab = createTab("User Variables", new UserVariablesTab());
     Tab userCommandsTab = createTab("User Commands", new UserCommandsTab());

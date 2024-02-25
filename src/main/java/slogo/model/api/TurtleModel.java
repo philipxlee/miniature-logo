@@ -1,17 +1,13 @@
 package slogo.model.api;
 
-import java.util.ArrayList;
-import java.util.List;
 import slogo.model.line.Line;
-import slogo.observer.Observable;
-import slogo.observer.Observer;
+import slogo.observer.AbstractObservable;
 
 /**
  * TurtleModel representing the state of the Turtle
  */
-public class TurtleModel implements Observable {
+public class TurtleModel extends AbstractObservable {
 
-  private final List<Observer> observers;
   private final LineModel lineModel;
   private double x;
   private double y;
@@ -23,7 +19,6 @@ public class TurtleModel implements Observable {
    * TurtleModel constructor
    */
   public TurtleModel(LineModel lineModel) {
-    this.observers = new ArrayList<>();
     this.lineModel = lineModel;
     this.x = 0;
     this.y = 0;
@@ -84,32 +79,6 @@ public class TurtleModel implements Observable {
   }
 
   /**
-   * Add observer to list of observers. Subscribing to the turtle will also subscribe you to its
-   * lines
-   */
-  @Override
-  public void addObserver(Observer observer) {
-    observers.add(observer);
-    lineModel.addObserver(observer);
-  }
-
-  /**
-   * Remove observer from list of observers.
-   */
-  @Override
-  public void removeObserver(Observer observer) {
-    observers.remove(observer);
-  }
-
-  /**
-   * Notify all observers of state change.
-   */
-  @Override
-  public void notifyObservers() {
-    observers.forEach(observer -> observer.update(this));
-  }
-
-  /**
    * Set Location of turtle
    *
    * @param newX is new X position
@@ -121,13 +90,6 @@ public class TurtleModel implements Observable {
     y = newY;
     notifyObservers();
     return distance;
-  }
-
-  /**
-   * Sets pen boolean of turtle
-   */
-  public void setPenDown(boolean penDown) {
-    this.penDown = penDown;
   }
 
   /**
@@ -152,13 +114,6 @@ public class TurtleModel implements Observable {
   }
 
   /**
-   * @return true if pen is down, false otherwise
-   */
-  public boolean getPenDown() {
-    return penDown;
-  }
-
-  /**
    * Sets orientation of turtle
    *
    * @param angle is the new orientation of the turtle
@@ -169,6 +124,22 @@ public class TurtleModel implements Observable {
   }
 
   /**
+   * @return true if pen is down, false otherwise
+   */
+  public boolean getPenDown() {
+    return penDown;
+  }
+
+  /**
+   * Sets pen boolean of turtle
+   */
+  public void setPenDown(boolean penDown) {
+    this.penDown = penDown;
+  }
+
+  /**
+   * Get visibility of turtle.
+   *
    * @return true if turtle is shown, false otherwise
    */
   public boolean getVisible() {
@@ -176,7 +147,7 @@ public class TurtleModel implements Observable {
   }
 
   /**
-   * Sets visibility of turtle
+   * Sets visibility of turtle.
    *
    * @param visible is the boolean to set visibility to
    */
@@ -188,7 +159,7 @@ public class TurtleModel implements Observable {
   /**
    * Set the turtle's position to the given (x, y) coordinates.
    */
-  public void faceXY(double targetX, double targetY) {
+  public void faceDirection(double targetX, double targetY) {
     // Calculate the angle needed to rotate the turtle to face the new (x, y) position
     double angleToTarget = Math.toDegrees(Math.atan2(targetY - this.y, targetX - this.x));
     this.orientation = angleToTarget >= 0 ? angleToTarget : 360 + angleToTarget;
