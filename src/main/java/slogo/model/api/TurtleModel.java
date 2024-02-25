@@ -36,7 +36,7 @@ public class TurtleModel implements Observable {
    *
    * @param distance distance to move Turtle
    */
-  public void moveTurtle(double distance) {
+  public double moveTurtle(double distance) {
     // calculate change in X and Y based on orientation angle and distance
     double orientationRadians = Math.toRadians(orientation);
     double deltaX = distance * Math.cos(orientationRadians);
@@ -47,16 +47,16 @@ public class TurtleModel implements Observable {
     // update X and Y position
     x += deltaX;
     y += deltaY;
-    System.out.println("move turtle:\n");
+
     // draw line if pen is down
     if (penDown) {
       lines.add(new TurtleLineModel(oldX, oldY, x, y));
-      System.out.println("Moving TURTLE from (" + oldX + ", " + oldY + ") to (" + x + ", " + y + ")");
     }
 
 
     // notify observers about position change
     notifyObservers();
+    return Math.sqrt(Math.pow(x - oldX, 2) + Math.pow(y - oldY, 2));
   }
 
   /**
@@ -64,7 +64,7 @@ public class TurtleModel implements Observable {
    *
    * @param angle angle to rotate turtle by
    */
-  public void rotate(double angle) {
+  public double rotate(double angle) {
 
     // update angle
     orientation += angle;
@@ -77,6 +77,7 @@ public class TurtleModel implements Observable {
 
     // notify observers about orientation change
     notifyObservers();
+    return Math.abs(angle);
   }
 
   /**
@@ -143,26 +144,31 @@ public class TurtleModel implements Observable {
   /**
    * Move turtle to home position (origin)
    */
-  public void setLocation(double targetX, double targetY) {
+  public double setLocation(double targetX, double targetY) {
+    double oldX = x;
+    double oldY = y;
     x = targetX;
     y = targetY;
     notifyObservers();
+    return Math.sqrt(Math.pow(x - oldX, 2) + Math.pow(y - oldY, 2));
   }
 
   /**
    * Show turtle
    */
-  public void showTurtle() {
+  public double showTurtle() {
     turtleShown = true;
     notifyObservers();
+    return 1;
   }
 
   /**
    * Hide turtle
    */
-  public void hideTurtle() {
+  public double hideTurtle() {
     turtleShown = false;
     notifyObservers();
+    return 0;
   }
 
   /**
@@ -182,10 +188,12 @@ public class TurtleModel implements Observable {
     notifyObservers();
   }
 
-  public void clearScreen() {
+  public double clearScreen() {
+    double distanceToHome = Math.sqrt(x * x + y * y);
     lines.clear();
     setLocation(0, 0);
     notifyObservers();
+    return distanceToHome;
   }
 
   /**
