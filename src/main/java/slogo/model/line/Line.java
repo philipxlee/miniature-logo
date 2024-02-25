@@ -1,13 +1,24 @@
-package slogo.model.api;
+package slogo.model.line;
 
-public class TurtleLineModel {
+/**
+ * Line class represents the points of a line.
+ */
+public class Line {
 
   final double startX;
   final double startY;
   final double endX;
   final double endY;
 
-  TurtleLineModel(double startX, double startY, double endX, double endY) {
+  /**
+   * Line constructor.
+   *
+   * @param startX start x of line
+   * @param startY start y of line
+   * @param endX   end x of line
+   * @param endY   end y of line
+   */
+  public Line(double startX, double startY, double endX, double endY) {
     this.startX = startX;
     this.startY = startY;
     this.endX = endX;

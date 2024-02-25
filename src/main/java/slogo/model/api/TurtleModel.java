@@ -2,6 +2,7 @@ package slogo.model.api;
 
 import java.util.ArrayList;
 import java.util.List;
+import slogo.model.line.Line;
 import slogo.observer.Observable;
 import slogo.observer.Observer;
 
@@ -11,7 +12,7 @@ import slogo.observer.Observer;
 public class TurtleModel implements Observable {
 
   private final List<Observer> observers;
-  private final List<TurtleLineModel> lines;
+  private final LineModel lineModel;
   private double x;
   private double y;
   private double orientation;
@@ -20,9 +21,9 @@ public class TurtleModel implements Observable {
   /**
    * TurtleModel constructor
    */
-  public TurtleModel() {
+  public TurtleModel(LineModel lineModel) {
     this.observers = new ArrayList<>();
-    this.lines = new ArrayList<>();
+    this.lineModel = lineModel;
     this.penDown = false;
     this.x = 0;
     this.y = 0;
@@ -48,7 +49,7 @@ public class TurtleModel implements Observable {
 
     // draw line if pen is down
     if (penDown) {
-      lines.add(new TurtleLineModel(oldX, oldY, x, y));
+      lineModel.addLine(new Line(oldX, oldY, x, y));
     }
 
     // notify observers about position change
@@ -76,11 +77,13 @@ public class TurtleModel implements Observable {
   }
 
   /**
-   * Add observer to list of observers.
+   * Add observer to list of observers. Subscribing to the turtle will also subscribe you to its
+   * lines
    */
   @Override
   public void addObserver(Observer observer) {
     observers.add(observer);
+    lineModel.addObserver(observer);
   }
 
   /**
@@ -132,12 +135,5 @@ public class TurtleModel implements Observable {
    */
   public void penUp() {
     penDown = false;
-  }
-
-  /**
-   * @return list of lines drawn by the turtle
-   */
-  public List<TurtleLineModel> getLines() {
-    return new ArrayList<>(lines);  // Return a copy to avoid external modifications
   }
 }

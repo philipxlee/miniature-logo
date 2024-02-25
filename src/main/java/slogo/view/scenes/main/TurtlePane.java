@@ -1,10 +1,11 @@
 package slogo.view.scenes.main;
 
+import java.util.Iterator;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
-import slogo.model.api.TurtleLineModel;
+import slogo.model.api.LineModel;
 import slogo.model.api.TurtleModel;
 import slogo.observer.Observable;
 import slogo.observer.Observer;
@@ -44,11 +45,11 @@ public class TurtlePane implements Observer {
   @Override
   public void update(Observable observable) {
     if (observable instanceof TurtleModel turtleModel) {
-      // draw turtle
       drawTurtle(turtleModel);
-
-      // draw lines
-      drawLines(turtleModel);
+    }
+    if (observable instanceof LineModel lineModel) {
+      System.out.println("TEST");
+      drawLines(lineModel);
     }
   }
 
@@ -65,11 +66,13 @@ public class TurtlePane implements Observer {
     turtleGraphic.setRotate(-turtleModel.getOrientation());
   }
 
-  private void drawLines(TurtleModel model) {
+  private void drawLines(LineModel model) {
     double centerX = displayPane.getWidth() / 2.0;
     double centerY = displayPane.getHeight() / 2.0;
 
-    for (TurtleLineModel line : model.getLines()) {
+    Iterator<slogo.model.line.Line> lines = model.iterator();
+    while (lines.hasNext()) {
+      slogo.model.line.Line line = lines.next();
       Line fxLine = new Line();
       fxLine.setStartX(centerX + line.getStartX());
       fxLine.setStartY(centerY - line.getStartY());
