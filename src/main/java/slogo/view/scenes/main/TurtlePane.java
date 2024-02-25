@@ -88,7 +88,7 @@ public class TurtlePane implements Observer {
     turtleImageView.setRotate(-turtleModel.getOrientation());
 
     // set visibility of turtle graphic
-    turtleImageView.setVisible(turtleModel.getTurtleVisibility());
+    turtleImageView.setVisible(turtleModel.getVisible());
   }
 
   /**
