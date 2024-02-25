@@ -11,10 +11,10 @@ import slogo.observer.Observer;
 public class TurtleModel implements Observable {
 
   private final List<Observer> observers;
+  private final List<TurtleLineModel> lines;
   private double x;
   private double y;
   private double orientation;
-  private final List<TurtleLineModel> lines;
   private boolean penDown;
   private boolean turtleShown;
 
@@ -52,7 +52,6 @@ public class TurtleModel implements Observable {
     if (penDown) {
       lines.add(new TurtleLineModel(oldX, oldY, x, y));
     }
-
 
     // notify observers about position change
     notifyObservers();
@@ -179,8 +178,8 @@ public class TurtleModel implements Observable {
   }
 
   /**
-  * Set the turtle's position to the given (x, y) coordinates.
-  */
+   * Set the turtle's position to the given (x, y) coordinates.
+   */
   public void setXYCommand(double targetX, double targetY) {
     // Calculate the angle needed to rotate the turtle to face the new (x, y) position
     double angleToTarget = Math.toDegrees(Math.atan2(targetY - this.y, targetX - this.x));
