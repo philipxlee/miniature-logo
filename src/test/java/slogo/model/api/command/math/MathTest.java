@@ -1,4 +1,4 @@
-package model.command.math;
+package slogo.model.api.command.math;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;

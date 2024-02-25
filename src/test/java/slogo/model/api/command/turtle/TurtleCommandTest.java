@@ -1,4 +1,4 @@
-package model.command.turtle;
+package slogo.model.api.command.turtle;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -6,8 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
-import slogo.model.api.data.LineModel;
-import slogo.model.api.data.TurtleModel;
+import slogo.exceptions.InvalidCommandException;
 import slogo.model.api.command.Command;
 import slogo.model.api.command.turtle.ClearScreenCommand;
 import slogo.model.api.command.turtle.ForwardCommand;
@@ -16,6 +15,8 @@ import slogo.model.api.command.turtle.RotateCommand;
 import slogo.model.api.command.turtle.SetLocationCommand;
 import slogo.model.api.command.turtle.SetOrientationCommand;
 import slogo.model.api.command.turtle.TurtleVisibleCommand;
+import slogo.model.api.data.LineModel;
+import slogo.model.api.data.TurtleModel;
 
 public class TurtleCommandTest {
 
@@ -62,7 +63,7 @@ public class TurtleCommandTest {
   }
 
   @Test
-  public void testMove() {
+  public void testMove() throws InvalidCommandException {
     LineModel lineModel = new LineModel();
     TurtleModel turtleModel = new TurtleModel(lineModel);
     Command move = new ForwardCommand(turtleModel, 50);

@@ -1,5 +1,8 @@
 package slogo.model.api.command;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 import slogo.exceptions.InvalidCommandException;
 import slogo.model.api.command.turtle.ClearScreenCommand;
 import slogo.model.api.command.turtle.ForwardCommand;
@@ -18,6 +21,8 @@ public class CommandFactory {
 
   private TurtleModel turtleModel;
   private LineModel lineModel;
+  private Properties commandMappings;
+  private String language;
 
   /**
    * CommandFactory constructor. Initialized with turtleModel and lineModel.
@@ -28,6 +33,8 @@ public class CommandFactory {
   public CommandFactory(TurtleModel turtleModel, LineModel lineModel) {
     this.turtleModel = turtleModel;
     this.lineModel = lineModel;
+    this.language = "English";
+    initializeCommandMappings();
   }
 
   /**
@@ -55,5 +62,62 @@ public class CommandFactory {
       case "cs" -> new ClearScreenCommand(turtleModel, lineModel);
       default -> throw new InvalidCommandException("Invalid Command String: " + commandString);
     };
+  }
+
+  /**
+   * Initialize properties for command names.
+   */
+  private void initializeCommandMappings() {
+    commandMappings = new Properties();
+    try (InputStream inputStream = getClass().getResourceAsStream(
+        "/slogo/example/languages/" + language + ".properties")) {
+      commandMappings.load(inputStream);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  /**
+   * Convert command string to Command object using reflection.
+   *
+   * @param commandName is the command string
+   * @return Command object representing the command to execute.
+   */
+  private Command reflect(String commandName) {
+    try {
+      String canonicalName = findCanonicalName(commandName);
+      if (!canonicalName.isEmpty()) {
+        Class<?> clazz = Class.forName("slogo.model.command." + commandName + "Command");
+        return (Command) clazz.getDeclaredConstructor(turtleModel.getClass())
+            .newInstance(turtleModel);
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return null;
+  }
+
+  /**
+   * Convert a command name into the canonical name of command.
+   *
+   * @param commandName is the string representing the command
+   * @return String representing the canonical name of the command
+   */
+  private String findCanonicalName(String commandName) {
+    String canonicalName = "";
+    for (String key : commandMappings.stringPropertyNames()) {
+      String value = commandMappings.getProperty(key);
+      String[] parts = value.split("\\|");
+      for (String part : parts) {
+        if (part.equals(commandName)) {
+          canonicalName = key;
+          break;
+        }
+      }
+      if (!canonicalName.isEmpty()) {
+        break;
+      }
+    }
+    return canonicalName;
   }
 }

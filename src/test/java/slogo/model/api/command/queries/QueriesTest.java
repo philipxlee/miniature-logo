@@ -1,4 +1,4 @@
-package model.command.queries;
+package slogo.model.api.command.queries;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

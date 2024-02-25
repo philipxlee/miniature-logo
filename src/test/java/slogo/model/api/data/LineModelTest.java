@@ -1,14 +1,13 @@
-package model.line;
+package slogo.model.api.data;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import slogo.model.api.data.LineModel;
 import slogo.model.line.Line;
 
 public class LineModelTest {
@@ -31,10 +30,14 @@ public class LineModelTest {
     Line line = new Line(startX, startY, endX, endY);
 
     assertAll(
-        () -> assertEquals(startX, line.startX(), "The startX should match the value passed to the constructor."),
-        () -> assertEquals(startY, line.startY(), "The startY should match the value passed to the constructor."),
-        () -> assertEquals(endX, line.endX(), "The endX should match the value passed to the constructor."),
-        () -> assertEquals(endY, line.endY(), "The endY should match the value passed to the constructor.")
+        () -> assertEquals(startX, line.startX(),
+            "The startX should match the value passed to the constructor."),
+        () -> assertEquals(startY, line.startY(),
+            "The startY should match the value passed to the constructor."),
+        () -> assertEquals(endX, line.endX(),
+            "The endX should match the value passed to the constructor."),
+        () -> assertEquals(endY, line.endY(),
+            "The endY should match the value passed to the constructor.")
     );
   }
 
@@ -62,6 +65,4 @@ public class LineModelTest {
     lineModel.addLine(line);
     assertTrue(lineModel.iterator().hasNext());
   }
-
-
 }

@@ -1,4 +1,4 @@
-package model.api;
+package slogo.model.api.data;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;

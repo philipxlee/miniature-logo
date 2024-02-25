@@ -1,4 +1,4 @@
-package model.command.bool;
+package slogo.model.api.command.bool;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;
