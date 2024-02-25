@@ -1,5 +1,6 @@
 package slogo.controller;
 
+import slogo.exceptions.InvalidCommandException;
 import slogo.model.api.CommandHistoryModel;
 import slogo.model.api.LineModel;
 import slogo.model.api.TurtleModel;
@@ -36,7 +37,7 @@ public class CommandController {
    *
    * @param commandString the command to be executed as a string
    */
-  public void executeCommand(String commandString) {
+  public void executeCommand(String commandString) throws InvalidCommandException {
     Command command = parser.parseCommand(commandString);
     command.execute();
     commandHistoryModel.addCommand(commandString);

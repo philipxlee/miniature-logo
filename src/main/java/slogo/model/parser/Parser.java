@@ -1,5 +1,6 @@
 package slogo.model.parser;
 
+import slogo.exceptions.InvalidCommandException;
 import slogo.model.api.LineModel;
 import slogo.model.api.TurtleModel;
 import slogo.model.command.Command;
@@ -30,10 +31,14 @@ public class Parser {
   /**
    * Parse a string into the respective Command object
    *
-   * @param command string representing the command with arguments. Example: "fd 50".
+   * @param commandString string representing the command with arguments. Example: "fd 50".
    */
-  public Command parseCommand(String command) {
-    String[] parts = command.trim().split("\\s+"); // Split by whitespace
+  public Command parseCommand(String commandString) throws InvalidCommandException {
+    if (commandString == null || commandString.isEmpty()) {
+      throw new InvalidCommandException("Command string is invalid or empty.");
+    }
+
+    String[] parts = commandString.trim().split("\\s+"); // Split by whitespace
     Command action = null;
     double number = 0;
     if (parts.length > 1) { // To click enter without a number for some commands
@@ -55,7 +60,7 @@ public class Parser {
           action = new SetLocationCommand(turtleModel, number, Double.parseDouble(parts[2]));
       case "home" -> action = new SetLocationCommand(turtleModel, 0, 0);
       case "cs" -> action = new ClearScreenCommand(turtleModel, lineModel);
-      default -> System.out.println("Unknown command: " + parts[0] + " or number: " + parts[1]);
+      default -> throw new InvalidCommandException("Invalid Command String");
     }
     return action;
   }

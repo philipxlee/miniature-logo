@@ -4,8 +4,11 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import slogo.controller.CommandController;
+import slogo.exceptions.InvalidCommandException;
+import slogo.view.alert.Alert;
 
 public class InputPane {
 
@@ -39,7 +42,11 @@ public class InputPane {
       if (event.getCode() == KeyCode.ENTER && !event.isShiftDown()) {
         String command = commandInput.getText().trim();
         if (!command.isEmpty()) {
-          commandController.executeCommand(command);
+          try {
+            commandController.executeCommand(command);
+          } catch (InvalidCommandException e) {
+            Alert.showError("Invalid Command", "Please enter a valid command.");
+          }
           commandInput.clear();
           event.consume();
         }
@@ -53,6 +60,6 @@ public class InputPane {
     inputBox.setPrefHeight(height * 0.5);
 
     // Allow the input box to grow vertically with the size of the box
-    VBox.setVgrow(commandInput, javafx.scene.layout.Priority.ALWAYS);
+    VBox.setVgrow(commandInput, Priority.ALWAYS);
   }
 }
