@@ -182,6 +182,12 @@ public class TurtleModel implements Observable {
     notifyObservers();
   }
 
+  public void clearScreen() {
+    lines.clear();
+    setLocation(0, 0);
+    notifyObservers();
+  }
+
   /**
    * @return the array of lines drawn by the turtle
    */

@@ -18,8 +18,6 @@ public class ClearScreenCommand implements Command {
 
   @Override
   public void execute() {
-//    TODO: implement clearScreen
-//    NOTE: This method should clear the screen and move the turtle home as well
-//    model.clearScreen();
+    model.clearScreen();
   }
 }

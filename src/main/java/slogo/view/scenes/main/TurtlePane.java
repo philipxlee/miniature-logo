@@ -60,7 +60,8 @@ public class TurtlePane implements Observer {
       turtleGraphic.setVisible(turtleModel.getTurtleVisibility());
 
       // draw lines
-      drawLines(turtleModel);
+      displayPane.getChildren().removeIf(node -> node instanceof Line); // reset lines first
+      drawLines(turtleModel); // then draw
     }
   }
 

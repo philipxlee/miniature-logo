@@ -2,6 +2,7 @@ package slogo.model.parser;
 
 import slogo.model.api.TurtleModel;
 import slogo.model.command.Command;
+import slogo.model.command.turtle.ClearScreenCommand;
 import slogo.model.command.turtle.SetLocationCommand;
 import slogo.model.command.turtle.MoveCommand;
 import slogo.model.command.turtle.PenCommand;
@@ -48,6 +49,7 @@ public class Parser {
       case "towards" -> action = new SetOrientationCommand(turtleModel, number, Double.parseDouble(parts[2]));
       case "goto" -> action = new SetLocationCommand(turtleModel, number, Double.parseDouble(parts[2]));
       case "home" -> action = new SetLocationCommand(turtleModel, 0, 0);
+      case "cs" -> action = new ClearScreenCommand(turtleModel);
       default -> System.out.println("Unknown command: " + parts[0] + " or number: " + parts[1]);
     }
     return action;
