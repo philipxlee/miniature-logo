@@ -1,6 +1,5 @@
 package slogo.model.api.data;
 
-import slogo.model.api.data.LineModel;
 import slogo.model.line.Line;
 import slogo.observer.AbstractObservable;
 
@@ -59,7 +58,7 @@ public class TurtleModel extends AbstractObservable {
   }
 
   /**
-   * Rotate Turtle clockwise
+   * Rotate Turtle clockwise.
    *
    * @param angle angle to rotate turtle by
    */

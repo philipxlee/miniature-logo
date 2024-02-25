@@ -10,7 +10,7 @@ import slogo.view.scenes.Scene;
 import slogo.view.scenes.main.MainScene;
 
 /**
- * StartScene represents the Start SLogo Scene
+ * StartScene represents the Start SLogo Scene.
  */
 public class StartScene implements Scene {
 
@@ -37,7 +37,7 @@ public class StartScene implements Scene {
 
 
   /**
-   * Initialize start screen with title and click handler
+   * Initialize start screen with title and click handler.
    *
    * @param width  width
    * @param height height
