@@ -79,7 +79,7 @@ public class BinaryBoolCommand implements Command {
     return Math.abs(a - b) < TOLERANCE;
   }
 
-  private enum OperationType {
+  public enum OperationType {
     EQUAL, LESS, GREATER, AND, OR, NOTEQUAL, LESSEQUAL, GREATEREQUAL
   }
 }

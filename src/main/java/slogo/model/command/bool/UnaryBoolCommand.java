@@ -5,7 +5,7 @@ import slogo.model.command.Command;
 public class UnaryBoolCommand implements Command {
 
   private final double operand;
-  private final OperationType operationType;
+  private final UnaryOperationType operationType;
 
   /**
    * Constructs a UnaryBoolCommand, which performs a unary boolean operation
@@ -13,7 +13,7 @@ public class UnaryBoolCommand implements Command {
    * @param operand the operand
    * @param operationType the type of operation to perform
    */
-  public UnaryBoolCommand(double operand, OperationType operationType) {
+  public UnaryBoolCommand(double operand, UnaryOperationType operationType) {
     this.operand = operand;
     this.operationType = operationType;
   }
@@ -25,13 +25,13 @@ public class UnaryBoolCommand implements Command {
    */
   @Override
   public Double execute() { // change to double
-    if (operationType == OperationType.NOT) {
+    if (operationType == UnaryOperationType.NOT) {
       return operand == 0 ? 1.0 : 0.0;
     }
     throw new IllegalStateException("Unexpected operation type: " + operationType);
   }
 
-  private enum OperationType {
+  public enum UnaryOperationType {
     NOT
   }
 }

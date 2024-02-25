@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import slogo.model.api.LineModel;
 import slogo.model.command.Command;
 import slogo.model.command.math.BinaryMathCommand;
 import slogo.model.command.math.BinaryMathCommand.OperationType;
@@ -36,7 +35,6 @@ public class MathTest {
 
     @Test
     public void testDifference() {
-      LineModel lineModel = new LineModel();
       Command difference = new BinaryMathCommand(5, 5, OperationType.DIFFERENCE);
       double result = difference.execute();
       assertEquals(0, result, TOLERANCE);
@@ -44,7 +42,6 @@ public class MathTest {
 
     @Test
     public void testProduct() {
-      LineModel lineModel = new LineModel();
       Command product = new BinaryMathCommand(5, 5, OperationType.PRODUCT);
       double result = product.execute();
       assertEquals(25, result, TOLERANCE);
@@ -52,7 +49,6 @@ public class MathTest {
 
     @Test
     public void testQuotient() {
-      LineModel lineModel = new LineModel();
       Command quotient = new BinaryMathCommand(5, 5, OperationType.QUOTIENT);
       double result = quotient.execute();
       assertEquals(1, result, TOLERANCE);
