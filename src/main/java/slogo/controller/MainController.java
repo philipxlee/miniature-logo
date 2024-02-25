@@ -8,10 +8,15 @@ import slogo.model.api.LineModel;
 import slogo.model.api.TurtleModel;
 
 /**
- * MainController initializes model, controllers and views
+ * MainController initializes modules for application
  */
 public class MainController extends Application {
 
+  /**
+   * Connects Model, Views and Controllers together
+   *
+   * @param stage primary stage of the application
+   */
   @Override
   public void start(Stage stage) throws Exception {
     // initialize models
@@ -21,13 +26,9 @@ public class MainController extends Application {
 
     // initialize controllers
     CommandController commandController = new CommandController(turtleModel, commandHistoryModel);
-
-    // initialize views (through ViewController)
     ViewController viewController = new ViewController(stage, commandController);
 
-    // configure stage
-    stage.setTitle("SLogo");
-    stage.setResizable(false);
-    stage.show();
+    // initialize views (through ViewController)
+    viewController.initializeViews();
   }
 }

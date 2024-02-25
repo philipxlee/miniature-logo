@@ -9,7 +9,7 @@ import slogo.observer.Observable;
 import slogo.observer.Observer;
 
 /**
- * CommandHistoryMode representing the history of commands
+ * CommandHistoryModel representing the history of commands
  */
 public class CommandHistoryModel implements Observable {
 

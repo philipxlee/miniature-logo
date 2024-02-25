@@ -48,11 +48,15 @@ public class TurtlePane implements Observer {
       drawTurtle(turtleModel);
     }
     if (observable instanceof LineModel lineModel) {
-      System.out.println("TEST");
       drawLines(lineModel);
     }
   }
 
+  /**
+   * Re-render turtle
+   *
+   * @param turtleModel to re-render
+   */
   private void drawTurtle(TurtleModel turtleModel) {
     double centerX = displayPane.getWidth() / 2.0;
     double centerY = displayPane.getHeight() / 2.0;
@@ -66,11 +70,16 @@ public class TurtlePane implements Observer {
     turtleGraphic.setRotate(-turtleModel.getOrientation());
   }
 
-  private void drawLines(LineModel model) {
+  /**
+   * Re-render lines
+   *
+   * @param lineModel to re-render
+   */
+  private void drawLines(LineModel lineModel) {
     double centerX = displayPane.getWidth() / 2.0;
     double centerY = displayPane.getHeight() / 2.0;
 
-    Iterator<slogo.model.line.Line> lines = model.iterator();
+    Iterator<slogo.model.line.Line> lines = lineModel.iterator();
     while (lines.hasNext()) {
       slogo.model.line.Line line = lines.next();
       Line fxLine = new Line();
@@ -83,9 +92,16 @@ public class TurtlePane implements Observer {
 
       displayPane.getChildren().add(fxLine);
     }
-    turtleGraphic.toFront();  // Ensure the turtle graphic is always on top
+
+    // Ensure the turtle graphic is always on top
+    turtleGraphic.toFront();
   }
 
+  /**
+   * Return pane representing TurtleView.
+   *
+   * @return Pane object of view
+   */
   public Pane getDisplayPane() {
     return displayPane;
   }

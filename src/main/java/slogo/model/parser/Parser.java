@@ -25,7 +25,7 @@ public class Parser {
   /**
    * Parse a string into the respective Command object
    *
-   * @param command: string representing the command with arguments. Example: "fd 50".
+   * @param command string representing the command with arguments. Example: "fd 50".
    */
   public Command parseCommand(String command) {
     String[] parts = command.trim().split("\\s+"); // Split by whitespace

@@ -9,13 +9,16 @@ import slogo.controller.SceneSwitcher;
 import slogo.view.scenes.Scene;
 import slogo.view.scenes.main.MainScene;
 
+/**
+ * StartScene represents the Start SLogo Scene
+ */
 public class StartScene implements Scene {
 
   private static final int BUTTON_WIDTH = 135;
   private static final int BUTTON_HEIGHT = 40;
   private javafx.scene.Scene scene;
-  private SceneSwitcher switcher;
-  private CommandController commandController;
+  private final SceneSwitcher switcher;
+  private final CommandController commandController;
 
   /**
    * Constructor for StartScene

@@ -12,7 +12,6 @@ public class CommandHistoryTab implements TabContent {
   @Override
   public Node getContent() {
     this.content = new VBox();
-    content.getChildren().add(new Label("Command History Tab Content"));
     return content;
   }
 

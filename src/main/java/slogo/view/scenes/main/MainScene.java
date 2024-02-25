@@ -6,6 +6,9 @@ import slogo.view.buttons.ControlButtonsBox;
 import slogo.view.scenes.Scene;
 import slogo.view.tabs.SideTabPane;
 
+/**
+ * MainScene represents the Main SLogo Scene
+ */
 public class MainScene implements Scene {
 
   private final TurtlePane turtlePane;
@@ -51,7 +54,6 @@ public class MainScene implements Scene {
 
     // Add ControlButtons to the right of the top pane
     topPane.setBottom(controlButtonsBox);
-//    BorderPane.setMargin(controlButtons, new Insets(10)); // Add margin to controlButtons
 
     root.setTop(topPane);
     BorderPane bottomPane = new BorderPane();
