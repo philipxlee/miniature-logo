@@ -1,5 +1,6 @@
 package slogo.view.scenes.main;
 
+import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 import slogo.controller.CommandController;
 import slogo.view.buttons.ControlButtonsBox;
@@ -16,6 +17,7 @@ public class MainScene implements Scene {
   private final SideTabPane sideTabPane;
   private final ControlButtonsBox controlButtonsBox;
   private javafx.scene.Scene scene;
+  private BorderPane root;
 
   /**
    * Constructor for Display.
@@ -48,7 +50,8 @@ public class MainScene implements Scene {
    */
   @Override
   public void initializeScene(int width, int height) {
-    BorderPane root = new BorderPane();
+    root = new BorderPane();
+    root.setId("Main Scene");
 
     BorderPane topPane = new BorderPane();
     topPane.setTop(turtlePane.getDisplayPane());
@@ -72,5 +75,10 @@ public class MainScene implements Scene {
   @Override
   public javafx.scene.Scene getScene() {
     return this.scene;
+  }
+
+  @Override
+  public Node getRoot() {
+    return root;
   }
 }
