@@ -46,7 +46,7 @@ public class CommandController {
   }
 
   /**
-   * Subscribe to updates from the TurtleModel
+   * Subscribe to updates from the TurtleModel.
    *
    * @param observer that wants to subscribe
    */

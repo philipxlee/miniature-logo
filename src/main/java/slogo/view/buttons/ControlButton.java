@@ -6,15 +6,30 @@ import slogo.view.scenes.main.InputPane;
 import slogo.view.scenes.main.TurtlePane;
 import slogo.view.tabs.SideTabPane;
 
-// A superclass for all the control buttons
+/**
+ * ControlButton is a superclass for all buttons.
+ */
 public abstract class ControlButton extends Button {
 
-  // A constructor that takes a text and a style for the button
+  /**
+   * ControlButton constructor.
+   *
+   * @param text  text of button
+   * @param style style of button
+   */
   public ControlButton(String text, String style) {
-    super(text); // Call the superclass constructor
-    this.setStyle(style); // Set the style of the button
+    super(text);
+    this.setStyle(style);
   }
 
-  // An abstract method that defines the action for the button
-  public abstract void handleAction(Stage primaryStage, TurtlePane turtlePane, InputPane inputPane, SideTabPane sideTabPane);
+  /**
+   * An abstract method that defines the action for the button given all panes.
+   *
+   * @param primaryStage is the primary stage
+   * @param turtlePane   is the turtle pane
+   * @param inputPane    is the input pane
+   * @param sideTabPane  is the side tab pane
+   */
+  public abstract void handleAction(Stage primaryStage, TurtlePane turtlePane, InputPane inputPane,
+      SideTabPane sideTabPane);
 }

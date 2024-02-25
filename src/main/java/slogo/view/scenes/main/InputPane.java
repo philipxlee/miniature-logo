@@ -10,6 +10,9 @@ import slogo.controller.CommandController;
 import slogo.exceptions.InvalidCommandException;
 import slogo.view.alert.Alert;
 
+/**
+ * InputPane is the pane for user provided commands.
+ */
 public class InputPane {
 
   private VBox inputBox;
@@ -26,7 +29,7 @@ public class InputPane {
   }
 
   /**
-   * Returns the input box
+   * Returns the input box.
    *
    * @return VBox
    */

@@ -94,7 +94,7 @@ public class TurtlePane implements Observer {
   }
 
   /**
-   * Re-render lines
+   * Re-render lines.
    *
    * @param lineModel to re-render
    */

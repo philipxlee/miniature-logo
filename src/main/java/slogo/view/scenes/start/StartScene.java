@@ -16,9 +16,9 @@ public class StartScene implements Scene {
 
   private static final int BUTTON_WIDTH = 135;
   private static final int BUTTON_HEIGHT = 40;
-  private javafx.scene.Scene scene;
   private final SceneSwitcher switcher;
   private final CommandController commandController;
+  private javafx.scene.Scene scene;
 
   /**
    * Constructor for StartScene
@@ -113,7 +113,7 @@ public class StartScene implements Scene {
   }
 
   /**
-   * Create a "Select Color Scheme" button
+   * Create a "Select Color Scheme" button.
    *
    * @return the created button
    */

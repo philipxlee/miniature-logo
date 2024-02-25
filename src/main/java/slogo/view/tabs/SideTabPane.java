@@ -24,7 +24,7 @@ public class SideTabPane extends TabPane implements Observer {
   }
 
   /**
-   * Initialize the tabs in the TabPane
+   * Initialize the tabs in the TabPane.
    */
   private void initializeTabs() {
     this.setTabClosingPolicy(TabClosingPolicy.UNAVAILABLE); // Disable tab closing
