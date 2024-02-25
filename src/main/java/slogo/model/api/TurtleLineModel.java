@@ -16,6 +16,7 @@ public class TurtleLineModel {
 
   /**
    * Get start X position
+   *
    * @return start X position
    */
   public double getStartX() {
@@ -24,6 +25,7 @@ public class TurtleLineModel {
 
   /**
    * Get start Y position
+   *
    * @return start Y position
    */
   public double getStartY() {
@@ -32,6 +34,7 @@ public class TurtleLineModel {
 
   /**
    * Get end X position
+   *
    * @return end X position
    */
   public double getEndX() {
@@ -40,7 +43,8 @@ public class TurtleLineModel {
 
   /**
    * Get end Y position
-   * @return  end Y position
+   *
+   * @return end Y position
    */
   public double getEndY() {
     return endY;

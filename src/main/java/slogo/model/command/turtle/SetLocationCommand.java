@@ -3,16 +3,20 @@ package slogo.model.command.turtle;
 import slogo.model.api.TurtleModel;
 import slogo.model.command.Command;
 
-public class HomeCommand implements Command {
+public class SetLocationCommand implements Command {
 
   private final TurtleModel model;
+  double destinationX;
+  double destinationY;
 
   /**
    * Constructor for the HomeCommand, which moves the turtle to the home position
    *
    * @param model the model to change
    */
-  public HomeCommand(TurtleModel model) {
+  public SetLocationCommand(TurtleModel model, double destinationX, double destinationY) {
+    this.destinationX = destinationX;
+    this.destinationY = destinationY;
     this.model = model;
   }
 
@@ -21,7 +25,6 @@ public class HomeCommand implements Command {
    */
   @Override
   public void execute() {
-//    TODO: implement home
-//    model.moveTo(0, 0);
+    model.setLocation(destinationX, destinationY);
   }
 }

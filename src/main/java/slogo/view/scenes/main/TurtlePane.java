@@ -56,8 +56,12 @@ public class TurtlePane implements Observer {
       turtleGraphic.setY(turtleCenterY);
       turtleGraphic.setRotate(-turtleModel.getOrientation());
 
+      // set visibility of turtle graphic
+      turtleGraphic.setVisible(turtleModel.getTurtleVisibility());
+
       // draw lines
-      drawLines(turtleModel);
+      displayPane.getChildren().removeIf(node -> node instanceof Line); // reset lines first
+      drawLines(turtleModel); // then draw
     }
   }
 
