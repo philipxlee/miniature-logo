@@ -39,7 +39,7 @@ public class BinaryMathCommand implements Command {
     return result;
   }
 
-  private enum OperationType {
+  public enum OperationType {
     SUM, DIFFERENCE, PRODUCT, QUOTIENT
   }
 }

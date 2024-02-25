@@ -5,7 +5,7 @@ import slogo.model.command.Command;
 public class UnaryMathCommand implements Command {
 
   private final double operand;
-  private final OperationType operationType;
+  private final UnaryOperationType operationType;
 
   /**
    * Constructor for the UnaryMathCommand, which performs a unary math operation
@@ -13,7 +13,7 @@ public class UnaryMathCommand implements Command {
    * @param operand the operand
    * @param operationType the type of operation to perform
    */
-  public UnaryMathCommand(double operand, OperationType operationType) {
+  public UnaryMathCommand(double operand, UnaryOperationType operationType) {
     this.operand = operand;
     this.operationType = operationType;
   }
@@ -39,7 +39,7 @@ public class UnaryMathCommand implements Command {
     return result;
   }
 
-  private enum OperationType {
+  public enum UnaryOperationType {
     MINUS, SINE, COSINE, TANGENT, ARCTANGENT, SQUAREROOT, LOG
   }
 }

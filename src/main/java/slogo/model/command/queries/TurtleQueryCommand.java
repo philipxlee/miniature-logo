@@ -41,7 +41,7 @@ public class TurtleQueryCommand implements Command {
   }
 
 
-  private enum QueryType {
+  public enum QueryType {
     XCOR, YCOR, HEADING, PENDOWN, SHOWING
   }
 }
