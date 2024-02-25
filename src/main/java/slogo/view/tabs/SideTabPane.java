@@ -36,10 +36,10 @@ public class SideTabPane extends TabPane implements Observer {
    * Construct required tabs.
    */
   private void constructTabs() {
-    Tab commandHistoryTab = createTab("Command History", new CommandHistoryTab());
-    Tab helpDocTab = createTab("Help Docs", new HelpDocTab());
-    Tab userVariablesTab = createTab("User Variables", new UserVariablesTab());
-    Tab userCommandsTab = createTab("User Commands", new UserCommandsTab());
+    Tab commandHistoryTab = initTab("Command History", new CommandHistoryTab());
+    Tab helpDocTab = initTab("Help Docs", new HelpDocTab());
+    Tab userVariablesTab = initTab("User Variables", new UserVariablesTab());
+    Tab userCommandsTab = initTab("User Commands", new UserCommandsTab());
 
     this.getTabs().addAll(commandHistoryTab, helpDocTab, userVariablesTab, userCommandsTab);
   }
@@ -50,7 +50,7 @@ public class SideTabPane extends TabPane implements Observer {
    * @param title   is the title of the tab
    * @param content is the TabContent object of the tab
    */
-  private Tab createTab(String title, TabContent content) {
+  private Tab initTab(String title, TabContent content) {
     Tab tab = new Tab(title);
     tab.setContent(content.getContent());
     tabMap.put(title, content);

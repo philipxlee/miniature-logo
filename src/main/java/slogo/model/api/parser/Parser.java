@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 import slogo.exceptions.InvalidCommandException;
-import slogo.model.api.data.LineModel;
-import slogo.model.api.data.TurtleModel;
 import slogo.model.api.command.Command;
 import slogo.model.api.command.turtle.ClearScreenCommand;
 import slogo.model.api.command.turtle.ForwardCommand;
@@ -14,6 +12,8 @@ import slogo.model.api.command.turtle.RotateCommand;
 import slogo.model.api.command.turtle.SetLocationCommand;
 import slogo.model.api.command.turtle.SetOrientationCommand;
 import slogo.model.api.command.turtle.TurtleVisibleCommand;
+import slogo.model.api.data.LineModel;
+import slogo.model.api.data.TurtleModel;
 
 /**
  * Parser module converts a string into a Command object, outfitted with the proper configuration.
