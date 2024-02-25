@@ -16,6 +16,7 @@ public class TurtleModel implements Observable {
   private double orientation;
   private final List<TurtleLineModel> lines;
   private boolean penDown;
+  private boolean turtleShown;
 
   /**
    * TurtleModel constructor
@@ -24,6 +25,7 @@ public class TurtleModel implements Observable {
     this.observers = new ArrayList<>();
     this.lines = new ArrayList<>();
     this.penDown = false;
+    this.turtleShown = true;
     this.x = 0;
     this.y = 0;
     this.orientation = 0;
@@ -125,15 +127,59 @@ public class TurtleModel implements Observable {
   /**
    * Puts pen down
    */
-  public void penDown() {
+  public double penDown() {
     penDown = true;
+    return 1;
   }
 
   /**
    * Puts pen up
    */
-  public void penUp() {
+  public double penUp() {
     penDown = false;
+    return 0;
+  }
+
+  /**
+   * Move turtle to home position (origin)
+   */
+  public void setLocation(double targetX, double targetY) {
+    x = targetX;
+    y = targetY;
+    notifyObservers();
+  }
+
+  /**
+   * Show turtle
+   */
+  public void showTurtle() {
+    turtleShown = true;
+    notifyObservers();
+  }
+
+  /**
+   * Hide turtle
+   */
+  public void hideTurtle() {
+    turtleShown = false;
+    notifyObservers();
+  }
+
+  /**
+   * @return true if turtle is shown, false otherwise
+   */
+  public boolean getTurtleVisibility() {
+    return turtleShown;
+  }
+
+  /**
+  * Set the turtle's position to the given (x, y) coordinates.
+  */
+  public void setXYCommand(double targetX, double targetY) {
+    // Calculate the angle needed to rotate the turtle to face the new (x, y) position
+    double angleToTarget = Math.toDegrees(Math.atan2(targetY - this.y, targetX - this.x));
+    this.orientation = angleToTarget >= 0 ? angleToTarget : 360 + angleToTarget;
+    notifyObservers();
   }
 
   /**
