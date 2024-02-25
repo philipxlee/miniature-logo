@@ -22,5 +22,10 @@ public interface Scene {
    */
   javafx.scene.Scene getScene();
 
+  /**
+   * Get the root of the scene.
+   *
+   * @return Root of the scene
+   */
   Node getRoot();
 }
