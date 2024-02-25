@@ -12,7 +12,7 @@ public class TurtleQueryCommand implements Command {
   private final QueryType queryType;
 
   /**
-   * Constructor for the TurtleQueryCommand, which queries the turtle for its current state
+   * Constructor for the TurtleQueryCommand, which queries the turtle for its current state.
    *
    * @param model     the model to query
    * @param queryType the type of query to perform
@@ -24,6 +24,7 @@ public class TurtleQueryCommand implements Command {
 
   /**
    * Executes the respective query command for the turtle.
+   *
    * @return the result of the query
    */
   @Override
@@ -40,7 +41,9 @@ public class TurtleQueryCommand implements Command {
     return result;
   }
 
-
+  /**
+   * Defines types for each type of query.
+   */
   public enum QueryType {
     XCOR, YCOR, HEADING, PENDOWN, SHOWING
   }

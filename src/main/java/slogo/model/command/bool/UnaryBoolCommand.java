@@ -2,15 +2,18 @@ package slogo.model.command.bool;
 
 import slogo.model.command.Command;
 
+/**
+ * UnaryBoolCommand represents a unary operation.
+ */
 public class UnaryBoolCommand implements Command {
 
   private final double operand;
   private final UnaryOperationType operationType;
 
   /**
-   * Constructs a UnaryBoolCommand, which performs a unary boolean operation
+   * Constructs a UnaryBoolCommand, which performs a unary boolean operation.
    *
-   * @param operand the operand
+   * @param operand       the operand
    * @param operationType the type of operation to perform
    */
   public UnaryBoolCommand(double operand, UnaryOperationType operationType) {
@@ -19,7 +22,7 @@ public class UnaryBoolCommand implements Command {
   }
 
   /**
-   * Executes the unary boolean command
+   * Executes the unary boolean command.
    *
    * @return the result of the operation
    */
@@ -31,6 +34,9 @@ public class UnaryBoolCommand implements Command {
     throw new IllegalStateException("Unexpected operation type: " + operationType);
   }
 
+  /**
+   * Define types for all unary operations.
+   */
   public enum UnaryOperationType {
     NOT
   }

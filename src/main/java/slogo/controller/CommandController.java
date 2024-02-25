@@ -9,7 +9,7 @@ import slogo.model.parser.Parser;
 import slogo.observer.Observer;
 
 /**
- * CommandController handles user input sent from the view
+ * CommandController handles user input sent from the view.
  */
 public class CommandController {
 

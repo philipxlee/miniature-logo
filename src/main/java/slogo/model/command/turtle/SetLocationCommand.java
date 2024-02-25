@@ -3,6 +3,9 @@ package slogo.model.command.turtle;
 import slogo.model.api.TurtleModel;
 import slogo.model.command.Command;
 
+/**
+ * SetLocationCommand moves the turtle to a specified location.
+ */
 public class SetLocationCommand implements Command {
 
   private final TurtleModel model;
@@ -10,7 +13,7 @@ public class SetLocationCommand implements Command {
   private final double destinationY;
 
   /**
-   * Constructor for the HomeCommand, which moves the turtle to the home position
+   * Constructor for the SetLocationCommand, which sets the position of the turtle.
    *
    * @param model the model to change
    */
@@ -21,7 +24,7 @@ public class SetLocationCommand implements Command {
   }
 
   /**
-   * Executes the home command Moves the turtle to the home position
+   * Executes the home command Moves the turtle to the home position.
    */
   @Override
   public Double execute() {

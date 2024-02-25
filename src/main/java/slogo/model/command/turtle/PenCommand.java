@@ -3,6 +3,9 @@ package slogo.model.command.turtle;
 import slogo.model.api.TurtleModel;
 import slogo.model.command.Command;
 
+/**
+ * PenCommand controls the status of the pen.
+ */
 public class PenCommand implements Command {
 
   private final TurtleModel model;

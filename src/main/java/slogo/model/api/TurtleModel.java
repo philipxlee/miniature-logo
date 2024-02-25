@@ -4,7 +4,7 @@ import slogo.model.line.Line;
 import slogo.observer.AbstractObservable;
 
 /**
- * TurtleModel representing the state of the Turtle
+ * TurtleModel representing the state of the Turtle.
  */
 public class TurtleModel extends AbstractObservable {
 
@@ -112,6 +112,8 @@ public class TurtleModel extends AbstractObservable {
 
 
   /**
+   * Get X position of turtle.
+   *
    * @return X position of Turtle
    */
   public double getPositionX() {
@@ -119,6 +121,8 @@ public class TurtleModel extends AbstractObservable {
   }
 
   /**
+   * Get Y position of turtle.
+   *
    * @return Y position of Turtle
    */
   public double getPositionY() {
@@ -126,6 +130,8 @@ public class TurtleModel extends AbstractObservable {
   }
 
   /**
+   * Get orientation of turtle.
+   *
    * @return orientation of Turtle
    */
   public double getOrientation() {
@@ -143,7 +149,7 @@ public class TurtleModel extends AbstractObservable {
   }
 
   /**
-   * Get the state of the pen
+   * Get the state of the pen.
    *
    * @return true if pen is down, false otherwise
    */
@@ -188,7 +194,9 @@ public class TurtleModel extends AbstractObservable {
    * @return The number of degrees the turtle turned.
    */
   public Double faceDirection(double targetX, double targetY) {
-    double targetAngle = Math.toDegrees(Math.atan2(targetY - this.positionY, targetX - this.positionX));
+    double deltaX = targetX - this.positionX;
+    double deltaY = targetY - this.positionY;
+    double targetAngle = Math.toDegrees(Math.atan2(deltaY, deltaX));
     targetAngle = targetAngle < 0 ? 360 + targetAngle : targetAngle;
 
     // Calculate the smallest difference between the current orientation and the target angle.

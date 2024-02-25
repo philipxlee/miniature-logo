@@ -13,7 +13,7 @@ import slogo.observer.Observable;
 import slogo.observer.Observer;
 
 /**
- * TurtlePane representing where Turtle is rendered
+ * TurtlePane representing where Turtle is rendered.
  */
 public class TurtlePane implements Observer {
 

@@ -2,12 +2,16 @@ package slogo.model.command.math;
 
 import slogo.model.command.Command;
 
+/**
+ * PiCommand returns the value of pi.
+ */
 public class PiCommand implements Command {
 
   /**
    * Constructs a PiCommand.
    */
-  public PiCommand() {}
+  public PiCommand() {
+  }
 
   /**
    * Executes the pi command. Returns the value of pi.

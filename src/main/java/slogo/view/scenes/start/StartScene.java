@@ -89,7 +89,7 @@ public class StartScene implements Scene {
   }
 
   /**
-   * Create a "Load Session" button
+   * Create a "Load Session" button.
    *
    * @return the created button
    */

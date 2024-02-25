@@ -12,7 +12,7 @@ public class BinaryMathCommand implements Command {
   private final OperationType operationType;
 
   /**
-   * Constructor for the BinaryMathCommand, which performs a binary math operation
+   * Constructor for the BinaryMathCommand, which performs a binary math operation.
    *
    * @param operand1      the first operand
    * @param operand2      the second operand
@@ -42,6 +42,9 @@ public class BinaryMathCommand implements Command {
     return result;
   }
 
+  /**
+   * Define operation type for each of 4 operations.
+   */
   public enum OperationType {
     SUM, DIFFERENCE, PRODUCT, QUOTIENT
   }

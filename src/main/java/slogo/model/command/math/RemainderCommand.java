@@ -2,6 +2,9 @@ package slogo.model.command.math;
 
 import slogo.model.command.Command;
 
+/**
+ * RemainderCommand returns the remainder of a dividend divdend by a divisor.
+ */
 public class RemainderCommand implements Command {
 
   private final double dividend;
@@ -12,7 +15,7 @@ public class RemainderCommand implements Command {
    * the divisor.
    *
    * @param dividend the dividend
-   * @param divisor the divisor
+   * @param divisor  the divisor
    */
   public RemainderCommand(double dividend, double divisor) {
     this.dividend = dividend;
@@ -20,7 +23,7 @@ public class RemainderCommand implements Command {
   }
 
   /**
-   * Executes the remainder command Returns the remainder of the dividend divided by the divisor
+   * Executes the remainder command Returns the remainder of the dividend divided by the divisor.
    *
    * @return the remainder of the dividend divided by the divisor
    */

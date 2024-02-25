@@ -3,6 +3,9 @@ package slogo.model.command.turtle;
 import slogo.model.api.TurtleModel;
 import slogo.model.command.Command;
 
+/**
+ * TurtleVisibleCommand sets the visibility of the turtle.
+ */
 public class TurtleVisibleCommand implements Command {
 
   private final TurtleModel model;

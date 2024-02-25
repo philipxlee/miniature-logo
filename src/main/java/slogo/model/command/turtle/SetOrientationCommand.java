@@ -3,6 +3,9 @@ package slogo.model.command.turtle;
 import slogo.model.api.TurtleModel;
 import slogo.model.command.Command;
 
+/**
+ * SetOrientationCommand sets the orientation of the turtle.
+ */
 public class SetOrientationCommand implements Command {
 
   private final TurtleModel model;
@@ -14,7 +17,7 @@ public class SetOrientationCommand implements Command {
   /**
    * Constructor for setting the turtle's heading to an absolute degree.
    *
-   * @param model the model to change
+   * @param model  the model to change
    * @param degree the degree to set the turtle's heading to
    */
   public SetOrientationCommand(TurtleModel model, double degree) {
@@ -29,8 +32,8 @@ public class SetOrientationCommand implements Command {
    * Constructor for turning the turtle towards a point (x, y).
    *
    * @param model the model to change
-   * @param x the x-coordinate of the point to turn towards
-   * @param y the y-coordinate of the point to turn towards
+   * @param x     the x-coordinate of the point to turn towards
+   * @param y     the y-coordinate of the point to turn towards
    */
   public SetOrientationCommand(TurtleModel model, double x, double y) {
     this.model = model;

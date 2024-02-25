@@ -2,6 +2,9 @@ package slogo.model.command.bool;
 
 import slogo.model.command.Command;
 
+/**
+ * BinaryBoolCommand represents a binary boolean operation.
+ */
 public class BinaryBoolCommand implements Command {
 
   private static final double TOLERANCE = 0.001;
@@ -10,10 +13,10 @@ public class BinaryBoolCommand implements Command {
   private final OperationType operationType;
 
   /**
-   * Constructor for the BinaryBoolCommand, which performs a binary boolean operation
+   * Constructor for the BinaryBoolCommand, which performs a binary boolean operation.
    *
-   * @param operand1 the first operand
-   * @param operand2 the second operand
+   * @param operand1      the first operand
+   * @param operand2      the second operand
    * @param operationType the type of operation to perform
    */
   public BinaryBoolCommand(double operand1, double operand2, OperationType operationType) {
@@ -23,7 +26,7 @@ public class BinaryBoolCommand implements Command {
   }
 
   /**
-   * Executes the binary boolean command
+   * Executes the binary boolean command.
    *
    * @return the result of the operation
    * @throws IllegalStateException if the operation type is not recognized

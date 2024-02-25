@@ -10,7 +10,7 @@ public class UnaryMathCommand implements Command {
   /**
    * Constructor for the UnaryMathCommand, which performs a unary math operation
    *
-   * @param operand the operand
+   * @param operand       the operand
    * @param operationType the type of operation to perform
    */
   public UnaryMathCommand(double operand, UnaryOperationType operationType) {
@@ -19,7 +19,7 @@ public class UnaryMathCommand implements Command {
   }
 
   /**
-   * Executes the unary math command
+   * Executes the unary math command.
    *
    * @return the result of the operation
    */
@@ -39,6 +39,9 @@ public class UnaryMathCommand implements Command {
     return result;
   }
 
+  /**
+   * Define types for each unary operation.
+   */
   public enum UnaryOperationType {
     MINUS, SINE, COSINE, TANGENT, ARCTANGENT, SQUAREROOT, LOG
   }
