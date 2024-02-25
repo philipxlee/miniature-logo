@@ -24,7 +24,10 @@ public class TurtleVisibleCommand implements Command {
    */
   @Override
   public void execute() {
-//    TODO: Create showTurtle() and hideTurtle() in model
-//    show ? model.showTurtle() : model.hideTurtle();
+    if (show) {
+      model.showTurtle();
+    } else {
+      model.hideTurtle();
+    }
   }
 }

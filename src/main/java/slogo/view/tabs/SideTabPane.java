@@ -17,7 +17,7 @@ public class SideTabPane extends TabPane {
     this.setTabClosingPolicy(TabClosingPolicy.UNAVAILABLE); // Disable tab closing
 
     // Create tabs for different views
-    Tab commandHistoryTab = createTab("Command History", new CommandHistoryTab());
+    Tab commandHistoryTab = createTab( "Command History", new CommandHistoryTab());
     Tab helpDocTab = createTab("Help Docs", new HelpDocTab());
     Tab userVariablesTab = createTab("User Variables", new UserVariablesTab());
     Tab userCommandsTab = createTab("User Commands", new UserCommandsTab());

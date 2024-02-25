@@ -11,11 +11,12 @@ import slogo.observer.Observer;
 public class TurtleModel implements Observable {
 
   private final List<Observer> observers;
+  private final List<TurtleLineModel> lines;
   private double x;
   private double y;
   private double orientation;
-  private final List<TurtleLineModel> lines;
   private boolean penDown;
+  private boolean turtleShown;
 
   /**
    * TurtleModel constructor
@@ -24,6 +25,7 @@ public class TurtleModel implements Observable {
     this.observers = new ArrayList<>();
     this.lines = new ArrayList<>();
     this.penDown = false;
+    this.turtleShown = true;
     this.x = 0;
     this.y = 0;
     this.orientation = 0;
@@ -34,7 +36,7 @@ public class TurtleModel implements Observable {
    *
    * @param distance distance to move Turtle
    */
-  public void moveTurtle(double distance) {
+  public double moveTurtle(double distance) {
     // calculate change in X and Y based on orientation angle and distance
     double orientationRadians = Math.toRadians(orientation);
     double deltaX = distance * Math.cos(orientationRadians);
@@ -45,16 +47,15 @@ public class TurtleModel implements Observable {
     // update X and Y position
     x += deltaX;
     y += deltaY;
-    System.out.println("move turtle:\n");
+
     // draw line if pen is down
     if (penDown) {
       lines.add(new TurtleLineModel(oldX, oldY, x, y));
-      System.out.println("Moving TURTLE from (" + oldX + ", " + oldY + ") to (" + x + ", " + y + ")");
     }
-
 
     // notify observers about position change
     notifyObservers();
+    return Math.sqrt(Math.pow(x - oldX, 2) + Math.pow(y - oldY, 2));
   }
 
   /**
@@ -62,7 +63,7 @@ public class TurtleModel implements Observable {
    *
    * @param angle angle to rotate turtle by
    */
-  public void rotate(double angle) {
+  public double rotate(double angle) {
 
     // update angle
     orientation += angle;
@@ -75,6 +76,7 @@ public class TurtleModel implements Observable {
 
     // notify observers about orientation change
     notifyObservers();
+    return Math.abs(angle);
   }
 
   /**
@@ -125,15 +127,72 @@ public class TurtleModel implements Observable {
   /**
    * Puts pen down
    */
-  public void penDown() {
+  public double penDown() {
     penDown = true;
+    return 1;
   }
 
   /**
    * Puts pen up
    */
-  public void penUp() {
+  public double penUp() {
     penDown = false;
+    return 0;
+  }
+
+  /**
+   * Move turtle to home position (origin)
+   */
+  public double setLocation(double targetX, double targetY) {
+    double oldX = x;
+    double oldY = y;
+    x = targetX;
+    y = targetY;
+    notifyObservers();
+    return Math.sqrt(Math.pow(x - oldX, 2) + Math.pow(y - oldY, 2));
+  }
+
+  /**
+   * Show turtle
+   */
+  public double showTurtle() {
+    turtleShown = true;
+    notifyObservers();
+    return 1;
+  }
+
+  /**
+   * Hide turtle
+   */
+  public double hideTurtle() {
+    turtleShown = false;
+    notifyObservers();
+    return 0;
+  }
+
+  /**
+   * @return true if turtle is shown, false otherwise
+   */
+  public boolean getTurtleVisibility() {
+    return turtleShown;
+  }
+
+  /**
+   * Set the turtle's position to the given (x, y) coordinates.
+   */
+  public void setXYCommand(double targetX, double targetY) {
+    // Calculate the angle needed to rotate the turtle to face the new (x, y) position
+    double angleToTarget = Math.toDegrees(Math.atan2(targetY - this.y, targetX - this.x));
+    this.orientation = angleToTarget >= 0 ? angleToTarget : 360 + angleToTarget;
+    notifyObservers();
+  }
+
+  public double clearScreen() {
+    double distanceToHome = Math.sqrt(x * x + y * y);
+    lines.clear();
+    setLocation(0, 0);
+    notifyObservers();
+    return distanceToHome;
   }
 
   /**
