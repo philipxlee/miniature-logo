@@ -2,6 +2,9 @@ package slogo.model.command.math;
 
 import slogo.model.command.Command;
 
+/**
+ * PowerCommand returns the base to the power of the exponent.
+ */
 public class PowerCommand implements Command {
 
   private final double base;
@@ -9,9 +12,9 @@ public class PowerCommand implements Command {
 
   /**
    * Constructor for the PowerCommand, which returns the value of the base raised to the power of
-   * the exponent
+   * the exponent.
    *
-   * @param base the base
+   * @param base     the base
    * @param exponent the exponent
    */
   public PowerCommand(double base, double exponent) {
@@ -20,7 +23,7 @@ public class PowerCommand implements Command {
   }
 
   /**
-   * Executes the power command Returns the value of the base raised to the power of the exponent
+   * Executes the power command Returns the value of the base raised to the power of the exponent.
    *
    * @return the value of the base raised to the power of the exponent
    */

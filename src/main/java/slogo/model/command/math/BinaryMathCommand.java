@@ -2,6 +2,9 @@ package slogo.model.command.math;
 
 import slogo.model.command.Command;
 
+/**
+ * BinaryMathCommand represents each of the 4 operations.
+ */
 public class BinaryMathCommand implements Command {
 
   private final double operand1;
@@ -22,7 +25,7 @@ public class BinaryMathCommand implements Command {
   }
 
   /**
-   * Executes the binary math command
+   * Executes the binary math command.
    *
    * @return the result of the operation
    */

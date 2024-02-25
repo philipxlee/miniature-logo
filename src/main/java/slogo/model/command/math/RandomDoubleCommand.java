@@ -2,13 +2,16 @@ package slogo.model.command.math;
 
 import slogo.model.command.Command;
 
+/**
+ * RandomDoubleCommand returns a random double within a range.
+ */
 public class RandomDoubleCommand implements Command {
 
   private final double max;
 
   /**
    * Constructor for the Random Command, which returns a random double between 0 and the given
-   * maximum value
+   * maximum value.
    *
    * @param max the maximum value to return
    */
@@ -17,7 +20,7 @@ public class RandomDoubleCommand implements Command {
   }
 
   /**
-   * Executes the random command Returns a random double between 0 and the given maximum value
+   * Executes the random command Returns a random double between 0 and the given maximum value.
    *
    * @return a random double between 0 and the given maximum value
    */

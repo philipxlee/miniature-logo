@@ -101,7 +101,7 @@ public class StartScene implements Scene {
   }
 
   /**
-   * Create a "Select Language" button
+   * Create a "Select Language" button.
    *
    * @return the created button
    */

@@ -19,7 +19,7 @@ public class CommandController {
   private final Parser parser;
 
   /**
-   * CommandController constructor initializes new parser
+   * CommandController constructor initializes new parser.
    *
    * @param turtleModel         Turtle Model used for commands
    * @param lineModel           LineModel used for lines

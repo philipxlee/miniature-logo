@@ -18,7 +18,7 @@ public class MainScene implements Scene {
   private javafx.scene.Scene scene;
 
   /**
-   * Constructor for Display
+   * Constructor for Display.
    *
    * @param width             width
    * @param height            height

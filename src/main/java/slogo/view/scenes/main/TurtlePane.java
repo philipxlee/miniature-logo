@@ -57,7 +57,7 @@ public class TurtlePane implements Observer {
   }
 
   /**
-   * Update function for the turtle view
+   * Update function for the turtle view.
    *
    * @param observable that triggered update notification
    */

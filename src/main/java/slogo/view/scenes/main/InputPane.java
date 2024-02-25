@@ -19,7 +19,7 @@ public class InputPane {
   private TextArea commandInput;
 
   /**
-   * Constructor for CommandConsole
+   * Constructor for CommandConsole.
    *
    * @param height            height
    * @param commandController commandController to execute commands
