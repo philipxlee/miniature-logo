@@ -74,10 +74,10 @@ public class TurtlePane implements Observer {
     while (lines.hasNext()) {
       slogo.model.line.Line line = lines.next();
       Line fxLine = new Line();
-      fxLine.setStartX(centerX + line.getStartX());
-      fxLine.setStartY(centerY - line.getStartY());
-      fxLine.setEndX(centerX + line.getEndX());
-      fxLine.setEndY(centerY - line.getEndY());
+      fxLine.setStartX(centerX + line.startX());
+      fxLine.setStartY(centerY - line.startY());
+      fxLine.setEndX(centerX + line.endX());
+      fxLine.setEndY(centerY - line.endY());
       fxLine.setStroke(Color.BLACK);
       fxLine.setStrokeWidth(3);  // Consider a thinner line for better accuracy
 
