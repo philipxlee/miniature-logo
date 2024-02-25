@@ -77,47 +77,47 @@ public class CommandFactory {
     }
   }
 
-  /**
-   * Convert command string to Command object using reflection.
-   *
-   * @param commandName is the command string
-   * @return Command object representing the command to execute.
-   */
-  private Command reflect(String commandName) {
-    try {
-      String canonicalName = findCanonicalName(commandName);
-      if (!canonicalName.isEmpty()) {
-        Class<?> clazz = Class.forName("slogo.model.command." + commandName + "Command");
-        return (Command) clazz.getDeclaredConstructor(turtleModel.getClass())
-            .newInstance(turtleModel);
-      }
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-    return null;
-  }
-
-  /**
-   * Convert a command name into the canonical name of command.
-   *
-   * @param commandName is the string representing the command
-   * @return String representing the canonical name of the command
-   */
-  private String findCanonicalName(String commandName) {
-    String canonicalName = "";
-    for (String key : commandMappings.stringPropertyNames()) {
-      String value = commandMappings.getProperty(key);
-      String[] parts = value.split("\\|");
-      for (String part : parts) {
-        if (part.equals(commandName)) {
-          canonicalName = key;
-          break;
-        }
-      }
-      if (!canonicalName.isEmpty()) {
-        break;
-      }
-    }
-    return canonicalName;
-  }
+//  /**
+//   * Convert command string to Command object using reflection.
+//   *
+//   * @param commandName is the command string
+//   * @return Command object representing the command to execute.
+//   */
+//  private Command reflect(String commandName) {
+//    try {
+//      String canonicalName = findCanonicalName(commandName);
+//      if (!canonicalName.isEmpty()) {
+//        Class<?> clazz = Class.forName("slogo.model.command." + commandName + "Command");
+//        return (Command) clazz.getDeclaredConstructor(turtleModel.getClass())
+//            .newInstance(turtleModel);
+//      }
+//    } catch (Exception e) {
+//      e.printStackTrace();
+//    }
+//    return null;
+//  }
+//
+//  /**
+//   * Convert a command name into the canonical name of command.
+//   *
+//   * @param commandName is the string representing the command
+//   * @return String representing the canonical name of the command
+//   */
+//  private String findCanonicalName(String commandName) {
+//    String canonicalName = "";
+//    for (String key : commandMappings.stringPropertyNames()) {
+//      String value = commandMappings.getProperty(key);
+//      String[] parts = value.split("\\|");
+//      for (String part : parts) {
+//        if (part.equals(commandName)) {
+//          canonicalName = key;
+//          break;
+//        }
+//      }
+//      if (!canonicalName.isEmpty()) {
+//        break;
+//      }
+//    }
+//    return canonicalName;
+//  }
 }
