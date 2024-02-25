@@ -1,5 +1,7 @@
 package slogo.view.scenes;
 
+import javafx.scene.Node;
+
 /**
  * Scene abstraction represents a scene being displayed.
  */
@@ -19,4 +21,6 @@ public interface Scene {
    * @return Java FX Scene object that represents the scene
    */
   javafx.scene.Scene getScene();
+
+  Node getRoot();
 }

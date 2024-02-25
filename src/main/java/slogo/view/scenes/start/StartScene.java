@@ -1,6 +1,7 @@
 package slogo.view.scenes.start;
 
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -19,6 +20,7 @@ public class StartScene implements Scene {
   private final SceneSwitcher switcher;
   private final CommandController commandController;
   private javafx.scene.Scene scene;
+  private VBox parentBox;
 
   /**
    * Constructor for StartScene.
@@ -44,7 +46,8 @@ public class StartScene implements Scene {
    */
   @Override
   public void initializeScene(int width, int height) {
-    VBox parentBox = new VBox(10);
+    parentBox = new VBox(10);
+    parentBox.setId("Start Scene");
     parentBox.setAlignment(Pos.CENTER);
 
     // Initialize title text and add click handler
@@ -73,6 +76,11 @@ public class StartScene implements Scene {
     return this.scene;
   }
 
+  @Override
+  public Node getRoot() {
+    return parentBox;
+  }
+
   /**
    * Create a "Start Game" button.
    *
@@ -82,6 +90,7 @@ public class StartScene implements Scene {
    */
   private Button createStartButton(int width, int height) {
     Button startButton = new Button("Start Game");
+    startButton.setId("Start Game");
     startButton.setOnAction(
         event -> switcher.switchToScene(new MainScene(width, height, commandController)));
     startButton.setPrefSize(BUTTON_WIDTH, BUTTON_HEIGHT);
@@ -123,4 +132,6 @@ public class StartScene implements Scene {
     // Add action for selecting a color scheme
     return colorSchemeButton;
   }
+
+
 }
