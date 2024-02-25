@@ -29,23 +29,26 @@ public class SideTabPane extends TabPane implements Observer {
   private void initializeTabs() {
     this.setTabClosingPolicy(TabClosingPolicy.UNAVAILABLE); // Disable tab closing
     this.tabMap = new HashMap<>();
+    constructTabs();
+  }
 
-    // Create tabs for different views
+  /**
+   * Construct required tabs.
+   */
+  private void constructTabs() {
     Tab commandHistoryTab = createTab("Command History", new CommandHistoryTab());
     Tab helpDocTab = createTab("Help Docs", new HelpDocTab());
     Tab userVariablesTab = createTab("User Variables", new UserVariablesTab());
     Tab userCommandsTab = createTab("User Commands", new UserCommandsTab());
 
-    // Add tabs to the TabPane
     this.getTabs().addAll(commandHistoryTab, helpDocTab, userVariablesTab, userCommandsTab);
   }
 
   /**
-   * Create a Tab with the specified title and content.
+   * Construct Tab given tab properties.
    *
-   * @param title   the title of the tab
-   * @param content the content of the tab
-   * @return the created Tab
+   * @param title   is the title of the tab
+   * @param content is the TabContent object of the tab
    */
   private Tab createTab(String title, TabContent content) {
     Tab tab = new Tab(title);

@@ -1,4 +1,4 @@
-package slogo.model.parser;
+package slogo.model.api.parser;
 
 import java.io.IOException;
 import java.io.InputStream;

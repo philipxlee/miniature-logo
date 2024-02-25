@@ -5,7 +5,7 @@ import slogo.model.api.data.CommandHistoryModel;
 import slogo.model.api.data.LineModel;
 import slogo.model.api.data.TurtleModel;
 import slogo.model.api.command.Command;
-import slogo.model.parser.Parser;
+import slogo.model.api.parser.Parser;
 import slogo.observer.Observer;
 
 /**
