@@ -72,7 +72,7 @@ public class TurtlePane implements Observer {
   }
 
   /**
-   * Re-render turtle
+   * Re-render turtle.
    *
    * @param turtleModel to re-render
    */
@@ -81,8 +81,10 @@ public class TurtlePane implements Observer {
     double centerY = displayPane.getHeight() / 2.0;
 
     // Update the turtle's graphic position to its center
-    double turtleCenterX = centerX + (turtleModel.getPositionX() - turtleImageView.getFitWidth() / 2.0);
-    double turtleCenterY = centerY - (turtleModel.getPositionY() + turtleImageView.getFitHeight() / 2.0);
+    double offsetX = (turtleModel.getPositionX() - turtleImageView.getFitWidth() / 2.0);
+    double offsetY = (turtleModel.getPositionY() + turtleImageView.getFitHeight() / 2.0);
+    double turtleCenterX = centerX + offsetX;
+    double turtleCenterY = centerY + offsetY;
     turtleImageView.setX(turtleCenterX);
     turtleImageView.setY(turtleCenterY);
     turtleImageView.setRotate(-turtleModel.getOrientation());

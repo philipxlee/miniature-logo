@@ -5,7 +5,7 @@ import slogo.view.scenes.Scene;
 import slogo.view.scenes.start.StartScene;
 
 /**
- * ViewController manages Scenes and switches between them
+ * ViewController manages Scenes and switches between them.
  */
 public class ViewController implements SceneSwitcher {
 

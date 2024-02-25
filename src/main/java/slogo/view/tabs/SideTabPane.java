@@ -41,7 +41,7 @@ public class SideTabPane extends TabPane implements Observer {
   }
 
   /**
-   * Create a Tab with the specified title and content
+   * Create a Tab with the specified title and content.
    *
    * @param title   the title of the tab
    * @param content the content of the tab

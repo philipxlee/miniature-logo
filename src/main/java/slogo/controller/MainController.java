@@ -8,7 +8,7 @@ import slogo.model.api.LineModel;
 import slogo.model.api.TurtleModel;
 
 /**
- * MainController initializes modules for application
+ * MainController initializes modules for application.
  */
 public class MainController extends Application {
 

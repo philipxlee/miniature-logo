@@ -55,7 +55,7 @@ public class CommandController {
   }
 
   /**
-   * Subscribe to updates from the CommandHistoryModel
+   * Subscribe to updates from the CommandHistoryModel.
    *
    * @param observer that wants to subscribe
    */

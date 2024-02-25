@@ -8,8 +8,8 @@ public interface Scene {
   /**
    * Initialize the scene
    *
-   * @param width:  width of scene
-   * @param height: height of scenes
+   * @param width  width of scene
+   * @param height height of scenes
    */
   void initializeScene(int width, int height);
 

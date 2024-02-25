@@ -7,7 +7,7 @@ import slogo.view.scenes.Scene;
 import slogo.view.tabs.SideTabPane;
 
 /**
- * MainScene represents the Main SLogo Scene
+ * MainScene represents the Main SLogo Scene.
  */
 public class MainScene implements Scene {
 

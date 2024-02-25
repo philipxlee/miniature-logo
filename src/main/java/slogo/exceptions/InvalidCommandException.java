@@ -1,7 +1,7 @@
 package slogo.exceptions;
 
 /**
- * InvalidCommandException is thrown when an invalid command is used in the IDE
+ * InvalidCommandException is thrown when an invalid command is used in the IDE.
  */
 public class InvalidCommandException extends Exception {
 

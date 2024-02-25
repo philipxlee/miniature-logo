@@ -51,7 +51,7 @@ public class Parser {
   /**
    * Convert a command name into the canonical name of command.
    *
-   * @param commandName
+   * @param commandName is the string representing the command
    * @return String representing the canonical name of the command
    */
   private String findCanonicalName(String commandName) {
