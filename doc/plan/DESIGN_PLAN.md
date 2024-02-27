@@ -7,7 +7,8 @@
 ## Introduction
 
 * For this project, we plan to create SLogo, an application that provides an IDE to its users to
-  type “SLogo” commands and control a turtleModel to create drawings. One primary design goal of this
+  type “SLogo” commands and control a turtleModel to create drawings. One primary design goal of
+  this
   project is to allow our command interface to be as extensible as possible. This means adding new
   commands should be seamless. Another primary design goal of ours is to ensure our modules
   communicate properly with common design patterns. This means ensuring our APIs are properly
@@ -56,7 +57,8 @@ Data flow when Command is executed
 ## Design Details
 
 * We center our design around the Observer, Factory, Command and MVC design patterns. Our data
-  structure representing the state of the turtleModel is TurtleModel, which will contain information on
+  structure representing the state of the turtleModel is TurtleModel, which will contain information
+  on
   its position and orientation. This TurtleModel will implement the ObservableModel class. Each view
   that needs to listen for state changes can implement the Observer interface. In our design, the
   Turtle View will implement the Observer interface because it will need to listen for state changes
@@ -122,7 +124,8 @@ Data flow when Command is executed
                   turtleModel's new position and the drawing on the canvas.
         * Sad Path:
             * Scenario: Executing an invalid command.
-                * Expected Outcome: No change in the turtleModel's position or graphics window; an error
+                * Expected Outcome: No change in the turtleModel's position or graphics window; an
+                  error
                   message is displayed.
                 * Testing Support: Try executing an invalid command and check for no change in the
                   turtleModel's position and the presence of an error message

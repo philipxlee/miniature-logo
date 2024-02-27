@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import slogo.view.buttons.actions.ButtonTurtleImage;
 import slogo.view.buttons.actions.PenColorButton;
+import slogo.view.buttons.actions.TurtleBackgroundButton;
 
 /**
  * A custom HBox for displaying control buttons with associated actions.
@@ -21,16 +22,6 @@ public class ControlButtonsBox extends HBox {
   public ControlButtonsBox() {
     super();
     setupLayout();
-  }
-
-  private void setupLayout() {
-    this.setSpacing(10);
-    this.setPadding(new Insets(10));
-    addButton("Load Turtle Image", new ButtonTurtleImage());
-
-    // Button to change the pen color (addButton not used to allow for ColorPicker functionality)
-    PenColorButton penColorButton = new PenColorButton();
-    this.getChildren().add(penColorButton);
   }
 
   /**
@@ -53,5 +44,18 @@ public class ControlButtonsBox extends HBox {
     this.getChildren().clear();
     buttonActions.clear();
   }
+
+  private void setupLayout() {
+    this.setSpacing(10);
+    this.setPadding(new Insets(10));
+    addButton("Load Turtle Image", new ButtonTurtleImage());
+    // Button to change the pen color (addButton not used to allow for ColorPicker functionality)
+    PenColorButton penColorButton = new PenColorButton();
+    this.getChildren().add(penColorButton);
+
+    TurtleBackgroundButton turtleBackgroundButton = new TurtleBackgroundButton();
+    this.getChildren().add(turtleBackgroundButton);
+  }
+
 
 }

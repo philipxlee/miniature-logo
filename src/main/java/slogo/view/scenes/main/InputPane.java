@@ -15,6 +15,7 @@ import slogo.view.alert.Alert;
  */
 public class InputPane {
 
+  private static final String DOLLAR_SIGN = "$ ";
   private VBox inputBox;
   private TextArea commandInput;
 
@@ -39,22 +40,28 @@ public class InputPane {
 
   private void initializeInputBox(int height, CommandController commandController) {
     commandInput = new TextArea();
+    commandInput.setText(DOLLAR_SIGN); // set initial text to DOLLAR_SIGN
     commandInput.setPromptText("Enter commands here...");
     commandInput.setOnKeyPressed(event -> {
       if (event.getCode() == KeyCode.ENTER && !event.isShiftDown()) {
         String command = commandInput.getText().trim();
         if (!command.isEmpty()) {
+          // remove DOLLAR_SIGN from the start of the command
+          command =
+              command.startsWith(DOLLAR_SIGN) ? command.substring(DOLLAR_SIGN.length()) : command;
           try {
             commandController.executeCommand(command);
           } catch (InvalidCommandException e) {
             Alert.showError("Invalid Command", "Please enter a valid command.");
           }
-          commandInput.clear();
+          commandInput.setText(DOLLAR_SIGN); // reset text to DOLLAR_SIGN after processing command
+          commandInput.positionCaret(commandInput.getText().length());
           event.consume();
         }
       }
     });
 
+    commandInput.positionCaret(DOLLAR_SIGN.length());
     inputBox = new VBox(10);
     inputBox.getChildren().add(commandInput);
     inputBox.setAlignment(Pos.BOTTOM_CENTER);

@@ -72,6 +72,15 @@ public class TurtlePane implements Observer {
   }
 
   /**
+   * Return pane representing TurtleView.
+   *
+   * @return Pane object of view
+   */
+  public Pane getDisplayPane() {
+    return displayPane;
+  }
+
+  /**
    * Re-render turtle.
    *
    * @param turtleModel to re-render
@@ -123,12 +132,4 @@ public class TurtlePane implements Observer {
     turtleImageView.toFront();  // Ensure the turtle graphic is always on top
   }
 
-  /**
-   * Return pane representing TurtleView.
-   *
-   * @return Pane object of view
-   */
-  public Pane getDisplayPane() {
-    return displayPane;
-  }
 }

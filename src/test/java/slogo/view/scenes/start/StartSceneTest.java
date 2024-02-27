@@ -1,34 +1,28 @@
 package slogo.view.scenes.start;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.concurrent.TimeUnit;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
 import slogo.controller.CommandController;
-import slogo.controller.SceneSwitcher;
 import slogo.controller.ViewController;
 import slogo.model.api.data.CommandHistoryModel;
 import slogo.model.api.data.LineModel;
 import slogo.model.api.data.TurtleModel;
 import util.DukeApplicationTest;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
 public class StartSceneTest extends DukeApplicationTest {
 
   private Button startButton;
 
   /**
-   * Start test version of application (note this is basically just a copy of the Main class's start() method).
+   * Start test version of application (note this is basically just a copy of the Main class's
+   * start() method).
    */
   @Override
-  public void start (Stage stage) {
+  public void start(Stage stage) {
     LineModel lineModel = new LineModel();
     TurtleModel turtleModel = new TurtleModel(lineModel);
     CommandHistoryModel commandHistoryModel = new CommandHistoryModel();
