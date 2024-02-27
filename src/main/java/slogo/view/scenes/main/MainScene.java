@@ -52,7 +52,6 @@ public class MainScene implements Scene {
   public void initializeScene(int width, int height) {
     root = new BorderPane();
     root.setId("Main Scene");
-
     BorderPane topPane = new BorderPane();
     topPane.setTop(turtlePane.getDisplayPane());
 
