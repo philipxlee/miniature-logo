@@ -5,7 +5,7 @@
   xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.net/ruleset_2_0_0.xsd">
 
   <description>
-    PMD ruleset for CellSociety based on the CellSociety design requirements.
+    PMD ruleset for SLogo based on the SLogo design requirements.
   </description>
 
   <!-- DESIGN-01 - Multiple Classes -->
