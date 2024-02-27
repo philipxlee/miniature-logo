@@ -13,7 +13,7 @@ import slogo.view.buttons.actions.PenColorButton;
  */
 public class ControlButtonsBox extends HBox {
 
-  private List<ButtonAction> buttonActions = new ArrayList<>();
+  private final List<ButtonAction> buttonActions = new ArrayList<>();
 
   /**
    * Constructs a new ControlButtonsBox.

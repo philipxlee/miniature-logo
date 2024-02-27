@@ -1,8 +1,8 @@
 package slogo.model.api.command.turtle;
 
+import slogo.model.api.command.Command;
 import slogo.model.api.data.LineModel;
 import slogo.model.api.data.TurtleModel;
-import slogo.model.api.command.Command;
 
 /**
  * ClearScreenCommand clears the screen and resets the turtle's position.

@@ -19,10 +19,23 @@ import slogo.model.api.data.TurtleModel;
  */
 public class CommandFactory {
 
-  private TurtleModel turtleModel;
-  private LineModel lineModel;
+  private final TurtleModel turtleModel;
+  private final LineModel lineModel;
   private Properties commandMappings;
-  private String language;
+  private final String language;
+
+  /**
+   * CommandFactory constructor. Initialized with turtleModel and lineModel.
+   *
+   * @param turtleModel is the turtle model.
+   * @param lineModel   is the line model.
+   */
+  public CommandFactory(TurtleModel turtleModel, LineModel lineModel) {
+    this.turtleModel = turtleModel;
+    this.lineModel = lineModel;
+    this.language = "English";
+    initializeCommandMappings();
+  }
 
   /**
    * Turns a string into a command.
@@ -49,19 +62,6 @@ public class CommandFactory {
       case "cs" -> new ClearScreenCommand(turtleModel, lineModel);
       default -> throw new InvalidCommandException("Invalid Command String: " + commandString);
     };
-  }
-
-  /**
-   * CommandFactory constructor. Initialized with turtleModel and lineModel.
-   *
-   * @param turtleModel is the turtle model.
-   * @param lineModel   is the line model.
-   */
-  public CommandFactory(TurtleModel turtleModel, LineModel lineModel) {
-    this.turtleModel = turtleModel;
-    this.lineModel = lineModel;
-    this.language = "English";
-    initializeCommandMappings();
   }
 
   /**
