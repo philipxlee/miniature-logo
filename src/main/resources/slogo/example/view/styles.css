@@ -1,0 +1,23 @@
+/* styles.css */
+
+.root {
+  -fx-background-color: linear-gradient(to right, #0000FF, #00FF00);
+}
+
+.title-text {
+  -fx-font-size: 40px;
+  -fx-fill: WHITE;
+  -fx-font-weight: bold;
+}
+
+.instruction-text {
+  -fx-font-size: 25px;
+  -fx-fill: WHITE;
+}
+
+.button {
+  -fx-pref-width: 150px;
+  -fx-pref-height: 40px;
+  -fx-font-size: 14px;
+  -fx-font-weight: bold;
+}

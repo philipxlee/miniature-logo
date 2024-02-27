@@ -19,10 +19,10 @@ import slogo.model.api.data.TurtleModel;
  */
 public class CommandFactory {
 
-  private TurtleModel turtleModel;
-  private LineModel lineModel;
+  private final TurtleModel turtleModel;
+  private final LineModel lineModel;
   private Properties commandMappings;
-  private String language;
+  private final String language;
 
   /**
    * CommandFactory constructor. Initialized with turtleModel and lineModel.

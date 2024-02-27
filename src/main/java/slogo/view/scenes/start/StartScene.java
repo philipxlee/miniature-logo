@@ -15,6 +15,7 @@ import slogo.view.scenes.main.MainScene;
  */
 public class StartScene implements Scene {
 
+  private static final String STYLESHEET_PATH = "slogo/example/view/styles.css";
   private static final int BUTTON_WIDTH = 135;
   private static final int BUTTON_HEIGHT = 40;
   private final SceneSwitcher switcher;
@@ -52,9 +53,9 @@ public class StartScene implements Scene {
 
     // Initialize title text and add click handler
     Text title = new Text("SLogo");
-    title.setStyle("-fx-font-size: 30px; -fx-font-weight: bold;");
+    title.getStyleClass().add("title-text");
     Text instruction = new Text("By: Prince Ahmed, Arnav Nayak, Philip Lee, Connor Johnson");
-    instruction.setStyle("-fx-font-size: 16px;");
+    instruction.getStyleClass().add("instruction-text");
 
     Button startButton = createStartButton(width, height);
     Button loadButton = createLoadButton();
@@ -64,6 +65,7 @@ public class StartScene implements Scene {
     parentBox.getChildren()
         .addAll(title, instruction, startButton, loadButton, languageButton, colorSchemeButton);
     this.scene = new javafx.scene.Scene(parentBox, width, height);
+    this.scene.getStylesheets().add(STYLESHEET_PATH);
   }
 
   /**
@@ -94,6 +96,7 @@ public class StartScene implements Scene {
     startButton.setOnAction(
         event -> switcher.switchToScene(new MainScene(width, height, commandController)));
     startButton.setPrefSize(BUTTON_WIDTH, BUTTON_HEIGHT);
+    startButton.getStyleClass().add("button");
     return startButton;
   }
 
@@ -105,7 +108,7 @@ public class StartScene implements Scene {
   private Button createLoadButton() {
     Button loadButton = new Button("Load Session");
     loadButton.setPrefSize(BUTTON_WIDTH, BUTTON_HEIGHT);
-    // Add action for loading a session
+    loadButton.getStyleClass().add("button");
     return loadButton;
   }
 
@@ -117,7 +120,7 @@ public class StartScene implements Scene {
   private Button createLanguageButton() {
     Button languageButton = new Button("Select Language");
     languageButton.setPrefSize(BUTTON_WIDTH, BUTTON_HEIGHT);
-    // Add action for selecting a language
+    languageButton.getStyleClass().add("button");
     return languageButton;
   }
 
@@ -129,7 +132,7 @@ public class StartScene implements Scene {
   private Button createColorSchemeButton() {
     Button colorSchemeButton = new Button("Select Color Scheme");
     colorSchemeButton.setPrefSize(BUTTON_WIDTH, BUTTON_HEIGHT);
-    // Add action for selecting a color scheme
+    colorSchemeButton.getStyleClass().add("button");
     return colorSchemeButton;
   }
 

@@ -1,7 +1,7 @@
 package slogo.model.api.command.queries;
 
-import slogo.model.api.data.TurtleModel;
 import slogo.model.api.command.Command;
+import slogo.model.api.data.TurtleModel;
 
 /**
  * TurtleQueryCommand queries the turtle model for a property.
