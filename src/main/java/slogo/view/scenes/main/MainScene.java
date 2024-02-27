@@ -76,6 +76,11 @@ public class MainScene implements Scene {
     return this.scene;
   }
 
+  /**
+   * Get the root node.
+   *
+   * @return root
+   */
   @Override
   public Node getRoot() {
     return root;

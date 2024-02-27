@@ -24,18 +24,6 @@ public class ControlButtonsBox extends HBox {
     setupLayout();
   }
 
-  private void setupLayout() {
-    this.setSpacing(10);
-    this.setPadding(new Insets(10));
-    addButton("Load Turtle Image", new ButtonTurtleImage());
-    // Button to change the pen color (addButton not used to allow for ColorPicker functionality)
-    PenColorButton penColorButton = new PenColorButton();
-    this.getChildren().add(penColorButton);
-
-    TurtleBackgroundButton turtleBackgroundButton = new TurtleBackgroundButton();
-    this.getChildren().add(turtleBackgroundButton);
-  }
-
   /**
    * Adds a new button with the specified text and action.
    *
@@ -56,5 +44,18 @@ public class ControlButtonsBox extends HBox {
     this.getChildren().clear();
     buttonActions.clear();
   }
+
+  private void setupLayout() {
+    this.setSpacing(10);
+    this.setPadding(new Insets(10));
+    addButton("Load Turtle Image", new ButtonTurtleImage());
+    // Button to change the pen color (addButton not used to allow for ColorPicker functionality)
+    PenColorButton penColorButton = new PenColorButton();
+    this.getChildren().add(penColorButton);
+
+    TurtleBackgroundButton turtleBackgroundButton = new TurtleBackgroundButton();
+    this.getChildren().add(turtleBackgroundButton);
+  }
+
 
 }
