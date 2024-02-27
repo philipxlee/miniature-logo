@@ -47,7 +47,8 @@ public class InputPane {
         String command = commandInput.getText().trim();
         if (!command.isEmpty()) {
           // remove DOLLAR_SIGN from the start of the command
-          command = command.startsWith(DOLLAR_SIGN) ? command.substring(DOLLAR_SIGN.length()) : command;
+          command =
+              command.startsWith(DOLLAR_SIGN) ? command.substring(DOLLAR_SIGN.length()) : command;
           try {
             commandController.executeCommand(command);
           } catch (InvalidCommandException e) {
@@ -59,6 +60,7 @@ public class InputPane {
         }
       }
     });
+
     commandInput.positionCaret(DOLLAR_SIGN.length());
     inputBox = new VBox(10);
     inputBox.getChildren().add(commandInput);

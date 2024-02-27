@@ -8,13 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 import slogo.exceptions.InvalidCommandException;
 import slogo.model.api.command.Command;
-import slogo.model.api.command.turtle.ClearScreenCommand;
-import slogo.model.api.command.turtle.ForwardCommand;
-import slogo.model.api.command.turtle.PenCommand;
-import slogo.model.api.command.turtle.RotateCommand;
-import slogo.model.api.command.turtle.SetLocationCommand;
-import slogo.model.api.command.turtle.SetOrientationCommand;
-import slogo.model.api.command.turtle.TurtleVisibleCommand;
 import slogo.model.api.data.LineModel;
 import slogo.model.api.data.TurtleModel;
 

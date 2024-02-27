@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
-<ruleset name="CustomRuleset"
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  name="CustomRuleset"
   xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.net/ruleset_2_0_0.xsd">
 
   <description>
@@ -61,12 +61,13 @@
   <!-- None - enforced through checkstyle -->
 
   <!-- DESIGN-06 - Interact Through Methods -->
-  <rule name="InstanceVariablesMustBePrivate"
+  <rule class="net.sourceforge.pmd.lang.rule.XPathRule"
     language="java"
     message="Class-level variables must be private; 'static final' constants may be private, protected, default, or public."
-    class="net.sourceforge.pmd.lang.rule.XPathRule">
+    name="InstanceVariablesMustBePrivate">
     <description>
-      This rule ensures that all class-level variables are declared as private unless they are 'public static final'.
+      This rule ensures that all class-level variables are declared as private unless they are
+      'public static final'.
     </description>
     <priority>1</priority>
     <properties>
@@ -90,10 +91,10 @@
   <!-- None -->
 
   <!-- DESIGN-09 - Model-View Separation -->
-  <rule name="AvoidJavaFXImportsInModelPackages"
+  <rule class="net.sourceforge.pmd.lang.rule.XPathRule"
     language="java"
     message="JavaFX packages should only be used in the View (view package). The model should be agnostic of how it is displayed."
-    class="net.sourceforge.pmd.lang.rule.XPathRule">
+    name="AvoidJavaFXImportsInModelPackages">
     <description>
       This rule identifies if a class within 'model', '*.model', or '*.model.*' packages is
       importing anything from the javafx package.
@@ -141,10 +142,10 @@
   </rule>
 
   <!-- DESIGN-12 - Externalize Configuration -->
-  <rule name="AvoidMagicNumbers"
+  <rule class="net.sourceforge.pmd.lang.rule.XPathRule"
     language="java"
     message="Avoid using magic numbers in the code."
-    class="net.sourceforge.pmd.lang.rule.XPathRule">
+    name="AvoidMagicNumbers">
     <description>
       Magic numbers are numbers that occur multiple time in code without an explanatory name.
       This rule excludes -1, 0, 1, and 2 which are commonly used in a non-magic context.
@@ -160,10 +161,10 @@
       </property>
     </properties>
   </rule>
-  <rule name="AvoidLiteralHexColorCodes"
+  <rule class="net.sourceforge.pmd.lang.rule.XPathRule"
     language="java"
     message="Avoid using literal hex color codes in the code. Consider using a constant or resource instead."
-    class="net.sourceforge.pmd.lang.rule.XPathRule">
+    name="AvoidLiteralHexColorCodes">
     <description>
       This rule finds instances where hex color codes are used directly in the code, which can make
       maintenance more difficult and the code less readable.
@@ -219,12 +220,13 @@
   </rule>
 
   <!-- DESIGN- - Model API -->
-  <rule name="ModelAccessThroughAPI"
+  <rule class="net.sourceforge.pmd.lang.rule.XPathRule"
     language="java"
     message="Classes outside of the model package can only import from model.api or its subpackages."
-    class="net.sourceforge.pmd.lang.rule.XPathRule">
+    name="ModelAccessThroughAPI">
     <description>
-      This rule restricts import statements based on the model API, allowing more freedom within the model package and its subpackages.
+      This rule restricts import statements based on the model API, allowing more freedom within the
+      model package and its subpackages.
     </description>
     <priority>2</priority>
     <properties>
