@@ -26,11 +26,9 @@ The internal view API consists of Scenes that encapsulate Panes. Each pane modul
 on a model and subscribe for updates.
 
 #### Java Description
-
 External CommandController API
 
 CommandController.java
-
 ```java
 /**
  * Executes the command by parsing the command and executing it. Example: "fd 50" to move the
@@ -58,7 +56,6 @@ public void observeHistory(Observer observer);
 External Model API
 
 TurtleModel.java
-
 ```java
 /**
  * Move Turtle forward or backward based on distance
@@ -83,7 +80,6 @@ public void addObserver(Observer observer);
 ```
 
 CommandHistoryModel.java
-
 ```java
 /**
 * Adds a command to the command history queue.

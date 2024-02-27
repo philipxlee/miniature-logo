@@ -21,8 +21,8 @@ public class CommandFactory {
 
   private final TurtleModel turtleModel;
   private final LineModel lineModel;
-  private final String language;
   private Properties commandMappings;
+  private final String language;
 
   /**
    * CommandFactory constructor. Initialized with turtleModel and lineModel.

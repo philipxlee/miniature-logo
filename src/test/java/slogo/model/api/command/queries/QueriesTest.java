@@ -3,10 +3,11 @@ package slogo.model.api.command.queries;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
-import slogo.model.api.command.Command;
-import slogo.model.api.command.queries.TurtleQueryCommand.QueryType;
 import slogo.model.api.data.LineModel;
 import slogo.model.api.data.TurtleModel;
+import slogo.model.api.command.Command;
+import slogo.model.api.command.queries.TurtleQueryCommand;
+import slogo.model.api.command.queries.TurtleQueryCommand.QueryType;
 
 public class QueriesTest {
 

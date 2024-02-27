@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import slogo.model.api.data.LineModel;
+import slogo.model.api.data.TurtleModel;
 
 /**
  * TurtleModelTest tests the TurtleModel class.
@@ -16,8 +18,7 @@ public class TurtleModelTest {
   private static final double TOLERANCE = 0.001;
 
   @BeforeEach
-  void setUp() {
-  }
+  void setUp() {}
 
   @Test
   void testMove() {

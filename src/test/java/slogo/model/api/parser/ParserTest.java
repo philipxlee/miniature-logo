@@ -14,6 +14,7 @@ import slogo.model.api.command.turtle.RotateCommand;
 import slogo.model.api.command.turtle.SetLocationCommand;
 import slogo.model.api.data.LineModel;
 import slogo.model.api.data.TurtleModel;
+import slogo.model.api.parser.Parser;
 
 public class ParserTest {
 
