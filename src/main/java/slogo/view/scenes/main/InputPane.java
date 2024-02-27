@@ -72,4 +72,3 @@ public class InputPane {
     VBox.setVgrow(commandInput, Priority.ALWAYS);
   }
 }
-
