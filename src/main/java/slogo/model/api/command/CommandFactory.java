@@ -25,19 +25,6 @@ public class CommandFactory {
   private String language;
 
   /**
-   * CommandFactory constructor. Initialized with turtleModel and lineModel.
-   *
-   * @param turtleModel is the turtle model.
-   * @param lineModel   is the line model.
-   */
-  public CommandFactory(TurtleModel turtleModel, LineModel lineModel) {
-    this.turtleModel = turtleModel;
-    this.lineModel = lineModel;
-    this.language = "English";
-    initializeCommandMappings();
-  }
-
-  /**
    * Turns a string into a command.
    *
    * @param commandString is the command String
@@ -62,6 +49,19 @@ public class CommandFactory {
       case "cs" -> new ClearScreenCommand(turtleModel, lineModel);
       default -> throw new InvalidCommandException("Invalid Command String: " + commandString);
     };
+  }
+
+  /**
+   * CommandFactory constructor. Initialized with turtleModel and lineModel.
+   *
+   * @param turtleModel is the turtle model.
+   * @param lineModel   is the line model.
+   */
+  public CommandFactory(TurtleModel turtleModel, LineModel lineModel) {
+    this.turtleModel = turtleModel;
+    this.lineModel = lineModel;
+    this.language = "English";
+    initializeCommandMappings();
   }
 
   /**
