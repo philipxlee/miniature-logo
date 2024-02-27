@@ -12,7 +12,6 @@
   <suppress checks="JavadocVariable" files="."/>
   <suppress checks="SingleLineJavadoc" files="."/>
   <suppress checks="JavadocParagraph" files="."/>
-
   <suppress checks="VariableDeclarationUsageDistance" files="."/>
   <suppress checks="OperatorWrap" files="."/>
   <suppress checks="CommentsIndentation" files="."/>
