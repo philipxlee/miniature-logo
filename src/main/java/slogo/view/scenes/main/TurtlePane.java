@@ -4,11 +4,13 @@ import java.util.Iterator;
 import java.util.Objects;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import slogo.model.api.data.LineModel;
 import slogo.model.api.data.TurtleModel;
+import slogo.observer.BackgroundObservable;
 import slogo.observer.Observable;
 import slogo.observer.Observer;
 
@@ -63,12 +65,22 @@ public class TurtlePane implements Observer {
    */
   @Override
   public void update(Observable observable) {
+
+    if (observable instanceof BackgroundObservable) {
+      BackgroundObservable colorObservable = (BackgroundObservable) observable;
+      displayPane.setStyle("-fx-background-color: " + colorObservable.getColor() + ";");
+    }
+
     if (observable instanceof TurtleModel turtleModel) {
       drawTurtle(turtleModel);
     }
     if (observable instanceof LineModel lineModel) {
       drawLines(lineModel);
     }
+  }
+
+  public void setColorObservable(BackgroundObservable colorObservable) {
+    colorObservable.addObserver(this);
   }
 
   /**

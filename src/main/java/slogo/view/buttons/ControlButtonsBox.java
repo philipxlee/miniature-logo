@@ -5,6 +5,7 @@ import java.util.List;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
+import slogo.observer.BackgroundObservable;
 import slogo.view.buttons.actions.ButtonTurtleImage;
 import slogo.view.buttons.actions.PenColorButton;
 import slogo.view.buttons.actions.TurtleBackgroundButton;
@@ -15,12 +16,13 @@ import slogo.view.buttons.actions.TurtleBackgroundButton;
 public class ControlButtonsBox extends HBox {
 
   private final List<ButtonAction> buttonActions = new ArrayList<>();
-
+  private final BackgroundObservable colorObservable;
   /**
    * Constructs a new ControlButtonsBox.
    */
-  public ControlButtonsBox() {
+  public ControlButtonsBox(BackgroundObservable colorObservable) {
     super();
+    this.colorObservable = colorObservable;
     setupLayout();
   }
 
@@ -53,8 +55,9 @@ public class ControlButtonsBox extends HBox {
     PenColorButton penColorButton = new PenColorButton();
     this.getChildren().add(penColorButton);
 
-    TurtleBackgroundButton turtleBackgroundButton = new TurtleBackgroundButton();
+    TurtleBackgroundButton turtleBackgroundButton = new TurtleBackgroundButton(colorObservable);
     this.getChildren().add(turtleBackgroundButton);
+
   }
 
 
