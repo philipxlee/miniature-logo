@@ -17,6 +17,7 @@ public class ControlButtonsBox extends HBox {
 
   private final List<ButtonAction> buttonActions = new ArrayList<>();
   private final BackgroundObservable colorObservable;
+
   /**
    * Constructs a new ControlButtonsBox.
    */

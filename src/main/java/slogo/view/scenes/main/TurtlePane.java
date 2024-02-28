@@ -4,7 +4,6 @@ import java.util.Iterator;
 import java.util.Objects;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
@@ -66,8 +65,7 @@ public class TurtlePane implements Observer {
   @Override
   public void update(Observable observable) {
 
-    if (observable instanceof BackgroundObservable) {
-      BackgroundObservable colorObservable = (BackgroundObservable) observable;
+    if (observable instanceof BackgroundObservable colorObservable) {
       displayPane.setStyle("-fx-background-color: " + colorObservable.getColor() + ";");
     }
 
