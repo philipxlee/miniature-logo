@@ -3,6 +3,7 @@ package slogo.view.scenes.main;
 import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 import slogo.controller.CommandController;
+import slogo.observer.BackgroundObservable;
 import slogo.view.buttons.ControlButtonsBox;
 import slogo.view.scenes.Scene;
 import slogo.view.tabs.SideTabPane;
@@ -28,15 +29,17 @@ public class MainScene implements Scene {
    */
   public MainScene(int width, int height, CommandController commandController) {
     // initialize panes
+    BackgroundObservable colorObservable = new BackgroundObservable("#e0e0e0");
     this.turtlePane = new TurtlePane(width, height);
     this.inputPane = new InputPane(height, commandController);
     this.sideTabPane = new SideTabPane();
-    this.controlButtonsBox = new ControlButtonsBox();
+    this.controlButtonsBox = new ControlButtonsBox(colorObservable);
 
     // subscribe panes to models
     commandController.observeTurtle(turtlePane);
     commandController.observeLines(turtlePane);
     commandController.observeHistory(sideTabPane);
+    turtlePane.setColorObservable(colorObservable);
 
     // initialize scene
     initializeScene(width, height);
