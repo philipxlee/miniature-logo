@@ -12,6 +12,7 @@ import slogo.model.api.data.TurtleModel;
 import slogo.observer.BackgroundObservable;
 import slogo.observer.Observable;
 import slogo.observer.Observer;
+import slogo.observer.PenColorObservable;
 
 /**
  * TurtlePane representing where Turtle is rendered.
@@ -20,6 +21,7 @@ public class TurtlePane implements Observer {
 
   public static final double RATIO_TURTLE_DISPLAY = 0.5;
   public static final String DEFAULT_TURTLE_IMAGE_PATH = "/default_turtle.png";
+  private Color currentPenColor = Color.BLACK;
   private static ImageView turtleImageView;
   private final Pane displayPane;
 
@@ -69,6 +71,10 @@ public class TurtlePane implements Observer {
       displayPane.setStyle("-fx-background-color: " + colorObservable.getColor() + ";");
     }
 
+    if (observable instanceof PenColorObservable penColorObservable) {
+      currentPenColor = Color.web(penColorObservable.getColor());
+    }
+
     if (observable instanceof TurtleModel turtleModel) {
       drawTurtle(turtleModel);
     }
@@ -77,8 +83,12 @@ public class TurtlePane implements Observer {
     }
   }
 
-  public void setColorObservable(BackgroundObservable colorObservable) {
+  public void setBackgroundColorObservable(BackgroundObservable colorObservable) {
     colorObservable.addObserver(this);
+  }
+
+  public void setPenColorObservable(PenColorObservable penColorObservable) {
+    penColorObservable.addObserver(this);
   }
 
   /**
@@ -134,7 +144,7 @@ public class TurtlePane implements Observer {
       fxLine.setStartY(centerY - line.startY());
       fxLine.setEndX(centerX + line.endX());
       fxLine.setEndY(centerY - line.endY());
-      fxLine.setStroke(Color.BLACK);
+      fxLine.setStroke(currentPenColor);
       fxLine.setStrokeWidth(3);  // Consider a thinner line for better accuracy
 
       displayPane.getChildren().add(fxLine);
