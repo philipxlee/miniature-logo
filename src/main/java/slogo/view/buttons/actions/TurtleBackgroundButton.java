@@ -2,13 +2,13 @@ package slogo.view.buttons.actions;
 
 import javafx.scene.control.ColorPicker;
 import javafx.scene.paint.Color;
-import slogo.observer.ColorObservable;
+import slogo.observer.BackgroundObservable;
 
 public class TurtleBackgroundButton extends ColorPicker {
 
-  private final ColorObservable colorObservable;
+  private final BackgroundObservable colorObservable;
 
-  public TurtleBackgroundButton(ColorObservable colorObservable) {
+  public TurtleBackgroundButton(BackgroundObservable colorObservable) {
     super(Color.BLACK);
     this.colorObservable = colorObservable;
     setOnAction(event -> updateColorObservable());

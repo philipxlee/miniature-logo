@@ -1,10 +1,11 @@
 package slogo.observer;
 
-public class ColorObservable extends AbstractObservable {
+public class BackgroundObservable extends AbstractObservable {
 
   private String color;
 
-  public ColorObservable(String initialColor) {
+  public BackgroundObservable(String initialColor) {
+    super();
     this.color = initialColor;
   }
 

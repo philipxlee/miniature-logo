@@ -9,7 +9,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import slogo.model.api.data.LineModel;
 import slogo.model.api.data.TurtleModel;
-import slogo.observer.ColorObservable;
+import slogo.observer.BackgroundObservable;
 import slogo.observer.Observable;
 import slogo.observer.Observer;
 
@@ -65,7 +65,7 @@ public class TurtlePane implements Observer {
   @Override
   public void update(Observable observable) {
 
-    if (observable instanceof ColorObservable colorObservable) {
+    if (observable instanceof BackgroundObservable colorObservable) {
       displayPane.setStyle("-fx-background-color: " + colorObservable.getColor() + ";");
     }
 
@@ -77,7 +77,7 @@ public class TurtlePane implements Observer {
     }
   }
 
-  public void setColorObservable(ColorObservable colorObservable) {
+  public void setColorObservable(BackgroundObservable colorObservable) {
     colorObservable.addObserver(this);
   }
 
