@@ -57,10 +57,7 @@ public class MainScene implements Scene {
     root.setId("Main Scene");
     BorderPane topPane = new BorderPane();
     topPane.setTop(turtlePane.getDisplayPane());
-
-    // Add ControlButtons to the right of the top pane
     topPane.setBottom(controlButtonsBox);
-
     root.setTop(topPane);
     BorderPane bottomPane = new BorderPane();
     bottomPane.setLeft(inputPane.getInputBox());
