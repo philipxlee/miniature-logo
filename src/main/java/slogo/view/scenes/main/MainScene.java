@@ -19,6 +19,7 @@ public class MainScene implements Scene {
   private final ControlButtonsBox controlButtonsBox;
   private javafx.scene.Scene scene;
   private BorderPane root;
+  private static final String STYLESHEET_PATH = "slogo/example/view/styles.css";
 
   /**
    * Constructor for Display.
@@ -67,6 +68,7 @@ public class MainScene implements Scene {
     bottomPane.setRight(sideTabPane);
     root.setBottom(bottomPane);
     this.scene = new javafx.scene.Scene(root, width, height);
+    this.scene.getStylesheets().add(STYLESHEET_PATH);
   }
 
   /**

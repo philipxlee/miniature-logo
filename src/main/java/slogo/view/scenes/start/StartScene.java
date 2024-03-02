@@ -66,6 +66,7 @@ public class StartScene implements Scene {
         .addAll(title, instruction, startButton, loadButton, languageButton, colorSchemeButton);
     this.scene = new javafx.scene.Scene(parentBox, width, height);
     this.scene.getStylesheets().add(STYLESHEET_PATH);
+    parentBox.getStyleClass().add("start-scene");
   }
 
   /**

@@ -36,6 +36,7 @@ public class ControlButtonsBox extends HBox {
   public void addButton(String buttonText, ButtonAction action) {
     Button button = new Button(buttonText);
     button.setOnAction(event -> action.performAction());
+    button.getStyleClass().add("load-button");
     buttonActions.add(action);
     this.getChildren().add(button);
   }

@@ -33,7 +33,7 @@ public class TurtlePane implements Observer {
     // initialize pane
     displayPane = new Pane();
     displayPane.setPrefSize(width, height * RATIO_TURTLE_DISPLAY);
-    displayPane.setStyle("-fx-background-color: #e0e0e0;");
+    displayPane.getStyleClass().add("display-pane-background");
 
     // initialize Turtle graphic
     turtleImageView = new ImageView();
