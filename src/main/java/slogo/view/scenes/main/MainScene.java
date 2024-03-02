@@ -13,13 +13,13 @@ import slogo.view.tabs.SideTabPane;
  */
 public class MainScene implements Scene {
 
+  private static final String STYLESHEET_PATH = "slogo/example/view/styles.css";
   private final TurtlePane turtlePane;
   private final InputPane inputPane;
   private final SideTabPane sideTabPane;
   private final ControlButtonsBox controlButtonsBox;
   private javafx.scene.Scene scene;
   private BorderPane root;
-  private static final String STYLESHEET_PATH = "slogo/example/view/styles.css";
 
   /**
    * Constructor for Display.
