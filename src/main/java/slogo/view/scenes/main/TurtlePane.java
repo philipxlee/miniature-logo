@@ -30,6 +30,8 @@ public class TurtlePane implements Observer {
    * @param height height of display
    */
   public TurtlePane(int width, int height) {
+    System.out.println(width);
+    System.out.println(height);
     // initialize pane
     displayPane = new Pane();
     displayPane.setPrefSize(width, height * RATIO_TURTLE_DISPLAY);
@@ -45,6 +47,7 @@ public class TurtlePane implements Observer {
     turtleImageView.setFitHeight(20);
     turtleImageView.setX(width / 2.0 - 10); // Center X
     turtleImageView.setY(height * RATIO_TURTLE_DISPLAY / 2.0 - 10); // Center Y
+    System.out.println(turtleImageView.getX());
     displayPane.getChildren().add(turtleImageView);
   }
 

@@ -38,6 +38,15 @@ public class InputPane {
     return inputBox;
   }
 
+  /**
+   * Set the input text in the commandInput TextArea.
+   *
+   * @param text the text to set
+   */
+  public void setInputText(String text) {
+    commandInput.setText(text);
+  }
+
   private void initializeInputBox(int height, CommandController commandController) {
     commandInput = new TextArea();
     commandInput.setText(DOLLAR_SIGN); // set initial text to DOLLAR_SIGN

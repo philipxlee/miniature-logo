@@ -46,6 +46,24 @@ public class MainScene implements Scene {
   }
 
   /**
+   * Second initializer that accepts commands and updates the input pane.
+   *
+   * @param width             width
+   * @param height            height
+   * @param commandController commandController
+   * @param commands          commands to display and run
+   */
+  public MainScene(int width, int height, CommandController commandController, String commands){
+    this(width, height, commandController);
+    inputPane.setInputText(commands);
+    try {
+      commandController.executeCommand(commands);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  /**
    * Initialize the scene.
    *
    * @param width  width
