@@ -34,7 +34,7 @@ public class CommandHistoryTab implements TabContent {
   public Node getContent() {
     this.content = new VBox();
     content.setFillWidth(true);
-    
+
     historyContainer = new VBox();
     historyContainer.setFillWidth(true);
 
