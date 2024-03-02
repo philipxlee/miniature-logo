@@ -1,6 +1,8 @@
 package slogo.controller;
 
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.stage.FileChooser;
 import slogo.exceptions.InvalidCommandException;
 import slogo.view.scenes.main.MainScene;
@@ -14,7 +16,7 @@ import java.io.IOException;
 /**
  * LoadButton is a button for loading a session from a file.
  */
-public class LoadButtonController {
+public class LoadButtonController implements EventHandler<ActionEvent> {
 
   private final CommandController commandController;
   private final SceneSwitcher switcher;
@@ -33,7 +35,8 @@ public class LoadButtonController {
   /**
    * Method to handle the "Load Session" button action.
    */
-  public void handleLoad() {
+  @Override
+  public void handle(ActionEvent event) {
     FileChooser fileChooser = new FileChooser();
     fileChooser.setTitle("Open SLogo File");
     fileChooser.getExtensionFilters().addAll(

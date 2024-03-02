@@ -1,7 +1,5 @@
 package slogo.view.scenes.start;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -119,12 +117,7 @@ public class StartScene implements Scene {
     LoadButtonController loadButtonController = new LoadButtonController(commandController, switcher);
 
     // Set action for the load button
-    loadButton.setOnAction(new EventHandler<ActionEvent>() {
-      @Override
-      public void handle(ActionEvent event) {
-        loadButtonController.handleLoad();
-      }
-    });
+    loadButton.setOnAction(loadButtonController);
 
     return loadButton;
   }
