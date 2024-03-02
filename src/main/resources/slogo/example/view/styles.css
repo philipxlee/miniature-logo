@@ -1,7 +1,11 @@
 /* styles.css */
 
-.root {
+.start-scene {
   -fx-background-color: linear-gradient(to right, #0000FF, #00FF00);
+}
+
+.display-pane-background {
+  -fx-background-color: #e0e0e0;
 }
 
 .title-text {
@@ -20,4 +24,9 @@
   -fx-pref-height: 40px;
   -fx-font-size: 14px;
   -fx-font-weight: bold;
+}
+
+.load-button {
+  -fx-pref-width: 130px;
+  -fx-pref-height: 20px;
 }

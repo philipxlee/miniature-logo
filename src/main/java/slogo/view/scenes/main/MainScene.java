@@ -3,7 +3,7 @@ package slogo.view.scenes.main;
 import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 import slogo.controller.CommandController;
-import slogo.observer.BackgroundObservable;
+import slogo.observer.ColorObservable;
 import slogo.view.buttons.ControlButtonsBox;
 import slogo.view.scenes.Scene;
 import slogo.view.tabs.SideTabPane;
@@ -13,6 +13,7 @@ import slogo.view.tabs.SideTabPane;
  */
 public class MainScene implements Scene {
 
+  private static final String STYLESHEET_PATH = "slogo/example/view/styles.css";
   private final TurtlePane turtlePane;
   private final InputPane inputPane;
   private final SideTabPane sideTabPane;
@@ -29,7 +30,7 @@ public class MainScene implements Scene {
    */
   public MainScene(int width, int height, CommandController commandController) {
     // initialize panes
-    BackgroundObservable colorObservable = new BackgroundObservable("#e0e0e0");
+    ColorObservable colorObservable = new ColorObservable("#e0e0e0");
     this.turtlePane = new TurtlePane(width, height);
     this.inputPane = new InputPane(height, commandController);
     this.sideTabPane = new SideTabPane();
@@ -67,6 +68,7 @@ public class MainScene implements Scene {
     bottomPane.setRight(sideTabPane);
     root.setBottom(bottomPane);
     this.scene = new javafx.scene.Scene(root, width, height);
+    this.scene.getStylesheets().add(STYLESHEET_PATH);
   }
 
   /**
