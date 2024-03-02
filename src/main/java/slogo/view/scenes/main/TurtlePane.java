@@ -129,16 +129,14 @@ public class TurtlePane implements Observer {
    * @param lineModel to re-render
    */
   private void drawLines(LineModel lineModel) {
-    // remove old lines
-    displayPane.getChildren().removeIf(node -> node instanceof Line);
 
     // display new lines
     double centerX = displayPane.getWidth() / 2.0;
     double centerY = displayPane.getHeight() / 2.0;
+    int lines = lineModel.getAvailableLines();
 
-    Iterator<slogo.model.line.Line> lines = lineModel.iterator();
-    while (lines.hasNext()) {
-      slogo.model.line.Line line = lines.next();
+    while (lines > 0) {
+      slogo.model.line.Line line = lineModel.getLine();
       Line fxLine = new Line();
       fxLine.setStartX(centerX + line.startX());
       fxLine.setStartY(centerY - line.startY());
@@ -146,8 +144,8 @@ public class TurtlePane implements Observer {
       fxLine.setEndY(centerY - line.endY());
       fxLine.setStroke(currentPenColor);
       fxLine.setStrokeWidth(3);  // Consider a thinner line for better accuracy
-
       displayPane.getChildren().add(fxLine);
+      lines -= 1;
     }
     turtleImageView.toFront();  // Ensure the turtle graphic is always on top
   }
