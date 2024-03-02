@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import slogo.controller.SaveButtonController;
 
 /**
@@ -20,8 +21,9 @@ import slogo.controller.SaveButtonController;
 public class CommandHistoryTab implements TabContent {
 
   private VBox content;
+  private VBox historyContainer;
   private ScrollPane scrollPane;
-  private List<String> commandsHistory = new ArrayList<>();
+  private List<String> commandsHistory;
 
   /**
    * Return a node with the command history content.
@@ -32,8 +34,11 @@ public class CommandHistoryTab implements TabContent {
   public Node getContent() {
     this.content = new VBox();
     content.setFillWidth(true);
+    
+    historyContainer = new VBox();
+    historyContainer.setFillWidth(true);
 
-    scrollPane = new ScrollPane(content);
+    scrollPane = new ScrollPane(historyContainer);
     scrollPane.setFitToWidth(true);
     scrollPane.setFitToHeight(true);
 
@@ -41,9 +46,10 @@ public class CommandHistoryTab implements TabContent {
     saveButton.setOnAction(new SaveButtonController(this));
 
     HBox buttonBox = new HBox(saveButton);
+    content.getChildren().add(scrollPane);
     content.getChildren().add(buttonBox);
 
-    return scrollPane;
+    return content;
   }
 
   /**
@@ -54,18 +60,19 @@ public class CommandHistoryTab implements TabContent {
   public void updateContent(Iterator<String> commands) {
     // Temporarily store the commands to add them in reverse order
     List<Node> tempLabels = new ArrayList<>();
+    commandsHistory = new ArrayList<>();
     while (commands.hasNext()) {
-      String command = commands.toString();
-      tempLabels.add(new Label(commands.next()));
-      commandsHistory.add(command);
+      Text commandText = new Text(commands.next());
+      String text = commandText.getText();
+      tempLabels.add(commandText);
+      commandsHistory.add(text);
     }
-
     // Remove current text
-    content.getChildren().clear();
+    historyContainer.getChildren().clear();
 
     // Add all commands in reverse order to the VBox
     Collections.reverse(tempLabels);
-    content.getChildren().addAll(tempLabels);
+    historyContainer.getChildren().addAll(tempLabels);
     scrollPane.setVvalue(1.0);
   }
 
