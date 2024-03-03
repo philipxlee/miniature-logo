@@ -3,10 +3,12 @@ package slogo.view.scenes.start;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import slogo.controller.CommandController;
 import slogo.controller.SceneSwitcher;
+import slogo.controller.ThemeController;
 import slogo.view.scenes.Scene;
 import slogo.view.scenes.main.MainScene;
 
@@ -61,12 +63,12 @@ public class StartScene implements Scene {
     Button startButton = createStartButton(width, height);
     Button loadButton = createLoadButton();
     Button languageButton = createLanguageButton();
-    Button colorSchemeButton = createColorSchemeButton();
+    ComboBox<String> colorSchemeButton = createColorSchemeButton();
 
     parentBox.getChildren()
         .addAll(title, instruction, startButton, loadButton, languageButton, colorSchemeButton);
     this.scene = new javafx.scene.Scene(parentBox, width, height);
-    this.scene.getStylesheets().add(STYLESHEET_PATH);
+    ThemeController.applyTheme(this.scene, ThemeController.getCurrentTheme());
     parentBox.getStyleClass().add("start-scene");
   }
 
@@ -131,11 +133,12 @@ public class StartScene implements Scene {
    *
    * @return the created button
    */
-  private Button createColorSchemeButton() {
-    Button colorSchemeButton = new Button("Select Color Scheme");
-    colorSchemeButton.setPrefSize(BUTTON_WIDTH, BUTTON_HEIGHT);
-    colorSchemeButton.getStyleClass().add(BUTTON_STYLE);
-    return colorSchemeButton;
+  private ComboBox<String> createColorSchemeButton() {
+    ComboBox<String> themeSelector = new ComboBox<>();
+    themeSelector.getItems().addAll("Default", "Dark Mode", "Light Mode", "Duke Mode", "UNC Mode");
+    themeSelector.setValue("Default"); // Set the initial or saved theme
+    themeSelector.setOnAction(event -> ThemeController.applyTheme(scene, themeSelector.getValue()));
+    return themeSelector;
   }
 
 

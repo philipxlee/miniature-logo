@@ -3,6 +3,7 @@ package slogo.view.scenes.main;
 import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 import slogo.controller.CommandController;
+import slogo.controller.ThemeController;
 import slogo.observer.BackgroundObservable;
 import slogo.observer.PenColorObservable;
 import slogo.view.buttons.ControlButtonsBox;
@@ -73,7 +74,7 @@ public class MainScene implements Scene {
     bottomPane.setRight(sideTabPane);
     root.setBottom(bottomPane);
     this.scene = new javafx.scene.Scene(root, width, height);
-    this.scene.getStylesheets().add(STYLESHEET_PATH);
+    ThemeController.applyTheme(this.scene, ThemeController.getCurrentTheme());
   }
 
   /**
