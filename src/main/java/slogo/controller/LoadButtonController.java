@@ -53,6 +53,7 @@ public class LoadButtonController implements EventHandler<ActionEvent> {
           commandsBuilder.append(line).append("\n");
         }
         reader.close();
+//        TODO mqke sure that commands actually are executed as it is now buggy
         String commands = commandsBuilder.toString().trim();
         System.out.println(commands);
         switcher.switchToScene(new MainScene(1000, 700, commandController, commands));
