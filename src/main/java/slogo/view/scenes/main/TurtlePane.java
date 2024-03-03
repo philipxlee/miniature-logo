@@ -1,6 +1,8 @@
 package slogo.view.scenes.main;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -23,6 +25,7 @@ public class TurtlePane implements Observer {
   private static ImageView turtleImageView;
   private final Pane displayPane;
   private Color currentPenColor = Color.BLACK;
+  private final Set<Line> linesDrawn = new HashSet<>();
 
   /**
    * TurtlePane Constructor. Initializes display pane and turtle graphic
@@ -78,6 +81,10 @@ public class TurtlePane implements Observer {
       drawTurtle(turtleModel);
     }
     if (observable instanceof LineModel lineModel) {
+      if (lineModel.getAvailableLines() == 0) {
+        displayPane.getChildren().removeIf(node -> node instanceof Line);
+        linesDrawn.clear();
+      }
       drawLines(lineModel);
     }
   }
@@ -144,6 +151,7 @@ public class TurtlePane implements Observer {
       fxLine.setStroke(currentPenColor);
       fxLine.setStrokeWidth(3);  // Consider a thinner line for better accuracy
       displayPane.getChildren().add(fxLine);
+      linesDrawn.add(fxLine);
       lines -= 1;
     }
     turtleImageView.toFront();  // Ensure the turtle graphic is always on top
