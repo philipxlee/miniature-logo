@@ -4,6 +4,9 @@ import javafx.scene.control.ColorPicker;
 import javafx.scene.paint.Color;
 import slogo.observer.PenColorObservable;
 
+/**
+ * PenColorButton is a ColorPicker that updates a PenColorObservable with the selected color.
+ */
 public class PenColorButton extends ColorPicker {
 
   private final PenColorObservable colorObservable;
@@ -22,10 +25,10 @@ public class PenColorButton extends ColorPicker {
    */
   public void updatePenColorObservable() {
     Color selectedColor = getValue();
-    colorObservable.setColor(toRGBString(selectedColor));
+    colorObservable.setColor(colorToString(selectedColor));
   }
 
-  private String toRGBString(Color color) {
+  private String colorToString(Color color) {
     return String.format("#%02X%02X%02X",
         (int) (color.getRed() * 255),
         (int) (color.getGreen() * 255),
