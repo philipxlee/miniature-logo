@@ -52,6 +52,24 @@ public class MainScene implements Scene {
   }
 
   /**
+   * Second initializer that accepts commands and updates the input pane.
+   *
+   * @param width             width
+   * @param height            height
+   * @param commandController commandController
+   * @param commands          commands to display and run
+   */
+  public MainScene(int width, int height, CommandController commandController, String commands){
+    this(width, height, commandController);
+    inputPane.setInputText(commands);
+    try {
+      commandController.executeCommand(commands);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  /**
    * Initialize the scene.
    *
    * @param width  width
@@ -63,10 +81,7 @@ public class MainScene implements Scene {
     root.setId("Main Scene");
     BorderPane topPane = new BorderPane();
     topPane.setTop(turtlePane.getDisplayPane());
-
-    // Add ControlButtons to the right of the top pane
     topPane.setBottom(controlButtonsBox);
-
     root.setTop(topPane);
     BorderPane bottomPane = new BorderPane();
     bottomPane.setLeft(inputPane.getInputBox());

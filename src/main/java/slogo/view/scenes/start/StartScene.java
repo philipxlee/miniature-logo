@@ -7,6 +7,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import slogo.controller.CommandController;
+import slogo.controller.LoadButtonController;
 import slogo.controller.SceneSwitcher;
 import slogo.controller.ThemeController;
 import slogo.view.scenes.Scene;
@@ -60,7 +61,7 @@ public class StartScene implements Scene {
     instruction.getStyleClass().add("instruction-text");
 
     Button startButton = createStartButton(width, height);
-    Button loadButton = createLoadButton();
+    Button loadButton = createLoadButton(width, height);
     Button languageButton = createLanguageButton();
     ComboBox<String> colorSchemeButton = createColorSchemeButton();
 
@@ -106,12 +107,21 @@ public class StartScene implements Scene {
   /**
    * Create a "Load Session" button.
    *
+   * @param width  width of the button
+   * @param height height of the button
    * @return the created button
    */
-  private Button createLoadButton() {
+  private Button createLoadButton(int width, int height) {
     Button loadButton = new Button("Load Session");
     loadButton.setPrefSize(BUTTON_WIDTH, BUTTON_HEIGHT);
     loadButton.getStyleClass().add(BUTTON_STYLE);
+
+    // Create LoadButtonController instance
+    LoadButtonController loadButtonController = new LoadButtonController(commandController, switcher);
+
+    // Set action for the load button
+    loadButton.setOnAction(loadButtonController);
+
     return loadButton;
   }
 

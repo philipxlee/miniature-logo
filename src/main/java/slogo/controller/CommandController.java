@@ -45,6 +45,15 @@ public class CommandController {
     commandHistoryModel.addCommand(commandString);
   }
 
+//  /**
+//   * Sets the input text in the parser.
+//   *
+//   * @param text the input text to set
+//   */
+//  public void setInputText(String text) {
+//    executeCommand(text);
+//  }
+
   /**
    * Subscribe to updates from the TurtleModel.
    *
