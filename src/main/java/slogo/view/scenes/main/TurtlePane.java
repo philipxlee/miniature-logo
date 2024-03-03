@@ -82,10 +82,20 @@ public class TurtlePane implements Observer {
     }
   }
 
+  /**
+   * Set the background color of the display pane to the color observable.
+   *
+   * @param colorObservable The observable to set the background color to.
+   */
   public void setBackgroundColorObservable(BackgroundObservable colorObservable) {
     colorObservable.addObserver(this);
   }
 
+  /**
+   * Set the pen color observable to the specified observable.
+   *
+   * @param penColorObservable The observable to set the pen color to.
+   */
   public void setPenColorObservable(PenColorObservable penColorObservable) {
     penColorObservable.addObserver(this);
   }
@@ -99,11 +109,7 @@ public class TurtlePane implements Observer {
     return displayPane;
   }
 
-  /**
-   * Re-render turtle.
-   *
-   * @param turtleModel to re-render
-   */
+
   private void drawTurtle(TurtleModel turtleModel) {
     double centerX = displayPane.getWidth() / 2.0;
     double centerY = displayPane.getHeight() / 2.0;
@@ -122,13 +128,7 @@ public class TurtlePane implements Observer {
     turtleImageView.setVisible(turtleModel.getVisible());
   }
 
-  /**
-   * Re-render lines.
-   *
-   * @param lineModel to re-render
-   */
   private void drawLines(LineModel lineModel) {
-
     // display new lines
     double centerX = displayPane.getWidth() / 2.0;
     double centerY = displayPane.getHeight() / 2.0;

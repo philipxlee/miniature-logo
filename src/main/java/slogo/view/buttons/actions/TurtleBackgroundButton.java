@@ -8,6 +8,11 @@ public class TurtleBackgroundButton extends ColorPicker {
 
   private final BackgroundObservable colorObservable;
 
+  /**
+   * Constructs a new TurtleBackgroundButton.
+   *
+   * @param colorObservable the observable to update with the selected color
+   */
   public TurtleBackgroundButton(BackgroundObservable colorObservable) {
     super(Color.BLACK);
     this.colorObservable = colorObservable;
