@@ -6,7 +6,8 @@ import slogo.observer.PenColorObservable;
 
 public class PenColorButton extends ColorPicker {
 
-    private final PenColorObservable colorObservable;
+  private final PenColorObservable colorObservable;
+
   /**
    * Constructs a new PenColorButton.
    */

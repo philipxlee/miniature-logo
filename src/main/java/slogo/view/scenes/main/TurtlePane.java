@@ -1,6 +1,5 @@
 package slogo.view.scenes.main;
 
-import java.util.Iterator;
 import java.util.Objects;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -21,9 +20,9 @@ public class TurtlePane implements Observer {
 
   public static final double RATIO_TURTLE_DISPLAY = 0.5;
   public static final String DEFAULT_TURTLE_IMAGE_PATH = "/default_turtle.png";
-  private Color currentPenColor = Color.BLACK;
   private static ImageView turtleImageView;
   private final Pane displayPane;
+  private Color currentPenColor = Color.BLACK;
 
   /**
    * TurtlePane Constructor. Initializes display pane and turtle graphic

@@ -1,10 +1,7 @@
 package slogo.model.api.data;
 
 import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.Deque;
-import java.util.Iterator;
-import java.util.List;
 import slogo.model.line.Line;
 import slogo.observer.AbstractObservable;
 
