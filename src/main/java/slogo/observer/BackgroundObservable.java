@@ -1,5 +1,8 @@
 package slogo.observer;
 
+/**
+ * BackgroundObservable is an observable that notifies its observers when its color changes.
+ */
 public class BackgroundObservable extends AbstractObservable {
 
   private String color;

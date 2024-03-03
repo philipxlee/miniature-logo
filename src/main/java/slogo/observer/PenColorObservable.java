@@ -1,5 +1,8 @@
 package slogo.observer;
 
+/**
+ * PenColorObservable is an observable that notifies its observers when its color changes.
+ */
 public class PenColorObservable extends AbstractObservable {
 
   private String color;
