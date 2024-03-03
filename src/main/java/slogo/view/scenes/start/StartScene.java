@@ -16,6 +16,7 @@ import slogo.view.scenes.main.MainScene;
 public class StartScene implements Scene {
 
   private static final String STYLESHEET_PATH = "slogo/example/view/styles.css";
+  private static final String BUTTON_STYLE = "button";
   private static final int BUTTON_WIDTH = 135;
   private static final int BUTTON_HEIGHT = 40;
   private final SceneSwitcher switcher;
@@ -97,7 +98,7 @@ public class StartScene implements Scene {
     startButton.setOnAction(
         event -> switcher.switchToScene(new MainScene(width, height, commandController)));
     startButton.setPrefSize(BUTTON_WIDTH, BUTTON_HEIGHT);
-    startButton.getStyleClass().add("button");
+    startButton.getStyleClass().add(BUTTON_STYLE);
     return startButton;
   }
 
@@ -109,7 +110,7 @@ public class StartScene implements Scene {
   private Button createLoadButton() {
     Button loadButton = new Button("Load Session");
     loadButton.setPrefSize(BUTTON_WIDTH, BUTTON_HEIGHT);
-    loadButton.getStyleClass().add("button");
+    loadButton.getStyleClass().add(BUTTON_STYLE);
     return loadButton;
   }
 
@@ -121,7 +122,7 @@ public class StartScene implements Scene {
   private Button createLanguageButton() {
     Button languageButton = new Button("Select Language");
     languageButton.setPrefSize(BUTTON_WIDTH, BUTTON_HEIGHT);
-    languageButton.getStyleClass().add("button");
+    languageButton.getStyleClass().add(BUTTON_STYLE);
     return languageButton;
   }
 
@@ -133,7 +134,7 @@ public class StartScene implements Scene {
   private Button createColorSchemeButton() {
     Button colorSchemeButton = new Button("Select Color Scheme");
     colorSchemeButton.setPrefSize(BUTTON_WIDTH, BUTTON_HEIGHT);
-    colorSchemeButton.getStyleClass().add("button");
+    colorSchemeButton.getStyleClass().add(BUTTON_STYLE);
     return colorSchemeButton;
   }
 

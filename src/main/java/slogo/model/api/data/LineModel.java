@@ -39,7 +39,7 @@ public class LineModel extends AbstractObservable {
   }
 
   /**
-   * Provides an iterator over the Lines
+   * Provides an iterator over the Lines.
    *
    * @return iterator over the Lines
    */
@@ -48,7 +48,7 @@ public class LineModel extends AbstractObservable {
   }
 
   /**
-   * Returns the number of lines available
+   * Returns the number of lines available.
    *
    * @return number of lines available
    */

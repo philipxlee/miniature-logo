@@ -4,6 +4,10 @@ import javafx.scene.control.ColorPicker;
 import javafx.scene.paint.Color;
 import slogo.observer.BackgroundObservable;
 
+/**
+ * TurtleBackgroundButton is a ColorPicker that updates a BackgroundObservable with the selected
+ * color.
+ */
 public class TurtleBackgroundButton extends ColorPicker {
 
   private final BackgroundObservable colorObservable;
@@ -21,10 +25,10 @@ public class TurtleBackgroundButton extends ColorPicker {
 
   private void updateColorObservable() {
     Color selectedColor = getValue();
-    colorObservable.setColor(toRgbString(selectedColor));
+    colorObservable.setColor(colorToString(selectedColor));
   }
 
-  private String toRgbString(Color color) {
+  private String colorToString(Color color) {
     return String.format("#%02X%02X%02X",
         (int) (color.getRed() * 255),
         (int) (color.getGreen() * 255),
