@@ -1,22 +1,22 @@
-/* styles.css */
+/* UNC theme styles.css */
 
 .start-scene {
-  -fx-background-color: linear-gradient(to right, #0000FF, #00FF00);
+  -fx-background-color: linear-gradient(to right, #7BAFD4, #9BC4E2); /* Carolina blue gradients */
 }
 
 .display-pane-background {
-  -fx-background-color: #e0e0e0;
+  -fx-background-color: #f2f2f2;
 }
 
 .title-text {
   -fx-font-size: 40px;
-  -fx-fill: WHITE;
+  -fx-fill: #ffffff;
   -fx-font-weight: bold;
 }
 
 .instruction-text {
   -fx-font-size: 25px;
-  -fx-fill: WHITE;
+  -fx-fill: #ffffff;
 }
 
 .button {
@@ -24,12 +24,16 @@
   -fx-pref-height: 40px;
   -fx-font-size: 14px;
   -fx-font-weight: bold;
+  -fx-background-color: #7BAFD4;
+  -fx-text-fill: #ffffff;
   -fx-alignment: CENTER_LEFT;
 }
 
 .load-button {
   -fx-pref-width: 130px;
   -fx-pref-height: 20px;
+  -fx-background-color: #7BAFD4;
+  -fx-text-fill: #ffffff;
 }
 
 .theme-selector {
@@ -37,4 +41,11 @@
   -fx-pref-height: 40px;
   -fx-font-size: 14px;
   -fx-font-weight: bold;
+  -fx-background-color: #7BAFD4;
+  -fx-text-fill: #ffffff;
+}
+
+.theme-selector .list-cell {
+  -fx-text-fill: #ffffff;
+  -fx-background-color: #7BAFD4;
 }

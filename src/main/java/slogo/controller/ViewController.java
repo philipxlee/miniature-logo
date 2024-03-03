@@ -43,6 +43,7 @@ public class ViewController implements SceneSwitcher {
   @Override
   public void switchToScene(Scene scene) {
     scene.initializeScene(WIDTH, HEIGHT);
+    ThemeController.applyTheme(scene.getScene(), ThemeController.getCurrentTheme());
     stage.setScene(scene.getScene());
   }
 }

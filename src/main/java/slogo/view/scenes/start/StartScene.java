@@ -3,10 +3,12 @@ package slogo.view.scenes.start;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import slogo.controller.CommandController;
 import slogo.controller.SceneSwitcher;
+import slogo.controller.ThemeController;
 import slogo.view.scenes.Scene;
 import slogo.view.scenes.main.MainScene;
 
@@ -15,7 +17,6 @@ import slogo.view.scenes.main.MainScene;
  */
 public class StartScene implements Scene {
 
-  private static final String STYLESHEET_PATH = "slogo/example/view/styles.css";
   private static final String BUTTON_STYLE = "button";
   private static final int BUTTON_WIDTH = 135;
   private static final int BUTTON_HEIGHT = 40;
@@ -61,12 +62,12 @@ public class StartScene implements Scene {
     Button startButton = createStartButton(width, height);
     Button loadButton = createLoadButton();
     Button languageButton = createLanguageButton();
-    Button colorSchemeButton = createColorSchemeButton();
+    ComboBox<String> colorSchemeButton = createColorSchemeButton();
 
     parentBox.getChildren()
         .addAll(title, instruction, startButton, loadButton, languageButton, colorSchemeButton);
     this.scene = new javafx.scene.Scene(parentBox, width, height);
-    this.scene.getStylesheets().add(STYLESHEET_PATH);
+    ThemeController.applyTheme(this.scene, ThemeController.getCurrentTheme());
     parentBox.getStyleClass().add("start-scene");
   }
 
@@ -131,11 +132,18 @@ public class StartScene implements Scene {
    *
    * @return the created button
    */
-  private Button createColorSchemeButton() {
-    Button colorSchemeButton = new Button("Select Color Scheme");
-    colorSchemeButton.setPrefSize(BUTTON_WIDTH, BUTTON_HEIGHT);
-    colorSchemeButton.getStyleClass().add(BUTTON_STYLE);
-    return colorSchemeButton;
+  private ComboBox<String> createColorSchemeButton() {
+    ComboBox<String> themeSelector = new ComboBox<>();
+    themeSelector.getItems()
+        .addAll("Default Theme", "Dark Theme", "Light Theme", "Duke Theme", "UNC Theme");
+    themeSelector.setValue("Default Theme"); // Default theme
+    themeSelector.setOnAction(event -> {
+      String newTheme = themeSelector.getValue();
+      ThemeController.applyTheme(scene, newTheme);
+      themeSelector.setValue(newTheme);
+    });
+    themeSelector.getStyleClass().add("theme-selector");
+    return themeSelector;
   }
 
 
