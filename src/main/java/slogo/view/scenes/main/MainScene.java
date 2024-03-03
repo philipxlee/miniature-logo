@@ -3,7 +3,9 @@ package slogo.view.scenes.main;
 import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 import slogo.controller.CommandController;
+import slogo.controller.ThemeController;
 import slogo.observer.BackgroundObservable;
+import slogo.observer.PenColorObservable;
 import slogo.view.buttons.ControlButtonsBox;
 import slogo.view.scenes.Scene;
 import slogo.view.tabs.SideTabPane;
@@ -13,6 +15,7 @@ import slogo.view.tabs.SideTabPane;
  */
 public class MainScene implements Scene {
 
+  private static final String STYLESHEET_PATH = "slogo/example/view/styles.css";
   private final TurtlePane turtlePane;
   private final InputPane inputPane;
   private final SideTabPane sideTabPane;
@@ -28,18 +31,22 @@ public class MainScene implements Scene {
    * @param commandController commandController
    */
   public MainScene(int width, int height, CommandController commandController) {
-    // initialize panes
+    // initialize observables
     BackgroundObservable colorObservable = new BackgroundObservable("#e0e0e0");
+    PenColorObservable penColorObservable = new PenColorObservable("#000000");
+
+    // initialize panes
     this.turtlePane = new TurtlePane(width, height);
     this.inputPane = new InputPane(height, commandController);
     this.sideTabPane = new SideTabPane();
-    this.controlButtonsBox = new ControlButtonsBox(colorObservable);
+    this.controlButtonsBox = new ControlButtonsBox(colorObservable, penColorObservable);
 
     // subscribe panes to models
     commandController.observeTurtle(turtlePane);
     commandController.observeLines(turtlePane);
     commandController.observeHistory(sideTabPane);
-    turtlePane.setColorObservable(colorObservable);
+    turtlePane.setBackgroundColorObservable(colorObservable);
+    turtlePane.setPenColorObservable(penColorObservable);
 
     // initialize scene
     initializeScene(width, height);
@@ -82,6 +89,7 @@ public class MainScene implements Scene {
     bottomPane.setRight(sideTabPane);
     root.setBottom(bottomPane);
     this.scene = new javafx.scene.Scene(root, width, height);
+    ThemeController.applyTheme(this.scene, ThemeController.getCurrentTheme());
   }
 
   /**

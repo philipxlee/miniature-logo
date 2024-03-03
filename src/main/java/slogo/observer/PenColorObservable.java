@@ -1,15 +1,15 @@
 package slogo.observer;
 
-public class BackgroundObservable extends AbstractObservable {
+public class PenColorObservable extends AbstractObservable {
 
   private String color;
 
   /**
-   * Constructs a new BackgroundObservable.
+   * Constructs a new PenColorObservable.
    *
    * @param initialColor the initial color of the observable
    */
-  public BackgroundObservable(String initialColor) {
+  public PenColorObservable(String initialColor) {
     super();
     this.color = initialColor;
   }

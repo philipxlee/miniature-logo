@@ -1,7 +1,8 @@
 package slogo.view.scenes.main;
 
-import java.util.Iterator;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -12,6 +13,7 @@ import slogo.model.api.data.TurtleModel;
 import slogo.observer.BackgroundObservable;
 import slogo.observer.Observable;
 import slogo.observer.Observer;
+import slogo.observer.PenColorObservable;
 
 /**
  * TurtlePane representing where Turtle is rendered.
@@ -22,6 +24,8 @@ public class TurtlePane implements Observer {
   public static final String DEFAULT_TURTLE_IMAGE_PATH = "/default_turtle.png";
   private static ImageView turtleImageView;
   private final Pane displayPane;
+  private final Set<Line> linesDrawn = new HashSet<>();
+  private Color currentPenColor = Color.BLACK;
 
   /**
    * TurtlePane Constructor. Initializes display pane and turtle graphic
@@ -35,7 +39,7 @@ public class TurtlePane implements Observer {
     // initialize pane
     displayPane = new Pane();
     displayPane.setPrefSize(width, height * RATIO_TURTLE_DISPLAY);
-    displayPane.setStyle("-fx-background-color: #e0e0e0;");
+    displayPane.getStyleClass().add("display-pane-background");
 
     // initialize Turtle graphic
     turtleImageView = new ImageView();
@@ -73,16 +77,38 @@ public class TurtlePane implements Observer {
       displayPane.setStyle("-fx-background-color: " + colorObservable.getColor() + ";");
     }
 
+    if (observable instanceof PenColorObservable penColorObservable) {
+      currentPenColor = Color.web(penColorObservable.getColor());
+    }
+
     if (observable instanceof TurtleModel turtleModel) {
       drawTurtle(turtleModel);
     }
     if (observable instanceof LineModel lineModel) {
+      if (lineModel.getAvailableLines() == 0) {
+        displayPane.getChildren().removeIf(node -> node instanceof Line);
+        linesDrawn.clear();
+      }
       drawLines(lineModel);
     }
   }
 
-  public void setColorObservable(BackgroundObservable colorObservable) {
+  /**
+   * Set the background color of the display pane to the color observable.
+   *
+   * @param colorObservable The observable to set the background color to.
+   */
+  public void setBackgroundColorObservable(BackgroundObservable colorObservable) {
     colorObservable.addObserver(this);
+  }
+
+  /**
+   * Set the pen color observable to the specified observable.
+   *
+   * @param penColorObservable The observable to set the pen color to.
+   */
+  public void setPenColorObservable(PenColorObservable penColorObservable) {
+    penColorObservable.addObserver(this);
   }
 
   /**
@@ -94,11 +120,7 @@ public class TurtlePane implements Observer {
     return displayPane;
   }
 
-  /**
-   * Re-render turtle.
-   *
-   * @param turtleModel to re-render
-   */
+
   private void drawTurtle(TurtleModel turtleModel) {
     System.out.println("drawturtle in turtle pane");
     double centerX = displayPane.getWidth() / 2.0;
@@ -118,32 +140,24 @@ public class TurtlePane implements Observer {
     turtleImageView.setVisible(turtleModel.getVisible());
   }
 
-  /**
-   * Re-render lines.
-   *
-   * @param lineModel to re-render
-   */
   private void drawLines(LineModel lineModel) {
-    // remove old lines
-    System.out.println("drawlines in turtle pane");
-    displayPane.getChildren().removeIf(node -> node instanceof Line);
-
     // display new lines
     double centerX = displayPane.getWidth() / 2.0;
     double centerY = displayPane.getHeight() / 2.0;
+    int lines = lineModel.getAvailableLines();
 
-    Iterator<slogo.model.line.Line> lines = lineModel.iterator();
-    while (lines.hasNext()) {
-      slogo.model.line.Line line = lines.next();
+    while (lines > 0) {
+      slogo.model.line.Line line = lineModel.getLine();
       Line fxLine = new Line();
       fxLine.setStartX(centerX + line.startX());
       fxLine.setStartY(centerY - line.startY());
       fxLine.setEndX(centerX + line.endX());
       fxLine.setEndY(centerY - line.endY());
-      fxLine.setStroke(Color.BLACK);
+      fxLine.setStroke(currentPenColor);
       fxLine.setStrokeWidth(3);  // Consider a thinner line for better accuracy
-
       displayPane.getChildren().add(fxLine);
+      linesDrawn.add(fxLine);
+      lines -= 1;
     }
     turtleImageView.toFront();  // Ensure the turtle graphic is always on top
   }
