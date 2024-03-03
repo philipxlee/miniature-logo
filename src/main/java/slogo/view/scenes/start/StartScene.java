@@ -134,7 +134,8 @@ public class StartScene implements Scene {
    */
   private ComboBox<String> createColorSchemeButton() {
     ComboBox<String> themeSelector = new ComboBox<>();
-    themeSelector.getItems().addAll("Default Theme", "Dark Theme", "Light Theme", "Duke Theme", "UNC Theme");
+    themeSelector.getItems()
+        .addAll("Default Theme", "Dark Theme", "Light Theme", "Duke Theme", "UNC Theme");
     themeSelector.setValue("Default Theme"); // Default theme
     themeSelector.setOnAction(event -> {
       String newTheme = themeSelector.getValue();

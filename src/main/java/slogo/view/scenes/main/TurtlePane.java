@@ -24,8 +24,8 @@ public class TurtlePane implements Observer {
   public static final String DEFAULT_TURTLE_IMAGE_PATH = "/default_turtle.png";
   private static ImageView turtleImageView;
   private final Pane displayPane;
-  private Color currentPenColor = Color.BLACK;
   private final Set<Line> linesDrawn = new HashSet<>();
+  private Color currentPenColor = Color.BLACK;
 
   /**
    * TurtlePane Constructor. Initializes display pane and turtle graphic
