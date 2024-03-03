@@ -17,7 +17,6 @@ import slogo.view.scenes.main.MainScene;
  */
 public class StartScene implements Scene {
 
-  private static final String STYLESHEET_PATH = "slogo/example/view/styles.css";
   private static final String BUTTON_STYLE = "button";
   private static final int BUTTON_WIDTH = 135;
   private static final int BUTTON_HEIGHT = 40;
@@ -136,8 +135,9 @@ public class StartScene implements Scene {
   private ComboBox<String> createColorSchemeButton() {
     ComboBox<String> themeSelector = new ComboBox<>();
     themeSelector.getItems().addAll("Default", "Dark Mode", "Light Mode", "Duke Mode", "UNC Mode");
-    themeSelector.setValue("Default"); // Set the initial or saved theme
+    themeSelector.setValue("Default"); // Default theme
     themeSelector.setOnAction(event -> ThemeController.applyTheme(scene, themeSelector.getValue()));
+    themeSelector.getStyleClass().add("theme-selector");
     return themeSelector;
   }
 
