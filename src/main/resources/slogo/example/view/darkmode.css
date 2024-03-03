@@ -1,22 +1,22 @@
-/* styles.css */
+/* Dark mode styles.css */
 
 .start-scene {
-  -fx-background-color: linear-gradient(to right, #0000FF, #00FF00);
+  -fx-background-color: linear-gradient(to right, #1a1a1a, #333333);
 }
 
 .display-pane-background {
-  -fx-background-color: #e0e0e0;
+  -fx-background-color: #2b2b2b;
 }
 
 .title-text {
   -fx-font-size: 40px;
-  -fx-fill: WHITE;
+  -fx-fill: #e0e0e0;
   -fx-font-weight: bold;
 }
 
 .instruction-text {
   -fx-font-size: 25px;
-  -fx-fill: WHITE;
+  -fx-fill: #cccccc;
 }
 
 .button {
@@ -24,12 +24,16 @@
   -fx-pref-height: 40px;
   -fx-font-size: 14px;
   -fx-font-weight: bold;
+  -fx-background-color: #333333;
+  -fx-text-fill: #e0e0e0;
   -fx-alignment: CENTER_LEFT;
 }
 
 .load-button {
   -fx-pref-width: 130px;
   -fx-pref-height: 20px;
+  -fx-background-color: #333333;
+  -fx-text-fill: #e0e0e0;
 }
 
 .theme-selector {
@@ -37,4 +41,11 @@
   -fx-pref-height: 40px;
   -fx-font-size: 14px;
   -fx-font-weight: bold;
+  -fx-background-color: #333333;
+  -fx-text-fill: #e0e0e0;
+}
+
+.theme-selector .list-cell {
+  -fx-text-fill: #e0e0e0;
+  -fx-background-color: #333333;
 }
