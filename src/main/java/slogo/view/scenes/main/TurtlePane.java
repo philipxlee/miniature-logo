@@ -67,6 +67,7 @@ public class TurtlePane implements Observer {
    */
   @Override
   public void update(Observable observable) {
+    System.out.println("update in turtle pane");
 
     if (observable instanceof BackgroundObservable colorObservable) {
       displayPane.setStyle("-fx-background-color: " + colorObservable.getColor() + ";");
@@ -99,6 +100,7 @@ public class TurtlePane implements Observer {
    * @param turtleModel to re-render
    */
   private void drawTurtle(TurtleModel turtleModel) {
+    System.out.println("drawturtle in turtle pane");
     double centerX = displayPane.getWidth() / 2.0;
     double centerY = displayPane.getHeight() / 2.0;
 
@@ -123,6 +125,7 @@ public class TurtlePane implements Observer {
    */
   private void drawLines(LineModel lineModel) {
     // remove old lines
+    System.out.println("drawlines in turtle pane");
     displayPane.getChildren().removeIf(node -> node instanceof Line);
 
     // display new lines

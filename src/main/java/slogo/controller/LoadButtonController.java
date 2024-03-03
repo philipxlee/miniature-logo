@@ -54,12 +54,10 @@ public class LoadButtonController implements EventHandler<ActionEvent> {
         }
         reader.close();
         String commands = commandsBuilder.toString().trim();
-//        commandController.executeCommand(commands);
+        System.out.println(commands);
         switcher.switchToScene(new MainScene(1000, 700, commandController, commands));
       } catch (IOException e) {
-        e.printStackTrace();
-//      } catch (InvalidCommandException e) {
-//        throw new RuntimeException(e);
+        throw new RuntimeException("File couldn't be loaded");
       }
     }
   }
