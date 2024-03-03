@@ -41,8 +41,6 @@
   -fx-pref-height: 40px;
   -fx-font-size: 14px;
   -fx-font-weight: bold;
-  -fx-background-color: #001A57;
-  -fx-text-fill: #ffffff;
 }
 
 .theme-selector .list-cell {
