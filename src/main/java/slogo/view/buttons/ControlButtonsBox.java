@@ -5,7 +5,8 @@ import java.util.List;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
-import slogo.observer.ColorObservable;
+import slogo.observer.BackgroundObservable;
+import slogo.observer.PenColorObservable;
 import slogo.view.buttons.actions.ButtonTurtleImage;
 import slogo.view.buttons.actions.PenColorButton;
 import slogo.view.buttons.actions.TurtleBackgroundButton;
@@ -16,14 +17,16 @@ import slogo.view.buttons.actions.TurtleBackgroundButton;
 public class ControlButtonsBox extends HBox {
 
   private final List<ButtonAction> buttonActions = new ArrayList<>();
-  private final ColorObservable colorObservable;
+  private final BackgroundObservable colorObservable;
+  private final PenColorObservable penColorObservable;
 
   /**
    * Constructs a new ControlButtonsBox.
    */
-  public ControlButtonsBox(ColorObservable colorObservable) {
+  public ControlButtonsBox(BackgroundObservable colorObservable, PenColorObservable penObservable) {
     super();
     this.colorObservable = colorObservable;
+    this.penColorObservable = penObservable;
     setupLayout();
   }
 
@@ -54,7 +57,7 @@ public class ControlButtonsBox extends HBox {
     this.setPadding(new Insets(10));
     addButton("Load Turtle Image", new ButtonTurtleImage());
     // Button to change the pen color (addButton not used to allow for ColorPicker functionality)
-    PenColorButton penColorButton = new PenColorButton();
+    PenColorButton penColorButton = new PenColorButton(penColorObservable);
     this.getChildren().add(penColorButton);
 
     TurtleBackgroundButton turtleBackgroundButton = new TurtleBackgroundButton(colorObservable);

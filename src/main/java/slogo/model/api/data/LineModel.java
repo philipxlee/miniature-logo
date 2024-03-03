@@ -1,8 +1,7 @@
 package slogo.model.api.data;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.ArrayDeque;
+import java.util.Deque;
 import slogo.model.line.Line;
 import slogo.observer.AbstractObservable;
 
@@ -11,14 +10,14 @@ import slogo.observer.AbstractObservable;
  */
 public class LineModel extends AbstractObservable {
 
-  private final List<Line> lines;
+  private final Deque<Line> lines;
 
   /**
    * LineModel constructor. Initializes observers and line storage.
    */
   public LineModel() {
     super();
-    lines = new ArrayList<>();
+    lines = new ArrayDeque<>();
   }
 
   /**
@@ -42,9 +41,18 @@ public class LineModel extends AbstractObservable {
   /**
    * Provides an iterator over the Lines
    *
-   * @return An Iterator<String> for the lines
+   * @return iterator over the Lines
    */
-  public Iterator<Line> iterator() {
-    return lines.iterator();
+  public Line getLine() {
+    return lines.pop();
+  }
+
+  /**
+   * Returns the number of lines available
+   *
+   * @return number of lines available
+   */
+  public int getAvailableLines() {
+    return lines.size();
   }
 }

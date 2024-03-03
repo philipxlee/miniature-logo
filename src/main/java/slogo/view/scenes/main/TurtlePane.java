@@ -1,6 +1,5 @@
 package slogo.view.scenes.main;
 
-import java.util.Iterator;
 import java.util.Objects;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -9,9 +8,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import slogo.model.api.data.LineModel;
 import slogo.model.api.data.TurtleModel;
-import slogo.observer.ColorObservable;
+import slogo.observer.BackgroundObservable;
 import slogo.observer.Observable;
 import slogo.observer.Observer;
+import slogo.observer.PenColorObservable;
 
 /**
  * TurtlePane representing where Turtle is rendered.
@@ -22,6 +22,7 @@ public class TurtlePane implements Observer {
   public static final String DEFAULT_TURTLE_IMAGE_PATH = "/default_turtle.png";
   private static ImageView turtleImageView;
   private final Pane displayPane;
+  private Color currentPenColor = Color.BLACK;
 
   /**
    * TurtlePane Constructor. Initializes display pane and turtle graphic
@@ -65,8 +66,12 @@ public class TurtlePane implements Observer {
   @Override
   public void update(Observable observable) {
 
-    if (observable instanceof ColorObservable colorObservable) {
+    if (observable instanceof BackgroundObservable colorObservable) {
       displayPane.setStyle("-fx-background-color: " + colorObservable.getColor() + ";");
+    }
+
+    if (observable instanceof PenColorObservable penColorObservable) {
+      currentPenColor = Color.web(penColorObservable.getColor());
     }
 
     if (observable instanceof TurtleModel turtleModel) {
@@ -77,8 +82,22 @@ public class TurtlePane implements Observer {
     }
   }
 
-  public void setColorObservable(ColorObservable colorObservable) {
+  /**
+   * Set the background color of the display pane to the color observable.
+   *
+   * @param colorObservable The observable to set the background color to.
+   */
+  public void setBackgroundColorObservable(BackgroundObservable colorObservable) {
     colorObservable.addObserver(this);
+  }
+
+  /**
+   * Set the pen color observable to the specified observable.
+   *
+   * @param penColorObservable The observable to set the pen color to.
+   */
+  public void setPenColorObservable(PenColorObservable penColorObservable) {
+    penColorObservable.addObserver(this);
   }
 
   /**
@@ -90,11 +109,7 @@ public class TurtlePane implements Observer {
     return displayPane;
   }
 
-  /**
-   * Re-render turtle.
-   *
-   * @param turtleModel to re-render
-   */
+
   private void drawTurtle(TurtleModel turtleModel) {
     double centerX = displayPane.getWidth() / 2.0;
     double centerY = displayPane.getHeight() / 2.0;
@@ -113,31 +128,23 @@ public class TurtlePane implements Observer {
     turtleImageView.setVisible(turtleModel.getVisible());
   }
 
-  /**
-   * Re-render lines.
-   *
-   * @param lineModel to re-render
-   */
   private void drawLines(LineModel lineModel) {
-    // remove old lines
-    displayPane.getChildren().removeIf(node -> node instanceof Line);
-
     // display new lines
     double centerX = displayPane.getWidth() / 2.0;
     double centerY = displayPane.getHeight() / 2.0;
+    int lines = lineModel.getAvailableLines();
 
-    Iterator<slogo.model.line.Line> lines = lineModel.iterator();
-    while (lines.hasNext()) {
-      slogo.model.line.Line line = lines.next();
+    while (lines > 0) {
+      slogo.model.line.Line line = lineModel.getLine();
       Line fxLine = new Line();
       fxLine.setStartX(centerX + line.startX());
       fxLine.setStartY(centerY - line.startY());
       fxLine.setEndX(centerX + line.endX());
       fxLine.setEndY(centerY - line.endY());
-      fxLine.setStroke(Color.BLACK);
+      fxLine.setStroke(currentPenColor);
       fxLine.setStrokeWidth(3);  // Consider a thinner line for better accuracy
-
       displayPane.getChildren().add(fxLine);
+      lines -= 1;
     }
     turtleImageView.toFront();  // Ensure the turtle graphic is always on top
   }
