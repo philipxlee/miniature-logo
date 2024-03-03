@@ -1,9 +1,18 @@
 package slogo.controller;
 
+/**
+ * ThemeController is the controller for the theme of the application.
+ */
 public class ThemeController {
 
   private static String currentTheme = "slogo/example/view/styles.css";
 
+  /**
+   * Apply the theme to the scene.
+   *
+   * @param scene     scene
+   * @param themeName themeName
+   */
   public static void applyTheme(javafx.scene.Scene scene, String themeName) {
     switch (themeName) {
       case "Dark Theme" -> currentTheme = "slogo/example/view/darkmode.css";
@@ -16,6 +25,11 @@ public class ThemeController {
     scene.getStylesheets().add(currentTheme);
   }
 
+  /**
+   * Get the current theme.
+   *
+   * @return current theme
+   */
   public static String getCurrentTheme() {
     return currentTheme;
   }
