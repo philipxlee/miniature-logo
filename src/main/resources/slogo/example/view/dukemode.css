@@ -19,7 +19,7 @@
   -fx-fill: #ffffff;
 }
 
-.button {
+.button-color {
   -fx-pref-width: 140px;
   -fx-pref-height: 40px;
   -fx-font-size: 14px;
@@ -46,4 +46,9 @@
 .theme-selector .list-cell {
   -fx-text-fill: #ffffff;
   -fx-background-color: #001A57;
+}
+
+.command-input {
+  -fx-border-color: linear-gradient(to right, #001A57, #003366);
+  -fx-border-width: 5;
 }

@@ -4,8 +4,14 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import slogo.controller.CommandController;
 import slogo.exceptions.InvalidCommandException;
 import slogo.view.alert.Alert;
@@ -51,6 +57,7 @@ public class InputPane {
     commandInput = new TextArea();
     commandInput.setText(DOLLAR_SIGN); // set initial text to DOLLAR_SIGN
     commandInput.setPromptText("Enter commands here...");
+    commandInput.getStyleClass().add("command-input");
     commandInput.setOnKeyPressed(event -> {
       if (event.getCode() == KeyCode.ENTER && !event.isShiftDown()) {
         String command = commandInput.getText().trim();

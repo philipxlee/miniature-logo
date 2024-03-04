@@ -18,7 +18,7 @@ import slogo.view.scenes.main.MainScene;
  */
 public class StartScene implements Scene {
 
-  private static final String BUTTON_STYLE = "button";
+  private static final String BUTTON_STYLE = "button-color";
   private static final int BUTTON_WIDTH = 135;
   private static final int BUTTON_HEIGHT = 40;
   private final SceneSwitcher switcher;

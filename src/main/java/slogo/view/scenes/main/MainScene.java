@@ -47,7 +47,6 @@ public class MainScene implements Scene {
     turtlePane.setBackgroundColorObservable(colorObservable);
     turtlePane.setPenColorObservable(penColorObservable);
 
-    // initialize scene
     initializeScene(width, height);
   }
 
@@ -88,7 +87,9 @@ public class MainScene implements Scene {
     bottomPane.setRight(sideTabPane);
     root.setBottom(bottomPane);
     this.scene = new javafx.scene.Scene(root, width, height);
+    System.out.println(ThemeController.getCurrentTheme());
     ThemeController.applyTheme(this.scene, ThemeController.getCurrentTheme());
+    System.out.println(scene.getStylesheets());
   }
 
   /**
