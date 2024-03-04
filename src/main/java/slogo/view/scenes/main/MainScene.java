@@ -58,7 +58,7 @@ public class MainScene implements Scene {
    * @param commandController commandController
    * @param commands          commands to display and run
    */
-  public MainScene(int width, int height, CommandController commandController, String commands){
+  public MainScene(int width, int height, CommandController commandController, String commands) {
     this(width, height, commandController);
     inputPane.setInputText(commands);
     try {

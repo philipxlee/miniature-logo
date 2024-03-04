@@ -1,15 +1,10 @@
 package slogo.controller;
 
+import java.io.File;
+import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.stage.FileChooser;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 import slogo.view.tabs.CommandHistoryTab;
 
 /**
@@ -17,7 +12,7 @@ import slogo.view.tabs.CommandHistoryTab;
  */
 public class SaveButtonController implements EventHandler<ActionEvent> {
 
-  private CommandHistoryTab commandHistoryTab;
+  private final CommandHistoryTab commandHistoryTab;
 
   /**
    * Constructor for SaveButtonController.
@@ -34,7 +29,8 @@ public class SaveButtonController implements EventHandler<ActionEvent> {
 
     FileChooser fileChooser = new FileChooser();
     fileChooser.setTitle("Save .slogo File");
-    fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Slogo Files", "*.slogo"));
+    fileChooser.getExtensionFilters()
+        .add(new FileChooser.ExtensionFilter("Slogo Files", "*.slogo"));
     File file = fileChooser.showSaveDialog(null);
 
     if (file != null) {

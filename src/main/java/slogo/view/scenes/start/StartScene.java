@@ -117,7 +117,8 @@ public class StartScene implements Scene {
     loadButton.getStyleClass().add(BUTTON_STYLE);
 
     // Create LoadButtonController instance
-    LoadButtonController loadButtonController = new LoadButtonController(commandController, switcher);
+    LoadButtonController loadButtonController = new LoadButtonController(commandController,
+        switcher);
 
     // Set action for the load button
     loadButton.setOnAction(loadButtonController);
