@@ -4,10 +4,6 @@
   -fx-background-color: linear-gradient(to right, #1a1a1a, #333333);
 }
 
-.display-pane-background {
-  -fx-background-color: #2b2b2b;
-}
-
 .title-text {
   -fx-font-size: 40px;
   -fx-fill: #e0e0e0;
@@ -19,7 +15,7 @@
   -fx-fill: #cccccc;
 }
 
-.button {
+.button-color {
   -fx-pref-width: 140px;
   -fx-pref-height: 40px;
   -fx-font-size: 14px;
@@ -46,4 +42,9 @@
 .theme-selector .list-cell {
   -fx-text-fill: #e0e0e0;
   -fx-background-color: #333333;
+}
+
+.command-input {
+  -fx-border-color: linear-gradient(to right, #1a1a1a, #333333);
+  -fx-border-width: 5;
 }

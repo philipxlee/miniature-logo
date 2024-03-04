@@ -1,16 +1,14 @@
 package slogo.controller;
 
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.stage.FileChooser;
-import slogo.exceptions.InvalidCommandException;
-import slogo.view.scenes.main.MainScene;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.stage.FileChooser;
+import slogo.view.scenes.main.MainScene;
 
 
 /**

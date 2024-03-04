@@ -19,7 +19,7 @@
   -fx-fill: #333333;
 }
 
-.button {
+.button-color {
   -fx-pref-width: 140px;
   -fx-pref-height: 40px;
   -fx-font-size: 14px;
@@ -41,11 +41,14 @@
   -fx-pref-height: 40px;
   -fx-font-size: 14px;
   -fx-font-weight: bold;
-  -fx-background-color: #ffffff;
-  -fx-text-fill: #000000;
 }
 
 .theme-selector .list-cell {
   -fx-text-fill: #000000;
   -fx-background-color: #ffffff;
+}
+
+.command-input {
+  -fx-border-color: linear-gradient(to right, #ffffff, #cccccc);
+  -fx-border-width: 5;
 }

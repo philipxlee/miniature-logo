@@ -18,7 +18,7 @@ import slogo.view.scenes.main.MainScene;
  */
 public class StartScene implements Scene {
 
-  private static final String BUTTON_STYLE = "button";
+  private static final String BUTTON_STYLE = "button-color";
   private static final int BUTTON_WIDTH = 135;
   private static final int BUTTON_HEIGHT = 40;
   private final SceneSwitcher switcher;
@@ -117,7 +117,8 @@ public class StartScene implements Scene {
     loadButton.getStyleClass().add(BUTTON_STYLE);
 
     // Create LoadButtonController instance
-    LoadButtonController loadButtonController = new LoadButtonController(commandController, switcher);
+    LoadButtonController loadButtonController = new LoadButtonController(commandController,
+        switcher);
 
     // Set action for the load button
     loadButton.setOnAction(loadButtonController);

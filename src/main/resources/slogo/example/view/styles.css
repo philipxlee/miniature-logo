@@ -19,7 +19,7 @@
   -fx-fill: WHITE;
 }
 
-.button {
+.button-color {
   -fx-pref-width: 140px;
   -fx-pref-height: 40px;
   -fx-font-size: 14px;
@@ -37,4 +37,9 @@
   -fx-pref-height: 40px;
   -fx-font-size: 14px;
   -fx-font-weight: bold;
+}
+
+.command-input {
+  -fx-border-color: linear-gradient(to right, #0000FF, #00FF00);
+  -fx-border-width: 5;
 }

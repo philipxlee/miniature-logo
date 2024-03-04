@@ -51,6 +51,7 @@ public class InputPane {
     commandInput = new TextArea();
     commandInput.setText(DOLLAR_SIGN); // set initial text to DOLLAR_SIGN
     commandInput.setPromptText("Enter commands here...");
+    commandInput.getStyleClass().add("command-input");
     commandInput.setOnKeyPressed(event -> {
       if (event.getCode() == KeyCode.ENTER && !event.isShiftDown()) {
         String command = commandInput.getText().trim();

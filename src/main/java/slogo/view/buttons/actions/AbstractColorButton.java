@@ -4,8 +4,8 @@ import javafx.scene.control.ColorPicker;
 import javafx.scene.paint.Color;
 
 /**
- * AbstractColorButton provides the common functionality for buttons that use a ColorPicker
- * to select and convert a color to a string.
+ * AbstractColorButton provides the common functionality for buttons that use a ColorPicker to
+ * select and convert a color to a string.
  */
 public abstract class AbstractColorButton extends ColorPicker {
 
