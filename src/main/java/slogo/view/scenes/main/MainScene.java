@@ -55,6 +55,7 @@ public class MainScene implements Scene {
     commandController.observeTurtle(turtlePane);
     commandController.observeLines(turtlePane);
     commandController.observeHistory(sideTabPane);
+    commandController.observeVariables(sideTabPane);
     turtlePane.setBackgroundColorObservable(colorObservable);
     turtlePane.setPenColorObservable(penColorObservable);
 

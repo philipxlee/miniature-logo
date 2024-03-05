@@ -11,6 +11,7 @@ import slogo.controller.ViewController;
 import slogo.model.api.data.CommandHistoryModel;
 import slogo.model.api.data.LineModel;
 import slogo.model.api.data.TurtleModel;
+import slogo.model.api.data.VariablesModel;
 import util.DukeApplicationTest;
 
 public class StartSceneTest extends DukeApplicationTest {
@@ -26,10 +27,11 @@ public class StartSceneTest extends DukeApplicationTest {
     LineModel lineModel = new LineModel();
     TurtleModel turtleModel = new TurtleModel(lineModel);
     CommandHistoryModel commandHistoryModel = new CommandHistoryModel();
+    VariablesModel variablesModel = new VariablesModel();
 
     // initialize controllers
     CommandController commandController = new CommandController(turtleModel, lineModel,
-        commandHistoryModel);
+        commandHistoryModel, variablesModel);
     ViewController viewController = new ViewController(stage, commandController);
     // initialize views (through ViewController)
     viewController.initializeViews();

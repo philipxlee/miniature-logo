@@ -1,9 +1,12 @@
 package slogo.controller;
 
+import java.util.HashMap;
+import java.util.Map;
 import slogo.exceptions.InvalidCommandException;
 import slogo.model.api.command.Command;
 import slogo.model.api.data.CommandHistoryModel;
 import slogo.model.api.data.LineModel;
+import slogo.model.api.data.VariablesModel;
 import slogo.model.api.data.TurtleModel;
 import slogo.model.api.parser.Parser;
 import slogo.observer.Observer;
@@ -17,6 +20,7 @@ public class CommandController {
   private final LineModel lineModel;
   private final CommandHistoryModel commandHistoryModel;
   private final Parser parser;
+  private final VariablesModel variablesModel;
 
   /**
    * CommandController constructor initializes new parser.
@@ -26,11 +30,12 @@ public class CommandController {
    * @param commandHistoryModel Command History Model used for command history
    */
   public CommandController(TurtleModel turtleModel, LineModel lineModel,
-      CommandHistoryModel commandHistoryModel) {
+      CommandHistoryModel commandHistoryModel, VariablesModel variablesModel) {
     this.turtleModel = turtleModel;
     this.lineModel = lineModel;
     this.commandHistoryModel = commandHistoryModel;
     this.parser = new Parser(turtleModel, lineModel);
+    this.variablesModel = variablesModel;
   }
 
   /**
@@ -40,19 +45,40 @@ public class CommandController {
    * @param commandString the command to be executed as a string
    */
   public void executeCommand(String commandString) throws InvalidCommandException {
-    Command command = parser.parseCommand(commandString);
-    command.execute();
-    commandHistoryModel.addCommand(commandString);
+    if (commandString.startsWith("make :")) {
+      defineVariable(commandString);
+    } else {
+      Command command = parser.parseCommand(commandString);
+      command.execute();
+      commandHistoryModel.addCommand(commandString);
+    }
   }
 
-//  /**
-//   * Sets the input text in the parser.
-//   *
-//   * @param text the input text to set
-//   */
-//  public void setInputText(String text) {
-//    executeCommand(text);
-//  }
+  /**
+   * Define a new variable.
+   *
+   * @param commandString the command to define a variable
+   * @throws InvalidCommandException if the command to define a variable is invalid
+   */
+  private void defineVariable(String commandString) throws InvalidCommandException {
+    // Split the commandString into parts to extract variable name and value
+    String[] parts = commandString.trim().split("\\s+");
+    if (parts.length != 3) {
+      throw new InvalidCommandException("Invalid 'make' command");
+    }
+
+    String variable = parts[1];
+    double value;
+    try {
+      value = Double.parseDouble(parts[2]);
+    } catch (NumberFormatException e) {
+      throw new InvalidCommandException("Invalid number format");
+    }
+
+    variablesModel.setVariable(variable, value);
+  }
+
+
 
   /**
    * Subscribe to updates from the TurtleModel.
@@ -80,4 +106,11 @@ public class CommandController {
   public void observeLines(Observer observer) {
     lineModel.addObserver(observer);
   }
+
+  /**
+   * Subscribe to updates from the VariablesModel.
+   *
+   * @param observer that wants to subscribe
+   */
+  public void observeVariables(Observer observer) {variablesModel.addObserver(observer);}
 }

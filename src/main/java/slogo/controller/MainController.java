@@ -6,6 +6,7 @@ import javafx.stage.Stage;
 import slogo.model.api.data.CommandHistoryModel;
 import slogo.model.api.data.LineModel;
 import slogo.model.api.data.TurtleModel;
+import slogo.model.api.data.VariablesModel;
 
 /**
  * MainController initializes modules for application.
@@ -23,10 +24,11 @@ public class MainController extends Application {
     LineModel lineModel = new LineModel();
     TurtleModel turtleModel = new TurtleModel(lineModel);
     CommandHistoryModel commandHistoryModel = new CommandHistoryModel();
+    VariablesModel variablesModel = new VariablesModel();
 
     // initialize controllers
     CommandController commandController = new CommandController(turtleModel, lineModel,
-        commandHistoryModel);
+        commandHistoryModel, variablesModel);
     ViewController viewController = new ViewController(stage, commandController);
 
     // initialize views (through ViewController)

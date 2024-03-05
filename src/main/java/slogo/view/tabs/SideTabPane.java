@@ -5,6 +5,7 @@ import java.util.Map;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import slogo.model.api.data.CommandHistoryModel;
+import slogo.model.api.data.VariablesModel;
 import slogo.observer.Observable;
 import slogo.observer.Observer;
 
@@ -68,6 +69,12 @@ public class SideTabPane extends TabPane implements Observer {
       TabContent tabContent = tabMap.get("Command History");
       if (tabContent instanceof CommandHistoryTab commandHistoryContent) {
         commandHistoryContent.updateContent(commandHistoryModel.iterator());
+      }
+    }
+    if (observable instanceof VariablesModel variablesModel){
+      TabContent tabContent = tabMap.get("User Variables");
+      if (tabContent instanceof UserVariablesTab userVariablesTab){
+        userVariablesTab.updateContent(variablesModel.getAllVariables());
       }
     }
   }
