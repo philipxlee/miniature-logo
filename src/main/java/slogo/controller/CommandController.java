@@ -21,6 +21,7 @@ public class CommandController {
   private final CommandHistoryModel commandHistoryModel;
   private final Parser parser;
   private final VariablesModel variablesModel;
+
   /**
    * CommandController constructor initializes new parser.
    *
@@ -44,10 +45,40 @@ public class CommandController {
    * @param commandString the command to be executed as a string
    */
   public void executeCommand(String commandString) throws InvalidCommandException {
-    Command command = parser.parseCommand(commandString);
-    command.execute();
+    if (commandString.startsWith("make :")) {
+      defineVariable(commandString);
+    } else {
+      Command command = parser.parseCommand(commandString);
+      command.execute();
+      commandHistoryModel.addCommand(commandString);
+    }
+  }
+
+  /**
+   * Define a new variable.
+   *
+   * @param commandString the command to define a variable
+   * @throws InvalidCommandException if the command to define a variable is invalid
+   */
+  private void defineVariable(String commandString) throws InvalidCommandException {
+    // Split the commandString into parts to extract variable name and value
+    String[] parts = commandString.trim().split("\\s+");
+    if (parts.length != 3) {
+      throw new InvalidCommandException("Invalid 'make' command");
+    }
+
+    String variable = parts[1];
+    double value;
+    try {
+      value = Double.parseDouble(parts[2]);
+    } catch (NumberFormatException e) {
+      throw new InvalidCommandException("Invalid number format");
+    }
+
+    variablesModel.setVariable(variable, value);
     commandHistoryModel.addCommand(commandString);
   }
+
 
 
   /**
