@@ -1,5 +1,6 @@
 package slogo.view.scenes.main;
 
+import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 import slogo.controller.CommandController;
@@ -9,7 +10,6 @@ import slogo.observer.PenColorObservable;
 import slogo.view.buttons.ControlButtonsBox;
 import slogo.view.scenes.Scene;
 import slogo.view.tabs.SideTabPane;
-import javafx.application.Platform;
 
 /**
  * MainScene represents the Main SLogo Scene.
@@ -23,10 +23,26 @@ public class MainScene implements Scene {
   private javafx.scene.Scene scene;
   private BorderPane root;
 
+  /**
+   * MainScene Constructor. Initializes the main scene with the given width and height.
+   *
+   * @param width             width
+   * @param height            height
+   * @param commandController commandController
+   */
   public MainScene(int width, int height, CommandController commandController) {
     this(width, height, commandController, null);
   }
 
+  /**
+   * MainScene Constructor. Initializes the main scene with the given width and height and executes
+   * the given commands.
+   *
+   * @param width           width
+   * @param height         height
+   * @param commandController commandController
+   * @param commands      commands
+   */
   public MainScene(int width, int height, CommandController commandController, String commands) {
     BackgroundObservable colorObservable = new BackgroundObservable("#e0e0e0");
     PenColorObservable penColorObservable = new PenColorObservable("#000000");

@@ -1,6 +1,5 @@
 package slogo.view.scenes.main;
 
-import java.sql.SQLOutput;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -39,23 +38,6 @@ public class TurtlePane implements Observer {
     displayPane.setPrefSize(width, height * RATIO_TURTLE_DISPLAY);
     displayPane.getStyleClass().add("display-pane-background");
     initializeTurtle(width, height);
-  }
-
-  private void initializeTurtle(int width, int height) {
-    turtleImageView = new ImageView();
-    turtleImageView.setImage(new Image(Objects.requireNonNull(TurtlePane.class.getResourceAsStream(DEFAULT_TURTLE_IMAGE_PATH))));
-    turtleImageView.setFitWidth(20);
-    turtleImageView.setFitHeight(20);
-
-    // Center the turtle in the pane
-    resetTurtlePosition(width, height);
-    displayPane.getChildren().add(turtleImageView);
-  }
-
-  private void resetTurtlePosition(int width, int height) {
-    // Center the turtle in the pane
-    turtleImageView.setX(width / 2.0 - 10); // Center X
-    turtleImageView.setY(height * RATIO_TURTLE_DISPLAY / 2.0 - 10); // Center Y
   }
 
   /**
@@ -160,6 +142,25 @@ public class TurtlePane implements Observer {
       lines -= 1;
     }
     turtleImageView.toFront();  // Ensure the turtle graphic is always on top
+  }
+
+
+  private void initializeTurtle(int width, int height) {
+    turtleImageView = new ImageView();
+    turtleImageView.setImage(new Image(
+        Objects.requireNonNull(TurtlePane.class.getResourceAsStream(DEFAULT_TURTLE_IMAGE_PATH))));
+    turtleImageView.setFitWidth(20);
+    turtleImageView.setFitHeight(20);
+
+    // Center the turtle in the pane
+    resetTurtlePosition(width, height);
+    displayPane.getChildren().add(turtleImageView);
+  }
+
+  private void resetTurtlePosition(int width, int height) {
+    // Center the turtle in the pane
+    turtleImageView.setX(width / 2.0 - 10); // Center X
+    turtleImageView.setY(height * RATIO_TURTLE_DISPLAY / 2.0 - 10); // Center Y
   }
 
 }

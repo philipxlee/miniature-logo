@@ -48,9 +48,9 @@ public class InputPane {
   }
 
   /**
-      * Executes the given command.
-      *
-      * @param command the command to execute
+   * Executes the given command.
+   *
+   * @param command the command to execute
    */
   public void executeCommand(String command, CommandController commandController) {
     if (!command.isEmpty()) {
