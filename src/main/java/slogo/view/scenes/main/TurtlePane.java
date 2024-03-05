@@ -34,8 +34,6 @@ public class TurtlePane implements Observer {
    * @param height height of display
    */
   public TurtlePane(int width, int height) {
-    System.out.println(width);
-    System.out.println(height);
     // initialize pane
     displayPane = new Pane();
     displayPane.setPrefSize(width, height * RATIO_TURTLE_DISPLAY);
@@ -51,7 +49,6 @@ public class TurtlePane implements Observer {
     turtleImageView.setFitHeight(20);
     turtleImageView.setX(width / 2.0 - 10); // Center X
     turtleImageView.setY(height * RATIO_TURTLE_DISPLAY / 2.0 - 10); // Center Y
-    System.out.println(turtleImageView.getX());
     displayPane.getChildren().add(turtleImageView);
   }
 
@@ -71,7 +68,6 @@ public class TurtlePane implements Observer {
    */
   @Override
   public void update(Observable observable) {
-    System.out.println("update in turtle pane");
 
     if (observable instanceof BackgroundObservable colorObservable) {
       displayPane.setStyle("-fx-background-color: " + colorObservable.getColor() + ";");
@@ -122,7 +118,6 @@ public class TurtlePane implements Observer {
 
 
   private void drawTurtle(TurtleModel turtleModel) {
-    System.out.println("drawturtle in turtle pane");
     double centerX = displayPane.getWidth() / 2.0;
     double centerY = displayPane.getHeight() / 2.0;
 
