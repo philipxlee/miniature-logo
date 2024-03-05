@@ -34,22 +34,10 @@ public class TurtlePane implements Observer {
    * @param height height of display
    */
   public TurtlePane(int width, int height) {
-    // initialize pane
     displayPane = new Pane();
     displayPane.setPrefSize(width, height * RATIO_TURTLE_DISPLAY);
     displayPane.getStyleClass().add("display-pane-background");
-
-    // initialize Turtle graphic
-    turtleImageView = new ImageView();
-    turtleImageView.setImage(
-        new Image(
-            Objects.requireNonNull(
-                TurtlePane.class.getResourceAsStream(DEFAULT_TURTLE_IMAGE_PATH))));
-    turtleImageView.setFitWidth(20);
-    turtleImageView.setFitHeight(20);
-    turtleImageView.setX(width / 2.0 - 10); // Center X
-    turtleImageView.setY(height * RATIO_TURTLE_DISPLAY / 2.0 - 10); // Center Y
-    displayPane.getChildren().add(turtleImageView);
+    initializeTurtle(width, height);
   }
 
   /**
@@ -126,7 +114,6 @@ public class TurtlePane implements Observer {
     double offsetY = (turtleModel.getPositionY() + turtleImageView.getFitHeight() / 2.0);
     double turtleCenterX = centerX + offsetX;
     double turtleCenterY = centerY - offsetY;
-
     turtleImageView.setX(turtleCenterX);
     turtleImageView.setY(turtleCenterY);
     turtleImageView.setRotate(-turtleModel.getOrientation());
@@ -155,6 +142,25 @@ public class TurtlePane implements Observer {
       lines -= 1;
     }
     turtleImageView.toFront();  // Ensure the turtle graphic is always on top
+  }
+
+
+  private void initializeTurtle(int width, int height) {
+    turtleImageView = new ImageView();
+    turtleImageView.setImage(new Image(
+        Objects.requireNonNull(TurtlePane.class.getResourceAsStream(DEFAULT_TURTLE_IMAGE_PATH))));
+    turtleImageView.setFitWidth(20);
+    turtleImageView.setFitHeight(20);
+
+    // Center the turtle in the pane
+    resetTurtlePosition(width, height);
+    displayPane.getChildren().add(turtleImageView);
+  }
+
+  private void resetTurtlePosition(int width, int height) {
+    // Center the turtle in the pane
+    turtleImageView.setX(width / 2.0 - 10); // Center X
+    turtleImageView.setY(height * RATIO_TURTLE_DISPLAY / 2.0 - 10); // Center Y
   }
 
 }
