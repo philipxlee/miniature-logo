@@ -76,7 +76,6 @@ public class CommandController {
     }
 
     variablesModel.setVariable(variable, value);
-    commandHistoryModel.addCommand(commandString);
   }
 
 
