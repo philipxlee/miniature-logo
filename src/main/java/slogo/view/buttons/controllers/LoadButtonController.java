@@ -1,4 +1,4 @@
-package slogo.controller;
+package slogo.view.buttons.controllers;
 
 
 import java.io.BufferedReader;
@@ -8,6 +8,10 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.FileChooser;
+import slogo.controller.CommandController;
+import slogo.controller.SceneSwitcher;
+import slogo.exceptions.InvalidCommandException;
+import slogo.view.alert.Alert;
 import slogo.view.scenes.main.MainScene;
 
 
@@ -53,10 +57,12 @@ public class LoadButtonController implements EventHandler<ActionEvent> {
         reader.close();
 //        TODO mqke sure that commands actually are executed as it is now buggy
         String commands = commandsBuilder.toString().trim();
-        System.out.println(commands);
         switcher.switchToScene(new MainScene(1000, 700, commandController, commands));
+
       } catch (IOException e) {
         throw new RuntimeException("File couldn't be loaded");
+//      } catch (InvalidCommandException e) {
+//        Alert.showError("Invalid Command", "Please enter a valid command.");
       }
     }
   }

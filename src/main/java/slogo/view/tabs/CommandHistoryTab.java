@@ -10,7 +10,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import slogo.controller.SaveButtonController;
+import slogo.view.buttons.controllers.SaveButtonController;
 
 /**
  * CommandHistoryTab is the tab for command history.
