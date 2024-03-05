@@ -136,7 +136,7 @@ public class TurtlePane implements Observer {
       fxLine.setEndX(centerX + line.endX());
       fxLine.setEndY(centerY - line.endY());
       fxLine.setStroke(currentPenColor);
-      fxLine.setStrokeWidth(3);  // Consider a thinner line for better accuracy
+      fxLine.setStrokeWidth(3);
       displayPane.getChildren().add(fxLine);
       linesDrawn.add(fxLine);
       lines -= 1;
