@@ -10,6 +10,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import slogo.view.buttons.controllers.LoadButtonController;
 import slogo.view.buttons.controllers.SaveButtonController;
 
 /**
@@ -39,10 +40,12 @@ public class CommandHistoryTab implements TabContent {
     scrollPane.setFitToWidth(true);
     scrollPane.setFitToHeight(true);
 
-    Button saveButton = new Button("Save");
-    saveButton.setOnAction(new SaveButtonController(this));
+    Button saveFileButton = new Button("Save File");
+    saveFileButton.setOnAction(new SaveButtonController(this));
+    Button loadFileButton = new Button("Load File");
 
-    HBox buttonBox = new HBox(saveButton);
+    HBox buttonBox = new HBox();
+    buttonBox.getChildren().addAll(saveFileButton, loadFileButton);
     content.getChildren().add(scrollPane);
     content.getChildren().add(buttonBox);
 
