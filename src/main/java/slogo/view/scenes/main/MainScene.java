@@ -61,10 +61,13 @@ public class MainScene implements Scene {
   public MainScene(int width, int height, CommandController commandController, String commands) {
     this(width, height, commandController);
     inputPane.setInputText(commands);
-    try {
-      commandController.executeCommand(commands);
-    } catch (Exception e) {
-      e.printStackTrace();
+//    String rightCommand = "fd " + width/ 2;
+//    inputPane.executeCommand(rightCommand, commandController);
+
+    // Split the commands by newline and execute each command
+    String[] commandLines = commands.split("\n");
+    for (String command : commandLines) {
+      inputPane.executeCommand(command, commandController);
     }
   }
 

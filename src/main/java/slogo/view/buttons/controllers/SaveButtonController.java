@@ -1,10 +1,11 @@
-package slogo.controller;
+package slogo.view.buttons.controllers;
 
 import java.io.File;
 import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.FileChooser;
+import slogo.controller.SlogoFileHandler;
 import slogo.view.tabs.CommandHistoryTab;
 
 /**

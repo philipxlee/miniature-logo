@@ -7,7 +7,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import slogo.controller.CommandController;
-import slogo.controller.LoadButtonController;
+import slogo.view.buttons.controllers.LoadButtonController;
 import slogo.controller.SceneSwitcher;
 import slogo.controller.ThemeController;
 import slogo.view.scenes.Scene;
