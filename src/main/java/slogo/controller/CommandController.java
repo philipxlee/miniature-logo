@@ -1,5 +1,7 @@
 package slogo.controller;
 
+import java.util.HashMap;
+import java.util.Map;
 import slogo.exceptions.InvalidCommandException;
 import slogo.model.api.command.Command;
 import slogo.model.api.data.CommandHistoryModel;
@@ -17,6 +19,7 @@ public class CommandController {
   private final LineModel lineModel;
   private final CommandHistoryModel commandHistoryModel;
   private final Parser parser;
+  private Map<String, Double> variables;
 
   /**
    * CommandController constructor initializes new parser.
@@ -31,6 +34,7 @@ public class CommandController {
     this.lineModel = lineModel;
     this.commandHistoryModel = commandHistoryModel;
     this.parser = new Parser(turtleModel, lineModel);
+    this.variables = new HashMap<>();
   }
 
   /**
@@ -45,14 +49,6 @@ public class CommandController {
     commandHistoryModel.addCommand(commandString);
   }
 
-//  /**
-//   * Sets the input text in the parser.
-//   *
-//   * @param text the input text to set
-//   */
-//  public void setInputText(String text) {
-//    executeCommand(text);
-//  }
 
   /**
    * Subscribe to updates from the TurtleModel.
