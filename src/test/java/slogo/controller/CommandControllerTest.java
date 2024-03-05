@@ -12,6 +12,7 @@ import slogo.exceptions.InvalidCommandException;
 import slogo.model.api.data.CommandHistoryModel;
 import slogo.model.api.data.LineModel;
 import slogo.model.api.data.TurtleModel;
+import slogo.model.api.data.VariablesModel;
 import slogo.view.scenes.main.TurtlePane;
 
 
@@ -32,8 +33,9 @@ public class CommandControllerTest {
       LineModel lineModel = new LineModel();
       TurtleModel turtleModel = new TurtleModel(lineModel);
       CommandHistoryModel commandHistoryModel = new CommandHistoryModel();
+      VariablesModel variablesModel = new VariablesModel();
       CommandController commandController = new CommandController(turtleModel, lineModel,
-          commandHistoryModel);
+          commandHistoryModel, variablesModel);
       commandController.executeCommand("fd 50");
       commandController.executeCommand("rt 90");
       assertAll(
@@ -47,8 +49,9 @@ public class CommandControllerTest {
       LineModel lineModel = new LineModel();
       TurtleModel turtleModel = new TurtleModel(lineModel);
       CommandHistoryModel commandHistoryModel = new CommandHistoryModel();
+      VariablesModel variablesModel = new VariablesModel();
       CommandController commandController = new CommandController(turtleModel, lineModel,
-          commandHistoryModel);
+          commandHistoryModel, variablesModel);
       commandController.executeCommand("fd 50");
       commandController.executeCommand("fd 100");
       commandController.executeCommand("rt 90");
@@ -66,8 +69,9 @@ public class CommandControllerTest {
       LineModel lineModel = new LineModel();
       TurtleModel turtleModel = new TurtleModel(lineModel);
       CommandHistoryModel commandHistoryModel = new CommandHistoryModel();
+      VariablesModel variablesModel = new VariablesModel();
       CommandController commandController = new CommandController(turtleModel, lineModel,
-          commandHistoryModel);
+          commandHistoryModel, variablesModel);
       TurtlePane turtlePane = new TurtlePane(200, 200);
       commandController.observeTurtle(turtlePane);
       commandController.observeLines(turtlePane);

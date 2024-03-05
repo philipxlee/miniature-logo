@@ -6,6 +6,7 @@ import slogo.exceptions.InvalidCommandException;
 import slogo.model.api.command.Command;
 import slogo.model.api.data.CommandHistoryModel;
 import slogo.model.api.data.LineModel;
+import slogo.model.api.data.VariablesModel;
 import slogo.model.api.data.TurtleModel;
 import slogo.model.api.parser.Parser;
 import slogo.observer.Observer;
@@ -19,8 +20,7 @@ public class CommandController {
   private final LineModel lineModel;
   private final CommandHistoryModel commandHistoryModel;
   private final Parser parser;
-  private Map<String, Double> variables;
-
+  private final VariablesModel variablesModel;
   /**
    * CommandController constructor initializes new parser.
    *
@@ -29,12 +29,12 @@ public class CommandController {
    * @param commandHistoryModel Command History Model used for command history
    */
   public CommandController(TurtleModel turtleModel, LineModel lineModel,
-      CommandHistoryModel commandHistoryModel) {
+      CommandHistoryModel commandHistoryModel, VariablesModel variablesModel) {
     this.turtleModel = turtleModel;
     this.lineModel = lineModel;
     this.commandHistoryModel = commandHistoryModel;
     this.parser = new Parser(turtleModel, lineModel);
-    this.variables = new HashMap<>();
+    this.variablesModel = variablesModel;
   }
 
   /**
@@ -76,4 +76,11 @@ public class CommandController {
   public void observeLines(Observer observer) {
     lineModel.addObserver(observer);
   }
+
+  /**
+   * Subscribe to updates from the VariablesModel.
+   *
+   * @param observer that wants to subscribe
+   */
+  public void observeVariables(Observer observer) {variablesModel.addObserver(observer);}
 }
