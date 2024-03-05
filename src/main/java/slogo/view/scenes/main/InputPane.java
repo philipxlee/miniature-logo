@@ -74,7 +74,8 @@ public class InputPane {
       if (event.getCode() == KeyCode.ENTER && !event.isShiftDown()) {
         String command = commandInput.getText().trim();
         // remove DOLLAR_SIGN from the start of the command
-        command = command.startsWith(DOLLAR_SIGN) ? command.substring(DOLLAR_SIGN.length()) : command;
+        int dollar_length = DOLLAR_SIGN.length();
+        command = command.startsWith(DOLLAR_SIGN) ? command.substring(dollar_length) : command;
         executeCommand(command, commandController);
         event.consume();
       }
