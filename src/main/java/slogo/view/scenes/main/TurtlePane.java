@@ -5,6 +5,7 @@ import java.util.Objects;
 import java.util.Set;
 import javafx.animation.Animation;
 import javafx.animation.PathTransition;
+import javafx.animation.RotateTransition;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -114,14 +115,22 @@ public class TurtlePane implements Observer {
     boolean hasMoved = turtleModel.getPositionX() != turtleModel.getPrevX() ||
         turtleModel.getPositionY() != turtleModel.getPrevY();
 
+    // check if turtle has rotated
+    boolean hasRotated = turtleModel.getOrientation() != turtleModel.getPrevOrientation();
+
     // if the turtle has moved, create and play a movement animation
     if (hasMoved) {
       Animation moveAnimation = createMovementAnimation(turtleModel);
       moveAnimation.play();
     }
 
+    // if the turtle has rotated, create and play a rotation animation
+    if (hasRotated) {
+      Animation rotateAnimation = createRotationAnimation(turtleModel);
+      rotateAnimation.play();
+    }
+
     // set visibility of turtle graphic
-    turtleImageView.setRotate(-turtleModel.getOrientation());
     turtleImageView.setVisible(turtleModel.getVisible());
   }
 
@@ -183,4 +192,14 @@ public class TurtlePane implements Observer {
 
     return pathTransition;
   }
+
+  private Animation createRotationAnimation(TurtleModel turtleModel) {
+    RotateTransition rotateTransition = new RotateTransition();
+    rotateTransition.setDuration(Duration.seconds(1));
+    rotateTransition.setByAngle(-turtleModel.getOrientation() + turtleModel.getPrevOrientation());
+    rotateTransition.setNode(turtleImageView);
+
+    return rotateTransition;
+  }
+
 }

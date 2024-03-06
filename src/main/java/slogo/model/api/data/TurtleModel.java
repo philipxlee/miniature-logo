@@ -47,6 +47,9 @@ public class TurtleModel extends AbstractObservable {
     prevX = positionX;
     prevY = positionY;
 
+    // update angle
+    prevOrientation = orientation;
+
     // update X and Y position
     positionX += deltaX;
     positionY += deltaY;
