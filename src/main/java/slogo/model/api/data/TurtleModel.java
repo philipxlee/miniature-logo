@@ -100,6 +100,10 @@ public class TurtleModel extends AbstractObservable {
    * @param newY is new Y position
    */
   public double setLocation(double newX, double newY) {
+    // update previous position
+    prevX = positionX;
+    prevY = positionY;
+
     double distance = Math.sqrt(Math.pow(newX - positionX, 2) + Math.pow(newY - positionY, 2));
     positionX = newX;
     positionY = newY;
@@ -114,13 +118,17 @@ public class TurtleModel extends AbstractObservable {
    * @return The absolute difference between the new and old heading.
    */
   public double setHeading(double degrees) {
-    double oldOrientation = orientation;
+    // update previous position
+    prevX = positionX;
+    prevY = positionY;
+
+    prevOrientation = orientation;
     orientation = degrees % 360;
     if (orientation < 0) {
       orientation += 360;
     }
     notifyObservers();
-    double angleDifference = Math.abs(orientation - oldOrientation);
+    double angleDifference = Math.abs(orientation - prevOrientation);
     angleDifference = angleDifference > 180 ? 360 - angleDifference : angleDifference;
     return angleDifference;
   }
