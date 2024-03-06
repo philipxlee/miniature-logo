@@ -1,13 +1,11 @@
 package slogo.controller;
 
-import java.util.HashMap;
-import java.util.Map;
 import slogo.exceptions.InvalidCommandException;
 import slogo.model.api.command.Command;
 import slogo.model.api.data.CommandHistoryModel;
 import slogo.model.api.data.LineModel;
-import slogo.model.api.data.VariablesModel;
 import slogo.model.api.data.TurtleModel;
+import slogo.model.api.data.VariablesModel;
 import slogo.model.api.parser.Parser;
 import slogo.observer.Observer;
 
@@ -78,8 +76,6 @@ public class CommandController {
     variablesModel.setVariable(variable, value);
   }
 
-
-
   /**
    * Subscribe to updates from the TurtleModel.
    *
@@ -112,5 +108,7 @@ public class CommandController {
    *
    * @param observer that wants to subscribe
    */
-  public void observeVariables(Observer observer) {variablesModel.addObserver(observer);}
+  public void observeVariables(Observer observer) {
+    variablesModel.addObserver(observer);
+  }
 }

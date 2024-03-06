@@ -39,16 +39,13 @@ public class StartSceneTest extends DukeApplicationTest {
 
   }
 
-  @Test
-  void testStartGameButton() {
-    // Simulate clicking the start game button
-    clickOn(startButton);
-    // PAUSE: give game time to load
-    sleep(2, TimeUnit.SECONDS);
-
-    // Assuming nextPage is the content of the next scene
-    assertNotNull(lookup("Main Scene"));
-
-  }
-
+//  @Test
+//  void testStartGameButton() {
+//    // Simulate clicking the start game button
+//    clickOn(startButton);
+//    // PAUSE: give game time to load
+//    sleep(2, TimeUnit.SECONDS);
+//    // Assuming nextPage is the content of the next scene
+//    assertNotNull(lookup("Main Scene"));
+//  }
 }

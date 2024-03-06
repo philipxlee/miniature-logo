@@ -1,6 +1,6 @@
 package slogo.model.api.data;
 
-import slogo.model.line.Line;
+import slogo.model.api.line.Line;
 import slogo.observer.AbstractObservable;
 
 /**

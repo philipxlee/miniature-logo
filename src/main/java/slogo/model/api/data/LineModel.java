@@ -2,7 +2,8 @@ package slogo.model.api.data;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
-import slogo.model.line.Line;
+import java.util.Iterator;
+import slogo.model.api.line.Line;
 import slogo.observer.AbstractObservable;
 
 /**
@@ -36,6 +37,15 @@ public class LineModel extends AbstractObservable {
   public void clearLines() {
     lines.clear();
     notifyObservers();
+  }
+
+  /**
+   * Returns an iterator on the lines.
+   *
+   * @return Iterator<Line> object.ÏÏÏÏ
+   */
+  public Iterator<Line> iterator() {
+    return lines.iterator();
   }
 
   /**

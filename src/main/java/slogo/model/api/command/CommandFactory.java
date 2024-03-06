@@ -60,7 +60,6 @@ public class CommandFactory {
       case "goto" -> new SetLocationCommand(turtleModel, args[0], args[1]);
       case "home" -> new SetLocationCommand(turtleModel, 0, 0);
       case "cs" -> new ClearScreenCommand(turtleModel, lineModel);
-//      case "make" -> new MakeVariableCommand();
       default -> throw new InvalidCommandException("Invalid Command String: " + commandString);
     };
   }

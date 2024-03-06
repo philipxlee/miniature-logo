@@ -129,7 +129,7 @@ public class TurtlePane implements Observer {
     int lines = lineModel.getAvailableLines();
 
     while (lines > 0) {
-      slogo.model.line.Line line = lineModel.getLine();
+      slogo.model.api.line.Line line = lineModel.getLine();
       Line fxLine = new Line();
       fxLine.setStartX(centerX + line.startX());
       fxLine.setStartY(centerY - line.startY());
