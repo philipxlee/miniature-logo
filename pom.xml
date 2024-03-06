@@ -30,10 +30,45 @@
           <violationSeverity>error</violationSeverity>
         </configuration>
         <dependencies>
+          <!-- Add JavaFX dependencies -->
           <dependency>
-            <artifactId>checkstyle</artifactId>
-            <groupId>com.puppycrawl.tools</groupId>
-            <version>10.7.0</version>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>17</version> <!-- Update the version to match your JavaFX version -->
+          </dependency>
+          <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>17</version> <!-- Update the version to match your JavaFX version -->
+          </dependency>
+          <!-- Add other dependencies -->
+          <!-- framework for writing repeatable tests by using assertions about your code's values -->
+          <dependency>
+            <artifactId>junit-jupiter</artifactId>
+            <groupId>org.junit.jupiter</groupId>
+            <scope>test</scope>
+            <version>5.9.2</version>
+          </dependency>
+          <!-- allow parameterized tests to more concisely check several values -->
+          <dependency>
+            <artifactId>junit-jupiter-params</artifactId>
+            <groupId>org.junit.jupiter</groupId>
+            <scope>test</scope>
+            <version>5.9.2</version>
+          </dependency>
+          <!-- provides testing for JavaFX by simulating user interactions and checking using JUnit assertions -->
+          <dependency>
+            <artifactId>testfx-junit5</artifactId>
+            <groupId>org.testfx</groupId>
+            <scope>test</scope>
+            <version>4.0.18</version>
+          </dependency>
+          <!-- allows javafx testing without seeing tests run -->
+          <dependency>
+            <artifactId>openjfx-monocle</artifactId>
+            <groupId>org.testfx</groupId>
+            <scope>test</scope>
+            <version>17.0.10</version>
           </dependency>
         </dependencies>
         <executions>
@@ -184,6 +219,16 @@
       <groupId>org.testfx</groupId>
       <scope>test</scope>
       <version>17.0.10</version>
+    </dependency>
+    <dependency>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx-graphics</artifactId>
+      <version>17</version>
+    </dependency>
+    <dependency>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx-controls</artifactId>
+      <version>17</version>
     </dependency>
   </dependencies>
   <groupId>CompSci308_2023Spring</groupId>
