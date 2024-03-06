@@ -3,11 +3,17 @@ package slogo.view.scenes.main;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import javafx.animation.Animation;
+import javafx.animation.PathTransition;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.LineTo;
+import javafx.scene.shape.MoveTo;
+import javafx.scene.shape.Path;
+import javafx.util.Duration;
 import slogo.model.api.data.LineModel;
 import slogo.model.api.data.TurtleModel;
 import slogo.observer.BackgroundObservable;
@@ -56,7 +62,6 @@ public class TurtlePane implements Observer {
    */
   @Override
   public void update(Observable observable) {
-
     if (observable instanceof BackgroundObservable colorObservable) {
       displayPane.setStyle("-fx-background-color: " + colorObservable.getColor() + ";");
     }
@@ -104,21 +109,19 @@ public class TurtlePane implements Observer {
     return displayPane;
   }
 
-
   private void drawTurtle(TurtleModel turtleModel) {
-    double centerX = displayPane.getWidth() / 2.0;
-    double centerY = displayPane.getHeight() / 2.0;
+    // check if turtle has moved
+    boolean hasMoved = turtleModel.getPositionX() != turtleModel.getPrevX() ||
+        turtleModel.getPositionY() != turtleModel.getPrevY();
 
-    // Update the turtle's graphic position to its center
-    double offsetX = (turtleModel.getPositionX() - turtleImageView.getFitWidth() / 2.0);
-    double offsetY = (turtleModel.getPositionY() + turtleImageView.getFitHeight() / 2.0);
-    double turtleCenterX = centerX + offsetX;
-    double turtleCenterY = centerY - offsetY;
-    turtleImageView.setX(turtleCenterX);
-    turtleImageView.setY(turtleCenterY);
-    turtleImageView.setRotate(-turtleModel.getOrientation());
+    // if the turtle has moved, create and play a movement animation
+    if (hasMoved) {
+      Animation moveAnimation = createMovementAnimation(turtleModel);
+      moveAnimation.play();
+    }
 
     // set visibility of turtle graphic
+    turtleImageView.setRotate(-turtleModel.getOrientation());
     turtleImageView.setVisible(turtleModel.getVisible());
   }
 
@@ -163,4 +166,21 @@ public class TurtlePane implements Observer {
     turtleImageView.setY(height * RATIO_TURTLE_DISPLAY / 2.0 - 10); // Center Y
   }
 
+  private Animation createMovementAnimation(TurtleModel turtleModel) {
+    double centerX = displayPane.getWidth() / 2.0;
+    double centerY = displayPane.getHeight() / 2.0;
+
+    Path path = new Path();
+    path.getElements().add(new MoveTo(centerX + turtleModel.getPrevX(),
+        centerY - turtleModel.getPrevY())); // Starting position
+    path.getElements().add(new LineTo(centerX + turtleModel.getPositionX(),
+        centerY - turtleModel.getPositionY())); // Ending position
+
+    PathTransition pathTransition = new PathTransition();
+    pathTransition.setDuration(Duration.seconds(1));
+    pathTransition.setPath(path);
+    pathTransition.setNode(turtleImageView);
+
+    return pathTransition;
+  }
 }
