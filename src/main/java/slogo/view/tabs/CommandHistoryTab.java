@@ -24,7 +24,7 @@ public class CommandHistoryTab implements TabContent {
   private VBox historyContainer;
   private ScrollPane scrollPane;
   private List<String> commandsHistory;
-  private CommandController commandController;
+  private final CommandController commandController;
 
 
   public CommandHistoryTab(CommandController commandController) {
@@ -52,7 +52,6 @@ public class CommandHistoryTab implements TabContent {
     saveFileButton.setOnAction(new SaveFile(this));
     Button loadFileButton = new Button("Load File");
     loadFileButton.setOnAction(new ConsoleLoadFile(commandController));
-
 
     HBox buttonBox = new HBox();
     buttonBox.getChildren().addAll(saveFileButton, loadFileButton);

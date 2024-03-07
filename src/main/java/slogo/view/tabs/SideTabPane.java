@@ -16,7 +16,7 @@ import slogo.observer.Observer;
 public class SideTabPane extends TabPane implements Observer {
 
   private Map<String, TabContent> tabMap;
-  private CommandController commandController;
+  private final CommandController commandController;
 
   /**
    * SideTabPane constructor.
@@ -74,9 +74,9 @@ public class SideTabPane extends TabPane implements Observer {
         commandHistoryContent.updateContent(commandHistoryModel.iterator());
       }
     }
-    if (observable instanceof VariablesModel variablesModel){
+    if (observable instanceof VariablesModel variablesModel) {
       TabContent tabContent = tabMap.get("User Variables");
-      if (tabContent instanceof UserVariablesTab userVariablesTab){
+      if (tabContent instanceof UserVariablesTab userVariablesTab) {
         userVariablesTab.updateContent(variablesModel.getAllVariables());
       }
     }

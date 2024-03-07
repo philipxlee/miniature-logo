@@ -38,10 +38,10 @@ public class MainScene implements Scene {
    * MainScene Constructor. Initializes the main scene with the given width and height and executes
    * the given commands.
    *
-   * @param width           width
-   * @param height         height
+   * @param width             width
+   * @param height            height
    * @param commandController commandController
-   * @param commands      commands
+   * @param commands          commands
    */
   public MainScene(int width, int height, CommandController commandController, String commands) {
     BackgroundObservable colorObservable = new BackgroundObservable("#e0e0e0");
