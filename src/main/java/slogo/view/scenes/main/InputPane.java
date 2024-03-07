@@ -72,8 +72,8 @@ public class InputPane {
     commandInput.setOnKeyPressed(event -> {
       if (event.getCode() == KeyCode.ENTER && !event.isShiftDown()) {
         String command = commandInput.getText().trim();
-        int dollar_length = DOLLAR_SIGN.length();
-        command = command.startsWith(DOLLAR_SIGN) ? command.substring(dollar_length) : command;
+        int dollarLength = DOLLAR_SIGN.length();
+        command = command.startsWith(DOLLAR_SIGN) ? command.substring(dollarLength) : command;
         executeCommand(command, commandController);
         event.consume();
       }

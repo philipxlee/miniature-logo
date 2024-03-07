@@ -20,6 +20,7 @@ public class ThemeController {
         case "Light Theme" -> currentTheme = "slogo/example/view/lightmode.css";
         case "Duke Theme" -> currentTheme = "slogo/example/view/dukemode.css";
         case "UNC Theme" -> currentTheme = "slogo/example/view/uncmode.css";
+        default -> currentTheme = "slogo/example/view/styles.css";
       }
     }
     scene.getStylesheets().clear();

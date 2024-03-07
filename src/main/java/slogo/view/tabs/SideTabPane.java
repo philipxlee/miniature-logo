@@ -52,18 +52,6 @@ public class SideTabPane extends TabPane implements Observer {
     this.getTabs().addAll(commandHistoryTab, helpDocTab, userVariablesTab, userCommandsTab);
   }
 
-  /**
-   * Construct Tab given tab properties.
-   *
-   * @param title   is the title of the tab
-   * @param content is the TabContent object of the tab
-   */
-  private Tab initTab(String title, TabContent content) {
-    Tab tab = new Tab(title);
-    tab.setContent(content.getContent());
-    tabMap.put(title, content);
-    return tab;
-  }
 
   /**
    * Update pane when observed models are updated.
@@ -84,6 +72,13 @@ public class SideTabPane extends TabPane implements Observer {
         userVariablesTab.updateContent(variablesModel.getAllVariables());
       }
     }
+  }
+
+  private Tab initTab(String title, TabContent content) {
+    Tab tab = new Tab(title);
+    tab.setContent(content.getContent());
+    tabMap.put(title, content);
+    return tab;
   }
 }
 

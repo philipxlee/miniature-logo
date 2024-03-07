@@ -1,16 +1,13 @@
 package slogo.view.buttons.filemanager;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.stage.FileChooser;
 import slogo.controller.command.CommandController;
 
-public class ConsoleLoadFile implements FileLoader, EventHandler<ActionEvent> {
+public class ConsoleLoadFile extends AbstractFileLoader {
 
   private final CommandController commandController;
 
@@ -18,13 +15,9 @@ public class ConsoleLoadFile implements FileLoader, EventHandler<ActionEvent> {
     this.commandController = commandController;
   }
 
-
   @Override
   public void handle(ActionEvent event) {
-    FileChooser fileChooser = new FileChooser();
-    fileChooser.setTitle("Open SLogo File");
-    fileChooser.getExtensionFilters()
-        .addAll(new FileChooser.ExtensionFilter("SLogo Files", "*.slogo"));
+    FileChooser fileChooser = createFileChooser();
     File selectedFile = fileChooser.showOpenDialog(null);
     if (selectedFile != null) {
       loadFile(selectedFile);
@@ -34,14 +27,8 @@ public class ConsoleLoadFile implements FileLoader, EventHandler<ActionEvent> {
   @Override
   public void loadFile(File file) {
     try {
-      BufferedReader reader = new BufferedReader(new FileReader(file));
-      StringBuilder commandsBuilder = new StringBuilder();
-      String line;
-      while ((line = reader.readLine()) != null) {
-        commandsBuilder.append(line).append("\n");
-      }
-      reader.close();
-      executeCommands(commandsBuilder.toString().trim());
+      String commands = readFileContents(file);
+      executeCommands(commands);
     } catch (IOException e) {
       throw new RuntimeException("File couldn't be loaded", e);
     }
@@ -60,4 +47,10 @@ public class ConsoleLoadFile implements FileLoader, EventHandler<ActionEvent> {
     });
   }
 
+  private FileChooser createFileChooser() {
+    FileChooser fileChooser = new FileChooser();
+    fileChooser.setTitle("Open SLogo File");
+    fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("SLogo Files", "*.slogo"));
+    return fileChooser;
+  }
 }
