@@ -7,14 +7,28 @@ import javafx.event.ActionEvent;
 import javafx.stage.FileChooser;
 import slogo.controller.command.CommandController;
 
+/**
+ * ConsoleLoadFile is a button for loading a session from a file.
+ */
 public class ConsoleLoadFile extends AbstractFileLoader {
 
   private final CommandController commandController;
 
+  /**
+   * Constructor for ConsoleLoadFile.
+   *
+   * @param commandController the CommandController
+   */
   public ConsoleLoadFile(CommandController commandController) {
+    super();
     this.commandController = commandController;
   }
 
+  /**
+   * Method to handle the "Load Session" button action.
+   *
+   * @param event the event which occurred
+   */
   @Override
   public void handle(ActionEvent event) {
     FileChooser fileChooser = createFileChooser();
@@ -24,6 +38,11 @@ public class ConsoleLoadFile extends AbstractFileLoader {
     }
   }
 
+  /**
+   * Load the file and execute the commands.
+   *
+   * @param file the file to load
+   */
   @Override
   public void loadFile(File file) {
     try {
@@ -50,7 +69,8 @@ public class ConsoleLoadFile extends AbstractFileLoader {
   private FileChooser createFileChooser() {
     FileChooser fileChooser = new FileChooser();
     fileChooser.setTitle("Open SLogo File");
-    fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("SLogo Files", "*.slogo"));
+    fileChooser.getExtensionFilters()
+        .add(new FileChooser.ExtensionFilter("SLogo Files", "*.slogo"));
     return fileChooser;
   }
 }

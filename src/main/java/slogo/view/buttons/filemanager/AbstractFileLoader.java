@@ -7,9 +7,19 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
+/**
+ * AbstractFileLoader is an abstract class for loading files.
+ */
 public abstract class AbstractFileLoader implements FileLoader, EventHandler<ActionEvent> {
 
-  protected String readFileContents(File file) throws IOException {
+  /**
+   * Method to handle the "Load Session" button action.
+   *
+   * @param file the file to load
+   * @return the contents of the file
+   * @throws IOException
+   */
+  public String readFileContents(File file) throws IOException {
     BufferedReader reader = new BufferedReader(new FileReader(file));
     StringBuilder commandsBuilder = new StringBuilder();
     String line;
@@ -20,6 +30,11 @@ public abstract class AbstractFileLoader implements FileLoader, EventHandler<Act
     return commandsBuilder.toString().trim();
   }
 
+  /**
+   * Load the file.
+   *
+   * @param file the file to load
+   */
   @Override
   public abstract void loadFile(File file);
 }

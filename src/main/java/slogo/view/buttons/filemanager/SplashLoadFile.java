@@ -8,16 +8,31 @@ import slogo.controller.command.CommandController;
 import slogo.controller.display.SceneSwitcher;
 import slogo.view.scenes.main.MainScene;
 
+/**
+ * SplashLoadFile is a button for loading a session from a file.
+ */
 public class SplashLoadFile extends AbstractFileLoader {
 
   private final CommandController commandController;
   private final SceneSwitcher switcher;
 
+  /**
+   * Constructor for SplashLoadFile.
+   *
+   * @param commandController the CommandController
+   * @param switcher         the SceneSwitcher
+   */
   public SplashLoadFile(CommandController commandController, SceneSwitcher switcher) {
+    super();
     this.commandController = commandController;
     this.switcher = switcher;
   }
 
+  /**
+   * Method to handle the "Load Session" button action.
+   *
+   * @param event the event which occurred when the button was clicked
+   */
   @Override
   public void handle(ActionEvent event) {
     FileChooser fileChooser = createFileChooser();
@@ -27,6 +42,11 @@ public class SplashLoadFile extends AbstractFileLoader {
     }
   }
 
+  /**
+   * Load the file and switch to the main scene.
+   *
+   * @param file the file to load
+   */
   @Override
   public void loadFile(File file) {
     try {
@@ -40,7 +60,8 @@ public class SplashLoadFile extends AbstractFileLoader {
   private FileChooser createFileChooser() {
     FileChooser fileChooser = new FileChooser();
     fileChooser.setTitle("Open SLogo File");
-    fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("SLogo Files", "*.slogo"));
+    fileChooser.getExtensionFilters()
+        .add(new FileChooser.ExtensionFilter("SLogo Files", "*.slogo"));
     return fileChooser;
   }
 }

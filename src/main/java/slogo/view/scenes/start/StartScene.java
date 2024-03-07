@@ -84,6 +84,7 @@ public class StartScene implements Scene {
 
   /**
    * Get the root node.
+   *
    * @return root node
    */
   @Override
