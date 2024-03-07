@@ -1,10 +1,10 @@
 package slogo.view.scenes.main;
 
+import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
-import slogo.controller.CommandController;
-import slogo.controller.ThemeController;
-import slogo.model.api.parser.exceptions.InvalidTokenException;
+import slogo.controller.command.CommandController;
+import slogo.controller.config.ThemeController;
 import slogo.observer.BackgroundObservable;
 import slogo.observer.PenColorObservable;
 import slogo.view.buttons.ControlButtonsBox;
@@ -24,50 +24,50 @@ public class MainScene implements Scene {
   private BorderPane root;
 
   /**
-   * Constructor for Display.
+   * MainScene Constructor. Initializes the main scene with the given width and height.
    *
    * @param width             width
    * @param height            height
    * @param commandController commandController
    */
   public MainScene(int width, int height, CommandController commandController) {
-    // initialize observables
-    BackgroundObservable colorObservable = new BackgroundObservable("#e0e0e0");
-    PenColorObservable penColorObservable = new PenColorObservable("#000000");
-
-    // initialize panes
-    this.turtlePane = new TurtlePane(width, height);
-    this.inputPane = new InputPane(height, commandController);
-    this.sideTabPane = new SideTabPane();
-    this.controlButtonsBox = new ControlButtonsBox(colorObservable, penColorObservable);
-
-    // subscribe panes to models
-    commandController.observeTurtle(turtlePane);
-    commandController.observeLines(turtlePane);
-    commandController.observeHistory(sideTabPane);
-    turtlePane.setBackgroundColorObservable(colorObservable);
-    turtlePane.setPenColorObservable(penColorObservable);
-
-    initializeScene(width, height);
+    this(width, height, commandController, null);
   }
 
   /**
-   * Second initializer that accepts commands and updates the input pane.
+   * MainScene Constructor. Initializes the main scene with the given width and height and executes
+   * the given commands.
    *
    * @param width             width
    * @param height            height
    * @param commandController commandController
-   * @param commands          commands to display and run
+   * @param commands          commands
    */
   public MainScene(int width, int height, CommandController commandController, String commands) {
-    this(width, height, commandController);
-    inputPane.setInputText(commands);
-    try {
-      commandController.executeCommand(commands);
-    } catch (Exception e) {
-      e.printStackTrace();
-    } catch (InvalidTokenException e) {
-        throw new RuntimeException(e);
+    BackgroundObservable colorObservable = new BackgroundObservable("#e0e0e0");
+    PenColorObservable penColorObservable = new PenColorObservable("#000000");
+
+    this.turtlePane = new TurtlePane(width, height);
+    this.inputPane = new InputPane(height, commandController);
+    this.sideTabPane = new SideTabPane(commandController);
+    this.controlButtonsBox = new ControlButtonsBox(colorObservable, penColorObservable, turtlePane);
+
+    commandController.observeTurtle(turtlePane);
+    commandController.observeLines(turtlePane);
+    commandController.observeHistory(sideTabPane);
+    commandController.observeVariables(sideTabPane);
+    turtlePane.setBackgroundColorObservable(colorObservable);
+    turtlePane.setPenColorObservable(penColorObservable);
+
+    // Execute the commands if provided.
+    if (commands != null) {
+      Platform.runLater(() -> { // Important: Ensures JavaFX panes are correctly set first
+        String[] commandLines = commands.split("\n");
+        inputPane.setInputText(commands);
+        for (String command : commandLines) {
+          inputPane.executeCommand(command, commandController);
+        }
+      });
     }
   }
 
@@ -90,9 +90,7 @@ public class MainScene implements Scene {
     bottomPane.setRight(sideTabPane);
     root.setBottom(bottomPane);
     this.scene = new javafx.scene.Scene(root, width, height);
-    System.out.println(ThemeController.getCurrentTheme());
     ThemeController.applyTheme(this.scene, ThemeController.getCurrentTheme());
-    System.out.println(scene.getStylesheets());
   }
 
   /**

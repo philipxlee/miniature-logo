@@ -1,26 +1,44 @@
 package slogo.view.tabs;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import slogo.controller.SaveButtonController;
+import slogo.controller.command.CommandController;
+import slogo.controller.config.LanguageController;
+import slogo.exceptions.InvalidCommandException;
+import slogo.model.api.parser.exceptions.InvalidTokenException;
+import slogo.view.buttons.filemanager.ConsoleLoadFile;
+import slogo.view.buttons.filemanager.SaveFile;
+
 
 /**
  * CommandHistoryTab is the tab for command history.
  */
 public class CommandHistoryTab implements TabContent {
 
+  private final CommandController commandController;
   private VBox content;
   private VBox historyContainer;
   private ScrollPane scrollPane;
   private List<String> commandsHistory;
+
+
+  /**
+   * Constructor for CommandHistoryTab.
+   *
+   * @param commandController the CommandController
+   */
+  public CommandHistoryTab(CommandController commandController) {
+    this.commandController = commandController;
+  }
 
   /**
    * Return a node with the command history content.
@@ -39,10 +57,13 @@ public class CommandHistoryTab implements TabContent {
     scrollPane.setFitToWidth(true);
     scrollPane.setFitToHeight(true);
 
-    Button saveButton = new Button("Save");
-    saveButton.setOnAction(new SaveButtonController(this));
+    Button saveFileButton = new Button(LanguageController.getText("SaveFile"));
+    saveFileButton.setOnAction(new SaveFile(this));
+    Button loadFileButton = new Button(LanguageController.getText("LoadFile"));
+    loadFileButton.setOnAction(new ConsoleLoadFile(commandController));
 
-    HBox buttonBox = new HBox(saveButton);
+    HBox buttonBox = new HBox();
+    buttonBox.getChildren().addAll(saveFileButton, loadFileButton);
     content.getChildren().add(scrollPane);
     content.getChildren().add(buttonBox);
 
@@ -55,26 +76,45 @@ public class CommandHistoryTab implements TabContent {
    * @param commands Iterator of commands.
    */
   public void updateContent(Iterator<String> commands) {
-    // Temporarily store the commands to add them in reverse order
-    List<Node> tempLabels = new ArrayList<>();
     commandsHistory = new ArrayList<>();
-    while (commands.hasNext()) {
-      Text commandText = new Text(commands.next());
-      String text = commandText.getText();
-      tempLabels.add(commandText);
-      commandsHistory.add(text);
-    }
-    // Remove current text
-    historyContainer.getChildren().clear();
+    historyContainer.getChildren().clear();  // Clear existing commands
 
-    // Add all commands in reverse order to the VBox
-    Collections.reverse(tempLabels);
-    historyContainer.getChildren().addAll(tempLabels);
+    while (commands.hasNext()) {
+      String commandString = commands.next();
+      commandsHistory.add(commandString);
+
+      // Create interactive text for each command
+      Text commandText = new Text(commandString);
+      commandText.setOnMouseClicked(event -> executeCommandInteractively(commandString));
+
+      historyContainer.getChildren().add(commandText);
+    }
     scrollPane.setVvalue(1.0);
   }
 
+  /**
+   * Get the command history.
+   *
+   * @return List of commands history.
+   */
   public List<String> getCommandsHistory() {
     return commandsHistory;
+  }
+
+  // Execute command interactively from the command history (No-Code SLOGO)
+  private void executeCommandInteractively(String command) {
+    TextInputDialog dialog = new TextInputDialog(command);
+    dialog.setTitle(LanguageController.getText("ExecuteCommand"));
+    dialog.setHeaderText(LanguageController.getText("ModifyAndExecuteCommand"));
+    dialog.setContentText(LanguageController.getText("Command"));
+    Optional<String> result = dialog.showAndWait();
+    result.ifPresent(updatedCommand -> {
+      try {
+        commandController.executeCommand(updatedCommand);
+      } catch (Exception | InvalidTokenException e) {
+        System.err.println("Invalid command: " + e.getMessage());
+      }
+    });
   }
 }
 

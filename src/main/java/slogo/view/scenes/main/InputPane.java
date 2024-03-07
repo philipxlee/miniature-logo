@@ -6,7 +6,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import slogo.controller.CommandController;
+import slogo.controller.command.CommandController;
 import slogo.exceptions.InvalidCommandException;
 import slogo.model.api.parser.exceptions.InvalidTokenException;
 import slogo.view.alert.Alert;
@@ -48,29 +48,35 @@ public class InputPane {
     commandInput.setText(text);
   }
 
+  /**
+   * Executes the given command.
+   *
+   * @param command the command to execute
+   */
+  public void executeCommand(String command, CommandController commandController) {
+    if (!command.isEmpty()) {
+      try {
+        commandController.executeCommand(command);
+      } catch (Exception | InvalidTokenException e) {
+        Alert.showError("Invalid Command", "Please enter a valid command.");
+      }
+      commandInput.setText(DOLLAR_SIGN); // reset text to DOLLAR_SIGN after processing command
+      commandInput.positionCaret(commandInput.getText().length());
+    }
+  }
+
+
   private void initializeInputBox(int height, CommandController commandController) {
     commandInput = new TextArea();
-    commandInput.setText(DOLLAR_SIGN); // set initial text to DOLLAR_SIGN
-    commandInput.setPromptText("Enter commands here...");
+    commandInput.setText(DOLLAR_SIGN);
     commandInput.getStyleClass().add("command-input");
     commandInput.setOnKeyPressed(event -> {
       if (event.getCode() == KeyCode.ENTER && !event.isShiftDown()) {
         String command = commandInput.getText().trim();
-        if (!command.isEmpty()) {
-          // remove DOLLAR_SIGN from the start of the command
-          command =
-              command.startsWith(DOLLAR_SIGN) ? command.substring(DOLLAR_SIGN.length()) : command;
-          try {
-            commandController.executeCommand(command);
-          } catch (InvalidCommandException e) {
-            Alert.showError("Invalid Command", "Please enter a valid command.");
-          } catch (InvalidTokenException | Exception e) {
-              throw new RuntimeException(e);
-          }
-            commandInput.setText(DOLLAR_SIGN); // reset text to DOLLAR_SIGN after processing command
-          commandInput.positionCaret(commandInput.getText().length());
-          event.consume();
-        }
+        int dollarLength = DOLLAR_SIGN.length();
+        command = command.startsWith(DOLLAR_SIGN) ? command.substring(dollarLength) : command;
+        executeCommand(command, commandController);
+        event.consume();
       }
     });
 

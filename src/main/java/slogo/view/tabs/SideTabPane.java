@@ -4,7 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import slogo.controller.command.CommandController;
+import slogo.controller.config.LanguageController;
 import slogo.model.api.data.CommandHistoryModel;
+import slogo.model.api.data.VariablesModel;
 import slogo.observer.Observable;
 import slogo.observer.Observer;
 
@@ -13,13 +16,15 @@ import slogo.observer.Observer;
  */
 public class SideTabPane extends TabPane implements Observer {
 
+  private final CommandController commandController;
   private Map<String, TabContent> tabMap;
 
   /**
    * SideTabPane constructor.
    */
-  public SideTabPane() {
+  public SideTabPane(CommandController commandController) {
     super();
+    this.commandController = commandController;
     initializeTabs();
   }
 
@@ -36,26 +41,19 @@ public class SideTabPane extends TabPane implements Observer {
    * Construct required tabs.
    */
   private void constructTabs() {
-    Tab commandHistoryTab = initTab("Command History", new CommandHistoryTab());
-    Tab helpDocTab = initTab("Help Docs", new HelpDocTab());
-    Tab userVariablesTab = initTab("User Variables", new UserVariablesTab());
-    Tab userCommandsTab = initTab("User Commands", new UserCommandsTab());
-
-    this.getTabs().addAll(commandHistoryTab, helpDocTab, userVariablesTab, userCommandsTab);
+    Tab commandHistoryTab = initTab(LanguageController.getText("CommandHistory"),
+        new CommandHistoryTab(commandController));
+    Tab helpDocTab = initTab(LanguageController.getText("HelpDocs"), new HelpDocTab());
+    Tab userVariablesTab = initTab(LanguageController.getText("UserVariables"),
+        new UserVariablesTab(commandController));
+    Tab userCommandsTab = initTab(LanguageController.getText("UserCommands"),
+        new UserCommandsTab());
+    Tab turtleControlTab = initTab(LanguageController.getText("TurtleControl"),
+        new TurtleControlTab(commandController));
+    this.getTabs().addAll(commandHistoryTab, helpDocTab, userVariablesTab);
+    this.getTabs().addAll(userCommandsTab, turtleControlTab);
   }
 
-  /**
-   * Construct Tab given tab properties.
-   *
-   * @param title   is the title of the tab
-   * @param content is the TabContent object of the tab
-   */
-  private Tab initTab(String title, TabContent content) {
-    Tab tab = new Tab(title);
-    tab.setContent(content.getContent());
-    tabMap.put(title, content);
-    return tab;
-  }
 
   /**
    * Update pane when observed models are updated.
@@ -65,11 +63,24 @@ public class SideTabPane extends TabPane implements Observer {
   @Override
   public void update(Observable observable) {
     if (observable instanceof CommandHistoryModel commandHistoryModel) {
-      TabContent tabContent = tabMap.get("Command History");
+      TabContent tabContent = tabMap.get(LanguageController.getText("CommandHistory"));
       if (tabContent instanceof CommandHistoryTab commandHistoryContent) {
         commandHistoryContent.updateContent(commandHistoryModel.iterator());
       }
     }
+    if (observable instanceof VariablesModel variablesModel) {
+      TabContent tabContent = tabMap.get(LanguageController.getText("UserVariables"));
+      if (tabContent instanceof UserVariablesTab userVariablesTab) {
+        userVariablesTab.updateContent(variablesModel.getAllVariables());
+      }
+    }
+  }
+
+  private Tab initTab(String title, TabContent content) {
+    Tab tab = new Tab(title);
+    tab.setContent(content.getContent());
+    tabMap.put(title, content);
+    return tab;
   }
 }
 

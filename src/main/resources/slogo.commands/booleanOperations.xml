@@ -9,9 +9,9 @@
     </command>
     <command>
         <canonicalName>LESS?</canonicalName>
-        <alias><</alias>
+        <alias>&lt;</alias>
         <description>Returns 1 if expr1 is less than expr2, otherwise 0.</description>
-        <example>< 5 10</example>
+        <example>&lt; 5 10</example>
         <help>Parameters: expr1 expr2 - Checks if expr1 is less than expr2.</help>
         <parametersCount>2</parametersCount>
         <implementingClass>BinaryBoolCommand</implementingClass>
@@ -60,9 +60,9 @@
     </command>
     <command>
         <canonicalName>LESSEQUAL?</canonicalName>
-        <alias><=</alias>
+        <alias>&lt;=</alias>
         <description>Returns 1 if expr1 is less than or equal to expr2, otherwise 0.</description>
-        <example><= 5 5</example>
+        <example>&lt;= 5 5</example>
         <help>Parameters: expr1 expr2 - Checks if expr1 is less than or equal to expr2.</help>
         <parametersCount>2</parametersCount>
         <implementingClass>BinaryBoolCommand</implementingClass>

@@ -1,6 +1,8 @@
-package slogo.controller;
+package slogo.controller.display;
 
 import javafx.stage.Stage;
+import slogo.controller.command.CommandController;
+import slogo.controller.config.ThemeController;
 import slogo.view.scenes.Scene;
 import slogo.view.scenes.start.StartScene;
 
@@ -9,8 +11,8 @@ import slogo.view.scenes.start.StartScene;
  */
 public class ViewController implements SceneSwitcher {
 
-  private static final int WIDTH = 1000;
-  private static final int HEIGHT = 700;
+  private static final int WIDTH = 1200;
+  private static final int HEIGHT = 800;
   private final Stage stage;
   private final CommandController commandController;
 

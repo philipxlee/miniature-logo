@@ -6,10 +6,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import slogo.controller.CommandController;
-import slogo.controller.LoadButtonController;
-import slogo.controller.SceneSwitcher;
-import slogo.controller.ThemeController;
+import slogo.controller.command.CommandController;
+import slogo.controller.config.LanguageController;
+import slogo.controller.config.ThemeController;
+import slogo.controller.display.SceneSwitcher;
+import slogo.view.buttons.filemanager.SplashLoadFile;
 import slogo.view.scenes.Scene;
 import slogo.view.scenes.main.MainScene;
 
@@ -54,15 +55,14 @@ public class StartScene implements Scene {
     parentBox.setId("Start Scene");
     parentBox.setAlignment(Pos.CENTER);
 
-    // Initialize title text and add click handler
     Text title = new Text("SLogo");
     title.getStyleClass().add("title-text");
     Text instruction = new Text("By: Prince Ahmed, Arnav Nayak, Philip Lee, Connor Johnson");
     instruction.getStyleClass().add("instruction-text");
 
     Button startButton = createStartButton(width, height);
-    Button loadButton = createLoadButton(width, height);
-    Button languageButton = createLanguageButton();
+    Button loadButton = createLoadButton();
+    ComboBox<String> languageButton = createLanguageButton();
     ComboBox<String> colorSchemeButton = createColorSchemeButton();
 
     parentBox.getChildren()
@@ -82,6 +82,11 @@ public class StartScene implements Scene {
     return this.scene;
   }
 
+  /**
+   * Get the root node.
+   *
+   * @return root node
+   */
   @Override
   public Node getRoot() {
     return parentBox;
@@ -107,22 +112,14 @@ public class StartScene implements Scene {
   /**
    * Create a "Load Session" button.
    *
-   * @param width  width of the button
-   * @param height height of the button
    * @return the created button
    */
-  private Button createLoadButton(int width, int height) {
+  private Button createLoadButton() {
     Button loadButton = new Button("Load Session");
     loadButton.setPrefSize(BUTTON_WIDTH, BUTTON_HEIGHT);
     loadButton.getStyleClass().add(BUTTON_STYLE);
-
-    // Create LoadButtonController instance
-    LoadButtonController loadButtonController = new LoadButtonController(commandController,
-        switcher);
-
-    // Set action for the load button
+    SplashLoadFile loadButtonController = new SplashLoadFile(commandController, switcher);
     loadButton.setOnAction(loadButtonController);
-
     return loadButton;
   }
 
@@ -131,11 +128,15 @@ public class StartScene implements Scene {
    *
    * @return the created button
    */
-  private Button createLanguageButton() {
-    Button languageButton = new Button("Select Language");
-    languageButton.setPrefSize(BUTTON_WIDTH, BUTTON_HEIGHT);
-    languageButton.getStyleClass().add(BUTTON_STYLE);
-    return languageButton;
+  private ComboBox<String> createLanguageButton() {
+    ComboBox<String> languageSelector = new ComboBox<>();
+    languageSelector.getItems().addAll("English", "Spanish");
+    languageSelector.setValue("English"); // Default language
+    languageSelector.setOnAction(event -> {
+      LanguageController.changeLanguage(languageSelector.getValue());
+    });
+    languageSelector.getStyleClass().add("theme-selector");
+    return languageSelector;
   }
 
   /**

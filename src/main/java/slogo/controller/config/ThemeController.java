@@ -1,4 +1,4 @@
-package slogo.controller;
+package slogo.controller.config;
 
 /**
  * ThemeController is a controller that manages the theme of the application.
@@ -20,6 +20,7 @@ public class ThemeController {
         case "Light Theme" -> currentTheme = "slogo/example/view/lightmode.css";
         case "Duke Theme" -> currentTheme = "slogo/example/view/dukemode.css";
         case "UNC Theme" -> currentTheme = "slogo/example/view/uncmode.css";
+        default -> currentTheme = getCurrentTheme();
       }
     }
     scene.getStylesheets().clear();

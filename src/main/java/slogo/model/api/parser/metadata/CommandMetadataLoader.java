@@ -16,7 +16,7 @@ import java.util.stream.Stream;
 
 public class CommandMetadataLoader {
     private Map<String, CommandMetadata> commandMetadataMap = new HashMap<>();
-    private static final String COMMANDS_DIRECTORY = "/slogo/commands";
+    private static final String COMMANDS_DIRECTORY = "/slogo.commands";
 
     public void loadAllCommandMetadata() {
         try {

@@ -1,4 +1,4 @@
-package slogo.controller;
+package slogo.controller.command;
 
 import slogo.exceptions.InvalidCommandException;
 import slogo.model.api.data.CommandHistoryModel;
@@ -8,6 +8,7 @@ import slogo.model.api.parser.ParserExecutor;
 import slogo.model.api.parser.exceptions.InvalidTokenException;
 import slogo.model.api.parser.metadata.CommandMetadata;
 import slogo.model.api.parser.metadata.CommandMetadataLoader;
+import slogo.model.api.data.VariablesModel;
 import slogo.observer.Observer;
 import slogo.model.api.parser.Tokenizer;
 import slogo.model.api.parser.Token;
@@ -27,6 +28,7 @@ public class CommandController {
   // private final Parser parser;
   private final Tokenizer tokenizer;
   private final CommandMetadataLoader metadataLoader;
+  private final VariablesModel variablesModel;
 
   /**
    * CommandController constructor initializes new parser.
@@ -36,14 +38,14 @@ public class CommandController {
    * @param commandHistoryModel Command History Model used for command history
    */
   public CommandController(TurtleModel turtleModel, LineModel lineModel,
-      CommandHistoryModel commandHistoryModel) {
+      CommandHistoryModel commandHistoryModel, VariablesModel variablesModel) {
     this.turtleModel = turtleModel;
     this.lineModel = lineModel;
     this.commandHistoryModel = commandHistoryModel;
-    // this.parser = new Parser(turtleModel, lineModel);
     this.metadataLoader = new CommandMetadataLoader();
     metadataLoader.loadAllCommandMetadata();
     this.tokenizer = new Tokenizer();
+    this.variablesModel = variablesModel;
   }
 
   /**
@@ -68,14 +70,29 @@ public class CommandController {
     commandHistoryModel.addCommand(commandString);
   }
 
-//  /**
-//   * Sets the input text in the parser.
-//   *
-//   * @param text the input text to set
-//   */
-//  public void setInputText(String text) {
-//    executeCommand(text);
-//  }
+  /**
+   * Define a new variable.
+   *
+   * @param commandString the command to define a variable
+   * @throws InvalidCommandException if the command to define a variable is invalid
+   */
+  private void defineVariable(String commandString) throws InvalidCommandException {
+    // Split the commandString into parts to extract variable name and value
+    String[] parts = commandString.trim().split("\\s+");
+    if (parts.length != 3) {
+      throw new InvalidCommandException("Invalid 'make' command");
+    }
+
+    String variable = parts[1];
+    double value;
+    try {
+      value = Double.parseDouble(parts[2]);
+    } catch (NumberFormatException e) {
+      throw new InvalidCommandException("Invalid number format");
+    }
+
+    variablesModel.setVariable(variable, value);
+  }
 
   /**
    * Subscribe to updates from the TurtleModel.
@@ -102,5 +119,14 @@ public class CommandController {
    */
   public void observeLines(Observer observer) {
     lineModel.addObserver(observer);
+  }
+
+  /**
+   * Subscribe to updates from the VariablesModel.
+   *
+   * @param observer that wants to subscribe
+   */
+  public void observeVariables(Observer observer) {
+    variablesModel.addObserver(observer);
   }
 }
