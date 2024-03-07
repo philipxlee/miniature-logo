@@ -55,14 +55,13 @@ public class StartScene implements Scene {
     parentBox.setId("Start Scene");
     parentBox.setAlignment(Pos.CENTER);
 
-    // Initialize title text and add click handler
     Text title = new Text("SLogo");
     title.getStyleClass().add("title-text");
     Text instruction = new Text("By: Prince Ahmed, Arnav Nayak, Philip Lee, Connor Johnson");
     instruction.getStyleClass().add("instruction-text");
 
     Button startButton = createStartButton(width, height);
-    Button loadButton = createLoadButton(width, height);
+    Button loadButton = createLoadButton();
     ComboBox<String> languageButton = createLanguageButton();
     ComboBox<String> colorSchemeButton = createColorSchemeButton();
 
@@ -83,6 +82,11 @@ public class StartScene implements Scene {
     return this.scene;
   }
 
+  /**
+   * Get the root node.
+   *
+   * @return root node
+   */
   @Override
   public Node getRoot() {
     return parentBox;
@@ -108,22 +112,14 @@ public class StartScene implements Scene {
   /**
    * Create a "Load Session" button.
    *
-   * @param width  width of the button
-   * @param height height of the button
    * @return the created button
    */
-  private Button createLoadButton(int width, int height) {
+  private Button createLoadButton() {
     Button loadButton = new Button("Load Session");
     loadButton.setPrefSize(BUTTON_WIDTH, BUTTON_HEIGHT);
     loadButton.getStyleClass().add(BUTTON_STYLE);
-
-    // Create LoadButtonController instance
-    SplashLoadFile loadButtonController = new SplashLoadFile(commandController,
-        switcher);
-
-    // Set action for the load button
+    SplashLoadFile loadButtonController = new SplashLoadFile(commandController, switcher);
     loadButton.setOnAction(loadButtonController);
-
     return loadButton;
   }
 

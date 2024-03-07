@@ -5,6 +5,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * SlogoFileHandler is a controller that manages the saving of commands to a .slogo file.
+ */
 public class SlogoFileHandler {
 
   /**
