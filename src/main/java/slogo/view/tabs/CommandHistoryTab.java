@@ -103,9 +103,9 @@ public class CommandHistoryTab implements TabContent {
   // Execute command interactively from the command history (No-Code SLOGO)
   private void executeCommandInteractively(String command) {
     TextInputDialog dialog = new TextInputDialog(command);
-    dialog.setTitle("Execute Command");
-    dialog.setHeaderText("Modify and Execute Command");
-    dialog.setContentText("Command:");
+    dialog.setTitle(LanguageController.getText("ExecuteCommand"));
+    dialog.setHeaderText(LanguageController.getText("ModifyAndExecuteCommand"));
+    dialog.setContentText(LanguageController.getText("Command"));
     Optional<String> result = dialog.showAndWait();
     result.ifPresent(updatedCommand -> {
       try {
