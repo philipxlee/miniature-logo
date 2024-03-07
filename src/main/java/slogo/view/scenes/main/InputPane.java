@@ -69,6 +69,7 @@ public class InputPane {
     commandInput = new TextArea();
     commandInput.setText(DOLLAR_SIGN);
     commandInput.getStyleClass().add("command-input");
+    commandInput.setId("input-pane-text-area");
     commandInput.setOnKeyPressed(event -> {
       if (event.getCode() == KeyCode.ENTER && !event.isShiftDown()) {
         String command = commandInput.getText().trim();
@@ -89,4 +90,5 @@ public class InputPane {
     // Allow the input box to grow vertically with the size of the box
     VBox.setVgrow(commandInput, Priority.ALWAYS);
   }
+
 }
