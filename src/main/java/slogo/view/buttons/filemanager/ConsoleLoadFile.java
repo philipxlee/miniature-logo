@@ -8,7 +8,7 @@ import java.util.function.Consumer;
 
 public class ConsoleLoadFile {
 
-  private Consumer<String> onCommandsLoaded;
+  private final Consumer<String> onCommandsLoaded;
 
   public ConsoleLoadFile(Consumer<String> onCommandsLoaded) {
     this.onCommandsLoaded = onCommandsLoaded;
