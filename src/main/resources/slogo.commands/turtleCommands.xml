@@ -1,0 +1,106 @@
+<commands>
+    <command>
+        <canonicalName>FORWARD</canonicalName>
+        <description>Moves turtle forward in its current heading by pixels distance.</description>
+        <example>FD 100</example>
+        <help>Parameters: pixels - Moves the turtle forward by the specified number of pixels.</help>
+        <parametersCount>1</parametersCount>
+        <implementingClass>ForwardCommand</implementingClass>
+    </command>
+    <command>
+        <canonicalName>BACK</canonicalName>
+        <description>Moves turtle backward in its current heading by pixels distance.</description>
+        <example>BK 100</example>
+        <help>Parameters: pixels - Moves the turtle backward by the specified number of pixels.</help>
+        <parametersCount>1</parametersCount>
+        <implementingClass>TO_BE_DEFINED</implementingClass>
+    </command>
+    <command>
+        <canonicalName>LEFT</canonicalName>
+        <description>Turns turtle counterclockwise by degrees angle.</description>
+        <example>LT 90</example>
+        <help>Parameters: degrees - Turns the turtle left (counterclockwise) by the specified number of degrees.</help>
+        <parametersCount>1</parametersCount>
+        <implementingClass>RotateLeftCommand</implementingClass>
+    </command>
+    <command>
+        <canonicalName>RIGHT</canonicalName>
+        <description>Turns turtle clockwise by degrees angle.</description>
+        <example>RT 90</example>
+        <help>Parameters: degrees - Turns the turtle right (clockwise) by the specified number of degrees.</help>
+        <parametersCount>1</parametersCount>
+        <implementingClass>RotateRightCommand</implementingClass>
+    </command>
+    <command>
+        <canonicalName>SETHEADING</canonicalName>
+        <description>Turns turtle to an absolute heading.</description>
+        <example>SETH 180</example>
+        <help>Parameters: degrees - Sets the turtle's heading to the specified absolute direction.</help>
+        <parametersCount>1</parametersCount>
+        <implementingClass>SetOrientationCommand</implementingClass>
+    </command>
+    <command>
+        <canonicalName>TOWARDS</canonicalName>
+        <description>Turns turtle to face the point (x, y), where (0, 0) is the center of the screen.</description>
+        <example>TOWARDS 0 0</example>
+        <help>Parameters: x y - Turns the turtle to face towards the specified point on the screen.</help>
+        <parametersCount>2</parametersCount>
+        <implementingClass>SetOrientationCommand</implementingClass>
+    </command>
+    <command>
+        <canonicalName>SETXY</canonicalName>
+        <description>Moves turtle to an absolute screen position, where (0, 0) is the center of the screen.</description>
+        <example>GOTO 100 100</example>
+        <help>Parameters: x y - Moves the turtle to the specified screen position.</help>
+        <parametersCount>2</parametersCount>
+        <implementingClass>SetLocationCommand</implementingClass>
+    </command>
+    <command>
+        <canonicalName>PENDOWN</canonicalName>
+        <description>Puts pen down such that when the turtle moves, it leaves a trail.</description>
+        <example>PD</example>
+        <help>Parameters: none - Puts the turtle's pen down to draw when moving.</help>
+        <parametersCount>0</parametersCount>
+        <implementingClass>PenCommand</implementingClass>
+    </command>
+    <command>
+        <canonicalName>PENUP</canonicalName>
+        <description>Puts pen up such that when the turtle moves, it does not leave a trail.</description>
+        <example>PU</example>
+        <help>Parameters: none - Lifts the turtle's pen up to move without drawing.</help>
+        <parametersCount>0</parametersCount>
+        <implementingClass>PenCommand</implementingClass>
+    </command>
+    <command>
+        <canonicalName>SHOWTURTLE</canonicalName>
+        <description>Makes turtle visible.</description>
+        <example>ST</example>
+        <help>Parameters: none - Makes the turtle visible on the screen.</help>
+        <parametersCount>0</parametersCount>
+        <implementingClass>TurtleVisibleCommand</implementingClass>
+    </command>
+    <command>
+        <canonicalName>HIDETURTLE</canonicalName>
+        <description>Makes turtle invisible.</description>
+        <example>HT</example>
+        <help>Parameters: none - Makes the turtle invisible on the screen.</help>
+        <parametersCount>0</parametersCount>
+        <implementingClass>TurtleVisibleCommand</implementingClass>
+    </command>
+    <command>
+        <canonicalName>HOME</canonicalName>
+        <description>Moves turtle to the center of the screen (0, 0).</description>
+        <example>HOME</example>
+        <help>Parameters: none - Moves the turtle to the home position at the center of the screen.</help>
+        <parametersCount>0</parametersCount>
+        <implementingClass>TO_BE_DEFINED</implementingClass>
+    </command>
+    <command>
+        <canonicalName>CLEARSCREEN</canonicalName>
+        <description>Erases turtle's trails and sends it to the home position.</description>
+        <example>CS</example>
+        <help>Parameters: none - Clears the screen and moves the turtle to the home position.</help>
+        <parametersCount>0</parametersCount>
+        <implementingClass>ClearScreenCommand</implementingClass>
+    </command>
+</commands>

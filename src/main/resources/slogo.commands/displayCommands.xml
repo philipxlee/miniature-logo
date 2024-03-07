@@ -1,0 +1,58 @@
+<commands>
+    <command>
+        <canonicalName>SETBACKGROUND</canonicalName>
+        <description>Sets background color of the screen to that represented by index.</description>
+        <example>SETBG 0</example>
+        <help>Parameters: index - Sets the screen's background color to the color at the given index.</help>
+        <parametersCount>1</parametersCount>
+        <implementingClass>TO_BE_DEFINED</implementingClass>
+    </command>
+    <command>
+        <canonicalName>SETPENCOLOR</canonicalName>
+        <description>Sets color of the pen to that represented by index.</description>
+        <example>SETPC 1</example>
+        <help>Parameters: index - Sets the pen's color to the color at the given index.</help>
+        <parametersCount>1</parametersCount>
+        <implementingClass>TO_BE_DEFINED</implementingClass>
+    </command>
+    <command>
+        <canonicalName>SETSHAPE</canonicalName>
+        <description>Sets shape of turtle to that represented by index.</description>
+        <example>SETSH 2</example>
+        <help>Parameters: index - Sets the turtle's shape to the shape at the given index.</help>
+        <parametersCount>1</parametersCount>
+        <implementingClass>TO_BE_DEFINED</implementingClass>
+    </command>
+    <command>
+        <canonicalName>SETPALETTE</canonicalName>
+        <description>Sets color at given index to given r g b color values.</description>
+        <example>SETPALETTE 3 255 255 255</example>
+        <help>Parameters: index r g b - Sets a custom color at the given index using RGB values.</help>
+        <parametersCount>4</parametersCount>
+        <implementingClass>TO_BE_DEFINED</implementingClass>
+    </command>
+    <command>
+        <canonicalName>SETPENSIZE</canonicalName>
+        <description>Sets size of the pen to be pixels thickness.</description>
+        <example>SETPS 5</example>
+        <help>Parameters: pixels - Sets the thickness of the pen.</help>
+        <parametersCount>1</parametersCount>
+        <implementingClass>TO_BE_DEFINED</implementingClass>
+    </command>
+    <command>
+        <canonicalName>PENCOLOR</canonicalName>
+        <description>Returns turtle's current color index.</description>
+        <example>PC</example>
+        <help>Parameters: none - Returns the index of the current pen color.</help>
+        <parametersCount>0</parametersCount>
+        <implementingClass>TO_BE_DEFINED</implementingClass>
+    </command>
+    <command>
+        <canonicalName>SHAPE</canonicalName>
+        <description>Returns turtle's current shape index.</description>
+        <example>SH</example>
+        <help>Parameters: none - Returns the index of the current turtle shape.</help>
+        <parametersCount>0</parametersCount>
+        <implementingClass>TO_BE_DEFINED</implementingClass>
+    </command>
+</commands>

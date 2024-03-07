@@ -1,0 +1,74 @@
+<commands>
+    <command>
+        <canonicalName>EQUAL?</canonicalName>
+        <description>Returns 1 if the values are equal, otherwise 0.</description>
+        <example>== 10 10</example>
+        <help>Parameters: expr1 expr2 - Checks if expr1 is equal to expr2.</help>
+        <parametersCount>2</parametersCount>
+        <implementingClass>BinaryBoolCommand</implementingClass>
+    </command>
+    <command>
+        <canonicalName>LESS?</canonicalName>
+        <description>Returns 1 if expr1 is less than expr2, otherwise 0.</description>
+        <example>\< 5 10</example>
+        <help>Parameters: expr1 expr2 - Checks if expr1 is less than expr2.</help>
+        <parametersCount>2</parametersCount>
+        <implementingClass>BinaryBoolCommand</implementingClass>
+    </command>
+    <command>
+        <canonicalName>GREATER?</canonicalName>
+        <description>Returns 1 if expr1 is greater than expr2, otherwise 0.</description>
+        <example>\> 10 5</example>
+        <help>Parameters: expr1 expr2 - Checks if expr1 is greater than expr2.</help>
+        <parametersCount>2</parametersCount>
+        <implementingClass>BinaryBoolCommand</implementingClass>
+    </command>
+    <command>
+        <canonicalName>AND</canonicalName>
+        <description>Returns 1 if both tests are non-zero, otherwise 0.</description>
+        <example>AND 1 0</example>
+        <help>Parameters: test1 test2 - Logical AND of test1 and test2.</help>
+        <parametersCount>2</parametersCount>
+        <implementingClass>BinaryBoolCommand</implementingClass>
+    </command>
+    <command>
+        <canonicalName>OR</canonicalName>
+        <description>Returns 1 if either test is non-zero, otherwise 0.</description>
+        <example>OR 0 0</example>
+        <help>Parameters: test1 test2 - Logical OR of test1 and test2.</help>
+        <parametersCount>2</parametersCount>
+        <implementingClass>BinaryBoolCommand</implementingClass>
+    </command>
+    <command>
+        <canonicalName>NOT</canonicalName>
+        <description>Returns 1 if test is 0, otherwise 0.</description>
+        <example>NOT 0</example>
+        <help>Parameters: test - Logical NOT of test.</help>
+        <parametersCount>1</parametersCount>
+        <implementingClass>UnaryBoolCommand</implementingClass>
+    </command>
+    <command>
+        <canonicalName>NOTEQUAL?</canonicalName>
+        <description>Returns 1 if the values are not equal, otherwise 0.</description>
+        <example>!= 5 10</example>
+        <help>Parameters: expr1 expr2 - Checks if expr1 is not equal to expr2.</help>
+        <parametersCount>2</parametersCount>
+        <implementingClass>BinaryBoolCommand</implementingClass>
+    </command>
+    <command>
+        <canonicalName>LESSEQUAL?</canonicalName>
+        <description>Returns 1 if expr1 is less than or equal to expr2, otherwise 0.</description>
+        <example>\<= 5 5</example>
+        <help>Parameters: expr1 expr2 - Checks if expr1 is less than or equal to expr2.</help>
+        <parametersCount>2</parametersCount>
+        <implementingClass>BinaryBoolCommand</implementingClass>
+    </command>
+    <command>
+        <canonicalName>GREATEREQUAL?</canonicalName>
+        <description>Returns 1 if expr1 is greater than or equal to expr2, otherwise 0.</description>
+        <example>\>= 5 5</example>
+        <help>Parameters: expr1 expr2 - Checks if expr1 is greater than or equal to expr2.</help>
+        <parametersCount>2</parametersCount>
+        <implementingClass>BinaryBoolCommand</implementingClass>
+    </command>
+</commands>

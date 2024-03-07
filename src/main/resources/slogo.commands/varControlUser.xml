@@ -1,0 +1,58 @@
+<commands>
+    <command>
+        <canonicalName>MAKE</canonicalName>
+        <description>Assigns the value of expr to variable, creating the variable if necessary.</description>
+        <example>SET :size 50</example>
+        <help>Parameters: variable expr - Assigns expr to variable. If variable does not exist, it is created.</help>
+        <parametersCount>2</parametersCount>
+        <implementingClass>TO_BE_DEFINED</implementingClass>
+    </command>
+    <command>
+        <canonicalName>REPEAT</canonicalName>
+        <description>Runs command(s) given in the list the value of expr number of times.</description>
+        <example>REPEAT 10 [ FD 50 ]</example>
+        <help>Parameters: expr [command(s)] - Repeats command(s) expr number of times. :repcount variable is available within the command(s) scope.</help>
+        <parametersCount>2</parametersCount>
+        <implementingClass>TO_BE_DEFINED</implementingClass>
+    </command>
+    <command>
+        <canonicalName>DOTIMES</canonicalName>
+        <description>Runs command(s) for each value in the range from 1 to limit inclusive.</description>
+        <example>DOTIMES [ :i 10 ] [ FD :i ]</example>
+        <help>Parameters: [variable limit] [command(s)] - Iterates command(s) with variable from 1 to limit.</help>
+        <parametersCount>2</parametersCount>
+        <implementingClass>TO_BE_DEFINED</implementingClass>
+    </command>
+    <command>
+        <canonicalName>FOR</canonicalName>
+        <description>Runs command(s) for each value in the specified range, from start to end, going by increment.</description>
+        <example>FOR [ :i 1 10 1 ] [ FD :i ]</example>
+        <help>Parameters: [variable start end increment] [command(s)] - Iterates command(s) with variable from start to end by increment.</help>
+        <parametersCount>2</parametersCount>
+        <implementingClass>TO_BE_DEFINED</implementingClass>
+    </command>
+    <command>
+        <canonicalName>IF</canonicalName>
+        <description>If expr is not 0, runs the command(s) given in the list.</description>
+        <example>IF :size [ FD 50 ]</example>
+        <help>Parameters: expr [command(s)] - Executes command(s) if expr is not 0.</help>
+        <parametersCount>2</parametersCount>
+        <implementingClass>TO_BE_DEFINED</implementingClass>
+    </command>
+    <command>
+        <canonicalName>IFELSE</canonicalName>
+        <description>If expr is not 0, runs the trueCommand(s), otherwise runs the falseCommand(s).</description>
+        <example>IFELSE :size [ FD 50 ] [ BK 50 ]</example>
+        <help>Parameters: expr [trueCommand(s)] [falseCommand(s)] - Executes trueCommand(s) if expr is not 0, otherwise falseCommand(s).</help>
+        <parametersCount>3</parametersCount>
+        <implementingClass>TO_BE_DEFINED</implementingClass>
+    </command>
+    <command>
+        <canonicalName>TO</canonicalName>
+        <description>Assigns command(s) to commandName with variable(s) as parameters.</description>
+        <example>TO mycommand [ :dist ] [ FD :dist ]</example>
+        <help>Parameters: commandName [variable(s)] [command(s)] - Defines a new command with the given name, variables, and command(s).</help>
+        <parametersCount>3</parametersCount>
+        <implementingClass>TO_BE_DEFINED</implementingClass>
+    </command>
+</commands>
