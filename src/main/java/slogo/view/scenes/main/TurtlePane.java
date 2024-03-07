@@ -33,8 +33,8 @@ public class TurtlePane implements Observer {
   public static final String DEFAULT_TURTLE_IMAGE_PATH = "/default_turtle.png";
   private static ImageView turtleImageView;
   private final Pane displayPane;
-  private Color currentPenColor = Color.BLACK;
   private final List<Line> linesDrawn = new ArrayList<>();
+  private Color currentPenColor = Color.BLACK;
   private ParallelTransition currentAnimation;
   private double animationSpeed;
 
@@ -243,7 +243,7 @@ public class TurtlePane implements Observer {
   }
 
   public void adjustSpeed(double adjust) {
-    if(adjust == 0.0) {
+    if (adjust == 0.0) {
       animationSpeed = -50.0;
       return;
     }
