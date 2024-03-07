@@ -5,7 +5,6 @@ import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.FileChooser;
-import slogo.controller.config.SlogoFileHandler;
 import slogo.view.tabs.CommandHistoryTab;
 
 /**
@@ -36,7 +35,7 @@ public class SaveFile implements EventHandler<ActionEvent> {
 
     if (file != null) {
       String filePath = file.getAbsolutePath();
-      SlogoFileHandler.saveCommandsToFile(commands, filePath);
+      SaveFileHandler.saveCommandsToFile(commands, filePath);
     }
   }
 

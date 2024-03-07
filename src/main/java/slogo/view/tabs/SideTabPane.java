@@ -61,13 +61,13 @@ public class SideTabPane extends TabPane implements Observer {
   @Override
   public void update(Observable observable) {
     if (observable instanceof CommandHistoryModel commandHistoryModel) {
-      TabContent tabContent = tabMap.get("Command History");
+      TabContent tabContent = tabMap.get(LanguageController.getText("CommandHistory"));
       if (tabContent instanceof CommandHistoryTab commandHistoryContent) {
         commandHistoryContent.updateContent(commandHistoryModel.iterator());
       }
     }
     if (observable instanceof VariablesModel variablesModel) {
-      TabContent tabContent = tabMap.get("User Variables");
+      TabContent tabContent = tabMap.get(LanguageController.getText("UserVariables"));
       if (tabContent instanceof UserVariablesTab userVariablesTab) {
         userVariablesTab.updateContent(variablesModel.getAllVariables());
       }
