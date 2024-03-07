@@ -11,6 +11,9 @@ public class TurtleModel extends AbstractObservable {
   private final LineModel lineModel;
   private double positionX;
   private double positionY;
+  private double prevX;
+  private double prevY;
+  private double prevOrientation;
   private double orientation;
   private boolean penDown;
   private boolean visible;
@@ -24,6 +27,9 @@ public class TurtleModel extends AbstractObservable {
     this.positionX = 0;
     this.positionY = 0;
     this.orientation = 0;
+    this.prevX = 0;
+    this.prevY = 0;
+    this.prevOrientation = 0;
     this.penDown = false;
     this.visible = true;
   }
@@ -38,8 +44,11 @@ public class TurtleModel extends AbstractObservable {
     double orientationRadians = Math.toRadians(orientation);
     double deltaX = distance * Math.cos(orientationRadians);
     double deltaY = distance * Math.sin(orientationRadians);
-    double oldX = positionX;
-    double oldY = positionY;
+    prevX = positionX;
+    prevY = positionY;
+
+    // update angle
+    prevOrientation = orientation;
 
     // update X and Y position
     positionX += deltaX;
@@ -47,14 +56,14 @@ public class TurtleModel extends AbstractObservable {
 
     // draw line if pen is down
     if (penDown) {
-      lineModel.addLine(new Line(oldX, oldY, positionX, positionY));
+      lineModel.addLine(new Line(prevX, prevY, positionX, positionY));
     }
 
     // notify observers about position change
     notifyObservers();
 
     // return distance travelled
-    return Math.sqrt(Math.pow(positionX - oldX, 2) + Math.pow(positionY - oldY, 2));
+    return Math.sqrt(Math.pow(positionX - prevX, 2) + Math.pow(positionY - prevY, 2));
   }
 
   /**
@@ -63,7 +72,12 @@ public class TurtleModel extends AbstractObservable {
    * @param angle angle to rotate turtle by
    */
   public double rotateTurtle(double angle) {
+    // update previous position
+    prevX = positionX;
+    prevY = positionY;
+
     // update angle
+    prevOrientation = orientation;
     orientation += angle;
 
     // ensure angle remains within 360 degrees
@@ -86,6 +100,10 @@ public class TurtleModel extends AbstractObservable {
    * @param newY is new Y position
    */
   public double setLocation(double newX, double newY) {
+    // update previous position
+    prevX = positionX;
+    prevY = positionY;
+
     double distance = Math.sqrt(Math.pow(newX - positionX, 2) + Math.pow(newY - positionY, 2));
     positionX = newX;
     positionY = newY;
@@ -100,13 +118,17 @@ public class TurtleModel extends AbstractObservable {
    * @return The absolute difference between the new and old heading.
    */
   public double setHeading(double degrees) {
-    double oldOrientation = orientation;
+    // update previous position
+    prevX = positionX;
+    prevY = positionY;
+
+    prevOrientation = orientation;
     orientation = degrees % 360;
     if (orientation < 0) {
       orientation += 360;
     }
     notifyObservers();
-    double angleDifference = Math.abs(orientation - oldOrientation);
+    double angleDifference = Math.abs(orientation - prevOrientation);
     angleDifference = angleDifference > 180 ? 360 - angleDifference : angleDifference;
     return angleDifference;
   }
@@ -137,6 +159,33 @@ public class TurtleModel extends AbstractObservable {
    */
   public double getOrientation() {
     return orientation;
+  }
+
+  /**
+   * Get previous X position of turtle.
+   *
+   * @return prev X position of Turtle
+   */
+  public double getPrevX() {
+    return prevX;
+  }
+
+  /**
+   * Get previous Y position of turtle.
+   *
+   * @return prev Y position of Turtle
+   */
+  public double getPrevY() {
+    return prevY;
+  }
+
+  /**
+   * Get previous orientation of turtle.
+   *
+   * @return prev orientation position of Turtle
+   */
+  public double getPrevOrientation() {
+    return prevOrientation;
   }
 
   /**

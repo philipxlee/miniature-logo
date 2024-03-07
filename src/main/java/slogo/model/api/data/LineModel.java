@@ -3,6 +3,7 @@ package slogo.model.api.data;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Iterator;
+import java.util.Optional;
 import slogo.model.api.line.Line;
 import slogo.observer.AbstractObservable;
 
@@ -11,7 +12,7 @@ import slogo.observer.AbstractObservable;
  */
 public class LineModel extends AbstractObservable {
 
-  private final Deque<Line> lines;
+  private final Deque<Optional<Line>> lines;
 
   /**
    * LineModel constructor. Initializes observers and line storage.
@@ -27,24 +28,24 @@ public class LineModel extends AbstractObservable {
    * @param line to add to LineModel
    */
   public void addLine(Line line) {
-    lines.add(line);
+    lines.add(Optional.ofNullable(line));
     notifyObservers();
   }
 
   /**
-   * Clear lines being stored.
+   * Clear lines being stored by adding an empty line to queue.
    */
   public void clearLines() {
-    lines.clear();
+    lines.add(Optional.empty());
     notifyObservers();
   }
 
   /**
    * Returns an iterator on the lines.
    *
-   * @return Iterator<Line> object.ÏÏÏÏ
+   * @return Iterator<Line> object
    */
-  public Iterator<Line> iterator() {
+  public Iterator<Optional<Line>> iterator() {
     return lines.iterator();
   }
 
@@ -53,7 +54,7 @@ public class LineModel extends AbstractObservable {
    *
    * @return iterator over the Lines
    */
-  public Line getLine() {
+  public Optional<Line> getLine() {
     return lines.pop();
   }
 
