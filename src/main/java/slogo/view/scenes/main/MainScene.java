@@ -50,7 +50,7 @@ public class MainScene implements Scene {
     this.turtlePane = new TurtlePane(width, height);
     this.inputPane = new InputPane(height, commandController);
     this.sideTabPane = new SideTabPane();
-    this.controlButtonsBox = new ControlButtonsBox(colorObservable, penColorObservable);
+    this.controlButtonsBox = new ControlButtonsBox(colorObservable, penColorObservable, turtlePane);
 
     commandController.observeTurtle(turtlePane);
     commandController.observeLines(turtlePane);

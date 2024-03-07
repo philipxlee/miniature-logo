@@ -1,11 +1,9 @@
 package slogo.view.scenes.main;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.Set;
 import javafx.animation.Animation;
 import javafx.animation.ParallelTransition;
 import javafx.animation.PathTransition;
@@ -38,8 +36,8 @@ public class TurtlePane implements Observer {
   public static final String DEFAULT_TURTLE_IMAGE_PATH = "/default_turtle.png";
   private static ImageView turtleImageView;
   private final Pane displayPane;
-  private final Set<Line> linesDrawn = new HashSet<>();
   private Color currentPenColor = Color.BLACK;
+  private ParallelTransition currentAnimation;
 
   /**
    * TurtlePane Constructor. Initializes display pane and turtle graphic
@@ -59,7 +57,7 @@ public class TurtlePane implements Observer {
    *
    * @param image The image to set for the turtle.
    */
-  public static void setTurtleImage(Image image) {
+  public void setTurtleImage(Image image) {
     turtleImageView.setImage(image);
   }
 
@@ -78,19 +76,14 @@ public class TurtlePane implements Observer {
       currentPenColor = Color.web(penColorObservable.getColor());
     }
 
-    List<Animation> allAnimations = new ArrayList<>();
-
     if (observable instanceof TurtleModel turtleModel) {
-      allAnimations.addAll(drawTurtle(turtleModel));
-    }
-    if (observable instanceof LineModel lineModel) {
-      allAnimations.add(drawLines(lineModel));
-    }
-
-    if (!allAnimations.isEmpty()) {
-      ParallelTransition parallelTransition = new ParallelTransition();
-      parallelTransition.getChildren().addAll(allAnimations);
-      parallelTransition.play();
+      List<Animation> animations = drawTurtle(turtleModel);
+      currentAnimation = new ParallelTransition(turtleImageView);
+      currentAnimation.getChildren().addAll(animations);
+      if(turtleModel.getPenDown()) {
+        currentAnimation.getChildren().add(drawLines(turtleModel));
+      }
+      currentAnimation.play();
     }
   }
 
@@ -147,21 +140,15 @@ public class TurtlePane implements Observer {
     return animations;
   }
 
-  private SequentialTransition drawLines(LineModel lineModel) {
-    SequentialTransition sequentialTransition = new SequentialTransition();
-    Optional<slogo.model.api.line.Line> lineOptional = lineModel.getLine();
-    if (lineOptional.isEmpty()) {
-      displayPane.getChildren().removeIf(node -> node instanceof Line);
-      return sequentialTransition;
-    }
+  private ParallelTransition drawLines(TurtleModel turtleModel) {
+    ParallelTransition parallelTransition = new ParallelTransition();
 
-    slogo.model.api.line.Line line = lineOptional.get();
     double centerX = displayPane.getWidth() / 2.0;
     double centerY = displayPane.getHeight() / 2.0;
-    double startX = centerX + line.startX();
-    double startY = centerY - line.startY();
-    double endX = centerX + line.endX();
-    double endY = centerY - line.endY();
+    double startX = centerX + turtleModel.getPrevX();
+    double startY = centerY - turtleModel.getPrevY();
+    double endX = centerX + turtleModel.getPositionX();
+    double endY = centerY - turtleModel.getPositionY();
 
     double distance = Math.sqrt(Math.pow((endX - startX), 2) + Math.pow((endY - startY), 2));
     double duration = distance / TRAVERSAL_RATE;
@@ -177,12 +164,13 @@ public class TurtlePane implements Observer {
       pathSegment.setStroke(currentPenColor);
       pathSegment.setStrokeWidth(3);
 
-      PauseTransition pause = new PauseTransition(Duration.seconds(segmentDuration));
+      double pauseDuration = (i + 1) * duration / numSegments;
+      PauseTransition pause = new PauseTransition(Duration.seconds(pauseDuration));
       pause.setOnFinished(e -> displayPane.getChildren().add(pathSegment));
-      sequentialTransition.getChildren().add(pause);
+      parallelTransition.getChildren().add(pause);
     }
 
-    return sequentialTransition;
+    return parallelTransition;
   }
 
   private void initializeTurtle(int width, int height) {
@@ -203,7 +191,7 @@ public class TurtlePane implements Observer {
     turtleImageView.setY(height * RATIO_TURTLE_DISPLAY / 2.0 - 10); // Center Y
   }
 
-  private Animation createMovementAnimation(TurtleModel turtleModel) {
+  private PathTransition createMovementAnimation(TurtleModel turtleModel) {
     double centerX = displayPane.getWidth() / 2.0;
     double centerY = displayPane.getHeight() / 2.0;
     double distance = Math.sqrt(
@@ -217,20 +205,27 @@ public class TurtlePane implements Observer {
     path.getElements().add(new LineTo(centerX + turtleModel.getPositionX(),
         centerY - turtleModel.getPositionY())); // Ending position
 
-    PathTransition pathTransition = new PathTransition();
-    pathTransition.setDuration(Duration.seconds(duration));
-    pathTransition.setPath(path);
-    pathTransition.setNode(turtleImageView);
-
-    return pathTransition;
+    return new PathTransition(Duration.seconds(duration), path, turtleImageView);
   }
 
-  private Animation createRotationAnimation(TurtleModel turtleModel) {
+  private RotateTransition createRotationAnimation(TurtleModel turtleModel) {
     RotateTransition rotateTransition = new RotateTransition();
     rotateTransition.setDuration(Duration.seconds(1));
     rotateTransition.setByAngle(-turtleModel.getOrientation() + turtleModel.getPrevOrientation());
     rotateTransition.setNode(turtleImageView);
 
     return rotateTransition;
+  }
+
+  public void pauseAnimation() {
+    if (currentAnimation != null) {
+      currentAnimation.pause();
+    }
+  }
+
+  public void playAnimation() {
+    if (currentAnimation != null && currentAnimation.getStatus() == Animation.Status.PAUSED) {
+      currentAnimation.play();
+    }
   }
 }
