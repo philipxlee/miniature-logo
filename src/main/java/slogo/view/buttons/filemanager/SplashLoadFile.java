@@ -1,4 +1,4 @@
-package slogo.view.buttons.controllers;
+package slogo.view.buttons.filemanager;
 
 
 import java.io.BufferedReader;
@@ -10,15 +10,13 @@ import javafx.event.EventHandler;
 import javafx.stage.FileChooser;
 import slogo.controller.CommandController;
 import slogo.controller.SceneSwitcher;
-import slogo.exceptions.InvalidCommandException;
-import slogo.view.alert.Alert;
 import slogo.view.scenes.main.MainScene;
 
 
 /**
  * LoadButton is a button for loading a session from a file.
  */
-public class LoadButtonController implements EventHandler<ActionEvent> {
+public class SplashLoadFile implements EventHandler<ActionEvent>, FileLoader {
 
   private final CommandController commandController;
   private final SceneSwitcher switcher;
@@ -29,7 +27,7 @@ public class LoadButtonController implements EventHandler<ActionEvent> {
    * @param commandController the CommandController
    * @param switcher          the SceneSwitcher
    */
-  public LoadButtonController(CommandController commandController, SceneSwitcher switcher) {
+  public SplashLoadFile(CommandController commandController, SceneSwitcher switcher) {
     this.commandController = commandController;
     this.switcher = switcher;
   }
@@ -41,26 +39,28 @@ public class LoadButtonController implements EventHandler<ActionEvent> {
   public void handle(ActionEvent event) {
     FileChooser fileChooser = new FileChooser();
     fileChooser.setTitle("Open SLogo File");
-    fileChooser.getExtensionFilters().addAll(
-        new FileChooser.ExtensionFilter("SLogo Files", "*.slogo")
-    );
-
+    fileChooser.getExtensionFilters()
+        .addAll(new FileChooser.ExtensionFilter("SLogo Files", "*.slogo"));
     File selectedFile = fileChooser.showOpenDialog(null);
     if (selectedFile != null) {
-      try {
-        BufferedReader reader = new BufferedReader(new FileReader(selectedFile));
-        StringBuilder commandsBuilder = new StringBuilder();
-        String line;
-        while ((line = reader.readLine()) != null) {
-          commandsBuilder.append(line).append("\n");
-        }
-        reader.close();
-        String commands = commandsBuilder.toString().trim();
-        switcher.switchToScene(new MainScene(1000, 700, commandController, commands));
+      loadFile(selectedFile);
+    }
+  }
 
-      } catch (IOException e) {
-        throw new RuntimeException("File couldn't be loaded");
+  @Override
+  public void loadFile(File file) {
+    try {
+      BufferedReader reader = new BufferedReader(new FileReader(file));
+      StringBuilder commandsBuilder = new StringBuilder();
+      String line;
+      while ((line = reader.readLine()) != null) {
+        commandsBuilder.append(line).append("\n");
       }
+      reader.close();
+      String commands = commandsBuilder.toString().trim();
+      switcher.switchToScene(new MainScene(1000, 700, commandController, commands));
+    } catch (IOException e) {
+      throw new RuntimeException("File couldn't be loaded");
     }
   }
 }

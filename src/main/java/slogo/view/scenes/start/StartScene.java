@@ -7,9 +7,9 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import slogo.controller.CommandController;
-import slogo.view.buttons.controllers.LoadButtonController;
 import slogo.controller.SceneSwitcher;
 import slogo.controller.ThemeController;
+import slogo.view.buttons.filemanager.SplashLoadFile;
 import slogo.view.scenes.Scene;
 import slogo.view.scenes.main.MainScene;
 
@@ -117,7 +117,7 @@ public class StartScene implements Scene {
     loadButton.getStyleClass().add(BUTTON_STYLE);
 
     // Create LoadButtonController instance
-    LoadButtonController loadButtonController = new LoadButtonController(commandController,
+    SplashLoadFile loadButtonController = new SplashLoadFile(commandController,
         switcher);
 
     // Set action for the load button
