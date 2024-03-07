@@ -17,7 +17,7 @@ public abstract class AbstractFileLoader implements FileLoader, EventHandler<Act
    *
    * @param file the file to load
    * @return the contents of the file
-   * @throws IOException
+   * @throws IOException if the file couldn't be read
    */
   public String readFileContents(File file) throws IOException {
     BufferedReader reader = new BufferedReader(new FileReader(file));
