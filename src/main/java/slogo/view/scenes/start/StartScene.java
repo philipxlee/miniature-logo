@@ -7,8 +7,9 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import slogo.controller.command.CommandController;
-import slogo.controller.display.SceneSwitcher;
+import slogo.controller.config.LanguageController;
 import slogo.controller.config.ThemeController;
+import slogo.controller.display.SceneSwitcher;
 import slogo.view.buttons.filemanager.SplashLoadFile;
 import slogo.view.scenes.Scene;
 import slogo.view.scenes.main.MainScene;
@@ -135,7 +136,9 @@ public class StartScene implements Scene {
     ComboBox<String> languageSelector = new ComboBox<>();
     languageSelector.getItems().addAll("English", "Spanish");
     languageSelector.setValue("English"); // Default language
-//    languageSelector.setOnAction(event -> updateLanguage(languageSelector.getValue()));
+    languageSelector.setOnAction(event -> {
+      LanguageController.changeLanguage(languageSelector.getValue());
+    });
     languageSelector.getStyleClass().add("theme-selector");
     return languageSelector;
   }

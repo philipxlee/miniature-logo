@@ -5,23 +5,18 @@ import java.util.ResourceBundle;
 
 public class LanguageController {
 
-  private static Locale currentLocale = new Locale("en", "US");
-  private static ResourceBundle messages = ResourceBundle.getBundle("MessagesBundle", currentLocale);
+  private static ResourceBundle messages = loadResourceBundle("English");
 
-  public static void changeLanguage(String languageCode) {
-    switch (languageCode) {
-      case "Spanish" -> currentLocale = new Locale("es", "ES");
-      case "English" -> currentLocale = new Locale("en", "US");
-    }
-    messages = ResourceBundle.getBundle("MessagesBundle", currentLocale);
-    updateTexts();
+  public static void changeLanguage(String languageName) {
+    messages = loadResourceBundle(languageName);
   }
 
   public static String getText(String key) {
     return messages.getString(key);
   }
 
-  private static void updateTexts() {
-
+  private static ResourceBundle loadResourceBundle(String languageName) {
+    String baseName = "slogo.example.languages." + languageName;
+    return ResourceBundle.getBundle(baseName, Locale.getDefault());
   }
 }
