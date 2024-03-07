@@ -28,6 +28,11 @@ public class CommandHistoryTab implements TabContent {
   private List<String> commandsHistory;
 
 
+  /**
+   * Constructor for CommandHistoryTab.
+   *
+   * @param commandController the CommandController
+   */
   public CommandHistoryTab(CommandController commandController) {
     this.commandController = commandController;
   }
@@ -86,6 +91,11 @@ public class CommandHistoryTab implements TabContent {
     scrollPane.setVvalue(1.0);
   }
 
+  /**
+   * Get the commands history.
+   *
+   * @return List of commands history.
+   */
   public List<String> getCommandsHistory() {
     return commandsHistory;
   }
