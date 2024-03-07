@@ -6,9 +6,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import slogo.controller.CommandController;
-import slogo.controller.SceneSwitcher;
-import slogo.controller.ThemeController;
+import slogo.controller.command.CommandController;
+import slogo.controller.display.SceneSwitcher;
+import slogo.controller.config.ThemeController;
 import slogo.view.buttons.filemanager.SplashLoadFile;
 import slogo.view.scenes.Scene;
 import slogo.view.scenes.main.MainScene;
@@ -62,7 +62,7 @@ public class StartScene implements Scene {
 
     Button startButton = createStartButton(width, height);
     Button loadButton = createLoadButton(width, height);
-    Button languageButton = createLanguageButton();
+    ComboBox<String> languageButton = createLanguageButton();
     ComboBox<String> colorSchemeButton = createColorSchemeButton();
 
     parentBox.getChildren()
@@ -131,11 +131,13 @@ public class StartScene implements Scene {
    *
    * @return the created button
    */
-  private Button createLanguageButton() {
-    Button languageButton = new Button("Select Language");
-    languageButton.setPrefSize(BUTTON_WIDTH, BUTTON_HEIGHT);
-    languageButton.getStyleClass().add(BUTTON_STYLE);
-    return languageButton;
+  private ComboBox<String> createLanguageButton() {
+    ComboBox<String> languageSelector = new ComboBox<>();
+    languageSelector.getItems().addAll("English", "Spanish");
+    languageSelector.setValue("English"); // Default language
+//    languageSelector.setOnAction(event -> updateLanguage(languageSelector.getValue()));
+    languageSelector.getStyleClass().add("theme-selector");
+    return languageSelector;
   }
 
   /**
