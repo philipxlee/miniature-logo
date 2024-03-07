@@ -3,7 +3,6 @@ package slogo.controller.display;
 import javafx.stage.Stage;
 import slogo.controller.command.CommandController;
 import slogo.controller.config.ThemeController;
-import slogo.controller.display.SceneSwitcher;
 import slogo.view.scenes.Scene;
 import slogo.view.scenes.start.StartScene;
 

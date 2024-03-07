@@ -20,11 +20,11 @@ import slogo.view.buttons.filemanager.SaveFile;
  */
 public class CommandHistoryTab implements TabContent {
 
+  private final CommandController commandController;
   private VBox content;
   private VBox historyContainer;
   private ScrollPane scrollPane;
   private List<String> commandsHistory;
-  private final CommandController commandController;
 
 
   public CommandHistoryTab(CommandController commandController) {
