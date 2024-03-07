@@ -9,6 +9,7 @@ import slogo.model.api.command.turtle.ForwardCommand;
 import slogo.model.api.command.turtle.RotateCommand;
 import slogo.model.api.data.LineModel;
 import slogo.model.api.data.TurtleModel;
+import slogo.model.api.parser.metadata.CommandMetadata;
 import slogo.model.api.parser.nodes.ASTNode;
 import slogo.model.api.parser.nodes.CommandNode;
 import slogo.model.api.parser.nodes.ProcedureNode;
@@ -16,19 +17,14 @@ import slogo.model.api.parser.nodes.RepeatNode;
 
 public class Parser {
   private final List<Token> tokens;
+  private Map<String, CommandMetadata> commandMetadataMap;
   private int current = 0;
   private final Map<String, Class<? extends Command>> commandMap = new HashMap<>();
   private ASTNode ast; // Instance variable for the AST
 
-  public Parser(List<Token> tokens) {
+  public Parser(List<Token> tokens, Map<String, CommandMetadata> commandMetadataMap) {
     this.tokens = tokens;
-    initializeCommandMap();
-  }
-
-  private void initializeCommandMap() {
-    commandMap.put("fd", ForwardCommand.class);
-    commandMap.put("rt", RotateCommand.class);
-    // Initialize commandMap with mappings from command strings to command classes
+    this.commandMetadataMap= commandMetadataMap;
   }
 
   public void parse() {

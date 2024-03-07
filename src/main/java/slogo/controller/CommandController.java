@@ -6,12 +6,14 @@ import slogo.model.api.data.CommandHistoryModel;
 import slogo.model.api.data.LineModel;
 import slogo.model.api.data.TurtleModel;
 import slogo.model.api.parser.Parser;
+import slogo.model.api.parser.metadata.CommandMetadata;
 import slogo.model.api.parser.metadata.CommandMetadataLoader;
 import slogo.observer.Observer;
 import slogo.model.api.parser.Tokenizer;
 import slogo.model.api.parser.Token;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * CommandController handles user input sent from the view.
@@ -23,7 +25,7 @@ public class CommandController {
   private final CommandHistoryModel commandHistoryModel;
   // private final Parser parser;
   private final Tokenizer tokenizer;
-  private CommandMetadataLoader metadataLoader = new CommandMetadataLoader();
+  private CommandMetadataLoader metadataLoader;
 
   /**
    * CommandController constructor initializes new parser.
@@ -38,6 +40,8 @@ public class CommandController {
     this.lineModel = lineModel;
     this.commandHistoryModel = commandHistoryModel;
     // this.parser = new Parser(turtleModel, lineModel);
+    this.metadataLoader = new CommandMetadataLoader();
+    metadataLoader.loadAllCommandMetadata();
     this.tokenizer = new Tokenizer();
   }
 
@@ -50,11 +54,11 @@ public class CommandController {
   public void executeCommand(String commandString) throws InvalidCommandException {
     tokenizer.setInput(commandString);
     List<Token> tokens = tokenizer.tokenize();
-
-    Parser parser = new Parser(tokens);
+    Map<String, CommandMetadata> commandMetadataMap = metadataLoader.getAllCommandMetadata();
+    Parser parser = new Parser(tokens, commandMetadataMap); // pass the TurtleModel and LineModel
     parser.parse();
 
-    parser.executeAST(); // pass the TurtleModel and LineModel
+    parser.executeAST();
 
     commandHistoryModel.addCommand(commandString);
   }
