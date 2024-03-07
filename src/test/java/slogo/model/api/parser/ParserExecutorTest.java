@@ -15,7 +15,7 @@ import slogo.model.api.command.turtle.SetLocationCommand;
 import slogo.model.api.data.LineModel;
 import slogo.model.api.data.TurtleModel;
 
-public class ParserTest {
+public class ParserExecutorTest {
 
   @BeforeEach
   void setUp() {
@@ -25,7 +25,7 @@ public class ParserTest {
   void testForwardParse() throws InvalidCommandException {
     LineModel lineModel = new LineModel();
     TurtleModel turtleModel = new TurtleModel(lineModel);
-    Parser parser = new Parser(turtleModel, lineModel);
+    ParserExecutor parser = new ParserExecutor(turtleModel, lineModel);
     Command command = parser.parseCommand("fd 50");
     assertEquals(command.getClass(), ForwardCommand.class);
   }
@@ -34,7 +34,7 @@ public class ParserTest {
   void testRotateParse() throws InvalidCommandException {
     LineModel lineModel = new LineModel();
     TurtleModel turtleModel = new TurtleModel(lineModel);
-    Parser parser = new Parser(turtleModel, lineModel);
+    ParserExecutor parser = new ParserExecutor(turtleModel, lineModel);
     Command command = parser.parseCommand("rt 90");
     assertEquals(command.getClass(), RotateCommand.class);
   }
@@ -43,7 +43,7 @@ public class ParserTest {
   void testParse() throws InvalidCommandException {
     LineModel lineModel = new LineModel();
     TurtleModel turtleModel = new TurtleModel(lineModel);
-    Parser parser = new Parser(turtleModel, lineModel);
+    ParserExecutor parser = new ParserExecutor(turtleModel, lineModel);
     Command fd = parser.parseCommand("fd 50");
     Command bk = parser.parseCommand("bk 50");
     Command lt = parser.parseCommand("lt 50");

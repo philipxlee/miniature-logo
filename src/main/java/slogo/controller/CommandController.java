@@ -1,17 +1,18 @@
 package slogo.controller;
 
 import slogo.exceptions.InvalidCommandException;
-import slogo.model.api.command.Command;
 import slogo.model.api.data.CommandHistoryModel;
 import slogo.model.api.data.LineModel;
 import slogo.model.api.data.TurtleModel;
-import slogo.model.api.parser.Parser;
+import slogo.model.api.parser.ParserExecutor;
+import slogo.model.api.parser.exceptions.InvalidTokenException;
 import slogo.model.api.parser.metadata.CommandMetadata;
 import slogo.model.api.parser.metadata.CommandMetadataLoader;
 import slogo.observer.Observer;
 import slogo.model.api.parser.Tokenizer;
 import slogo.model.api.parser.Token;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -25,7 +26,7 @@ public class CommandController {
   private final CommandHistoryModel commandHistoryModel;
   // private final Parser parser;
   private final Tokenizer tokenizer;
-  private CommandMetadataLoader metadataLoader;
+  private final CommandMetadataLoader metadataLoader;
 
   /**
    * CommandController constructor initializes new parser.
@@ -51,13 +52,17 @@ public class CommandController {
    *
    * @param commandString the command to be executed as a string
    */
-  public void executeCommand(String commandString) throws InvalidCommandException {
+  public void executeCommand(String commandString) throws Exception, InvalidTokenException {
     tokenizer.setInput(commandString);
+    // should there be additional error handling here
     List<Token> tokens = tokenizer.tokenize();
+    System.out.println(Arrays.toString(tokens.toArray()));
     Map<String, CommandMetadata> commandMetadataMap = metadataLoader.getAllCommandMetadata();
-    Parser parser = new Parser(tokens, commandMetadataMap); // pass the TurtleModel and LineModel
+
+    ParserExecutor parser = new ParserExecutor(tokens, commandMetadataMap, turtleModel, lineModel);
     parser.parse();
 
+    // and here
     parser.executeAST();
 
     commandHistoryModel.addCommand(commandString);

@@ -12,6 +12,7 @@ import slogo.exceptions.InvalidCommandException;
 import slogo.model.api.data.CommandHistoryModel;
 import slogo.model.api.data.LineModel;
 import slogo.model.api.data.TurtleModel;
+import slogo.model.api.parser.exceptions.InvalidTokenException;
 import slogo.view.scenes.main.TurtlePane;
 
 
@@ -28,7 +29,7 @@ public class CommandControllerTest {
   class ExecuteCommandTests {
 
     @Test
-    void testExecuteBasic() throws InvalidCommandException {
+    void testExecuteBasic() throws Exception, InvalidTokenException {
       LineModel lineModel = new LineModel();
       TurtleModel turtleModel = new TurtleModel(lineModel);
       CommandHistoryModel commandHistoryModel = new CommandHistoryModel();
@@ -43,7 +44,7 @@ public class CommandControllerTest {
     }
 
     @Test
-    void testExecuteDetailed() throws InvalidCommandException {
+    void testExecuteDetailed() throws Exception, InvalidTokenException {
       LineModel lineModel = new LineModel();
       TurtleModel turtleModel = new TurtleModel(lineModel);
       CommandHistoryModel commandHistoryModel = new CommandHistoryModel();

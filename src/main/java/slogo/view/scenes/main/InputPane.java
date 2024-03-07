@@ -8,6 +8,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import slogo.controller.CommandController;
 import slogo.exceptions.InvalidCommandException;
+import slogo.model.api.parser.exceptions.InvalidTokenException;
 import slogo.view.alert.Alert;
 
 /**
@@ -63,8 +64,10 @@ public class InputPane {
             commandController.executeCommand(command);
           } catch (InvalidCommandException e) {
             Alert.showError("Invalid Command", "Please enter a valid command.");
+          } catch (InvalidTokenException | Exception e) {
+              throw new RuntimeException(e);
           }
-          commandInput.setText(DOLLAR_SIGN); // reset text to DOLLAR_SIGN after processing command
+            commandInput.setText(DOLLAR_SIGN); // reset text to DOLLAR_SIGN after processing command
           commandInput.positionCaret(commandInput.getText().length());
           event.consume();
         }

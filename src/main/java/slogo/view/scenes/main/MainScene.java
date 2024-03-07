@@ -4,6 +4,7 @@ import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 import slogo.controller.CommandController;
 import slogo.controller.ThemeController;
+import slogo.model.api.parser.exceptions.InvalidTokenException;
 import slogo.observer.BackgroundObservable;
 import slogo.observer.PenColorObservable;
 import slogo.view.buttons.ControlButtonsBox;
@@ -65,6 +66,8 @@ public class MainScene implements Scene {
       commandController.executeCommand(commands);
     } catch (Exception e) {
       e.printStackTrace();
+    } catch (InvalidTokenException e) {
+        throw new RuntimeException(e);
     }
   }
 

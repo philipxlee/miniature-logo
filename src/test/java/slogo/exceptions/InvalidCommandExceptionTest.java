@@ -7,7 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import slogo.model.api.data.LineModel;
 import slogo.model.api.data.TurtleModel;
-import slogo.model.api.parser.Parser;
+import slogo.model.api.parser.ParserExecutor;
 
 public class InvalidCommandExceptionTest {
 
@@ -21,7 +21,7 @@ public class InvalidCommandExceptionTest {
     Exception exception = assertThrows(InvalidCommandException.class, () -> {
       LineModel lineModel = new LineModel();
       TurtleModel turtleModel = new TurtleModel(lineModel);
-      Parser parser = new Parser(turtleModel, lineModel);
+      ParserExecutor parser = new ParserExecutor(turtleModel, lineModel);
       String commandString = "";
       parser.parseCommand(commandString);
     });
