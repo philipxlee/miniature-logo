@@ -5,6 +5,7 @@ import java.util.List;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
+import slogo.controller.config.LanguageController;
 import slogo.observer.BackgroundObservable;
 import slogo.observer.PenColorObservable;
 import slogo.view.buttons.actions.ButtonTurtleImage;
@@ -55,7 +56,7 @@ public class ControlButtonsBox extends HBox {
   private void setupLayout() {
     this.setSpacing(10);
     this.setPadding(new Insets(10));
-    addButton("Load Turtle Image", new ButtonTurtleImage());
+    addButton(LanguageController.getText("LoadTurtleImage"), new ButtonTurtleImage());
     // Button to change the pen color (addButton not used to allow for ColorPicker functionality)
     PenColorButton penColorButton = new PenColorButton(penColorObservable);
     this.getChildren().add(penColorButton);
