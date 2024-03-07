@@ -1,4 +1,4 @@
-package slogo.controller;
+package slogo.controller.command;
 
 import slogo.exceptions.InvalidCommandException;
 import slogo.model.api.command.Command;

@@ -1,4 +1,4 @@
-package slogo.controller;
+package slogo.controller.config;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

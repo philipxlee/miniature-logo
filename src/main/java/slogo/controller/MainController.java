@@ -2,6 +2,8 @@ package slogo.controller;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import slogo.controller.command.CommandController;
+import slogo.controller.display.ViewController;
 import slogo.model.api.data.CommandHistoryModel;
 import slogo.model.api.data.LineModel;
 import slogo.model.api.data.TurtleModel;

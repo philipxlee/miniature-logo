@@ -8,7 +8,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.FileChooser;
-import slogo.controller.CommandController;
+import slogo.controller.command.CommandController;
 
 public class ConsoleLoadFile implements FileLoader, EventHandler<ActionEvent> {
 

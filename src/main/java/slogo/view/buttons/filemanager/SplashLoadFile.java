@@ -8,8 +8,8 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.FileChooser;
-import slogo.controller.CommandController;
-import slogo.controller.SceneSwitcher;
+import slogo.controller.command.CommandController;
+import slogo.controller.display.SceneSwitcher;
 import slogo.view.scenes.main.MainScene;
 
 

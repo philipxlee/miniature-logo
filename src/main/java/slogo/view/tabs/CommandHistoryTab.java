@@ -10,7 +10,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import slogo.controller.CommandController;
+import slogo.controller.command.CommandController;
 import slogo.view.buttons.filemanager.ConsoleLoadFile;
 import slogo.view.buttons.filemanager.SaveFile;
 

@@ -5,7 +5,7 @@ import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.FileChooser;
-import slogo.controller.SlogoFileHandler;
+import slogo.controller.config.SlogoFileHandler;
 import slogo.view.tabs.CommandHistoryTab;
 
 /**

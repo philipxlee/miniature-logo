@@ -6,7 +6,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import slogo.controller.CommandController;
+import slogo.controller.command.CommandController;
 import slogo.exceptions.InvalidCommandException;
 import slogo.view.alert.Alert;
 
