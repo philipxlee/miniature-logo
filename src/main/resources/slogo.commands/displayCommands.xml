@@ -1,6 +1,7 @@
 <commands>
     <command>
         <canonicalName>SETBACKGROUND</canonicalName>
+        <alias>SETBG</alias>
         <description>Sets background color of the screen to that represented by index.</description>
         <example>SETBG 0</example>
         <help>Parameters: index - Sets the screen's background color to the color at the given index.</help>
@@ -9,6 +10,7 @@
     </command>
     <command>
         <canonicalName>SETPENCOLOR</canonicalName>
+        <alias>SETPC</alias>
         <description>Sets color of the pen to that represented by index.</description>
         <example>SETPC 1</example>
         <help>Parameters: index - Sets the pen's color to the color at the given index.</help>
@@ -17,6 +19,7 @@
     </command>
     <command>
         <canonicalName>SETSHAPE</canonicalName>
+        <alias>SETSH</alias>
         <description>Sets shape of turtle to that represented by index.</description>
         <example>SETSH 2</example>
         <help>Parameters: index - Sets the turtle's shape to the shape at the given index.</help>
@@ -33,6 +36,7 @@
     </command>
     <command>
         <canonicalName>SETPENSIZE</canonicalName>
+        <alias>SETPS</alias>
         <description>Sets size of the pen to be pixels thickness.</description>
         <example>SETPS 5</example>
         <help>Parameters: pixels - Sets the thickness of the pen.</help>
@@ -41,6 +45,7 @@
     </command>
     <command>
         <canonicalName>PENCOLOR</canonicalName>
+        <alias>PC</alias>
         <description>Returns turtle's current color index.</description>
         <example>PC</example>
         <help>Parameters: none - Returns the index of the current pen color.</help>
@@ -49,6 +54,7 @@
     </command>
     <command>
         <canonicalName>SHAPE</canonicalName>
+        <alias>SH</alias>
         <description>Returns turtle's current shape index.</description>
         <example>SH</example>
         <help>Parameters: none - Returns the index of the current turtle shape.</help>

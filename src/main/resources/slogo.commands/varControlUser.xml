@@ -1,6 +1,7 @@
 <commands>
     <command>
         <canonicalName>MAKE</canonicalName>
+        <alias>SET</alias>
         <description>Assigns the value of expr to variable, creating the variable if necessary.</description>
         <example>SET :size 50</example>
         <help>Parameters: variable expr - Assigns expr to variable. If variable does not exist, it is created.</help>

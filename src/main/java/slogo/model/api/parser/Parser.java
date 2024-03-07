@@ -44,7 +44,6 @@ public class Parser {
     Token token = advance();
     switch (token.getType()) {
       case IDENTIFIER:
-
         // !!! use the xml map here - the execution is downstream from this
         return new CommandNode(token.getValue(), parseArguments());
       case TO:
@@ -120,16 +119,6 @@ public class Parser {
     // Handle other node types as necessary
   }
 
-  private void executeCommandNode(CommandNode commandNode) throws Exception {
-    Class<? extends Command> commandClass = commandMap.get(commandNode.commandName);
-    if (commandClass == null) {
-      throw new RuntimeException("Unknown command: " + commandNode.commandName);
-    }
-    // need to make the constructors of the command classes uniform
-    Constructor<? extends Command> constructor = commandClass.getConstructor(TurtleModel.class, double.class);
-    Command command = constructor.newInstance(turtleModel, commandNode.arguments.isEmpty() ? new Object[]{} : commandNode.arguments.get(0));
-    command.execute();
-  }
 
   private boolean isAtEnd() {
     return current >= tokens.size();

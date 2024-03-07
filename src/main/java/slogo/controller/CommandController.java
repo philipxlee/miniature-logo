@@ -6,6 +6,7 @@ import slogo.model.api.data.CommandHistoryModel;
 import slogo.model.api.data.LineModel;
 import slogo.model.api.data.TurtleModel;
 import slogo.model.api.parser.Parser;
+import slogo.model.api.parser.metadata.CommandMetadataLoader;
 import slogo.observer.Observer;
 import slogo.model.api.parser.Tokenizer;
 import slogo.model.api.parser.Token;
@@ -21,8 +22,8 @@ public class CommandController {
   private final LineModel lineModel;
   private final CommandHistoryModel commandHistoryModel;
   // private final Parser parser;
-
   private final Tokenizer tokenizer;
+  private CommandMetadataLoader metadataLoader = new CommandMetadataLoader();
 
   /**
    * CommandController constructor initializes new parser.

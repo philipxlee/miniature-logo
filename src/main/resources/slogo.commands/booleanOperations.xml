@@ -9,16 +9,18 @@
     </command>
     <command>
         <canonicalName>LESS?</canonicalName>
+        <alias><</alias>
         <description>Returns 1 if expr1 is less than expr2, otherwise 0.</description>
-        <example>\< 5 10</example>
+        <example>< 5 10</example>
         <help>Parameters: expr1 expr2 - Checks if expr1 is less than expr2.</help>
         <parametersCount>2</parametersCount>
         <implementingClass>BinaryBoolCommand</implementingClass>
     </command>
     <command>
         <canonicalName>GREATER?</canonicalName>
+        <alias>></alias>
         <description>Returns 1 if expr1 is greater than expr2, otherwise 0.</description>
-        <example>\> 10 5</example>
+        <example>> 10 5</example>
         <help>Parameters: expr1 expr2 - Checks if expr1 is greater than expr2.</help>
         <parametersCount>2</parametersCount>
         <implementingClass>BinaryBoolCommand</implementingClass>
@@ -49,6 +51,7 @@
     </command>
     <command>
         <canonicalName>NOTEQUAL?</canonicalName>
+        <alias>!=</alias>
         <description>Returns 1 if the values are not equal, otherwise 0.</description>
         <example>!= 5 10</example>
         <help>Parameters: expr1 expr2 - Checks if expr1 is not equal to expr2.</help>
@@ -57,16 +60,18 @@
     </command>
     <command>
         <canonicalName>LESSEQUAL?</canonicalName>
+        <alias><=</alias>
         <description>Returns 1 if expr1 is less than or equal to expr2, otherwise 0.</description>
-        <example>\<= 5 5</example>
+        <example><= 5 5</example>
         <help>Parameters: expr1 expr2 - Checks if expr1 is less than or equal to expr2.</help>
         <parametersCount>2</parametersCount>
         <implementingClass>BinaryBoolCommand</implementingClass>
     </command>
     <command>
         <canonicalName>GREATEREQUAL?</canonicalName>
+        <alias>>=</alias>
         <description>Returns 1 if expr1 is greater than or equal to expr2, otherwise 0.</description>
-        <example>\>= 5 5</example>
+        <example>>= 5 5</example>
         <help>Parameters: expr1 expr2 - Checks if expr1 is greater than or equal to expr2.</help>
         <parametersCount>2</parametersCount>
         <implementingClass>BinaryBoolCommand</implementingClass>
