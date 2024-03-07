@@ -20,7 +20,7 @@ public class SplashLoadFile extends AbstractFileLoader {
    * Constructor for SplashLoadFile.
    *
    * @param commandController the CommandController
-   * @param switcher         the SceneSwitcher
+   * @param switcher          the SceneSwitcher
    */
   public SplashLoadFile(CommandController commandController, SceneSwitcher switcher) {
     super();
