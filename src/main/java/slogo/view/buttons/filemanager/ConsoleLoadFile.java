@@ -5,14 +5,30 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.stage.FileChooser;
 import slogo.controller.CommandController;
 
-public class ConsoleLoadFile implements FileLoader {
+public class ConsoleLoadFile implements FileLoader, EventHandler<ActionEvent> {
 
   private final CommandController commandController;
 
   public ConsoleLoadFile(CommandController commandController) {
     this.commandController = commandController;
+  }
+
+
+  @Override
+  public void handle(ActionEvent event) {
+    FileChooser fileChooser = new FileChooser();
+    fileChooser.setTitle("Open SLogo File");
+    fileChooser.getExtensionFilters()
+        .addAll(new FileChooser.ExtensionFilter("SLogo Files", "*.slogo"));
+    File selectedFile = fileChooser.showOpenDialog(null);
+    if (selectedFile != null) {
+      loadFile(selectedFile);
+    }
   }
 
   @Override
@@ -43,4 +59,5 @@ public class ConsoleLoadFile implements FileLoader {
       }
     });
   }
+
 }

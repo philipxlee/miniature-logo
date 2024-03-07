@@ -10,6 +10,8 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import slogo.controller.CommandController;
+import slogo.view.buttons.filemanager.ConsoleLoadFile;
 import slogo.view.buttons.filemanager.SaveFile;
 
 
@@ -22,6 +24,12 @@ public class CommandHistoryTab implements TabContent {
   private VBox historyContainer;
   private ScrollPane scrollPane;
   private List<String> commandsHistory;
+  private CommandController commandController;
+
+
+  public CommandHistoryTab(CommandController commandController) {
+    this.commandController = commandController;
+  }
 
   /**
    * Return a node with the command history content.
@@ -43,6 +51,7 @@ public class CommandHistoryTab implements TabContent {
     Button saveFileButton = new Button("Save File");
     saveFileButton.setOnAction(new SaveFile(this));
     Button loadFileButton = new Button("Load File");
+    loadFileButton.setOnAction(new ConsoleLoadFile(commandController));
 
 
     HBox buttonBox = new HBox();
