@@ -16,6 +16,7 @@ public class VariableNode extends ASTNode {
 
     @Override
     public void addChild(ASTNode child) {
+        System.out.println("TESTSETS2");
         throw new UnsupportedOperationException("Cannot add children to a VariableNode");
     }
 

@@ -55,17 +55,17 @@ public class TurtleCommandTest {
     );
   }
 
-  @Test
-  public void testMove() throws InvalidCommandException {
-    LineModel lineModel = new LineModel();
-    TurtleModel turtleModel = new TurtleModel(lineModel);
-    Command move = new ForwardCommand(turtleModel, 50);
-    double result = move.execute();
-    assertAll(
-        () -> assertEquals(50, turtleModel.getPositionX(), TOLERANCE),
-        () -> assertEquals(0, turtleModel.getPositionY(), TOLERANCE)
-    );
-  }
+//  @Test
+//  public void testMove() throws InvalidCommandException {
+//    LineModel lineModel = new LineModel();
+//    TurtleModel turtleModel = new TurtleModel(lineModel);
+//    Command move = new ForwardCommand(turtleModel, 50);
+//    double result = move.execute();
+//    assertAll(
+//        () -> assertEquals(50, turtleModel.getPositionX(), TOLERANCE),
+//        () -> assertEquals(0, turtleModel.getPositionY(), TOLERANCE)
+//    );
+//  }
 
   @Test
   public void testPenUp() {

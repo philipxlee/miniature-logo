@@ -47,8 +47,8 @@ public class CommandFactory {
   public Command createCommand(String commandString, double... args)
       throws InvalidCommandException {
     return switch (commandString.toLowerCase()) {
-      case "fd" -> new ForwardCommand(turtleModel, args[0]);
-      case "bk" -> new ForwardCommand(turtleModel, -args[0]);
+//      case "fd" -> new ForwardCommand(turtleModel, args[0]);
+//      case "bk" -> new ForwardCommand(turtleModel, -args[0]);
       case "lt" -> new RotateCommand(turtleModel, -args[0]);
       case "rt" -> new RotateCommand(turtleModel, args[0]);
       case "seth" -> new SetOrientationCommand(turtleModel, args[0]);

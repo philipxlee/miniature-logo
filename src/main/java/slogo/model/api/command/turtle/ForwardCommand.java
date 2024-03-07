@@ -1,7 +1,9 @@
 package slogo.model.api.command.turtle;
 
+import java.util.List;
 import slogo.model.api.command.Command;
 import slogo.model.api.data.TurtleModel;
+import slogo.model.api.parser.nodes.ConstantNode;
 
 /**
  * ForwardCommand moves the Turtle forward.
@@ -16,11 +18,11 @@ public class ForwardCommand implements Command {
    * forward or backward by the given distance.
    *
    * @param model    the model to change
-   * @param distance the distance to move the turtle by
+   * @param params the distance to move the turtle by
    */
-  public ForwardCommand(TurtleModel model, double distance) {
+  public ForwardCommand(TurtleModel model, List<Object> params) {
     this.model = model;
-    this.distance = distance;
+    this.distance = ((ConstantNode)params.get(0)).getValue();
   }
 
   /**

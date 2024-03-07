@@ -58,7 +58,8 @@ public class InputPane {
       try {
         commandController.executeCommand(command);
       } catch (Exception | InvalidTokenException e) {
-        Alert.showError("Invalid Command", "Please enter a valid command.");
+        e.printStackTrace();
+//        Alert.showError("Invalid Command", "Please enter a valid command.");
       }
       commandInput.setText(DOLLAR_SIGN); // reset text to DOLLAR_SIGN after processing command
       commandInput.positionCaret(commandInput.getText().length());

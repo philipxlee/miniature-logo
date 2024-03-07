@@ -64,6 +64,7 @@ public class CommandController {
     ParserExecutor parser = new ParserExecutor(tokens, commandMetadataMap, turtleModel, lineModel);
     parser.parse();
 
+
     // and here
     parser.executeAST();
 

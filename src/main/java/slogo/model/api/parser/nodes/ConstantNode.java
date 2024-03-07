@@ -16,6 +16,7 @@ public class ConstantNode extends ASTNode {
 
     @Override
     public void addChild(ASTNode child) {
+        System.out.println("TESTSETS");
         throw new UnsupportedOperationException("Cannot add children to a ConstantNode");
     }
 

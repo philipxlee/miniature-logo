@@ -1,27 +1,36 @@
 package slogo.model.api.parser;
 
 import java.lang.reflect.Constructor;
-import java.util.*;
-
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import slogo.model.api.command.Command;
 import slogo.model.api.data.LineModel;
 import slogo.model.api.data.TurtleModel;
 import slogo.model.api.parser.metadata.CommandMetadata;
-import slogo.model.api.parser.nodes.*;
+import slogo.model.api.parser.nodes.ASTNode;
+import slogo.model.api.parser.nodes.CommandNode;
+import slogo.model.api.parser.nodes.ConstantNode;
+import slogo.model.api.parser.nodes.ListNode;
+import slogo.model.api.parser.nodes.ProcedureNode;
+import slogo.model.api.parser.nodes.VariableNode;
 
 public class ParserExecutor {
+
   private final List<Token> tokens;
-  private Map<String, CommandMetadata> commandMetadataMap;
   private final TurtleModel turtleModel; // make sure to implement logic for multiple turtles
   private final LineModel lineModel;
+  private Map<String, CommandMetadata> commandMetadataMap;
   private int current = 0;
   private ASTNode ast; // Instance variable for the AST
 
-  public ParserExecutor(List<Token> tokens, Map<String, CommandMetadata> commandMetadataMap, TurtleModel turtleModel, LineModel lineModel) {
+  public ParserExecutor(List<Token> tokens, Map<String, CommandMetadata> commandMetadataMap,
+      TurtleModel turtleModel, LineModel lineModel) {
     this.tokens = tokens;
-    this.commandMetadataMap= commandMetadataMap;
+    this.commandMetadataMap = commandMetadataMap;
     this.turtleModel = turtleModel;
     this.lineModel = lineModel;
+    this.ast = new ProcedureNode("main", new ArrayList<>(), new ArrayList<>());
   }
 
   public void parse() {
@@ -41,6 +50,7 @@ public class ParserExecutor {
     } else if (match(TokenType.SYMBOL) && previous().getValue().equals("[")) {
       return parseListOrBlock();
     } else {
+      System.out.println("TEST23q412");
       throw new RuntimeException("Unexpected expression start.");
     }
   }
@@ -50,6 +60,7 @@ public class ParserExecutor {
     CommandMetadata metadata = commandMetadataMap.get(identifier.toLowerCase());
 
     if (metadata == null) {
+      System.out.println("TES4");
       throw new RuntimeException("Unknown command or procedure: " + identifier);
     }
 
@@ -64,13 +75,17 @@ public class ParserExecutor {
   private ASTNode parseListOrBlock() {
     List<ASTNode> nodes = new ArrayList<>();
     while (!check(TokenType.SYMBOL) || !peek().getValue().equals("]")) {
-      if (isAtEnd()) throw new RuntimeException("Unterminated list or block.");
+      if (isAtEnd()) {
+        System.out.println("TES5");
+        throw new RuntimeException("Unterminated list or block.");
+      }
       nodes.add(parseExpression());
     }
     // Consume the closing ']'
     advance();
 
-    return new ListNode(nodes); // Assuming ListNode is a type of ASTNode that can hold a list of other ASTNodes
+    return new ListNode(
+        nodes); // Assuming ListNode is a type of ASTNode that can hold a list of other ASTNodes
   }
 
   public void executeAST() throws Exception {
@@ -86,9 +101,9 @@ public class ParserExecutor {
         throw new RuntimeException("Unknown command: " + commandNode.getCommandName());
       }
 
-      Class<?> commandClass = Class.forName(metadata.getImplementingClass());
-      Constructor<?> constructor = commandClass.getConstructor(TurtleModel.class, Double.class);
-
+      Class<?> commandClass = Class.forName("slogo.model.api.command.turtle." + metadata.getImplementingClass());
+      Constructor<?> constructor = commandClass.getConstructor(TurtleModel.class, List.class);
+      System.out.println(commandNode.getArguments());
       Command command = (Command) constructor.newInstance(turtleModel, commandNode.getArguments());
       return command.execute();
     } else if (node instanceof VariableNode) {
@@ -107,7 +122,10 @@ public class ParserExecutor {
 
   // Assuming we have a method to consume and check for expected tokens
   private Token consume(TokenType type, String errorMessage) {
-    if (check(type)) return advance();
+    if (check(type)) {
+      return advance();
+    }
+    System.out.println("TES2");
     throw new RuntimeException(errorMessage);
   }
 
@@ -122,12 +140,16 @@ public class ParserExecutor {
   }
 
   private boolean check(TokenType type) {
-    if (isAtEnd()) return false;
+    if (isAtEnd()) {
+      return false;
+    }
     return peek().getType() == type;
   }
 
   private Token advance() {
-    if (!isAtEnd()) current++;
+    if (!isAtEnd()) {
+      current++;
+    }
     return previous();
   }
 

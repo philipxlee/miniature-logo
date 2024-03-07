@@ -59,7 +59,7 @@ public class Tokenizer {
                 throw new InvalidTokenException("Unknown token: " + currentChar);
             }
         }
-        tokens.add(new Token(TokenType.EOF, ""));
+//        tokens.add(new Token(TokenType.EOF, ""));
         return tokens;
     }
 
