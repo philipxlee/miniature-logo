@@ -48,8 +48,10 @@ public class SideTabPane extends TabPane implements Observer {
         new UserVariablesTab());
     Tab userCommandsTab = initTab(LanguageController.getText("UserCommands"),
         new UserCommandsTab());
-
-    this.getTabs().addAll(commandHistoryTab, helpDocTab, userVariablesTab, userCommandsTab);
+    Tab turtleControlTab = initTab(LanguageController.getText("TurtleControl"),
+        new TurtleControlTab(commandController));
+    this.getTabs().addAll(commandHistoryTab, helpDocTab, userVariablesTab);
+    this.getTabs().addAll(userCommandsTab, turtleControlTab);
   }
 
 
