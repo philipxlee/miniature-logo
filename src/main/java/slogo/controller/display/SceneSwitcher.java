@@ -1,4 +1,4 @@
-package slogo.controller;
+package slogo.controller.display;
 
 import slogo.view.scenes.Scene;
 

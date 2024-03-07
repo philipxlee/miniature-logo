@@ -6,7 +6,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import slogo.controller.CommandController;
+import slogo.controller.command.CommandController;
 import slogo.exceptions.InvalidCommandException;
 import slogo.view.alert.Alert;
 
@@ -67,13 +67,11 @@ public class InputPane {
 
   private void initializeInputBox(int height, CommandController commandController) {
     commandInput = new TextArea();
-    commandInput.setText(DOLLAR_SIGN); // set initial text to DOLLAR_SIGN
-    commandInput.setPromptText("Enter commands here...");
+    commandInput.setText(DOLLAR_SIGN);
     commandInput.getStyleClass().add("command-input");
     commandInput.setOnKeyPressed(event -> {
       if (event.getCode() == KeyCode.ENTER && !event.isShiftDown()) {
         String command = commandInput.getText().trim();
-        // remove DOLLAR_SIGN from the start of the command
         int dollar_length = DOLLAR_SIGN.length();
         command = command.startsWith(DOLLAR_SIGN) ? command.substring(dollar_length) : command;
         executeCommand(command, commandController);

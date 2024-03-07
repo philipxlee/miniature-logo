@@ -1,4 +1,4 @@
-package slogo.controller;
+package slogo.controller.config;
 
 /**
  * ThemeController is a controller that manages the theme of the application.

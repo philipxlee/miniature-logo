@@ -2,12 +2,10 @@ package slogo.view.scenes.start;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import java.util.concurrent.TimeUnit;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import org.junit.jupiter.api.Test;
-import slogo.controller.CommandController;
-import slogo.controller.ViewController;
+import slogo.controller.command.CommandController;
+import slogo.controller.display.ViewController;
 import slogo.model.api.data.CommandHistoryModel;
 import slogo.model.api.data.LineModel;
 import slogo.model.api.data.TurtleModel;

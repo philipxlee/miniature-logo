@@ -1,17 +1,17 @@
-package slogo.view.buttons.controllers;
+package slogo.view.buttons.filemanager;
 
 import java.io.File;
 import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.FileChooser;
-import slogo.controller.SlogoFileHandler;
+import slogo.controller.config.SlogoFileHandler;
 import slogo.view.tabs.CommandHistoryTab;
 
 /**
  * SaveButtonController is the controller for the Save button.
  */
-public class SaveButtonController implements EventHandler<ActionEvent> {
+public class SaveFile implements EventHandler<ActionEvent> {
 
   private final CommandHistoryTab commandHistoryTab;
 
@@ -20,7 +20,7 @@ public class SaveButtonController implements EventHandler<ActionEvent> {
    *
    * @param commandHistoryTab Reference to the CommandHistoryTab.
    */
-  public SaveButtonController(CommandHistoryTab commandHistoryTab) {
+  public SaveFile(CommandHistoryTab commandHistoryTab) {
     this.commandHistoryTab = commandHistoryTab;
   }
 
