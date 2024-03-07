@@ -44,6 +44,7 @@ public class CommandHistoryTab implements TabContent {
     saveFileButton.setOnAction(new SaveFile(this));
     Button loadFileButton = new Button("Load File");
 
+
     HBox buttonBox = new HBox();
     buttonBox.getChildren().addAll(saveFileButton, loadFileButton);
     content.getChildren().add(scrollPane);
