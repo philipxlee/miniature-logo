@@ -3,13 +3,11 @@ package slogo.view.scenes.main;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import javafx.animation.Animation;
 import javafx.animation.ParallelTransition;
 import javafx.animation.PathTransition;
 import javafx.animation.PauseTransition;
 import javafx.animation.RotateTransition;
-import javafx.animation.SequentialTransition;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -19,7 +17,6 @@ import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.util.Duration;
-import slogo.model.api.data.LineModel;
 import slogo.model.api.data.TurtleModel;
 import slogo.observer.BackgroundObservable;
 import slogo.observer.Observable;
@@ -37,8 +34,9 @@ public class TurtlePane implements Observer {
   private static ImageView turtleImageView;
   private final Pane displayPane;
   private Color currentPenColor = Color.BLACK;
-  private List<Line> linesDrawn = new ArrayList<>();
+  private final List<Line> linesDrawn = new ArrayList<>();
   private ParallelTransition currentAnimation;
+  private double animationSpeed;
 
   /**
    * TurtlePane Constructor. Initializes display pane and turtle graphic
@@ -50,6 +48,7 @@ public class TurtlePane implements Observer {
     displayPane = new Pane();
     displayPane.setPrefSize(width, height * RATIO_TURTLE_DISPLAY);
     displayPane.getStyleClass().add("display-pane-background");
+    animationSpeed = 1;
     initializeTurtle(width, height);
   }
 
@@ -81,7 +80,7 @@ public class TurtlePane implements Observer {
       List<Animation> animations = drawTurtle(turtleModel);
       currentAnimation = new ParallelTransition(turtleImageView);
       currentAnimation.getChildren().addAll(animations);
-      if(turtleModel.getPenDown()) {
+      if (turtleModel.getPenDown()) {
         currentAnimation.getChildren().add(drawLines(turtleModel));
       }
       currentAnimation.play();
@@ -153,7 +152,7 @@ public class TurtlePane implements Observer {
     double endY = centerY - turtleModel.getPositionY();
 
     double distance = Math.sqrt(Math.pow((endX - startX), 2) + Math.pow((endY - startY), 2));
-    double duration = distance / TRAVERSAL_RATE;
+    double duration = distance / (TRAVERSAL_RATE + animationSpeed);
     double segmentDuration = 0.001;
     int numSegments = (int) (duration / segmentDuration);
 
@@ -202,7 +201,7 @@ public class TurtlePane implements Observer {
     double distance = Math.sqrt(
         Math.pow((turtleModel.getPositionX() - turtleModel.getPrevX()), 2) + Math.pow(
             (turtleModel.getPositionY() - turtleModel.getPrevY()), 2));
-    double duration = distance / TRAVERSAL_RATE;
+    double duration = distance / (TRAVERSAL_RATE + animationSpeed);
 
     Path path = new Path();
     path.getElements().add(new MoveTo(centerX + turtleModel.getPrevX(),
@@ -241,5 +240,13 @@ public class TurtlePane implements Observer {
       currentAnimation.stop();
       currentAnimation.playFromStart();
     }
+  }
+
+  public void adjustSpeed(double adjust) {
+    if(adjust == 0.0) {
+      animationSpeed = -50.0;
+      return;
+    }
+    animationSpeed = Math.max(TRAVERSAL_RATE + adjust, 1.0);
   }
 }

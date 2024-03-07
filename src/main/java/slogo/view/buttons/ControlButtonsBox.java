@@ -4,8 +4,11 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
@@ -83,12 +86,16 @@ public class ControlButtonsBox extends HBox {
       turtlePane.replayAnimation();
     });
 
+    Slider slider = new Slider(0, 1, 0.5);
+    slider.valueProperty().addListener(
+        (observable, oldValue, newValue) -> turtlePane.adjustSpeed(newValue.doubleValue()*100));
+    this.getChildren().add(slider);
+
     // Button to change the pen color (addButton not used to allow for ColorPicker functionality)
     PenColorButton penColorButton = new PenColorButton(penColorObservable);
     this.getChildren().add(penColorButton);
 
     TurtleBackgroundButton turtleBackgroundButton = new TurtleBackgroundButton(colorObservable);
     this.getChildren().add(turtleBackgroundButton);
-
   }
 }
