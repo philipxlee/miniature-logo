@@ -37,6 +37,7 @@ public class TurtlePane implements Observer {
   private static ImageView turtleImageView;
   private final Pane displayPane;
   private Color currentPenColor = Color.BLACK;
+  private List<Line> linesDrawn = new ArrayList<>();
   private ParallelTransition currentAnimation;
 
   /**
@@ -142,6 +143,7 @@ public class TurtlePane implements Observer {
 
   private ParallelTransition drawLines(TurtleModel turtleModel) {
     ParallelTransition parallelTransition = new ParallelTransition();
+    linesDrawn.clear();
 
     double centerX = displayPane.getWidth() / 2.0;
     double centerY = displayPane.getHeight() / 2.0;
@@ -166,7 +168,10 @@ public class TurtlePane implements Observer {
 
       double pauseDuration = (i + 1) * duration / numSegments;
       PauseTransition pause = new PauseTransition(Duration.seconds(pauseDuration));
-      pause.setOnFinished(e -> displayPane.getChildren().add(pathSegment));
+      pause.setOnFinished(e -> {
+        displayPane.getChildren().add(pathSegment);
+        linesDrawn.add(pathSegment);
+      });
       parallelTransition.getChildren().add(pause);
     }
 
@@ -226,6 +231,15 @@ public class TurtlePane implements Observer {
   public void playAnimation() {
     if (currentAnimation != null && currentAnimation.getStatus() == Animation.Status.PAUSED) {
       currentAnimation.play();
+    }
+  }
+
+  public void replayAnimation() {
+    if (currentAnimation != null) {
+      linesDrawn.forEach(displayPane.getChildren()::remove);
+      linesDrawn.clear();
+      currentAnimation.stop();
+      currentAnimation.playFromStart();
     }
   }
 }

@@ -79,6 +79,10 @@ public class ControlButtonsBox extends HBox {
       }
     });
 
+    addButton("Replay", button -> {
+      turtlePane.replayAnimation();
+    });
+
     // Button to change the pen color (addButton not used to allow for ColorPicker functionality)
     PenColorButton penColorButton = new PenColorButton(penColorObservable);
     this.getChildren().add(penColorButton);
