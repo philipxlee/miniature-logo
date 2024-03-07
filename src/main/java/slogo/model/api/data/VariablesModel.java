@@ -1,8 +1,8 @@
 package slogo.model.api.data;
 
-import slogo.observer.AbstractObservable;
 import java.util.HashMap;
 import java.util.Map;
+import slogo.observer.AbstractObservable;
 
 /**
  * VariablesModel representing the user-defined variables.

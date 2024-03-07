@@ -1,11 +1,14 @@
-package slogo.controller;
+package slogo.view.buttons.filemanager;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
-public class SlogoFileHandler {
+/**
+ * SlogoFileHandler is class that manages the saving of commands to a .slogo file.
+ */
+public class SaveFileHandler {
 
   /**
    * Save the given commands to a .slogo file.

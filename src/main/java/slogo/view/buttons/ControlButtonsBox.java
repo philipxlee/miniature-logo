@@ -1,11 +1,7 @@
 package slogo.view.buttons;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Consumer;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
@@ -23,7 +19,6 @@ import slogo.view.scenes.main.TurtlePane;
  */
 public class ControlButtonsBox extends HBox {
 
-  private final List<ButtonAction> buttonActions = new ArrayList<>();
   private final BackgroundObservable colorObservable;
   private final PenColorObservable penColorObservable;
   private TurtlePane turtlePane;
@@ -88,7 +83,7 @@ public class ControlButtonsBox extends HBox {
 
     Slider slider = new Slider(0, 1, 0.5);
     slider.valueProperty().addListener(
-        (observable, oldValue, newValue) -> turtlePane.adjustSpeed(newValue.doubleValue()*100));
+        (observable, oldValue, newValue) -> turtlePane.adjustSpeed(newValue.doubleValue() * 100));
     this.getChildren().add(slider);
 
     // Button to change the pen color (addButton not used to allow for ColorPicker functionality)
