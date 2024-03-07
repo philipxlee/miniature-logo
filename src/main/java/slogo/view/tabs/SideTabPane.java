@@ -45,7 +45,7 @@ public class SideTabPane extends TabPane implements Observer {
         new CommandHistoryTab(commandController));
     Tab helpDocTab = initTab(LanguageController.getText("HelpDocs"), new HelpDocTab());
     Tab userVariablesTab = initTab(LanguageController.getText("UserVariables"),
-        new UserVariablesTab());
+        new UserVariablesTab(commandController));
     Tab userCommandsTab = initTab(LanguageController.getText("UserCommands"),
         new UserCommandsTab());
     Tab turtleControlTab = initTab(LanguageController.getText("TurtleControl"),
