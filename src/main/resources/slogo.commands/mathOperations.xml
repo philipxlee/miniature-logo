@@ -6,7 +6,7 @@
         <example>+ 5 3</example>
         <help>Parameters: expr1 expr2 - Adds expr1 and expr2.</help>
         <parametersCount>2</parametersCount>
-        <implementingClass>BinaryMathCommand</implementingClass>
+        <implementingClass>SumCommand</implementingClass>
     </command>
     <command>
         <canonicalName>DIFFERENCE</canonicalName>
@@ -15,7 +15,7 @@
         <example>- 5 3</example>
         <help>Parameters: expr1 expr2 - Subtracts expr2 from expr1.</help>
         <parametersCount>2</parametersCount>
-        <implementingClass>BinaryMathCommand</implementingClass>
+        <implementingClass>DifferenceCommand</implementingClass>
     </command>
     <command>
         <canonicalName>PRODUCT</canonicalName>
@@ -24,7 +24,7 @@
         <example>* 5 3</example>
         <help>Parameters: expr1 expr2 - Multiplies expr1 by expr2.</help>
         <parametersCount>2</parametersCount>
-        <implementingClass>BinaryMathCommand</implementingClass>
+        <implementingClass>ProductCommand</implementingClass>
     </command>
     <command>
         <canonicalName>QUOTIENT</canonicalName>
@@ -33,7 +33,7 @@
         <example>/ 6 3</example>
         <help>Parameters: expr1 expr2 - Divides expr1 by expr2.</help>
         <parametersCount>2</parametersCount>
-        <implementingClass>BinaryMathCommand</implementingClass>
+        <implementingClass>QuotientCommand</implementingClass>
     </command>
     <command>
         <canonicalName>MINUS</canonicalName>
@@ -42,7 +42,7 @@
         <example>~ 5</example>
         <help>Parameters: expr - Negates expr.</help>
         <parametersCount>1</parametersCount>
-        <implementingClass>BinaryMathCommand</implementingClass>
+        <implementingClass>MinusCommand</implementingClass>
     </command>
     <command>
         <canonicalName>RANDOM</canonicalName>
@@ -51,7 +51,7 @@
         <example>RAND 10</example>
         <help>Parameters: max - Generates a random number less than max.</help>
         <parametersCount>1</parametersCount>
-        <implementingClass>RandomDoubleCommand</implementingClass>
+        <implementingClass>RandomCommand</implementingClass>
     </command>
     <command>
         <canonicalName>REMAINDER</canonicalName>
@@ -78,7 +78,7 @@
         <example>SIN 90</example>
         <help>Parameters: degrees - Calculates the sine of the given angle in degrees.</help>
         <parametersCount>1</parametersCount>
-        <implementingClass>UnaryMathCommand</implementingClass>
+        <implementingClass>SineCommand</implementingClass>
     </command>
     <command>
         <canonicalName>COSINE</canonicalName>
@@ -87,7 +87,7 @@
         <example>COS 90</example>
         <help>Parameters: degrees - Calculates the cosine of the given angle in degrees.</help>
         <parametersCount>1</parametersCount>
-        <implementingClass>UnaryMathCommand</implementingClass>
+        <implementingClass>CosineCommand</implementingClass>
     </command>
     <command>
         <canonicalName>TANGENT</canonicalName>
@@ -96,7 +96,7 @@
         <example>TAN 45</example>
         <help>Parameters: degrees - Calculates the tangent of the given angle in degrees.</help>
         <parametersCount>1</parametersCount>
-        <implementingClass>UnaryMathCommand</implementingClass>
+        <implementingClass>TangentCommand</implementingClass>
     </command>
     <command>
         <canonicalName>ARCTANGENT</canonicalName>
@@ -105,7 +105,7 @@
         <example>ATAN 1</example>
         <help>Parameters: degrees - Calculates the arctangent of the given angle in degrees, returning the angle in degrees.</help>
         <parametersCount>1</parametersCount>
-        <implementingClass>UnaryMathCommand</implementingClass>
+        <implementingClass>ArctangentCommand</implementingClass>
     </command>
     <command>
         <canonicalName>SQUAREROOT</canonicalName>
@@ -114,7 +114,7 @@
         <example>SQRT 4</example>
         <help>Parameters: expr - Calculates the square root of the given expression.</help>
         <parametersCount>1</parametersCount>
-        <implementingClass>UnaryMathCommand</implementingClass>
+        <implementingClass>SquareRootCommand</implementingClass>
     </command>
     <command>
         <canonicalName>LOG</canonicalName>
@@ -122,7 +122,7 @@
         <example>LOG 2.71828</example>
         <help>Parameters: expr - Calculates the natural logarithm (base e) of the given expression.</help>
         <parametersCount>1</parametersCount>
-        <implementingClass>UnaryMathCommand</implementingClass>
+        <implementingClass>LogCommand</implementingClass>
     </command>
     <command>
         <canonicalName>POWER</canonicalName>
@@ -131,7 +131,7 @@
         <example>POW 2 3</example>
         <help>Parameters: base exponent - Raises the base to the power of the exponent.</help>
         <parametersCount>2</parametersCount>
-        <implementingClass>UnaryMathCommand</implementingClass>
+        <implementingClass>PowerCommand</implementingClass>
     </command>
     <command>
         <canonicalName>PI</canonicalName>
