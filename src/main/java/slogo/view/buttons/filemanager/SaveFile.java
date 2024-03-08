@@ -9,6 +9,9 @@ import java.util.Optional;
 import javafx.event.ActionEvent;
 import slogo.view.tabs.CommandHistoryTab;
 
+/**
+ * The SaveFile class provides functionality for saving a file.
+ */
 public class SaveFile extends AbstractFileProcessor implements FileSaver {
 
   private final CommandHistoryTab commandHistoryTab;

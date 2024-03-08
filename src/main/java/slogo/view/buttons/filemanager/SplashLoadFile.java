@@ -15,11 +15,22 @@ public class SplashLoadFile extends AbstractFileProcessor implements FileLoader 
   private final CommandController commandController;
   private final SceneSwitcher switcher;
 
+  /**
+   * The SplashLoadFile constructor creates a new instance of SplashLoadFile.
+   *
+   * @param commandController The command controller
+   * @param switcher The scene switcher
+   */
   public SplashLoadFile(CommandController commandController, SceneSwitcher switcher) {
     this.commandController = commandController;
     this.switcher = switcher;
   }
 
+  /**
+   * Handles the event of loading a file.
+   *
+   * @param event the event which occurred
+   */
   @Override
   public void handle(ActionEvent event) {
     Optional<File> selectedFile = Optional.ofNullable(
@@ -27,6 +38,11 @@ public class SplashLoadFile extends AbstractFileProcessor implements FileLoader 
     selectedFile.ifPresent(this::loadFile);
   }
 
+  /**
+   * Loads the file.
+   *
+   * @param file the file to be loaded
+   */
   @Override
   public void loadFile(File file) {
     try {
