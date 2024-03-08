@@ -10,6 +10,7 @@ import slogo.model.api.data.CommandHistoryModel;
 import slogo.model.api.data.VariablesModel;
 import slogo.observer.Observable;
 import slogo.observer.Observer;
+import slogo.view.scenes.main.TurtlePane;
 
 /**
  * SideTabPane represents the view of the side tab options.
@@ -18,13 +19,15 @@ public class SideTabPane extends TabPane implements Observer {
 
   private final CommandController commandController;
   private Map<String, TabContent> tabMap;
+  private final TurtlePane turtlePane;
 
   /**
    * SideTabPane constructor.
    */
-  public SideTabPane(CommandController commandController) {
+  public SideTabPane(CommandController commandController, TurtlePane turtlePane) {
     super();
     this.commandController = commandController;
+    this.turtlePane = turtlePane;
     initializeTabs();
   }
 
@@ -50,8 +53,10 @@ public class SideTabPane extends TabPane implements Observer {
         new UserCommandsTab());
     Tab turtleControlTab = initTab(LanguageController.getText("TurtleControl"),
         new TurtleControlTab(commandController));
+    Tab penPropertiesTab = initTab(LanguageController.getText("PenControls"),
+        new PenPropertiesTab(turtlePane));
     this.getTabs().addAll(commandHistoryTab, helpDocTab, userVariablesTab);
-    this.getTabs().addAll(userCommandsTab, turtleControlTab);
+    this.getTabs().addAll(userCommandsTab, turtleControlTab, penPropertiesTab);
   }
 
 

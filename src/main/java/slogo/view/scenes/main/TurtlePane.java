@@ -37,6 +37,8 @@ public class TurtlePane implements Observer {
   private final List<Line> linesDrawn = new ArrayList<>();
   private ParallelTransition currentAnimation;
   private double animationSpeed;
+  private boolean penDown = true;
+  private double penThickness = 1.0;
 
   /**
    * TurtlePane Constructor. Initializes display pane and turtle graphic
@@ -141,6 +143,10 @@ public class TurtlePane implements Observer {
   }
 
   private ParallelTransition drawLines(TurtleModel turtleModel) {
+    if (!penDown) {
+      return new ParallelTransition();  // Return an empty transition if pen is up
+    }
+
     ParallelTransition parallelTransition = new ParallelTransition();
     linesDrawn.clear();
 
@@ -163,7 +169,7 @@ public class TurtlePane implements Observer {
       Line pathSegment = new Line(startX + (i * deltaX), startY + (i * deltaY),
           startX + ((i + 1) * deltaX), startY + ((i + 1) * deltaY));
       pathSegment.setStroke(currentPenColor);
-      pathSegment.setStrokeWidth(3);
+      pathSegment.setStrokeWidth(penThickness);
 
       double pauseDuration = (i + 1) * duration / numSegments;
       PauseTransition pause = new PauseTransition(Duration.seconds(pauseDuration));
@@ -248,5 +254,18 @@ public class TurtlePane implements Observer {
       return;
     }
     animationSpeed = Math.max(TRAVERSAL_RATE + adjust, 1.0);
+  }
+
+  // Methods to update pen properties
+  public void setPenUp(boolean isUp) {
+    this.penDown = !isUp;
+  }
+
+  public void setPenColor(Color color) {
+    this.currentPenColor = color;
+  }
+
+  public void setPenThickness(double thickness) {
+    this.penThickness = thickness;
   }
 }
