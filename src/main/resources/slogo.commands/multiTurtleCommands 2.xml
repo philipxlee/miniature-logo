@@ -1,0 +1,42 @@
+<commands>
+    <command>
+        <canonicalName>ID</canonicalName>
+        <description>Returns current active turtle's ID number. ID values typically start at 1.0 and increase by 1.0 with each new turtle created.</description>
+        <example>ID</example>
+        <help>Parameters: none - Returns the ID of the currently active turtle.</help>
+        <parametersCount>0</parametersCount>
+        <implementingClass>TO_BE_DEFINED</implementingClass>
+    </command>
+    <command>
+        <canonicalName>TURTLES</canonicalName>
+        <description>Returns the number of turtles that are defined in the workspace.</description>
+        <example>TURTLES</example>
+        <help>Parameters: none - Returns the total number of turtles created in the workspace.</help>
+        <parametersCount>0</parametersCount>
+        <implementingClass>TO_BE_DEFINED</implementingClass>
+    </command>
+    <command>
+        <canonicalName>TELL</canonicalName>
+        <description>Sets the turtleIDs that will follow commands hereafter, marking them all as active. If a turtle with the given ID has not previously existed, it is created and placed at the home location.</description>
+        <example>TELL [1 2 3]</example>
+        <help>Parameters: [turtleID(s)] - Activates the specified turtles by ID. Creates new turtles at the home location if they do not exist.</help>
+        <parametersCount>1</parametersCount>
+        <implementingClass>TO_BE_DEFINED</implementingClass>
+    </command>
+    <command>
+        <canonicalName>ASK</canonicalName>
+        <description>Only the turtles given in the first list run the commands given in the second list, marking them as active while the list of commands is running. After commands are run, the list of active turtles returns to that set by the last TELL command.</description>
+        <example>ASK [1] [FD 50]</example>
+        <help>Parameters: [turtleID(s)] [command(s)] - Executes the specified commands only for the turtles with the given IDs.</help>
+        <parametersCount>2</parametersCount>
+        <implementingClass>TO_BE_DEFINED</implementingClass>
+    </command>
+    <command>
+        <canonicalName>ASKWITH</canonicalName>
+        <description>Only turtles for whom expr is true run the commands given in the second list. After commands are run, the list of active turtles returns to that set by the last TELL command.</description>
+        <example>ASKWITH [XCOR > 0] [FD 50]</example>
+        <help>Parameters: expr [command(s)] - Executes the specified commands only for turtles for whom the expression evaluates to true.</help>
+        <parametersCount>2</parametersCount>
+        <implementingClass>TO_BE_DEFINED</implementingClass>
+    </command>
+</commands>

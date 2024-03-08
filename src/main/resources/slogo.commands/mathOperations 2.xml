@@ -1,0 +1,144 @@
+<commands>
+    <command>
+        <canonicalName>SUM</canonicalName>
+        <alias>+</alias>
+        <description>Returns sum of the values of expr1 and expr2.</description>
+        <example>+ 5 3</example>
+        <help>Parameters: expr1 expr2 - Adds expr1 and expr2.</help>
+        <parametersCount>2</parametersCount>
+        <implementingClass>BinaryMathCommand</implementingClass>
+    </command>
+    <command>
+        <canonicalName>DIFFERENCE</canonicalName>
+        <alias>-</alias>
+        <description>Returns difference of the values of expr1 and expr2.</description>
+        <example>- 5 3</example>
+        <help>Parameters: expr1 expr2 - Subtracts expr2 from expr1.</help>
+        <parametersCount>2</parametersCount>
+        <implementingClass>BinaryMathCommand</implementingClass>
+    </command>
+    <command>
+        <canonicalName>PRODUCT</canonicalName>
+        <alias>*</alias>
+        <description>Returns product of the values of expr1 and expr2.</description>
+        <example>* 5 3</example>
+        <help>Parameters: expr1 expr2 - Multiplies expr1 by expr2.</help>
+        <parametersCount>2</parametersCount>
+        <implementingClass>BinaryMathCommand</implementingClass>
+    </command>
+    <command>
+        <canonicalName>QUOTIENT</canonicalName>
+        <alias>/</alias>
+        <description>Returns quotient of the values of expr1 and expr2.</description>
+        <example>/ 6 3</example>
+        <help>Parameters: expr1 expr2 - Divides expr1 by expr2.</help>
+        <parametersCount>2</parametersCount>
+        <implementingClass>BinaryMathCommand</implementingClass>
+    </command>
+    <command>
+        <canonicalName>MINUS</canonicalName>
+        <alias>~</alias>
+        <description>Returns negative of the value of expr.</description>
+        <example>~ 5</example>
+        <help>Parameters: expr - Negates expr.</help>
+        <parametersCount>1</parametersCount>
+        <implementingClass>BinaryMathCommand</implementingClass>
+    </command>
+    <command>
+        <canonicalName>RANDOM</canonicalName>
+        <alias>RAND</alias>
+        <description>Returns a random non-negative number strictly less than max.</description>
+        <example>RAND 10</example>
+        <help>Parameters: max - Generates a random number less than max.</help>
+        <parametersCount>1</parametersCount>
+        <implementingClass>RandomDoubleCommand</implementingClass>
+    </command>
+    <command>
+        <canonicalName>REMAINDER</canonicalName>
+        <alias>%</alias>
+        <description>Returns remainder on dividing the values of expr1 by expr2.</description>
+        <example>% 5 3</example>
+        <help>Parameters: expr1 expr2 - Computes the remainder of expr1 divided by expr2.</help>
+        <parametersCount>2</parametersCount>
+        <implementingClass>RemainderCommand</implementingClass>
+    </command>
+    <command>
+        <canonicalName>RANDOMRANGE</canonicalName>
+        <alias>RANDR</alias>
+        <description>Returns a random number within the given range min to max, inclusive.</description>
+        <example>RANDR 1 10</example>
+        <help>Parameters: min max - Generates a random number between min and max.</help>
+        <parametersCount>2</parametersCount>
+        <implementingClass>RandomRangeCommand</implementingClass>
+    </command>
+    <command>
+        <canonicalName>SINE</canonicalName>
+        <alias>SIN</alias>
+        <description>Returns sine of degrees.</description>
+        <example>SIN 90</example>
+        <help>Parameters: degrees - Calculates the sine of the given angle in degrees.</help>
+        <parametersCount>1</parametersCount>
+        <implementingClass>UnaryMathCommand</implementingClass>
+    </command>
+    <command>
+        <canonicalName>COSINE</canonicalName>
+        <alias>COS</alias>
+        <description>Return cosine of degrees.</description>
+        <example>COS 90</example>
+        <help>Parameters: degrees - Calculates the cosine of the given angle in degrees.</help>
+        <parametersCount>1</parametersCount>
+        <implementingClass>UnaryMathCommand</implementingClass>
+    </command>
+    <command>
+        <canonicalName>TANGENT</canonicalName>
+        <alias>TAN</alias>
+        <description>Returns tangent of degrees.</description>
+        <example>TAN 45</example>
+        <help>Parameters: degrees - Calculates the tangent of the given angle in degrees.</help>
+        <parametersCount>1</parametersCount>
+        <implementingClass>UnaryMathCommand</implementingClass>
+    </command>
+    <command>
+        <canonicalName>ARCTANGENT</canonicalName>
+        <alias>ATAN</alias>
+        <description>Returns arctangent of degrees.</description>
+        <example>ATAN 1</example>
+        <help>Parameters: degrees - Calculates the arctangent of the given angle in degrees, returning the angle in degrees.</help>
+        <parametersCount>1</parametersCount>
+        <implementingClass>UnaryMathCommand</implementingClass>
+    </command>
+    <command>
+        <canonicalName>SQUAREROOT</canonicalName>
+        <alias>SQRT</alias>
+        <description>Returns square root of expr.</description>
+        <example>SQRT 4</example>
+        <help>Parameters: expr - Calculates the square root of the given expression.</help>
+        <parametersCount>1</parametersCount>
+        <implementingClass>UnaryMathCommand</implementingClass>
+    </command>
+    <command>
+        <canonicalName>LOG</canonicalName>
+        <description>Returns natural log of expr.</description>
+        <example>LOG 2.71828</example>
+        <help>Parameters: expr - Calculates the natural logarithm (base e) of the given expression.</help>
+        <parametersCount>1</parametersCount>
+        <implementingClass>UnaryMathCommand</implementingClass>
+    </command>
+    <command>
+        <canonicalName>POWER</canonicalName>
+        <alias>POW</alias>
+        <description>Returns base raised to the power of the exponent.</description>
+        <example>POW 2 3</example>
+        <help>Parameters: base exponent - Raises the base to the power of the exponent.</help>
+        <parametersCount>2</parametersCount>
+        <implementingClass>UnaryMathCommand</implementingClass>
+    </command>
+    <command>
+        <canonicalName>PI</canonicalName>
+        <description>Returns value of the number Pi (Math.PI).</description>
+        <example>PI</example>
+        <help>Parameters: none - Returns the mathematical constant Pi.</help>
+        <parametersCount>0</parametersCount>
+        <implementingClass>PiCommand</implementingClass>
+    </command>
+</commands>
