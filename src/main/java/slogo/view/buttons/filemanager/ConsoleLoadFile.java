@@ -58,14 +58,17 @@ public class ConsoleLoadFile extends AbstractFileProcessor implements FileLoader
   private void executeCommands(String commands) {
     Platform.runLater(() -> {
       String[] commandLines = commands.split("\\n");
-      Arrays.stream(commandLines).forEach(commandLine -> {
-        try {
-          commandController.executeCommand(commandLine);
-        } catch (InvalidCommandException e) {
-          Alert.showError("Invalid Command",
-              "An invalid command was encountered: " + e.getMessage());
-        }
-      });
+      Arrays.stream(commandLines)
+          .filter(line -> !line.trim().isEmpty() && !line.trim().startsWith("#"))
+          .forEach(commandLine -> {
+            try {
+              commandController.executeCommand(commandLine.trim());
+            } catch (InvalidCommandException e) {
+              Alert.showError("Invalid Command",
+                  "An invalid command was encountered: " + e.getMessage());
+            }
+          });
     });
   }
+
 }
