@@ -6,9 +6,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import slogo.controller.command.CommandController;
+import slogo.view.alert.Alert;
 
 /**
- * TurtleControlTab is the tab that allows the user to control the turtle.
+ * Represents a control panel for turtle movements within the UI.
  */
 public class TurtleControlTab implements TabContent {
 
@@ -21,9 +22,9 @@ public class TurtleControlTab implements TabContent {
   private TextField rightInput;
 
   /**
-   * Constructor for TurtleControlTab.
+   * Constructor for TurtleControlTab. Initializes the UI components for turtle control.
    *
-   * @param commandController the CommandController
+   * @param commandController The controller to execute turtle commands.
    */
   public TurtleControlTab(CommandController commandController) {
     this.commandController = commandController;
@@ -31,9 +32,9 @@ public class TurtleControlTab implements TabContent {
   }
 
   /**
-   * Return a node with the turtle control content.
+   * Returns the main content of the tab.
    *
-   * @return Node representing the pane.
+   * @return Node representing the tab content.
    */
   @Override
   public Node getContent() {
@@ -41,31 +42,28 @@ public class TurtleControlTab implements TabContent {
   }
 
   private void initializeContent() {
-    content = new GridPane();
-    content.setPadding(new Insets(10));
-    content.setVgap(10);
-    content.setHgap(10);
+    content = createConfiguredGrid();
 
-    // Initialize TextFields
+    initializeInputFields();
+    createAndAddButtons();
+  }
+
+  private void initializeInputFields() {
     forwardInput = createInputField();
     backInput = createInputField();
     leftInput = createInputField();
     rightInput = createInputField();
+  }
 
-    // Buttons for turtle movements
-    Button forwardButton = createMovementButton("fd", "Forward", forwardInput);
-    Button backButton = createMovementButton("bk", "Backward", backInput);
-    Button leftButton = createMovementButton("lt", "Left Turn", leftInput);
-    Button rightButton = createMovementButton("rt", "Right Turn", rightInput);
 
-    // Adding components to the grid
-    content.add(forwardButton, 0, 0);
+  private void createAndAddButtons() {
+    content.add(createMovementButton("fd", "Forward", forwardInput), 0, 0);
     content.add(forwardInput, 1, 0);
-    content.add(backButton, 0, 1);
+    content.add(createMovementButton("bk", "Backward", backInput), 0, 1);
     content.add(backInput, 1, 1);
-    content.add(leftButton, 0, 2);
+    content.add(createMovementButton("lt", "Left Turn", leftInput), 0, 2);
     content.add(leftInput, 1, 2);
-    content.add(rightButton, 0, 3);
+    content.add(createMovementButton("rt", "Right Turn", rightInput), 0, 3);
     content.add(rightInput, 1, 3);
   }
 
@@ -76,7 +74,7 @@ public class TurtleControlTab implements TabContent {
   }
 
   private TextField createInputField() {
-    TextField inputField = new TextField("50");  // Default value set to 50
+    TextField inputField = new TextField("50"); // Default value set to 50
     inputField.setPrefWidth(60);
     return inputField;
   }
@@ -86,8 +84,16 @@ public class TurtleControlTab implements TabContent {
     try {
       commandController.executeCommand(command + " " + commandValue);
     } catch (Exception e) {
-      e.printStackTrace();
+      Alert.showError("Error Executing Command", "An error occurred while executing the command.");
     }
+  }
+
+  private GridPane createConfiguredGrid() {
+    GridPane grid = new GridPane();
+    grid.setPadding(new Insets(10));
+    grid.setVgap(10);
+    grid.setHgap(10);
+    return grid;
   }
 
 }

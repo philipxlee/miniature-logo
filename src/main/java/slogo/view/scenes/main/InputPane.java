@@ -11,7 +11,7 @@ import slogo.exceptions.InvalidCommandException;
 import slogo.view.alert.Alert;
 
 /**
- * InputPane is the pane for user provided commands.
+ * The InputPane class is a pane that allows the user to input commands.
  */
 public class InputPane {
 
@@ -20,37 +20,42 @@ public class InputPane {
   private TextArea commandInput;
 
   /**
-   * Constructor for CommandConsole.
+   * The InputPane constructor creates a new instance of InputPane.
    *
-   * @param height            height
-   * @param commandController commandController to execute commands
+   * @param height The height of the input pane
+   * @param commandController The command controller
    */
   public InputPane(int height, CommandController commandController) {
-    initializeInputBox(height, commandController);
+    inputBox = new VBox(10);
+    commandInput = new TextArea();
+    configureCommandInput();
+    setInputBoxProperties(height);
+    setKeyPressEventHandler(commandController);
   }
 
   /**
-   * Returns the input box.
+   * Gets the input box.
    *
-   * @return VBox
+   * @return The input box
    */
   public VBox getInputBox() {
     return inputBox;
   }
 
   /**
-   * Set the input text in the commandInput TextArea.
+   * Sets the input text.
    *
-   * @param text the text to set
+   * @param text The text to set the input to
    */
   public void setInputText(String text) {
     commandInput.setText(text);
   }
 
   /**
-   * Executes the given command.
+   * Executes a command.
    *
-   * @param command the command to execute
+   * @param command The command to execute
+   * @param commandController The command controller
    */
   public void executeCommand(String command, CommandController commandController) {
     if (!command.isEmpty()) {
@@ -59,36 +64,44 @@ public class InputPane {
       } catch (InvalidCommandException e) {
         Alert.showError("Invalid Command", "Please enter a valid command.");
       }
-      commandInput.setText(DOLLAR_SIGN); // reset text to DOLLAR_SIGN after processing command
-      commandInput.positionCaret(commandInput.getText().length());
+      resetCommandInput();
     }
   }
 
-
-  private void initializeInputBox(int height, CommandController commandController) {
-    commandInput = new TextArea();
+  private void configureCommandInput() {
     commandInput.setText(DOLLAR_SIGN);
     commandInput.getStyleClass().add("command-input");
-    commandInput.setId("input-pane-text-area");
+    commandInput.positionCaret(DOLLAR_SIGN.length());
+  }
+
+  private void setKeyPressEventHandler(CommandController commandController) {
     commandInput.setOnKeyPressed(event -> {
       if (event.getCode() == KeyCode.ENTER && !event.isShiftDown()) {
-        String command = commandInput.getText().trim();
-        int dollarLength = DOLLAR_SIGN.length();
-        command = command.startsWith(DOLLAR_SIGN) ? command.substring(dollarLength) : command;
-        executeCommand(command, commandController);
+        processCommand(commandController);
         event.consume();
       }
     });
+  }
 
-    commandInput.positionCaret(DOLLAR_SIGN.length());
-    inputBox = new VBox(10);
+  private void setInputBoxProperties(int height) {
     inputBox.getChildren().add(commandInput);
     inputBox.setAlignment(Pos.BOTTOM_CENTER);
     inputBox.setPadding(new Insets(0, 20, 20, 50));
     inputBox.setPrefHeight(height * 0.5);
-
-    // Allow the input box to grow vertically with the size of the box
     VBox.setVgrow(commandInput, Priority.ALWAYS);
   }
 
+  private void resetCommandInput() {
+    commandInput.setText(DOLLAR_SIGN);
+    commandInput.positionCaret(commandInput.getText().length());
+  }
+
+  private void processCommand(CommandController commandController) {
+    String command = commandInput.getText().trim();
+    int dollarLength = DOLLAR_SIGN.length();
+    if (command.startsWith(DOLLAR_SIGN)) {
+      command = command.substring(dollarLength);
+    }
+    executeCommand(command, commandController);
+  }
 }
