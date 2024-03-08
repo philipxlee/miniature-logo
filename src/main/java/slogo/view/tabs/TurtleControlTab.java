@@ -7,9 +7,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import slogo.controller.command.CommandController;
 
-/**
- * TurtleControlTab is the tab that allows the user to control the turtle.
- */
 public class TurtleControlTab implements TabContent {
 
   private final CommandController commandController;
@@ -20,24 +17,9 @@ public class TurtleControlTab implements TabContent {
   private TextField leftInput;
   private TextField rightInput;
 
-  /**
-   * Constructor for TurtleControlTab.
-   *
-   * @param commandController the CommandController
-   */
   public TurtleControlTab(CommandController commandController) {
     this.commandController = commandController;
     initializeContent();
-  }
-
-  /**
-   * Return a node with the turtle control content.
-   *
-   * @return Node representing the pane.
-   */
-  @Override
-  public Node getContent() {
-    return content;
   }
 
   private void initializeContent() {
@@ -90,4 +72,8 @@ public class TurtleControlTab implements TabContent {
     }
   }
 
+  @Override
+  public Node getContent() {
+    return content;
+  }
 }
