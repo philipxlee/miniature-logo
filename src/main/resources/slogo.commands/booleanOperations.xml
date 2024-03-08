@@ -5,7 +5,7 @@
         <example>== 10 10</example>
         <help>Parameters: expr1 expr2 - Checks if expr1 is equal to expr2.</help>
         <parametersCount>2</parametersCount>
-        <implementingClass>BinaryBoolCommand</implementingClass>
+        <implementingClass>EqualCommand</implementingClass>
     </command>
     <command>
         <canonicalName>LESS?</canonicalName>
@@ -14,7 +14,7 @@
         <example>&lt; 5 10</example>
         <help>Parameters: expr1 expr2 - Checks if expr1 is less than expr2.</help>
         <parametersCount>2</parametersCount>
-        <implementingClass>BinaryBoolCommand</implementingClass>
+        <implementingClass>LessCommand</implementingClass>
     </command>
     <command>
         <canonicalName>GREATER?</canonicalName>
@@ -23,7 +23,7 @@
         <example>> 10 5</example>
         <help>Parameters: expr1 expr2 - Checks if expr1 is greater than expr2.</help>
         <parametersCount>2</parametersCount>
-        <implementingClass>BinaryBoolCommand</implementingClass>
+        <implementingClass>GreaterCommand</implementingClass>
     </command>
     <command>
         <canonicalName>AND</canonicalName>
@@ -31,7 +31,7 @@
         <example>AND 1 0</example>
         <help>Parameters: test1 test2 - Logical AND of test1 and test2.</help>
         <parametersCount>2</parametersCount>
-        <implementingClass>BinaryBoolCommand</implementingClass>
+        <implementingClass>AndCommand</implementingClass>
     </command>
     <command>
         <canonicalName>OR</canonicalName>
@@ -39,7 +39,7 @@
         <example>OR 0 0</example>
         <help>Parameters: test1 test2 - Logical OR of test1 and test2.</help>
         <parametersCount>2</parametersCount>
-        <implementingClass>BinaryBoolCommand</implementingClass>
+        <implementingClass>OrCommand</implementingClass>
     </command>
     <command>
         <canonicalName>NOT</canonicalName>
@@ -47,7 +47,7 @@
         <example>NOT 0</example>
         <help>Parameters: test - Logical NOT of test.</help>
         <parametersCount>1</parametersCount>
-        <implementingClass>UnaryBoolCommand</implementingClass>
+        <implementingClass>NotCommand</implementingClass>
     </command>
     <command>
         <canonicalName>NOTEQUAL?</canonicalName>
@@ -56,7 +56,7 @@
         <example>!= 5 10</example>
         <help>Parameters: expr1 expr2 - Checks if expr1 is not equal to expr2.</help>
         <parametersCount>2</parametersCount>
-        <implementingClass>BinaryBoolCommand</implementingClass>
+        <implementingClass>NotEqualCommand</implementingClass>
     </command>
     <command>
         <canonicalName>LESSEQUAL?</canonicalName>
@@ -65,7 +65,7 @@
         <example>&lt;= 5 5</example>
         <help>Parameters: expr1 expr2 - Checks if expr1 is less than or equal to expr2.</help>
         <parametersCount>2</parametersCount>
-        <implementingClass>BinaryBoolCommand</implementingClass>
+        <implementingClass>LessEqualCommand</implementingClass>
     </command>
     <command>
         <canonicalName>GREATEREQUAL?</canonicalName>
@@ -74,6 +74,6 @@
         <example>>= 5 5</example>
         <help>Parameters: expr1 expr2 - Checks if expr1 is greater than or equal to expr2.</help>
         <parametersCount>2</parametersCount>
-        <implementingClass>BinaryBoolCommand</implementingClass>
+        <implementingClass>GreaterEqualCommand</implementingClass>
     </command>
 </commands>
