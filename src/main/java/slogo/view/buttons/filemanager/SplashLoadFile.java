@@ -3,9 +3,11 @@ package slogo.view.buttons.filemanager;
 import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import slogo.controller.command.CommandController;
 import slogo.controller.display.SceneSwitcher;
+import slogo.view.alert.Alert;
 import slogo.view.scenes.main.MainScene;
 
 public class SplashLoadFile extends AbstractFileProcessor implements FileLoader {
@@ -49,7 +51,8 @@ public class SplashLoadFile extends AbstractFileProcessor implements FileLoader 
       String commands = readFileContents(file);
       switchToMainScene(commands);
     } catch (IOException e) {
-      throw new RuntimeException("File couldn't be loaded: " + e.getMessage(), e);
+      Platform.runLater(
+          () -> Alert.showError("Load Error", "File couldn't be loaded: " + e.getMessage()));
     }
   }
 

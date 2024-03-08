@@ -6,7 +6,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import slogo.view.alert.Alert;
 import slogo.view.tabs.CommandHistoryTab;
 
 /**
@@ -50,7 +52,8 @@ public class SaveFile extends AbstractFileProcessor implements FileSaver {
       writer.write(content);
       writer.newLine();
     } catch (IOException e) {
-      e.printStackTrace();
+      Platform.runLater(
+          () -> Alert.showError("Save Error", "Could not save the file: " + e.getMessage()));
     }
   }
 }

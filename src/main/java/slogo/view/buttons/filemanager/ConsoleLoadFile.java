@@ -8,6 +8,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import slogo.controller.command.CommandController;
 import slogo.exceptions.InvalidCommandException;
+import slogo.view.alert.Alert;
 
 /**
  * The ConsoleLoadFile class is a file loader that loads a file from the console.
@@ -48,7 +49,8 @@ public class ConsoleLoadFile extends AbstractFileProcessor implements FileLoader
       String commands = readFileContents(file);
       executeCommands(commands);
     } catch (IOException e) {
-      throw new RuntimeException("File couldn't be loaded: " + e.getMessage(), e);
+      Platform.runLater(
+          () -> Alert.showError("Load Error", "File couldn't be loaded: " + e.getMessage()));
     }
   }
 
@@ -60,7 +62,8 @@ public class ConsoleLoadFile extends AbstractFileProcessor implements FileLoader
         try {
           commandController.executeCommand(commandLine);
         } catch (InvalidCommandException e) {
-          throw new RuntimeException(e);
+          Alert.showError("Invalid Command",
+              "An invalid command was encountered: " + e.getMessage());
         }
       });
     });
