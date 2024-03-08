@@ -1,50 +1,53 @@
 package slogo.view.buttons.filemanager;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.stage.FileChooser;
 import slogo.view.tabs.CommandHistoryTab;
 
-/**
- * SaveButtonController is the controller for the Save button.
- */
-public class SaveFile implements EventHandler<ActionEvent> {
+public class SaveFile extends AbstractFileProcessor implements FileSaver {
 
   private final CommandHistoryTab commandHistoryTab;
 
   /**
-   * Constructor for SaveButtonController.
+   * The SaveFile constructor creates a new instance of SaveFile.
    *
-   * @param commandHistoryTab Reference to the CommandHistoryTab.
+   * @param commandHistoryTab The command history tab
    */
   public SaveFile(CommandHistoryTab commandHistoryTab) {
     this.commandHistoryTab = commandHistoryTab;
   }
 
+  /**
+   * Handles the event of saving a file.
+   *
+   * @param event the event which occurred
+   */
   @Override
   public void handle(ActionEvent event) {
-    List<String> commands = getCommandsFromTab();
-
-    FileChooser fileChooser = new FileChooser();
-    fileChooser.setTitle("Save .slogo File");
-    fileChooser.getExtensionFilters()
-        .add(new FileChooser.ExtensionFilter("Slogo Files", "*.slogo"));
-    File file = fileChooser.showSaveDialog(null);
-
-    if (file != null) {
-      String filePath = file.getAbsolutePath();
-      SaveFileHandler.saveCommandsToFile(commands, filePath);
-    }
+    List<String> commands = commandHistoryTab.getCommandsHistory();
+    Optional<File> file = Optional.ofNullable(
+        createFileChooser("Save .slogo File", "*.slogo").showSaveDialog(null));
+    file.ifPresent(f -> saveFile(f, String.join(System.lineSeparator(), commands)));
   }
 
   /**
-   * Get commands from the CommandHistoryTab.
+   * Saves the file.
    *
-   * @return List of commands.
+   * @param file the file to be saved
+   * @param content the content to be saved
    */
-  private List<String> getCommandsFromTab() {
-    return commandHistoryTab.getCommandsHistory();
+  @Override
+  public void saveFile(File file, String content) {
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+      writer.write(content);
+      writer.newLine();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 }
