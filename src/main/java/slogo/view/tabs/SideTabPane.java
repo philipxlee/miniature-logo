@@ -11,19 +11,29 @@ import slogo.observer.Observable;
 import slogo.observer.Observer;
 import slogo.view.scenes.main.TurtlePane;
 
+/**
+ * SideTabPane is the side tab.
+ */
 public class SideTabPane extends TabPane implements Observer {
 
   private final CommandController commandController;
   private final Map<String, TabContent> tabContents = new HashMap<>();
   private final TurtlePane turtlePane;
 
+  /**
+   * SideTabPane constructor.
+   */
   public SideTabPane(CommandController commandController, TurtlePane turtlePane) {
+    super();
     this.commandController = commandController;
     this.turtlePane = turtlePane;
     setTabClosingPolicy(TabClosingPolicy.UNAVAILABLE);
     initializeAndPopulateTabs();
   }
 
+  /**
+   * Initialize and popujlate tabs.
+   */
   private void initializeAndPopulateTabs() {
     addAndRegisterTab("CommandHistory", new CommandHistoryTab(commandController));
     addAndRegisterTab("HelpDocs", new HelpDocTab());
@@ -32,6 +42,12 @@ public class SideTabPane extends TabPane implements Observer {
     addAndRegisterTab("PenControls", new PenPropertiesTab(turtlePane));
   }
 
+  /**
+   * Add and register tab
+   *
+   * @param key        is the key
+   * @param tabContent is the tab content.
+   */
   private void addAndRegisterTab(String key, TabContent tabContent) {
     String title = LanguageController.getText(key);
     Tab tab = new Tab(title);
@@ -40,6 +56,11 @@ public class SideTabPane extends TabPane implements Observer {
     getTabs().add(tab);
   }
 
+  /**
+   * Update function for the observable
+   *
+   * @param observable is the observable triggering the update.
+   */
   @Override
   public void update(Observable observable) {
     if (observable instanceof CommandHistoryModel) {
@@ -47,6 +68,11 @@ public class SideTabPane extends TabPane implements Observer {
     }
   }
 
+  /**
+   * Update command history tab.
+   *
+   * @param observable is the observable triggering the update.
+   */
   private void updateCommandHistoryTab(Observable observable) {
     CommandHistoryTab commandHistoryTab = (CommandHistoryTab) tabContents.get(
         LanguageController.getText("CommandHistory"));

@@ -142,6 +142,11 @@ public class TurtlePane implements Observer {
     return animations;
   }
 
+  /**
+   * Animate lines in path.
+   *
+   * @param turtleModel is the turtle model.
+   */
   private ParallelTransition drawLines(TurtleModel turtleModel) {
     if (!penDown) {
       return new ParallelTransition();  // Return an empty transition if pen is up
@@ -183,6 +188,12 @@ public class TurtlePane implements Observer {
     return parallelTransition;
   }
 
+  /**
+   * Initialize turtle.
+   *
+   * @param width  is the width
+   * @param height is the height
+   */
   private void initializeTurtle(int width, int height) {
     turtleImageView = new ImageView();
     turtleImageView.setImage(new Image(
@@ -195,12 +206,23 @@ public class TurtlePane implements Observer {
     displayPane.getChildren().add(turtleImageView);
   }
 
+  /**
+   * Reset turtle position in view.
+   *
+   * @param width  is the width
+   * @param height is the height
+   */
   private void resetTurtlePosition(int width, int height) {
     // Center the turtle in the pane
     turtleImageView.setX(width / 2.0 - 10); // Center X
     turtleImageView.setY(height * RATIO_TURTLE_DISPLAY / 2.0 - 10); // Center Y
   }
 
+  /**
+   * Create path animation.
+   *
+   * @param turtleModel is the turtle model.
+   */
   private PathTransition createMovementAnimation(TurtleModel turtleModel) {
     double centerX = displayPane.getWidth() / 2.0;
     double centerY = displayPane.getHeight() / 2.0;
@@ -218,6 +240,11 @@ public class TurtlePane implements Observer {
     return new PathTransition(Duration.seconds(duration), path, turtleImageView);
   }
 
+  /**
+   * Create Rotation Animation.
+   *
+   * @param turtleModel is the turtle model.
+   */
   private RotateTransition createRotationAnimation(TurtleModel turtleModel) {
     RotateTransition rotateTransition = new RotateTransition();
     rotateTransition.setDuration(Duration.seconds(1));
@@ -227,12 +254,18 @@ public class TurtlePane implements Observer {
     return rotateTransition;
   }
 
+  /**
+   * Pause current animation.
+   */
   public void pauseAnimation() {
     if (currentAnimation != null) {
       currentAnimation.pause();
     }
   }
 
+  /**
+   * Play current animation.
+   */
   public void playAnimation() {
     if (currentAnimation != null && currentAnimation.getStatus() == Animation.Status.PAUSED) {
       currentAnimation.play();
