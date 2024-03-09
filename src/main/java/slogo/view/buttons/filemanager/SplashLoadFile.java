@@ -30,8 +30,8 @@ public class SplashLoadFile extends AbstractFileProcessor implements FileLoader 
    */
   public SplashLoadFile(CommandController commandController, SceneSwitcher switcher) {
     super();
-    this.commandController = commandController;
     this.switcher = switcher;
+    this.commandController = commandController;
   }
 
   /**

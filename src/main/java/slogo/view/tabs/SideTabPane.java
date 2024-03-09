@@ -43,7 +43,7 @@ public class SideTabPane extends TabPane implements Observer {
   }
 
   /**
-   * Add and register tab
+   * Add and register tab.
    *
    * @param key        is the key
    * @param tabContent is the tab content.
@@ -57,7 +57,7 @@ public class SideTabPane extends TabPane implements Observer {
   }
 
   /**
-   * Update function for the observable
+   * Update function for the observable.
    *
    * @param observable is the observable triggering the update.
    */
