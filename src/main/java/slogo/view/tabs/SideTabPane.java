@@ -1,6 +1,6 @@
 package slogo.view.tabs;
 
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.Map;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -15,46 +15,53 @@ import slogo.view.scenes.main.TurtlePane;
 public class SideTabPane extends TabPane implements Observer {
 
   private final CommandController commandController;
-  private final Map<String, TabContent> tabMap = new LinkedHashMap<>();
+  private final Map<String, TabContent> tabContents = new HashMap<>();
   private final TurtlePane turtlePane;
 
   public SideTabPane(CommandController commandController, TurtlePane turtlePane) {
     this.commandController = commandController;
     this.turtlePane = turtlePane;
     setTabClosingPolicy(TabClosingPolicy.UNAVAILABLE);
-    initializeAndConstructTabs();
+    initializeAndPopulateTabs();
   }
 
-  private void initializeAndConstructTabs() {
-    addTab("CommandHistory", new CommandHistoryTab(commandController));
-    addTab("HelpDocs", new HelpDocTab());
-    addTab("UserVariables", new UserVariablesTab(commandController));
-    addTab("UserCommands", new UserCommandsTab());
-    addTab("TurtleControl", new TurtleControlTab(commandController));
-    addTab("PenControls", new PenPropertiesTab(turtlePane));
+  private void initializeAndPopulateTabs() {
+    addAndRegisterTab("CommandHistory", new CommandHistoryTab(commandController));
+    addAndRegisterTab("HelpDocs", new HelpDocTab());
+    addAndRegisterTab("UserVariables", new UserVariablesTab(commandController));
+    addAndRegisterTab("UserCommands", new UserCommandsTab());
+    addAndRegisterTab("TurtleControl", new TurtleControlTab(commandController));
+    addAndRegisterTab("PenControls", new PenPropertiesTab(turtlePane));
   }
 
-  private void addTab(String resourceKey, TabContent tabContent) {
-    String title = LanguageController.getText(resourceKey);
+  private void addAndRegisterTab(String key, TabContent tabContent) {
+    String title = LanguageController.getText(key);
     Tab tab = new Tab(title);
     tab.setContent(tabContent.getContent());
+    tabContents.put(title, tabContent);
     getTabs().add(tab);
-    tabMap.put(title, tabContent);
   }
 
   @Override
   public void update(Observable observable) {
     if (observable instanceof CommandHistoryModel) {
-      updateTabContent(LanguageController.getText("CommandHistory"), observable);
+      updateCommandHistoryTab(observable);
     } else if (observable instanceof VariablesModel) {
-      updateTabContent(LanguageController.getText("UserVariables"), observable);
+      updateUserVariablesTab(observable);
     }
   }
 
-  private void updateTabContent(String title, Observable observable) {
-    TabContent tabContent = tabMap.get(title);
-    if (tabContent instanceof Observer) {
-      ((Observer) tabContent).update(observable);
+  private void updateCommandHistoryTab(Observable observable) {
+    CommandHistoryTab commandHistoryTab = (CommandHistoryTab) tabContents.get(LanguageController.getText("CommandHistory"));
+    if (commandHistoryTab != null) {
+      commandHistoryTab.updateContent(((CommandHistoryModel) observable).iterator());
+    }
+  }
+
+  private void updateUserVariablesTab(Observable observable) {
+    UserVariablesTab userVariablesTab = (UserVariablesTab) tabContents.get(LanguageController.getText("UserVariables"));
+    if (userVariablesTab != null) {
+      userVariablesTab.updateContent(((VariablesModel) observable).getAllVariables());
     }
   }
 }
