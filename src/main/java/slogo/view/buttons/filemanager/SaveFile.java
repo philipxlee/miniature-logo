@@ -43,7 +43,7 @@ public class SaveFile extends AbstractFileProcessor implements FileSaver {
   /**
    * Saves the file.
    *
-   * @param file the file to be saved
+   * @param file    the file to be saved
    * @param content the content to be saved
    */
   @Override

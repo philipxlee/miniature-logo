@@ -14,8 +14,8 @@ import slogo.view.scenes.main.MainScene;
 
 public class SplashLoadFile extends AbstractFileProcessor implements FileLoader {
 
-  private static int WIDTH = 1000;
-  private static int HEIGHT = 700;
+  private static final int WIDTH = 1000;
+  private static final int HEIGHT = 700;
   private final CommandController commandController;
   private final SceneSwitcher switcher;
 
@@ -23,7 +23,7 @@ public class SplashLoadFile extends AbstractFileProcessor implements FileLoader 
    * The SplashLoadFile constructor creates a new instance of SplashLoadFile.
    *
    * @param commandController The command controller
-   * @param switcher The scene switcher
+   * @param switcher          The scene switcher
    */
   public SplashLoadFile(CommandController commandController, SceneSwitcher switcher) {
     this.commandController = commandController;

@@ -7,7 +7,6 @@ import javafx.scene.control.TabPane;
 import slogo.controller.command.CommandController;
 import slogo.controller.config.LanguageController;
 import slogo.model.api.data.CommandHistoryModel;
-import slogo.model.api.data.VariablesModel;
 import slogo.observer.Observable;
 import slogo.observer.Observer;
 import slogo.view.scenes.main.TurtlePane;
@@ -49,7 +48,8 @@ public class SideTabPane extends TabPane implements Observer {
   }
 
   private void updateCommandHistoryTab(Observable observable) {
-    CommandHistoryTab commandHistoryTab = (CommandHistoryTab) tabContents.get(LanguageController.getText("CommandHistory"));
+    CommandHistoryTab commandHistoryTab = (CommandHistoryTab) tabContents.get(
+        LanguageController.getText("CommandHistory"));
     if (commandHistoryTab != null) {
       commandHistoryTab.updateContent(((CommandHistoryModel) observable).iterator());
     }
