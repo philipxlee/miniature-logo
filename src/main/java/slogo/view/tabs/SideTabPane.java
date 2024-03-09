@@ -32,7 +32,7 @@ public class SideTabPane extends TabPane implements Observer {
   }
 
   /**
-   * Initialize and popujlate tabs.
+   * Initialize and populate tabs.
    */
   private void initializeAndPopulateTabs() {
     addAndRegisterTab("CommandHistory", new CommandHistoryTab(commandController));
@@ -45,7 +45,7 @@ public class SideTabPane extends TabPane implements Observer {
   /**
    * Add and register tab.
    *
-   * @param key        is the key
+   * @param key        is the key.
    * @param tabContent is the tab content.
    */
   private void addAndRegisterTab(String key, TabContent tabContent) {
