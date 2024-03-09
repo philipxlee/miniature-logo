@@ -8,7 +8,7 @@ import javafx.scene.layout.VBox;
 import slogo.view.scenes.main.TurtlePane;
 
 /**
- * PenPropertiesTab represents the view of the pen properties tab.
+ * PenPropertiesTab is the tab that displays pen properties.
  */
 public class PenPropertiesTab implements TabContent {
 
@@ -16,9 +16,9 @@ public class PenPropertiesTab implements TabContent {
   private final TurtlePane turtlePane;
 
   /**
-   * Constructs a new PenPropertiesTab.
+   * Constructor for PenPropertiesTab.
    *
-   * @param turtlePane the turtle pane to control
+   * @param turtlePane The pane to control pen properties
    */
   public PenPropertiesTab(TurtlePane turtlePane) {
     this.turtlePane = turtlePane;
@@ -26,9 +26,9 @@ public class PenPropertiesTab implements TabContent {
   }
 
   /**
-   * Returns the content of the tab.
+   * Return a node with the pen properties content.
    *
-   * @return the content of the tab
+   * @return Node representing the pane.
    */
   @Override
   public Node getContent() {
@@ -36,14 +36,25 @@ public class PenPropertiesTab implements TabContent {
   }
 
   private void initializeUI() {
-    ToggleButton penToggle = new ToggleButton("Pen Up/Down");
-    ColorPicker colorPicker = new ColorPicker();
-    Slider thicknessSlider = new Slider(1, 10, 1);
-    colorPicker.setOnAction(e -> turtlePane.setPenColor(colorPicker.getValue()));
-    penToggle.setOnAction(e -> turtlePane.setPenUp(penToggle.isSelected()));
-    thicknessSlider.valueProperty().addListener((obs, oldVal, newVal) ->
-        turtlePane.setPenThickness(newVal.doubleValue()));
-    content.getChildren().addAll(penToggle, colorPicker, thicknessSlider);
+    content.getChildren().addAll(createPenToggle(), createColorPicker(), createThicknessSlider());
   }
 
+  private ToggleButton createPenToggle() {
+    ToggleButton penToggle = new ToggleButton("Pen Up/Down");
+    penToggle.setOnAction(e -> turtlePane.setPenUp(penToggle.isSelected()));
+    return penToggle;
+  }
+
+  private ColorPicker createColorPicker() {
+    ColorPicker colorPicker = new ColorPicker();
+    colorPicker.setOnAction(e -> turtlePane.setPenColor(colorPicker.getValue()));
+    return colorPicker;
+  }
+
+  private Slider createThicknessSlider() {
+    Slider thicknessSlider = new Slider(1, 10, 1);
+    thicknessSlider.valueProperty().addListener((obs, oldVal, newVal) ->
+        turtlePane.setPenThickness(newVal.doubleValue()));
+    return thicknessSlider;
+  }
 }
