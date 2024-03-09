@@ -28,7 +28,6 @@ public class SideTabPane extends TabPane implements Observer {
   private void initializeAndPopulateTabs() {
     addAndRegisterTab("CommandHistory", new CommandHistoryTab(commandController));
     addAndRegisterTab("HelpDocs", new HelpDocTab());
-    addAndRegisterTab("UserVariables", new UserVariablesTab(commandController));
     addAndRegisterTab("UserCommands", new UserCommandsTab());
     addAndRegisterTab("TurtleControl", new TurtleControlTab(commandController));
     addAndRegisterTab("PenControls", new PenPropertiesTab(turtlePane));
@@ -46,8 +45,6 @@ public class SideTabPane extends TabPane implements Observer {
   public void update(Observable observable) {
     if (observable instanceof CommandHistoryModel) {
       updateCommandHistoryTab(observable);
-    } else if (observable instanceof VariablesModel) {
-      updateUserVariablesTab(observable);
     }
   }
 
@@ -58,10 +55,4 @@ public class SideTabPane extends TabPane implements Observer {
     }
   }
 
-  private void updateUserVariablesTab(Observable observable) {
-    UserVariablesTab userVariablesTab = (UserVariablesTab) tabContents.get(LanguageController.getText("UserVariables"));
-    if (userVariablesTab != null) {
-      userVariablesTab.updateContent(((VariablesModel) observable).getAllVariables());
-    }
-  }
 }
