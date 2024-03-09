@@ -17,9 +17,9 @@ import slogo.exceptions.InvalidCommandException;
 import slogo.view.buttons.filemanager.ConsoleLoadFile;
 import slogo.view.buttons.filemanager.SaveFile;
 
-
 /**
- * CommandHistoryTab is the tab for command history.
+ * Represents the command history tab within the application. It provides users with the
+ * functionality to view the list of executed commands and interact with them.
  */
 public class CommandHistoryTab implements TabContent {
 
@@ -29,78 +29,116 @@ public class CommandHistoryTab implements TabContent {
   private ScrollPane scrollPane;
   private List<String> commandsHistory;
 
-
   /**
-   * Constructor for CommandHistoryTab.
+   * Constructs a CommandHistoryTab instance with a reference to the command controller.
    *
-   * @param commandController the CommandController
+   * @param commandController The controller responsible for command execution and interaction.
    */
   public CommandHistoryTab(CommandController commandController) {
     this.commandController = commandController;
   }
 
   /**
-   * Return a node with the command history content.
+   * Generates and returns the UI content for the command history tab.
    *
-   * @return Node representing the pane.
+   * @return The Node representing the command history tab's UI.
    */
   @Override
   public Node getContent() {
-    this.content = new VBox();
-    content.setFillWidth(true);
-
-    historyContainer = new VBox();
-    historyContainer.setFillWidth(true);
-
-    scrollPane = new ScrollPane(historyContainer);
-    scrollPane.setFitToWidth(true);
-    scrollPane.setFitToHeight(true);
-
-    Button saveFileButton = new Button(LanguageController.getText("SaveFile"));
-    saveFileButton.setOnAction(new SaveFile(this));
-    Button loadFileButton = new Button(LanguageController.getText("LoadFile"));
-    loadFileButton.setOnAction(new ConsoleLoadFile(commandController));
-
-    HBox buttonBox = new HBox();
-    buttonBox.getChildren().addAll(saveFileButton, loadFileButton);
-    content.getChildren().add(scrollPane);
-    content.getChildren().add(buttonBox);
-
+    initializeComponents();
+    layoutComponents();
     return content;
   }
 
   /**
-   * Update content of command history tab.
+   * Updates the command history view with a new set of commands.
    *
-   * @param commands Iterator of commands.
+   * @param commands An iterator over the new set of commands to be displayed.
    */
   public void updateContent(Iterator<String> commands) {
     commandsHistory = new ArrayList<>();
-    historyContainer.getChildren().clear();  // Clear existing commands
+    historyContainer.getChildren().clear();
 
     while (commands.hasNext()) {
-      String commandString = commands.next();
-      commandsHistory.add(commandString);
-
-      // Create interactive text for each command
-      Text commandText = new Text(commandString);
-      commandText.setOnMouseClicked(event -> executeCommandInteractively(commandString));
-
-      historyContainer.getChildren().add(commandText);
+      String command = commands.next();
+      commandsHistory.add(command);
+      historyContainer.getChildren().add(createCommandText(command));
     }
     scrollPane.setVvalue(1.0);
   }
 
   /**
-   * Get the command history.
+   * Retrieves the command history list.
    *
-   * @return List of commands history.
+   * @return A list containing the history of commands executed.
    */
   public List<String> getCommandsHistory() {
     return commandsHistory;
   }
 
-  // Execute command interactively from the command history (No-Code SLOGO)
+  /**
+   * Initializes the UI components used within the tab.
+   */
+  private void initializeComponents() {
+    content = new VBox();
+    historyContainer = new VBox();
+    scrollPane = new ScrollPane(historyContainer);
+    scrollPane.setFitToWidth(true);
+    scrollPane.setFitToHeight(true);
+    scrollPane.setPrefHeight(300);
+  }
+
+  /**
+   * Layouts the UI components within the tab.
+   */
+  private void layoutComponents() {
+    content.setFillWidth(true);
+    HBox buttonBox = new HBox(
+        createSaveFileButton(),
+        createLoadFileButton()
+    );
+    content.getChildren().addAll(scrollPane, buttonBox);
+  }
+
+  /**
+   * Creates a clickable text element for a command.
+   *
+   * @param command The command string to be displayed and interacted with.
+   * @return A Text node representing the command.
+   */
+  private Text createCommandText(String command) {
+    Text commandText = new Text(command);
+    commandText.setOnMouseClicked(event -> executeCommandInteractively(command));
+    return commandText;
+  }
+
+  /**
+   * Creates and returns a button for saving the command history.
+   *
+   * @return A configured save file button.
+   */
+  private Button createSaveFileButton() {
+    Button saveFileButton = new Button(LanguageController.getText("SaveFile"));
+    saveFileButton.setOnAction(new SaveFile(this));
+    return saveFileButton;
+  }
+
+  /**
+   * Creates and returns a button for loading commands from a file.
+   *
+   * @return A configured load file button.
+   */
+  private Button createLoadFileButton() {
+    Button loadFileButton = new Button(LanguageController.getText("LoadFile"));
+    loadFileButton.setOnAction(new ConsoleLoadFile(commandController));
+    return loadFileButton;
+  }
+
+  /**
+   * Executes a command interactively, allowing for potential modifications before execution.
+   *
+   * @param command The command to be executed.
+   */
   private void executeCommandInteractively(String command) {
     TextInputDialog dialog = new TextInputDialog(command);
     dialog.setTitle(LanguageController.getText("ExecuteCommand"));
@@ -116,5 +154,3 @@ public class CommandHistoryTab implements TabContent {
     });
   }
 }
-
-
