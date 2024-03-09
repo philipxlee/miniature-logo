@@ -16,13 +16,13 @@ import slogo.view.alert.Alert;
 public class InputPane {
 
   private static final String DOLLAR_SIGN = "$ ";
-  private VBox inputBox;
-  private TextArea commandInput;
+  private final VBox inputBox;
+  private final TextArea commandInput;
 
   /**
    * The InputPane constructor creates a new instance of InputPane.
    *
-   * @param height The height of the input pane
+   * @param height            The height of the input pane
    * @param commandController The command controller
    */
   public InputPane(int height, CommandController commandController) {
@@ -54,7 +54,7 @@ public class InputPane {
   /**
    * Executes a command.
    *
-   * @param command The command to execute
+   * @param command           The command to execute
    * @param commandController The command controller
    */
   public void executeCommand(String command, CommandController commandController) {

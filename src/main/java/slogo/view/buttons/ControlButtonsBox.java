@@ -21,7 +21,7 @@ public class ControlButtonsBox extends HBox {
 
   private final BackgroundObservable colorObservable;
   private final PenColorObservable penColorObservable;
-  private TurtlePane turtlePane;
+  private final TurtlePane turtlePane;
 
   /**
    * Constructs a new ControlButtonsBox.
