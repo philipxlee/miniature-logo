@@ -33,8 +33,8 @@ public class TurtlePane implements Observer {
   public static final String DEFAULT_TURTLE_IMAGE_PATH = "/default_turtle.png";
   private static ImageView turtleImageView;
   private final Pane displayPane;
-  private Color currentPenColor = Color.BLACK;
   private final List<Line> linesDrawn = new ArrayList<>();
+  private Color currentPenColor = Color.BLACK;
   private ParallelTransition currentAnimation;
   private double animationSpeed;
   private boolean penDown = true;
@@ -239,6 +239,9 @@ public class TurtlePane implements Observer {
     }
   }
 
+  /**
+   * Replay current animation.
+   */
   public void replayAnimation() {
     if (currentAnimation != null) {
       linesDrawn.forEach(displayPane.getChildren()::remove);
@@ -248,23 +251,42 @@ public class TurtlePane implements Observer {
     }
   }
 
+  /**
+   * Adjust speed of animation.
+   *
+   * @param adjust is the amount to adjust by.
+   */
   public void adjustSpeed(double adjust) {
-    if(adjust == 0.0) {
+    if (adjust == 0.0) {
       animationSpeed = -50.0;
       return;
     }
     animationSpeed = Math.max(TRAVERSAL_RATE + adjust, 1.0);
   }
 
-  // Methods to update pen properties
+  /**
+   * set pen state.
+   *
+   * @param isUp is new pen state.
+   */
   public void setPenUp(boolean isUp) {
     this.penDown = !isUp;
   }
 
+  /**
+   * Set pen color.
+   *
+   * @param color is the new pen color.
+   */
   public void setPenColor(Color color) {
     this.currentPenColor = color;
   }
 
+  /**
+   * Set pen thickness.
+   *
+   * @param thickness is the new pen thickness
+   */
   public void setPenThickness(double thickness) {
     this.penThickness = thickness;
   }

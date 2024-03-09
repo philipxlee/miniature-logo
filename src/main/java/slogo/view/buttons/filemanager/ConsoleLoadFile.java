@@ -23,6 +23,7 @@ public class ConsoleLoadFile extends AbstractFileProcessor implements FileLoader
    * @param commandController The command controller
    */
   public ConsoleLoadFile(CommandController commandController) {
+    super();
     this.commandController = commandController;
   }
 

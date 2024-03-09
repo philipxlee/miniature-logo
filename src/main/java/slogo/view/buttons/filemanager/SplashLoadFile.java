@@ -12,6 +12,9 @@ import slogo.controller.display.SceneSwitcher;
 import slogo.view.alert.Alert;
 import slogo.view.scenes.main.MainScene;
 
+/**
+ * SplashLoadFile handles functionality for loading file.
+ */
 public class SplashLoadFile extends AbstractFileProcessor implements FileLoader {
 
   private static int WIDTH = 1000;
@@ -26,6 +29,7 @@ public class SplashLoadFile extends AbstractFileProcessor implements FileLoader 
    * @param switcher The scene switcher
    */
   public SplashLoadFile(CommandController commandController, SceneSwitcher switcher) {
+    super();
     this.commandController = commandController;
     this.switcher = switcher;
   }
