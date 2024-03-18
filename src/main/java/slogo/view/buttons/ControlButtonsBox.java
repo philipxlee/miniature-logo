@@ -19,9 +19,11 @@ import slogo.view.scenes.main.TurtlePane;
  */
 public class ControlButtonsBox extends HBox {
 
+  private final String pauseString = "Pause";
+  private final String playString = "Play";
   private final BackgroundObservable colorObservable;
   private final PenColorObservable penColorObservable;
-  private TurtlePane turtlePane;
+  private final TurtlePane turtlePane;
 
   /**
    * Constructs a new ControlButtonsBox.
@@ -67,13 +69,13 @@ public class ControlButtonsBox extends HBox {
       }
     });
 
-    addButton("Pause", button -> {
-      if ("Pause".equals(button.getText())) {
+    addButton(pauseString, button -> {
+      if (pauseString.equals(button.getText())) {
         turtlePane.pauseAnimation();
-        button.setText("Play");
+        button.setText(playString);
       } else {
         turtlePane.playAnimation();
-        button.setText("Pause");
+        button.setText(pauseString);
       }
     });
 

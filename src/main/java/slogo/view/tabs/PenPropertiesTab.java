@@ -22,7 +22,7 @@ public class PenPropertiesTab implements TabContent {
    */
   public PenPropertiesTab(TurtlePane turtlePane) {
     this.turtlePane = turtlePane;
-    initializeUI();
+    initializeUi();
   }
 
   /**
@@ -35,7 +35,7 @@ public class PenPropertiesTab implements TabContent {
     return content;
   }
 
-  private void initializeUI() {
+  private void initializeUi() {
     content.getChildren().addAll(createPenToggle(), createColorPicker(), createThicknessSlider());
   }
 

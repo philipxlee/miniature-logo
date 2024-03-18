@@ -31,7 +31,7 @@ public abstract class AbstractFileProcessor implements EventHandler<ActionEvent>
   /**
    * Creates a file chooser with the given title and extension.
    *
-   * @param title the title of the file chooser
+   * @param title     the title of the file chooser
    * @param extension the extension of the file
    * @return the file chooser
    */

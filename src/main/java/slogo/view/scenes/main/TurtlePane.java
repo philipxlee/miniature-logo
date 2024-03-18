@@ -33,8 +33,8 @@ public class TurtlePane implements Observer {
   public static final String DEFAULT_TURTLE_IMAGE_PATH = "/default_turtle.png";
   private static ImageView turtleImageView;
   private final Pane displayPane;
-  private Color currentPenColor = Color.BLACK;
   private final List<Line> linesDrawn = new ArrayList<>();
+  private Color currentPenColor = Color.BLACK;
   private ParallelTransition currentAnimation;
   private double animationSpeed;
   private boolean penDown = true;
@@ -142,6 +142,11 @@ public class TurtlePane implements Observer {
     return animations;
   }
 
+  /**
+   * Animate lines in path.
+   *
+   * @param turtleModel is the turtle model.
+   */
   private ParallelTransition drawLines(TurtleModel turtleModel) {
     if (!penDown) {
       return new ParallelTransition();  // Return an empty transition if pen is up
@@ -183,6 +188,12 @@ public class TurtlePane implements Observer {
     return parallelTransition;
   }
 
+  /**
+   * Initialize turtle.
+   *
+   * @param width  is the width
+   * @param height is the height
+   */
   private void initializeTurtle(int width, int height) {
     turtleImageView = new ImageView();
     turtleImageView.setImage(new Image(
@@ -195,12 +206,23 @@ public class TurtlePane implements Observer {
     displayPane.getChildren().add(turtleImageView);
   }
 
+  /**
+   * Reset turtle position in view.
+   *
+   * @param width  is the width
+   * @param height is the height
+   */
   private void resetTurtlePosition(int width, int height) {
     // Center the turtle in the pane
     turtleImageView.setX(width / 2.0 - 10); // Center X
     turtleImageView.setY(height * RATIO_TURTLE_DISPLAY / 2.0 - 10); // Center Y
   }
 
+  /**
+   * Create path animation.
+   *
+   * @param turtleModel is the turtle model.
+   */
   private PathTransition createMovementAnimation(TurtleModel turtleModel) {
     double centerX = displayPane.getWidth() / 2.0;
     double centerY = displayPane.getHeight() / 2.0;
@@ -218,6 +240,11 @@ public class TurtlePane implements Observer {
     return new PathTransition(Duration.seconds(duration), path, turtleImageView);
   }
 
+  /**
+   * Create Rotation Animation.
+   *
+   * @param turtleModel is the turtle model.
+   */
   private RotateTransition createRotationAnimation(TurtleModel turtleModel) {
     RotateTransition rotateTransition = new RotateTransition();
     rotateTransition.setDuration(Duration.seconds(1));
@@ -227,18 +254,27 @@ public class TurtlePane implements Observer {
     return rotateTransition;
   }
 
+  /**
+   * Pause current animation.
+   */
   public void pauseAnimation() {
     if (currentAnimation != null) {
       currentAnimation.pause();
     }
   }
 
+  /**
+   * Play current animation.
+   */
   public void playAnimation() {
     if (currentAnimation != null && currentAnimation.getStatus() == Animation.Status.PAUSED) {
       currentAnimation.play();
     }
   }
 
+  /**
+   * Replay current animation.
+   */
   public void replayAnimation() {
     if (currentAnimation != null) {
       linesDrawn.forEach(displayPane.getChildren()::remove);
@@ -248,23 +284,42 @@ public class TurtlePane implements Observer {
     }
   }
 
+  /**
+   * Adjust speed of animation.
+   *
+   * @param adjust is the amount to adjust by.
+   */
   public void adjustSpeed(double adjust) {
-    if(adjust == 0.0) {
+    if (adjust == 0.0) {
       animationSpeed = -50.0;
       return;
     }
     animationSpeed = Math.max(TRAVERSAL_RATE + adjust, 1.0);
   }
 
-  // Methods to update pen properties
+  /**
+   * set pen state.
+   *
+   * @param isUp is new pen state.
+   */
   public void setPenUp(boolean isUp) {
     this.penDown = !isUp;
   }
 
+  /**
+   * Set pen color.
+   *
+   * @param color is the new pen color.
+   */
   public void setPenColor(Color color) {
     this.currentPenColor = color;
   }
 
+  /**
+   * Set pen thickness.
+   *
+   * @param thickness is the new pen thickness
+   */
   public void setPenThickness(double thickness) {
     this.penThickness = thickness;
   }

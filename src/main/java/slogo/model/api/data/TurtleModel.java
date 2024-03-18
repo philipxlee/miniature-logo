@@ -162,6 +162,19 @@ public class TurtleModel extends AbstractObservable {
   }
 
   /**
+   * Sets orientation of turtle.
+   *
+   * @param angle is the new orientation of the turtle
+   */
+  public void setOrientation(double angle) {
+    prevX = positionX;
+    prevY = positionY;
+    prevOrientation = orientation;
+    this.orientation = angle;
+    notifyObservers();
+  }
+
+  /**
    * Get previous X position of turtle.
    *
    * @return prev X position of Turtle
@@ -186,16 +199,6 @@ public class TurtleModel extends AbstractObservable {
    */
   public double getPrevOrientation() {
     return prevOrientation;
-  }
-
-  /**
-   * Sets orientation of turtle.
-   *
-   * @param angle is the new orientation of the turtle
-   */
-  public void setOrientation(double angle) {
-    this.orientation = angle;
-    notifyObservers();
   }
 
   /**
@@ -244,8 +247,11 @@ public class TurtleModel extends AbstractObservable {
    * @return The number of degrees the turtle turned.
    */
   public Double faceDirection(double targetX, double targetY) {
+    prevX = positionX;
+    prevY = positionY;
     double deltaX = targetX - this.positionX;
     double deltaY = targetY - this.positionY;
+    prevOrientation = orientation;
     double targetAngle = Math.toDegrees(Math.atan2(deltaY, deltaX));
     targetAngle = targetAngle < 0 ? 360 + targetAngle : targetAngle;
 

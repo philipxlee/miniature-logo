@@ -24,6 +24,7 @@ public class SaveFile extends AbstractFileProcessor implements FileSaver {
    * @param commandHistoryTab The command history tab
    */
   public SaveFile(CommandHistoryTab commandHistoryTab) {
+    super();
     this.commandHistoryTab = commandHistoryTab;
   }
 
@@ -43,7 +44,7 @@ public class SaveFile extends AbstractFileProcessor implements FileSaver {
   /**
    * Saves the file.
    *
-   * @param file the file to be saved
+   * @param file    the file to be saved
    * @param content the content to be saved
    */
   @Override
