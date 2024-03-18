@@ -5,7 +5,7 @@ import slogo.model.api.command.Command;
 /**
  * BinaryMathCommand represents each of the 4 operations.
  */
-public class BinaryMathCommand implements Command {
+public class BinaryMathCommand extends Command {
 
   private final double operand1;
   private final double operand2;

@@ -6,7 +6,7 @@ import slogo.model.api.data.TurtleModel;
 /**
  * ForwardCommand moves the Turtle forward.
  */
-public class ForwardCommand implements Command {
+public class ForwardCommand extends Command {
 
   private final TurtleModel model;
   private final double distance;

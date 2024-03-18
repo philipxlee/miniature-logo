@@ -6,7 +6,7 @@ import slogo.model.api.data.TurtleModel;
 /**
  * RotateCommand rotates the turtle by a specified amount.
  */
-public class RotateCommand implements Command {
+public class RotateCommand extends Command {
 
   private final TurtleModel model;
   private final double degree;

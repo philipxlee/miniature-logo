@@ -6,7 +6,7 @@ import slogo.model.api.data.TurtleModel;
 /**
  * TurtleQueryCommand queries the turtle model for a property.
  */
-public class TurtleQueryCommand implements Command {
+public class TurtleQueryCommand extends Command {
 
   private final TurtleModel model;
   private final QueryType queryType;

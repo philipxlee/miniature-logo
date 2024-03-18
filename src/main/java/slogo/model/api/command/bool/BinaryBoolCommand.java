@@ -5,7 +5,7 @@ import slogo.model.api.command.Command;
 /**
  * BinaryBoolCommand represents a binary boolean operation.
  */
-public class BinaryBoolCommand implements Command {
+public class BinaryBoolCommand extends Command {
 
   private static final double TOLERANCE = 0.001;
   private final double operand1;

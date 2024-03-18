@@ -6,7 +6,7 @@ import slogo.model.api.data.TurtleModel;
 /**
  * SetLocationCommand moves the turtle to a specified location.
  */
-public class SetLocationCommand implements Command {
+public class SetLocationCommand extends Command {
 
   private final TurtleModel model;
   private final double destinationX;

@@ -5,7 +5,7 @@ import slogo.model.api.command.Command;
 /**
  * UnaryBoolCommand represents a unary operation.
  */
-public class UnaryBoolCommand implements Command {
+public class UnaryBoolCommand extends Command {
 
   private final double operand;
   private final UnaryOperationType operationType;

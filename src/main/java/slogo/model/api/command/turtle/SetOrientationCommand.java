@@ -6,7 +6,7 @@ import slogo.model.api.data.TurtleModel;
 /**
  * SetOrientationCommand sets the orientation of the turtle.
  */
-public class SetOrientationCommand implements Command {
+public class SetOrientationCommand extends Command {
 
   private final TurtleModel model;
   private final Double degree;
@@ -21,6 +21,7 @@ public class SetOrientationCommand implements Command {
    * @param degree the degree to set the turtle's heading to
    */
   public SetOrientationCommand(TurtleModel model, double degree) {
+    super();
     this.model = model;
     this.degree = degree;
     this.pointX = null;

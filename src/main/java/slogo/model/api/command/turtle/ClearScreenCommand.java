@@ -7,7 +7,7 @@ import slogo.model.api.data.TurtleModel;
 /**
  * ClearScreenCommand clears the screen and resets the turtle's position.
  */
-public class ClearScreenCommand implements Command {
+public class ClearScreenCommand extends Command {
 
   private final TurtleModel turtleModel;
   private final LineModel lineModel;

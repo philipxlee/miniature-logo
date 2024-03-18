@@ -5,7 +5,7 @@ import slogo.model.api.command.Command;
 /**
  * RemainderCommand returns the remainder of a dividend divdend by a divisor.
  */
-public class RemainderCommand implements Command {
+public class RemainderCommand extends Command {
 
   private final double dividend;
   private final double divisor;

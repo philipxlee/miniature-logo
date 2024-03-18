@@ -5,7 +5,7 @@ import slogo.model.api.command.Command;
 /**
  * PowerCommand returns the base to the power of the exponent.
  */
-public class PowerCommand implements Command {
+public class PowerCommand extends Command {
 
   private final double base;
   private final double exponent;

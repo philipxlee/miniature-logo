@@ -5,7 +5,7 @@ import slogo.model.api.command.Command;
 /**
  * PiCommand returns the value of pi.
  */
-public class PiCommand implements Command {
+public class PiCommand extends Command {
 
   /**
    * Constructs a PiCommand.

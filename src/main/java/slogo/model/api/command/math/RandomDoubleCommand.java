@@ -5,7 +5,7 @@ import slogo.model.api.command.Command;
 /**
  * RandomDoubleCommand returns a random double within a range.
  */
-public class RandomDoubleCommand implements Command {
+public class RandomDoubleCommand extends Command {
 
   private final double max;
 
