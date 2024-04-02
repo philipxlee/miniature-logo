@@ -1,18 +1,6 @@
 # slogo
 
-## TEAM NUMBER 2
-
-## Philip Lee, Arnav Nayak, Connor Johnson, Prince Ahmed
-
-This project implements a cellular automata simulator.
-
-### Timeline
-
-* Start Date: 2/19/24
-
-* Finish Date: 3/9/21
-
-* Hours Spent: About 50-60 hours.
+This project implements a custom SLOGO IDE.
 
 ### Attributions
 
@@ -59,9 +47,5 @@ This project implements a cellular automata simulator.
 * Noteworthy Features:
     * The animation, no-code, and interface customization highlight how modular our design is.
 
-### Assignment Impressions
-
-* We found this assignment to be very fun and challenging to make. There are a number of design
-  patterns that fit well with the functionality requirements of SLogo. 
 
 
